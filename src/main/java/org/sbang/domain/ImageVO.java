@@ -9,6 +9,7 @@ public class ImageVO {
 	private int studyId;
 	private int test;
 	private int abc;
+
 	private String imageImagePath;
 
 }
