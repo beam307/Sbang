@@ -6,8 +6,8 @@
 <mapper namespace="org.sbang.mapper.UserMapper">
 
 <insert id = "create">
-insert into user(user_name, user_id, user_password, user_birth, user_region)
-values (#{userName},#{userId},#{userPassword},#{userBirth},#{userRegion})
+insert into user(user_name, user_id, user_password, user_birth, user_sex, user_phoneNumber)
+values (#{userName},#{userId},#{userPassword},#{userBirth},#{userSex},#{userPhoneNumber})
 </insert>
 
 <!-- <insert id = "create_image">

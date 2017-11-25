@@ -21,10 +21,36 @@
     <link href="/resources/dist/css/main.css" rel="stylesheet">
     <!-- 서브 css -->
     <link href="/resources/dist/css/sub.css" rel="stylesheet">
+    
+	<!-- jQuery -->
+	<script type="text/javascript" src="/resources/dist/js/jquery.js"></script>
+	<script type='text/javascript' src='/resources/dist/js/jquery.bgiframe.min.js'></script>
+	<script type='text/javascript' src='/resources/dist/js/jquery.ajaxQueue.js'></script>
+	<!-- 자동완성 jQuery -->
+	<script type='text/javascript' src='/resources/dist/js/jquery.autocomplete.js'></script>
+	<!-- 자동완성 css -->
+	<link rel="stylesheet" type="text/css" href="/resources/dist/css/jquery.autocomplete.css" >
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <script>
+	var availableTags = [
+		'영어', '외국어', '컴퓨터', '교양'
+	];
+	$(document).ready(function() {
+		$("#searchbox").autocomplete(availableTags, {
+			matchContains : false,
+			selectFirst : false
+		});
+	});
+	
+	var result = '${msg}'
+
+	if(result == 'success'){
+		alert("회원가입 완료");
+	}
+	</script>
 </head>
 
 <body>
@@ -92,41 +118,40 @@
                         <li>
                             <!-- Button trigger modal -->
                             <a class="" data-toggle="modal" href="#join">회원가입</a>
-
-                            <!-- 회원가입 모달창 -->
-                            <div class="modal fade" id="join" tabindex="-1" role="dialog" aria-labelledby="joinModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                            <h4 class="join-modal-title" id="myModalLabel">회원가입</h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            <form action="" method="post"> <!-- 회원가입 값 -->
+							<form action="/regUser" method="post"> <!-- 회원가입 폼 -->
+	                            <!-- 회원가입 모달창 -->
+	                            <div class="modal fade" id="join" tabindex="-1" role="dialog" aria-labelledby="joinModalLabel" aria-hidden="true">
+	                                <div class="modal-dialog">
+	                                    <div class="modal-content">
+	                                        <div class="modal-header">
+	                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	                                            <h4 class="join-modal-title" id="myModalLabel">회원가입</h4>
+	                                        </div>
+	                                        <div class="modal-body">
                                                 <div class="form-group">
                                                     <label for="InputName">이름</label>
-                                                    <input type="name" class="form-control" id="InputName" placeholder="실명을 입력하세요">
+                                                    <input type="text" name="userName" class="form-control" id="InputName" placeholder="실명을 입력하세요">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="InputEmail">이메일 주소</label>
-                                                    <input type="email" class="form-control" id="InputEmail" placeholder="사용하시는 이메일을 입력하세요">
+                                                    <input type="text" name="userId" class="form-control" id="InputEmail" placeholder="사용하시는 이메일을 입력하세요">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="InputPassword">비밀번호</label>
-                                                    <input type="password" class="form-control" id="InputPassword" placeholder="비밀번호를 입력하세요">
+                                                    <input type="password" name="userPassword" class="form-control" id="InputPassword" placeholder="비밀번호를 입력하세요">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="InputBirthday">생년월일</label>
-                                                    <input type="birthday" class="form-control" id="InputBirthday" placeholder="ex.990101">
+                                                    <input type="text" name="userBirth" class="form-control" id="InputBirthday" placeholder="ex.990101">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="InputGender">성별</label>
                                                     <div class="radio">
                                                         <label>
-                                                            <input type="radio" name="genderRadio" id="genderRadio1" value="option1" aria-label="남성"> 남성
+                                                            <input type="radio" name="userSex" id="genderRadio1" value="man" aria-label="남성"> 남성
                                                         </label>
                                                         <label>
-                                                            <input type="radio" name="genderRadio" id="genderRadio2" value="option2" aria-label="여성"> 여성
+                                                            <input type="radio" name="userSex" id="genderRadio2" value="woman" aria-label="여성"> 여성
                                                         </label>
                                                     </div>
                                                 </div>
@@ -134,34 +159,34 @@
                                                     <label for="InputGender">전화번호</label>
                                                     <div class="row">
                                                         <div class="col-xs-2">
-                                                            <input type="text" class="form-control" placeholder="010">
+                                                            <input type="text" class="form-control" placeholder="010" name="userPhoneNumber">
                                                         </div>
                                                         <div class="col-xs-1">
                                                             -
                                                         </div>
                                                         <div class="col-xs-2">
-                                                            <input type="text" class="form-control" placeholder="0000">
+                                                            <input type="text" class="form-control" placeholder="0000" name="userPhoneNumber">
                                                         </div>
                                                         <div class="col-xs-1">
                                                             -
                                                         </div>
                                                         <div class="col-xs-2">
-                                                            <input type="text" class="form-control" placeholder="0000">
+                                                            <input type="text" class="form-control" placeholder="0000" name="userPhoneNumber">
                                                         </div>
                                                         <div class="col-xs-3">
                                                             <button type="button" class="btn btn-default">인증하기</button>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </form>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-                                            <button type="submit" class="btn btn-primary">회원가입</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+	                                        </div>
+	                                        <div class="modal-footer">
+	                                            <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+	                                            <button type="submit" class="btn btn-primary">회원가입</button>
+	                                        </div>
+	                                    </div>
+	                                </div>
+	                            </div>
+                            </form>
                         </li>
                         <li><a href="/studyReg">스터디등록</a></li>
                         <li><a href="#">방등록</a></li>
