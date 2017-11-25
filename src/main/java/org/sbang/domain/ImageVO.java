@@ -7,6 +7,7 @@ public class ImageVO {
 
 	private int imageId;
 	private int studyId;
+	
 	private String imageImagePat;
 
 }
