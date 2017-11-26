@@ -25,14 +25,7 @@ public class UserDAOTest {
 	public void testCreate() throws Exception {
 		
 		UserVO user = new UserVO();
-		
-		user.setUserName("dd");
-		user.setUserBirth("dd");
-		user.setUserId("ㄱㄱ");
-		user.setUserPassword("dd");
-		user.setUserRegion("dd");
-
-		
+				
 		dao.create(user);
 		
 		

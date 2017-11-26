@@ -21,27 +21,28 @@
     <link href="/resources/dist/css/main.css" rel="stylesheet">
     <!-- 서브 css -->
     <link href="/resources/dist/css/sub.css" rel="stylesheet">
-    
-	<!-- jQuery -->
-	<script type="text/javascript" src="/resources/dist/js/jquery.js"></script>
-	<script type='text/javascript' src='/resources/dist/js/jquery.bgiframe.min.js'></script>
-	<script type='text/javascript' src='/resources/dist/js/jquery.ajaxQueue.js'></script>
-	<!-- 자동완성 jQuery -->
-	<script type='text/javascript' src='/resources/dist/js/jquery.autocomplete.js'></script>
-	<!-- 자동완성 css -->
-	<link rel="stylesheet" type="text/css" href="/resources/dist/css/jquery.autocomplete.css" >
+    <!-- jQuery-Ui css-->
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css">
+    <!-- jQuery -->
+	<script src="https://code.jquery.com/jquery-2.2.4.js"></script>
+	<!-- jQUery-Ui -->
+	<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+	<!--  부트스트랩 -->
+	<script src="/resources/dist/js/bootstrap.min.js"></script>
+	<script src="/resources/dist/js/main.js"></script>
+	
     <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <script>
-	var availableTags = [
-		'영어', '외국어', '컴퓨터', '교양'
-	];
 	$(document).ready(function() {
-		$("#searchbox").autocomplete(availableTags, {
-			matchContains : false,
-			selectFirst : false
+		var category = [
+			"영어" , "IT" , "교양" , "외국어" , "공무원", "자격증"
+		];
+
+		$("#searchbox").autocomplete({
+			source: category
 		});
 	});
 	
@@ -198,7 +199,6 @@
 				<c:if test ="true"> <!-- 로그인 후 -->
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="/mypage">마이페이지</a></li>
                         <li><a href="#">로그아웃</a></li>
@@ -216,12 +216,12 @@
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
                     <div class="row">
-                        <div class="col-md-2"><a href="">카테고리</a></div>
-                        <div class="col-md-2"><a href="">카테고리</a></div>
-                        <div class="col-md-2"><a href="">카테고리</a></div>
-                        <div class="col-md-2"><a href="">카테고리</a></div>
-                        <div class="col-md-2"><a href="">카테고리</a></div>
-                        <div class="col-md-2"><a href="">카테고리</a></div>
+                        <div class="col-md-2"><a href="#">영어</a></div>
+                        <div class="col-md-2"><a href="#">외국어</a></div>
+                        <div class="col-md-2"><a href="#">IT</a></div>
+                        <div class="col-md-2"><a href="#">교양</a></div>
+                        <div class="col-md-2"><a href="#">공무원</a></div>
+                        <div class="col-md-2"><a href="#">자격증</a></div>
                     </div>
                 </div>
             </div>
