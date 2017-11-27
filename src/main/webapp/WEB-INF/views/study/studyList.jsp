@@ -2,7 +2,7 @@
 <%@ page session="false" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@include file="include/header.jsp" %>
+<%@include file="../include/header.jsp" %>
 <div class="container list">
         <div class="col-md-12 search-sub">
             <div class="search-typebtn">
@@ -76,4 +76,4 @@
             </div>
         </div>
     </div>
-<%@include file="include/footer.jsp" %> 
+<%@include file="../include/footer.jsp" %> 
