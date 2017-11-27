@@ -2,7 +2,7 @@
 <%@ page session="false" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@include file="include/header.jsp" %>
+<%@include file="../include/header.jsp" %>
 <div class="container write">
         <div class="step1">
             <h2>1단계</h2>
@@ -207,4 +207,4 @@
             </div>
         </div>
     </div> 
-<%@include file="include/footer.jsp" %> 
+<%@include file="../include/footer.jsp" %> 

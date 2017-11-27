@@ -19,28 +19,28 @@ public class HomeController {
 	public String home(Model model) {
 		logger.info("go home");
 				
-		return "home";
+		return "main";
 	}
 	
 	@RequestMapping(value = "/studyReg", method = RequestMethod.GET)
 	public String studyReg(Model model) {
 		logger.info("go studyReg");
 				
-		return "study_reg";
+		return "study/studyReg";
 	}
 	
 	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
 	public String mypage(Model model) {
 		logger.info("go mypage");
 				
-		return "mypage";
+		return "myPage";
 	}
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String list(Model model) {
 		logger.info("go list");
 				
-		return "list";
+		return "study/studyList";
 	}
 	
 }

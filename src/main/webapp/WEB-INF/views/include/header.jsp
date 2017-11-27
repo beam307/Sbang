@@ -21,10 +21,37 @@
     <link href="/resources/dist/css/main.css" rel="stylesheet">
     <!-- 서브 css -->
     <link href="/resources/dist/css/sub.css" rel="stylesheet">
+    <!-- jQuery-Ui css-->
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css">
+    <!-- jQuery -->
+	<script src="https://code.jquery.com/jquery-2.2.4.js"></script>
+	<!-- jQUery-Ui -->
+	<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+	<!--  부트스트랩 -->
+	<script src="/resources/dist/js/bootstrap.min.js"></script>
+	<script src="/resources/dist/js/main.js"></script>
+	
     <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <script>
+	$(document).ready(function() {
+		var category = [
+			"영어" , "IT" , "교양" , "외국어" , "공무원", "자격증"
+		];
+
+		$("#searchbox").autocomplete({
+			source: category
+		});
+	});
+	
+	var result = '${msg}'
+
+	if(result == 'success'){
+		alert("회원가입 완료");
+	}
+	</script>
 </head>
 
 <body>
@@ -92,41 +119,40 @@
                         <li>
                             <!-- Button trigger modal -->
                             <a class="" data-toggle="modal" href="#join">회원가입</a>
-
-                            <!-- 회원가입 모달창 -->
-                            <div class="modal fade" id="join" tabindex="-1" role="dialog" aria-labelledby="joinModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                            <h4 class="join-modal-title" id="myModalLabel">회원가입</h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            <form action="" method="post"> <!-- 회원가입 값 -->
+							<form action="/regUser" method="post"> <!-- 회원가입 폼 -->
+	                            <!-- 회원가입 모달창 -->
+	                            <div class="modal fade" id="join" tabindex="-1" role="dialog" aria-labelledby="joinModalLabel" aria-hidden="true">
+	                                <div class="modal-dialog">
+	                                    <div class="modal-content">
+	                                        <div class="modal-header">
+	                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	                                            <h4 class="join-modal-title" id="myModalLabel">회원가입</h4>
+	                                        </div>
+	                                        <div class="modal-body">
                                                 <div class="form-group">
                                                     <label for="InputName">이름</label>
-                                                    <input type="name" class="form-control" id="InputName" placeholder="실명을 입력하세요">
+                                                    <input type="text" name="userName" class="form-control" id="InputName" placeholder="실명을 입력하세요">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="InputEmail">이메일 주소</label>
-                                                    <input type="email" class="form-control" id="InputEmail" placeholder="사용하시는 이메일을 입력하세요">
+                                                    <input type="text" name="userId" class="form-control" id="InputEmail" placeholder="사용하시는 이메일을 입력하세요">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="InputPassword">비밀번호</label>
-                                                    <input type="password" class="form-control" id="InputPassword" placeholder="비밀번호를 입력하세요">
+                                                    <input type="password" name="userPassword" class="form-control" id="InputPassword" placeholder="비밀번호를 입력하세요">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="InputBirthday">생년월일</label>
-                                                    <input type="birthday" class="form-control" id="InputBirthday" placeholder="ex.990101">
+                                                    <input type="text" name="userBirth" class="form-control" id="InputBirthday" placeholder="ex.990101">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="InputGender">성별</label>
                                                     <div class="radio">
                                                         <label>
-                                                            <input type="radio" name="genderRadio" id="genderRadio1" value="option1" aria-label="남성"> 남성
+                                                            <input type="radio" name="userSex" id="genderRadio1" value="man" aria-label="남성"> 남성
                                                         </label>
                                                         <label>
-                                                            <input type="radio" name="genderRadio" id="genderRadio2" value="option2" aria-label="여성"> 여성
+                                                            <input type="radio" name="userSex" id="genderRadio2" value="woman" aria-label="여성"> 여성
                                                         </label>
                                                     </div>
                                                 </div>
@@ -134,34 +160,34 @@
                                                     <label for="InputGender">전화번호</label>
                                                     <div class="row">
                                                         <div class="col-xs-2">
-                                                            <input type="text" class="form-control" placeholder="010">
+                                                            <input type="text" class="form-control" placeholder="010" name="userPhoneNumber">
                                                         </div>
                                                         <div class="col-xs-1">
                                                             -
                                                         </div>
                                                         <div class="col-xs-2">
-                                                            <input type="text" class="form-control" placeholder="0000">
+                                                            <input type="text" class="form-control" placeholder="0000" name="userPhoneNumber">
                                                         </div>
                                                         <div class="col-xs-1">
                                                             -
                                                         </div>
                                                         <div class="col-xs-2">
-                                                            <input type="text" class="form-control" placeholder="0000">
+                                                            <input type="text" class="form-control" placeholder="0000" name="userPhoneNumber">
                                                         </div>
                                                         <div class="col-xs-3">
                                                             <button type="button" class="btn btn-default">인증하기</button>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </form>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-                                            <button type="submit" class="btn btn-primary">회원가입</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+	                                        </div>
+	                                        <div class="modal-footer">
+	                                            <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+	                                            <button type="submit" class="btn btn-primary">회원가입</button>
+	                                        </div>
+	                                    </div>
+	                                </div>
+	                            </div>
+                            </form>
                         </li>
                         <li><a href="/studyReg">스터디등록</a></li>
                         <li><a href="#">방등록</a></li>
@@ -173,7 +199,6 @@
 				<c:if test ="true"> <!-- 로그인 후 -->
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="/mypage">마이페이지</a></li>
                         <li><a href="#">로그아웃</a></li>
@@ -191,12 +216,12 @@
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
                     <div class="row">
-                        <div class="col-md-2"><a href="">카테고리</a></div>
-                        <div class="col-md-2"><a href="">카테고리</a></div>
-                        <div class="col-md-2"><a href="">카테고리</a></div>
-                        <div class="col-md-2"><a href="">카테고리</a></div>
-                        <div class="col-md-2"><a href="">카테고리</a></div>
-                        <div class="col-md-2"><a href="">카테고리</a></div>
+                        <div class="col-md-2"><a href="#">영어</a></div>
+                        <div class="col-md-2"><a href="#">외국어</a></div>
+                        <div class="col-md-2"><a href="#">IT</a></div>
+                        <div class="col-md-2"><a href="#">교양</a></div>
+                        <div class="col-md-2"><a href="#">공무원</a></div>
+                        <div class="col-md-2"><a href="#">자격증</a></div>
                     </div>
                 </div>
             </div>

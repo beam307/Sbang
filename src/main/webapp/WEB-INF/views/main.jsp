@@ -7,7 +7,7 @@
     <div class="main-search">
         <form class="form-inline">
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="검색어입력하는곳">
+                <input type="text" class="form-control" id="searchbox" placeholder="검색어입력하는곳">
             </div>
             <button type="submit" class="btn btn-default">검색</button>
         </form>
@@ -39,4 +39,4 @@
             </div>
         </div>
     </div>
-<%@include file="include/footer.jsp" %> 
+<%@include file="include/footer.jsp" %>
