@@ -7,11 +7,11 @@ import org.sbang.domain.StudyVO;
 public interface StudyDAO {
 	public void create(StudyVO vo) throws Exception;
 	
-	public StudyVO read(Integer studyId) throws Exception;
+	public StudyVO read(Integer studyNo) throws Exception;
 	
 	public void update(StudyVO vo) throws Exception;
 	
-	public void delete(Integer studyId) throws Exception;
+	public void delete(Integer studyNo) throws Exception;
 	
 	public List<StudyVO> listAll() throws Exception;
 	

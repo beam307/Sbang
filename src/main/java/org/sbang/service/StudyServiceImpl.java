@@ -33,9 +33,9 @@ public class StudyServiceImpl implements StudyService {
 
 	//@Transactional(isolation=Isolation.READ_COMMITTED)
 	@Override
-	public StudyVO read(Integer studyId) throws Exception {
+	public StudyVO read(Integer studyNo) throws Exception {
 		//studyDAO.updateViewCnt(studyId);
-		return studyDAO.read(studyId);
+		return studyDAO.read(studyNo);
 	}
 
 	//@Transactional
@@ -57,10 +57,10 @@ public class StudyServiceImpl implements StudyService {
 	
 	@Transactional
 	@Override
-	public void remove(Integer studyId) throws Exception {
+	public void remove(Integer studyNo) throws Exception {
 		//boardDAO.deleteAttach(studyId);
 		//replyDAO.deleteWithBno(bno);
-		studyDAO.delete(studyId);
+		studyDAO.delete(studyNo);
 	}
 
 	@Override

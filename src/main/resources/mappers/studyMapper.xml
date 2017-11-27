@@ -6,8 +6,8 @@
 <mapper namespace="org.sbang.mapper.StudyMapper">
 
 	<insert id="create">
-		insert into study(studyName,studyCategory,studyRegion,studyMaxMemCnt) values
-		(#{studyName},#{studyCategory},#{studyRegion},#{studyMaxMemCnt})
+		insert into study(studyName,studyCategory,studyRegion,studyMaxMemCnt,studyStartDate) values
+		(#{studyName},#{studyCategory},#{studyRegion},#{studyMaxMemCnt},#{studyStartDate})
 	</insert>
 
 	<select id="read" resultType="StudyVO">

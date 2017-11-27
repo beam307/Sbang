@@ -8,11 +8,11 @@ import org.sbang.domain.StudyVO;
 public interface StudyService {
 	public void regist(StudyVO study) throws Exception;
 	
-	public StudyVO read(Integer studyId) throws Exception;
+	public StudyVO read(Integer studyNo) throws Exception;
 	
 	public void modify(StudyVO study)throws Exception;
 	
-	public void remove(Integer studyId) throws Exception;
+	public void remove(Integer studyNo) throws Exception;
 	
 	public List<StudyVO> listAll() throws Exception;
 	

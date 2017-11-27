@@ -21,8 +21,8 @@ public class StudyDAOImpl implements StudyDAO {
 	}
 
 	@Override
-	public StudyVO read(Integer studyId) throws Exception {
-		return session.selectOne(namespace + ".read", studyId);
+	public StudyVO read(Integer studyNo) throws Exception {
+		return session.selectOne(namespace + ".read", studyNo);
 	}
 
 	@Override
@@ -31,8 +31,8 @@ public class StudyDAOImpl implements StudyDAO {
 	}
 
 	@Override
-	public void delete(Integer studyId) throws Exception {
-		session.delete(namespace + ".delete", studyId);
+	public void delete(Integer studyNo) throws Exception {
+		session.delete(namespace + ".delete", studyNo);
 	}
 
 	@Override

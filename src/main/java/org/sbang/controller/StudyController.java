@@ -42,10 +42,10 @@ public class StudyController {
 		model.addAttribute("list",service.listAll());
 	}
 	
-//	@RequestMapping(value="/readPage",method=RequestMethod.GET)
-//	public void read(@RequestParam("bno") int bno,@ModelAttribute("cri") Criteria cri,Model model) throws  Exception{
-//		model.addAttribute(service.read(bno));
-//	}
+	@RequestMapping(value="/studyView",method=RequestMethod.GET)
+	public void read(@RequestParam("studyNo") int studyNo,Model model) throws  Exception{
+		model.addAttribute(service.read(studyNo));
+	}
 //	
 //	@RequestMapping(value="/removePage",method=RequestMethod.POST)
 //	public String remove(@RequestParam("bno") int bno, RedirectAttributes rttr) throws Exception{

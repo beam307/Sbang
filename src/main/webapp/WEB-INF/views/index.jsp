@@ -1,5 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="include/header.jsp" %>
@@ -8,7 +8,7 @@
         <form class="form-inline">
             <div class="radio">
                 <label>
-                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>스터디검색 </label>
+                    <button type="submit" class="btn btn-default" id="searchBox">검색</button>
             </div>
             <div class="radio">
                 <label>

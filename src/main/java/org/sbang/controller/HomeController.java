@@ -22,12 +22,12 @@ public class HomeController {
 		return "index";
 	} 
 	
-	@RequestMapping(value = "/studyReg", method = RequestMethod.GET)
+	/*@RequestMapping(value = "/studyReg", method = RequestMethod.GET)
 	public String studyReg(Model model) {
 		logger.info("go studyReg");
 				
 		return "study/studyReg";
-	}
+	}*/
 	
 	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
 	public String mypage(Model model) {
