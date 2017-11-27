@@ -7,20 +7,19 @@ import lombok.Data;
 @Data
 public class UserVO {
 
-	private String userId;
-	private String userName;
-	private String userPassword;
-	private String userBirth;
-	private String userSex;
-	private String userPhoneNumber;
 	private String userEmail;
+	private String userPwd;
+	private String userName;
+	private String userBirth;
+	private String userGender;
+	private String userPhoneNumber;
 	private String userIntroduce;
 	private String userProfileImagePath;
 	private String userRegion;
 	private String userFavoriteCategory;
-	private String userWishlist;
+	private String userWishList;
 	
-	private Date userRegisterDate;
+	private Date userRegDate;
 	private Date userUpdateDate;
 	
 	private String userGoogle;
@@ -28,6 +27,6 @@ public class UserVO {
 	
 	private boolean userCertification;
 	private boolean userActivityAlarm;
-	private boolean userAlarm;
+	private boolean userNewsAlarm;
 
 }

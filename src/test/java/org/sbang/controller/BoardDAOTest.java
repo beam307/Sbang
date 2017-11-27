@@ -28,7 +28,7 @@ public class BoardDAOTest {
 		study.setStudyName("새로운 글을!!` 넣습니다");
 		study.setStudyCategory("#새로운 글을 넣습니다.");
 		study.setStudyRegion("서울시 강서구");
-		study.setStudyMaxMemberCount(5);
+		study.setStudyMaxMemCnt(5);
 		dao.create(study);
 	}
 	

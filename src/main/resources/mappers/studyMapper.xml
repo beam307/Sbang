@@ -6,8 +6,8 @@
 <mapper namespace="org.sbang.mapper.StudyMapper">
 
 	<insert id="create">
-		insert into study(study_name,study_category,study_region,study_maxMemberCount) values
-		(#{studyName},#{studyCategory},#{studyRegion},#{studyMaxMemberCount})
+		insert into study(studyName,studyCategory,studyRegion,studyMaxMemCnt) values
+		(#{studyName},#{studyCategory},#{studyRegion},#{studyMaxMemCnt})
 	</insert>
 
 	<select id="read" resultType="StudyVO">
@@ -16,18 +16,18 @@
 		from
 		study
 		where
-		study_id=#{studyId}
+		studyNo=#{studyNo}
 	</select>
 
 
 	<update id="update">
 		update study set
-		study_name=#{studyName}, study_category=#{studyCategory}
-		where study_id=#{studyId}
+		study_name=#{studyName}, studyCategory=#{studyCategory}
+		where studyNo=#{studyNo}
 	</update>
 
 	<delete id="delete">
-		delete from study where study_id=#{studyId}
+		delete from study where studyNo=#{studyNo}
 	</delete>
 
 	<select id="listAll" resultType="StudyVO">
@@ -36,8 +36,8 @@
   		*
   		from
   		study
-  		where study_id>0
-  		order by study_id desc,study_registerDate desc
+  		where studyNo>0
+  		order by studyNo desc,studyRegDate desc
   		]]>
 	</select>
 </mapper>

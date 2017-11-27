@@ -162,7 +162,7 @@
 					<label class="col-sm-2 control-label">비용</label>
 					<div class="col-sm-10">
 						<div class="col-sm-12">
-							<input type="text" class="form-control" name="studyMembershipFee"
+							<input type="text" class="form-control" name="studyMemFee"
 								placeholder="ex.10000명명">
 						</div>
 					</div>
@@ -172,7 +172,7 @@
 					<div class="col-sm-10">
 						<div class="col-sm-12">
 							<input type="text" class="form-control"
-								name="studyMaxMemberCount" placeholder="ex.10명">
+								name="studyMaxMemCnt" placeholder="ex.10명">
 						</div>
 					</div>
 				</div>

@@ -15,7 +15,7 @@ public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	/*@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model) {
 		logger.info("go home");
 				
@@ -40,6 +40,6 @@ public class HomeController {
 		logger.info("go list");
 				
 		return "list";
-	}
+	}*/
 	
 }
