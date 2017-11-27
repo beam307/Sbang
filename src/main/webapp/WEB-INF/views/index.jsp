@@ -17,7 +17,7 @@
             <div class="form-group">
                 <input type="text" class="form-control" placeholder="검색어입력하는곳">
             </div>
-            <button type="submit" class="btn btn-default">검색</button>
+            <button type="submit" class="btn btn-default" id="searchBox">검색</button>
         </form>
     </div>
     <!-- 밑에는 썸네일부분이야 -->

@@ -41,7 +41,7 @@
 			"영어" , "IT" , "교양" , "외국어" , "공무원", "자격증"
 		];
 
-		$("#searchbox").autocomplete({
+		$("#searchBox").autocomplete({
 			source: category
 		});
 	});
