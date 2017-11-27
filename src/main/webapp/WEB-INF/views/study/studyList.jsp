@@ -2,8 +2,8 @@
 <%@ page session="false" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@include file="../include/header.jsp" %>
-<div class="container list">
+<%@include file="../include/headerSub.jsp" %>
+<div class="container list inner">
         <div class="col-md-12 search-sub">
             <div class="search-typebtn">
                 <button type="button" class="btn btn-default">스터디</button>

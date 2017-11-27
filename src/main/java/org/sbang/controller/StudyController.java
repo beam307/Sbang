@@ -40,7 +40,6 @@ public class StudyController {
 	public void listAll(Model model) throws Exception{
 		logger.info("show all list.........");
 		model.addAttribute("list",service.listAll());
-		logger.info(service.listAll().toString());
 	}
 	
 //	@RequestMapping(value="/readPage",method=RequestMethod.GET)
