@@ -30,6 +30,8 @@
 	<!--  부트스트랩 -->
 	<script src="/resources/dist/js/bootstrap.min.js"></script>
 	<script src="/resources/dist/js/main.js"></script>
+	<!-- 시간 -->
+    <script src="/resources/dist/js/timepicki.js"></script>
 	
     <!--[if lt IE 9]>
 	    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>

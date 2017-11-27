@@ -19,7 +19,7 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model , RedirectAttributes rttr) {
 		logger.info("go home");
-		return "main";
+		return "index";
 	} 
 	
 	@RequestMapping(value = "/studyReg", method = RequestMethod.GET)
@@ -33,14 +33,41 @@ public class HomeController {
 	public String mypage(Model model) {
 		logger.info("go mypage");
 				
-		return "myPage";
+		return "user/myPage";
 	}
 	
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	@RequestMapping(value = "/studyList", method = RequestMethod.GET)
 	public String list(Model model) {
 		logger.info("go list");
 				
 		return "study/studyList";
 	}
 	
+	@RequestMapping(value = "/studyModify", method = RequestMethod.GET)
+	public String studyModify(Model model) {
+		logger.info("go studyModify");
+				
+		return "study/studyModify";
+	}
+
+	@RequestMapping(value = "/studyView", method = RequestMethod.GET)
+	public String studyView(Model model) {
+		logger.info("go studyView");
+				
+		return "study/studyView";
+	}
+	
+	@RequestMapping(value = "/roomManage", method = RequestMethod.GET)
+	public String roomManage(Model model) {
+		logger.info("go roomManage");
+				
+		return "user/roomManage";
+	}
+	
+	@RequestMapping(value = "/studyManage", method = RequestMethod.GET)
+	public String studyManage(Model model) {
+		logger.info("go studyManage");
+				
+		return "user/studyManage";
+	}
 }
