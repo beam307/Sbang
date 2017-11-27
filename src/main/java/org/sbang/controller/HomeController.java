@@ -25,7 +25,6 @@ public class HomeController {
 	@RequestMapping(value = "/studyReg", method = RequestMethod.GET)
 	public String studyReg(Model model) {
 		logger.info("go studyReg");
-				
 		return "study_reg";
 	}
 	

@@ -18,30 +18,30 @@
 		where
 		study_id=#{studyId}
 	</select>
-</mapper>
-<!-- 
+
+
 	<update id="update">
-		update tbl_board set
-		title=#{title},content=#{content}
-		where bno=#{bno}
+		update study set
+		study_name=#{studyName}, study_category=#{studyCategory}
+		where study_id=#{studyId}
 	</update>
 
 	<delete id="delete">
-		delete from tbl_board where bno=#{bno}
+		delete from study where study_id=#{studyId}
 	</delete>
 
-	<select id="listAll" resultType="org.sbang.domain.BoardVO">
+	<select id="listAll" resultType="StudyVO">
   		<![CDATA[
   		select
   		*
   		from
-  		tbl_board
-  		where bno>0
-  		order by bno desc,regdate desc
+  		study
+  		where study_id>0
+  		order by study_id desc,study_registerDate desc
   		]]>
 	</select>
-
-
+</mapper>
+<!-- 
 	<select id="listPage" resultType="BoardVO">
   	<![CDATA[
   		select
