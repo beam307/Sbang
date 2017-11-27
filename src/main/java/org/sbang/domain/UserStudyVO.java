@@ -3,11 +3,9 @@ package org.sbang.domain;
 import lombok.Data;
 
 @Data
-public class ImageVO {
+public class UserStudyVO {
 
-	private int imageNo;
+	private String userEmail;
 	private int studyNo;
-	
-	private String imagePath;
 
 }

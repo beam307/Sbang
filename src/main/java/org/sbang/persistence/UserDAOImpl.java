@@ -3,6 +3,7 @@ package org.sbang.persistence;
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
+import org.sbang.DTO.LoginDTO;
 import org.sbang.domain.UserVO;
 import org.springframework.stereotype.Repository;
 
@@ -37,6 +38,11 @@ public class UserDAOImpl implements UserDAO{
 	public void delete(String id) throws Exception {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public UserVO login(LoginDTO dto) throws Exception {
+		return session.selectOne(namespace + ".login", dto);
 	}
 	
 

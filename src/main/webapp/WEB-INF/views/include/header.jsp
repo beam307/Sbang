@@ -48,9 +48,11 @@
 	
 	var result = '${msg}'
 
-	if(result == 'success'){
+	if(result == 'regSuccess'){
 		alert("회원가입 완료");
 	}
+	if(result == "loginFail")
+		alert("로그인이 실패하였습니다. 다시 로그인 하십시오");
 	</script>
 </head>
 
@@ -88,14 +90,14 @@
                                         <div class="modal-body">
                                             <a href="" class="google-login">구글계정으로로그인</a>
                                             <a href="" class="naver-login">네이버계정으로로그인</a>
-                                            <form>
+                                            <form action="/user/loginPost" method="post"> <!-- 로그인 폼 -->
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">이메일 주소</label>
-                                                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="이메일을 입력하세요">
+                                                    <input type="email" name="userEmail" class="form-control" id="exampleInputEmail1" placeholder="이메일을 입력하세요">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="exampleInputPassword1">암호</label>
-                                                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="암호">
+                                                    <input type="password" name="userPwd" class="form-control" id="exampleInputPassword1" placeholder="암호">
                                                 </div>
                                                 <div class="checkbox">
                                                     <label>
@@ -119,7 +121,7 @@
                         <li>
                             <!-- Button trigger modal -->
                             <a class="" data-toggle="modal" href="#join">회원가입</a>
-							<form action="/regUser" method="post"> <!-- 회원가입 폼 -->
+							<form action="/user/regUser" method="post"> <!-- 회원가입 폼 -->
 	                            <!-- 회원가입 모달창 -->
 	                            <div class="modal fade" id="join" tabindex="-1" role="dialog" aria-labelledby="joinModalLabel" aria-hidden="true">
 	                                <div class="modal-dialog">
@@ -135,11 +137,11 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="InputEmail">이메일 주소</label>
-                                                    <input type="text" name="userId" class="form-control" id="InputEmail" placeholder="사용하시는 이메일을 입력하세요">
+                                                    <input type="text" name="userEmail" class="form-control" id="InputEmail" placeholder="사용하시는 이메일을 입력하세요">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="InputPassword">비밀번호</label>
-                                                    <input type="password" name="userPassword" class="form-control" id="InputPassword" placeholder="비밀번호를 입력하세요">
+                                                    <input type="password" name="userPwd" class="form-control" id="InputPassword" placeholder="비밀번호를 입력하세요">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="InputBirthday">생년월일</label>
@@ -149,10 +151,10 @@
                                                     <label for="InputGender">성별</label>
                                                     <div class="radio">
                                                         <label>
-                                                            <input type="radio" name="userSex" id="genderRadio1" value="man" aria-label="남성"> 남성
+                                                            <input type="radio" name="userGender" id="genderRadio1" value="man" aria-label="남성"> 남성
                                                         </label>
                                                         <label>
-                                                            <input type="radio" name="userSex" id="genderRadio2" value="woman" aria-label="여성"> 여성
+                                                            <input type="radio" name="userGender" id="genderRadio2" value="woman" aria-label="여성"> 여성
                                                         </label>
                                                     </div>
                                                 </div>
@@ -196,7 +198,6 @@
                 </div>
                 <!-- /.navbar-collapse -->
                 
-				<c:if test ="true"> <!-- 로그인 후 -->
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
@@ -207,7 +208,6 @@
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->
-                </c:if>
             </div>
             <!-- /.container-fluid -->
         </nav>

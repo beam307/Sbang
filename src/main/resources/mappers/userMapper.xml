@@ -6,9 +6,13 @@
 <mapper namespace="org.sbang.mapper.UserMapper">
 
 <insert id = "create">
-insert into user(user_name, user_id, user_password, user_birth, user_sex, user_phoneNumber)
-values (#{userName},#{userId},#{userPassword},#{userBirth},#{userSex},#{userPhoneNumber})
+insert into user(userName, userEmail, userPwd, userBirth, userGender, userPhoneNumber)
+values (#{userName},#{userEmail},#{userPwd},#{userBirth},#{userGender},#{userPhoneNumber})
 </insert>
+
+<select id="login" resultType="UserVO">
+	select userEmail, userPwd, userName from user where userEmail = #{userEmail} and userPwd = #{userPwd}
+</select>
 
 <!-- <insert id = "create_image">
 insert into image(image_imagePath,image_id) values(#{image_imagePath},LAST_INSERT_id())

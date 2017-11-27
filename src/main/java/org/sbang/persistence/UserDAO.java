@@ -1,5 +1,6 @@
 package org.sbang.persistence;
 
+import org.sbang.DTO.LoginDTO;
 import org.sbang.domain.UserVO;
 
 public interface UserDAO {
@@ -11,4 +12,6 @@ public interface UserDAO {
 	public void update(UserVO vo) throws Exception;
 	
 	public void delete(String id) throws Exception;
+	
+	public UserVO login(LoginDTO dto) throws Exception; // 로그인
 }

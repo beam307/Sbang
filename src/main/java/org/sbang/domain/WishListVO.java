@@ -3,11 +3,10 @@ package org.sbang.domain;
 import lombok.Data;
 
 @Data
-public class ImageVO {
+public class WishListVO {
 
-	private int imageNo;
+	private int wishListNo;
+	private String userEmail;
 	private int studyNo;
-	
-	private String imagePath;
 
 }

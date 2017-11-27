@@ -2,6 +2,7 @@ package org.sbang.service;
 
 import javax.inject.Inject;
 
+import org.sbang.DTO.LoginDTO;
 import org.sbang.domain.UserVO;
 import org.sbang.persistence.UserDAO;
 import org.springframework.stereotype.Repository;
@@ -9,7 +10,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class UserServiceImpl implements UserService{
-	
 
 	@Inject
 	private UserDAO dao;
@@ -39,4 +39,10 @@ public class UserServiceImpl implements UserService{
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public UserVO login(LoginDTO dto) throws Exception {
+		return dao.login(dto);
+	}
+	
 }
