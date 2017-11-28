@@ -140,9 +140,10 @@
 				<input type="text" name="studyIntroduce"
 					value="${studyVO.studyIntroduce }" readonly="readonly">
 			</div>
-			
-			
-			<ul class="mailbox-attachments clearfix uploadedList"> </ul>
+
+
+			<ul class="mailbox-attachments clearfix uploadedList">
+			</ul>
 
 			<button id="modifyBtn" type="submit" class="view-btn">수정</button>
 			<button id="deleteBtn" type="submit" class="view-btn">삭제</button>
@@ -172,13 +173,15 @@
 
 				/* 삭제버튼 클릭시  */
 				$("#deleteBtn").on("click", function() {
-					var arr=[];
-					$(".uploadedList li").each(function(index){
+					var arr = [];
+					$(".uploadedList li").each(function(index) {
 						arr.push($(this).attr("data-src"));
 					});
-					if(arr.length>0){
-						$.post("/deleteAllFiles",{files:arr},function(){
-							
+					if (arr.length > 0) {
+						$.post("/deleteAllFiles", {
+							files : arr
+						}, function() {
+
 						});
 					}
 					formObj.attr("action", "/study/studyRemove");
@@ -191,7 +194,11 @@
 					formObj.attr("method", "get");
 					formObj.submit();
 				});
-				var studyNo = ${studyVO.studyNo};
+				var studyNo = $
+				{
+					studyVO.studyNo
+				}
+				;
 				var template = Handlebars.compile($("#templateAttach").html());
 
 				$.getJSON("/study/getImg/" + studyNo, function(list) {
@@ -218,7 +225,6 @@
 								imgTag.addClass("show");
 							}
 						});
-				
 
 				$("#popup_img").on("click", function(event) {
 					$(".popup").hide('slow');
