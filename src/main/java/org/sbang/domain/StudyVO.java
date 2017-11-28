@@ -27,5 +27,7 @@ public class StudyVO {
 	
 	private Date studyStartDate;
 	private Date studyEndDate;
-
+	
+	private String[] files;
+	
 }

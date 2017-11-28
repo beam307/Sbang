@@ -40,6 +40,11 @@
   		order by studyNo desc,studyRegDate desc
   		]]>
 	</select>
+	
+	<insert id="addImg">
+	insert into image(imagePath,studyNo) values(#{imagePath},LAST_INSERT_ID())
+	</insert>
+	
 </mapper>
 <!-- 
 	<select id="listPage" resultType="BoardVO">
@@ -108,9 +113,7 @@
 		update tbl_board set viewcnt=viewcnt+1 where bno=#{bno}
 	</update>
 	
-	<insert id="addAttach">
-	insert into tbl_attach(fullName,bno) values(#{fullName},LAST_INSERT_id())
-	</insert>
+	
 	
 	<select id="getAttach" resultType="string">
 		select fullName from tbl_attach where bno=#{bno} order by regdate

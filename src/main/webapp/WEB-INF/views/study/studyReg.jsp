@@ -3,8 +3,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="../include/headerSub.jsp"%>
+
+<style>
+.fileDrop {
+	width: 80%;
+	height: 100px;
+	border: 1px dotted gray;
+	background-color: lightslategrey;
+	margin: auto;
+}
+</style>
+
 <div class="container write inner">
-	<form class="form-horizontal" action="/study/studyReg" method="post">
+	<form class="form-horizontal" id="registerForm" action="/study/studyReg" method="post">
 		<div class="step1">
 			<h2>1단계</h2>
 			<div class="row">
@@ -129,7 +140,7 @@
 								name="studyStartDate">
 							<script>
 								$(function() {
-									$("#testDatepicker").datepicker({}});
+									$("#testDatepicker").datepicker({});
 								});
 							</script>
 						</div>
@@ -223,6 +234,92 @@
 
 			</div>
 		</div>
+		<!-- 파일 업로드 테스트 해보자!!!  -->
+		<div class="form-group">
+			<label for="exampleInputEmail">File DROP</label>
+			<div class="fileDrop"></div>
+		</div>
+
+
+		<div class="box-footer">
+			<div>
+				<hr>
+			</div>
+
+			<ul class="mailbox-attachments clearfix uploadedList">
+			</ul>
+		</div>
+
+
 	</form>
 </div>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
+<!-- 업로드된 리스트 템플릿  -->
+<script id="template" type="text/x-handlebars-template">
+
+	<li>
+		<span class="mailbox-attachment-icon has-img"><img src="{{imgsrc}}" alt="Attachment"></span>
+		<div class="mailbox-attachment-info">
+			<a href="{{getLink}}" class="mailbox-attachment-name">{{fileName}}</a>
+			<a data-src="{{fullName}}"  class="btn btn-default btn-xs pull-right delbtn"><i class="fa fa-fw fa-remove"></i></a>
+		</div>
+	</li>
+</script>
+<script type="text/javascript" src="/resources/dist/js/upload.js"></script>
+<script>
+	var template = Handlebars.compile($("#template").html());
+
+	$(".fileDrop").on("dragenter dragover", function(event) {
+		event.preventDefault();
+	});
+
+	$(".fileDrop").on("drop", function(event) {
+		event.preventDefault();
+
+		var files = event.originalEvent.dataTransfer.files;
+
+		var file = files[0];
+
+		//console.log(file);
+
+		var formData = new FormData();
+		formData.append("file", file);
+
+		$.ajax({
+			url : '/uploadAjax',
+			data : formData,
+			dataType : 'text',
+			processData : false,
+			contentType : false,
+			type : 'POST',
+			success : function(data) {
+				
+				var fileInfo = getFileInfo(data);
+
+				var html = template(fileInfo);
+
+				$(".uploadedList").append(html);
+			}
+		});
+	});
+
+	$("#registerForm").submit(
+			function(event) {
+				event.preventDefault();
+
+				var that = $(this);
+
+				var str = "";
+
+				$(".uploadedList .delbtn").each(
+						function(index) {
+							str += "<input type='hidden' name='files[" + index
+									+ "]' value='" + $(this).attr("data-src")
+									+ "'>";
+						});
+				that.append(str);
+				that.get(0).submit();
+			});
+</script>
 <%@include file="../include/footer.jsp"%>

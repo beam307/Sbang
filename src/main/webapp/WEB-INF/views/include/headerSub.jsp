@@ -22,7 +22,7 @@
     <!-- 서브 css -->
     <link href="/resources/dist/css/sub.css" rel="stylesheet">
      <!-- 시간 css -->
-   <link href="/resources/dist/css/timepiki.css" rel="stylesheet">
+   <link href="/resources/dist/css/timepicki.css" rel="stylesheet">
     <!-- jQuery-Ui css-->
 	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css">
     <!-- jQuery -->
