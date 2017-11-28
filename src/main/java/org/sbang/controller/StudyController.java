@@ -70,7 +70,7 @@ public class StudyController {
 	@RequestMapping(value="/studyModify", method=RequestMethod.GET)
 	public void modifyGET(@RequestParam("studyNo") int studyNo, Model model) throws Exception{
 		model.addAttribute(service.read(studyNo));
-	
+	}
 	@RequestMapping(value="/studyModify",method=RequestMethod.POST)
 	public String modifyPOST(StudyVO study, RedirectAttributes rttr) throws Exception{
 		logger.info("mod post........");
