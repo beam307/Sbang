@@ -15,7 +15,8 @@
 </style>
 
 <div class="container write inner">
-	<form class="form-horizontal" id="registerForm" action="/study/studyReg" method="post">
+	<form class="form-horizontal" id="registerForm"
+		action="/study/studyReg" method="post">
 		<div class="step1">
 			<h2>1단계</h2>
 			<div class="row">
@@ -140,7 +141,9 @@
 								name="studyStartDate">
 							<script>
 								$(function() {
-									$("#testDatepicker").datepicker({});
+									$("#testDatepicker").datepicker({
+						
+									});
 								});
 							</script>
 						</div>
@@ -294,7 +297,7 @@
 			contentType : false,
 			type : 'POST',
 			success : function(data) {
-				
+
 				var fileInfo = getFileInfo(data);
 
 				var html = template(fileInfo);
