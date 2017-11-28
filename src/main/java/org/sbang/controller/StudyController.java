@@ -1,5 +1,7 @@
 package org.sbang.controller;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.sbang.domain.StudyVO;
@@ -9,9 +11,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -56,20 +60,27 @@ public class StudyController {
 		return "redirect:/study/studyList";
 	}
 	
-	@RequestMapping(value="/modifyPage", method=RequestMethod.GET)
-	public void modifyGET(@RequestParam("studyNo") int bno, Model model) throws Exception{
-		model.addAttribute(service.read(bno));
+	@RequestMapping("/getImg/{studyNo}")
+	@ResponseBody
+	public List<String> getImg(@PathVariable("studyNo")Integer studyNo) throws Exception{
+		logger.info(service.getImg(studyNo).toString());
+		return service.getImg(studyNo);
 	}
-	@RequestMapping(value="/modifyPage",method=RequestMethod.POST)
-	public String modifyPOST(StudyVO study, RedirectAttributes rttr) throws Exception{
-		logger.info("mod post........");
+	
+//	@RequestMapping(value="/modifyPage", method=RequestMethod.GET)
+//	public void modifyGET(@RequestParam("studyNo") int bno, Model model) throws Exception{
+//		model.addAttribute(service.read(bno));
+//	}
+//	@RequestMapping(value="/modifyPage",method=RequestMethod.POST)
+//	public String modifyPOST(StudyVO study, RedirectAttributes rttr) throws Exception{
+//		logger.info("mod post........");
 //		rttr.addAttribute("page",cri.getPage());
 //		rttr.addAttribute("perPageNum",cri.getPerPageNum());
-		service.modify(study);
-		rttr.addFlashAttribute("msg", "SUCCESS");
-		
-		return "redirect:/study/studyList";
-	}
+//		service.modify(study);
+//		rttr.addFlashAttribute("msg", "SUCCESS");
+//		
+//		return "redirect:/study/studyList";
+//	}
 //	
 //	@RequestMapping(value="/listPage",method=RequestMethod.GET)
 //	public void listPage(Criteria cri,Model model)throws Exception{

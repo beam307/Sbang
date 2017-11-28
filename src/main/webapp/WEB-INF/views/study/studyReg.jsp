@@ -15,7 +15,8 @@
 </style>
 
 <div class="container write inner">
-	<form class="form-horizontal" id="registerForm" action="/study/studyReg" method="post">
+	<form class="form-horizontal" id="registerForm"
+		action="/study/studyReg" method="post">
 		<div class="step1">
 			<h2>1단계</h2>
 			<div class="row">
@@ -268,6 +269,7 @@
 </script>
 <script type="text/javascript" src="/resources/dist/js/upload.js"></script>
 <script>
+	/*화면에 업로드된리스트출력  */
 	var template = Handlebars.compile($("#template").html());
 
 	$(".fileDrop").on("dragenter dragover", function(event) {
@@ -285,7 +287,8 @@
 
 		var formData = new FormData();
 		formData.append("file", file);
-
+		
+		/*컴트롤러로 파일명을 보낸후 콜백으로 만들어진 이미지파일명을 받은후 템플릿에 출력시킨다.  */
 		$.ajax({
 			url : '/uploadAjax',
 			data : formData,
@@ -294,7 +297,7 @@
 			contentType : false,
 			type : 'POST',
 			success : function(data) {
-				
+
 				var fileInfo = getFileInfo(data);
 
 				var html = template(fileInfo);
@@ -303,7 +306,8 @@
 			}
 		});
 	});
-
+	
+	/* input:hidden 으로 현재 업로드된 파일들의 목록을 저장한다. */
 	$("#registerForm").submit(
 			function(event) {
 				event.preventDefault();
@@ -321,5 +325,23 @@
 				that.append(str);
 				that.get(0).submit();
 			});
+	/* 업로드 된 파일들중 x버튼을 누르면 업로드된 파일들이 삭제되도록한다.  */
+	$(".uploadedList").on("click", "a", function(event) {
+		var that = $(this);
+
+		$.ajax({
+			url : "/deleteFile",
+			type : "post",
+			data : {
+				fileName : $(this).attr("data-src")
+			},
+			dataType : "text",
+			success : function(result) {
+				if (result == 'deleted') {
+					that.parent("div").parent("li").remove();
+				}
+			}
+		});
+	});
 </script>
 <%@include file="../include/footer.jsp"%>
