@@ -7,7 +7,6 @@ import javax.inject.Inject;
 import org.sbang.domain.StudyVO;
 import org.sbang.persistence.StudyDAO;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 
@@ -19,16 +18,16 @@ public class StudyServiceImpl implements StudyService {
 	
 
 
-	//@Transactional
+	@Transactional
 	@Override
 	public void regist(StudyVO study) throws Exception {
 		studyDAO.create(study);
-		//String[] files=study.getFiles();
-		//System.out.println(files);
-		//if(files==null) {return;}
-		//for(String fileName:files) {
-		//	studyDAO.addAttach(fileName);
-		//}
+		String[] files=study.getFiles();
+		System.out.println(files);
+		if(files==null) {return;}
+		for(String imagePath:files) {
+			studyDAO.addImg(imagePath);
+		}
 	}
 
 	//@Transactional(isolation=Isolation.READ_COMMITTED)

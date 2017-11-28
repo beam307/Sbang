@@ -39,6 +39,11 @@ public class StudyDAOImpl implements StudyDAO {
 	public List<StudyVO> listAll() throws Exception {
 		return session.selectList(namespace + ".listAll");
 	}
+	
+	@Override
+	public void addImg(String imagePath) throws Exception{
+		session.insert(namespace+".addImg",imagePath);
+	}
 //
 //	@Override
 //	public List<BoardVO> listPage(int page) throws Exception {
@@ -84,10 +89,7 @@ public class StudyDAOImpl implements StudyDAO {
 //		session.update(namespace+".updateViewCnt",bno);
 //	}
 //	
-//	@Override
-//	public void addAttach(String fullName) throws Exception{
-//		session.insert(namespace+".addAttach",fullName);
-//	}
+
 //	
 //	@Override
 //	public List<String> getAttach(Integer bno) throws Exception{

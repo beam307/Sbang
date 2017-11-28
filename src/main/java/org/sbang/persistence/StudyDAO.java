@@ -15,6 +15,8 @@ public interface StudyDAO {
 	
 	public List<StudyVO> listAll() throws Exception;
 	
+	public void addImg(String imagePatg) throws Exception;
+	
 //	public List<StudyVO> listPage(int page) throws Exception;
 //	
 //	public List<StudyVO> listCriteria(Criteria cri) throws Exception;
@@ -29,7 +31,7 @@ public interface StudyDAO {
 //	
 //	public void updateViewCnt(Integer bno) throws Exception;
 //	
-//	public void addAttach(String fullName) throws Exception;
+	
 //	
 //	public List<String> getAttach(Integer bno) throws Exception;
 //	
