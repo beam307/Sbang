@@ -17,6 +17,10 @@ public interface StudyDAO {
 	
 	public void addImg(String imagePatg) throws Exception;
 	
+	public  void deleteImg(Integer studyNo) throws Exception;
+	
+	public List<String> getImg(Integer studyNo) throws Exception;
+	
 //	public List<StudyVO> listPage(int page) throws Exception;
 //	
 //	public List<StudyVO> listCriteria(Criteria cri) throws Exception;
@@ -33,9 +37,9 @@ public interface StudyDAO {
 //	
 	
 //	
-//	public List<String> getAttach(Integer bno) throws Exception;
 //	
-//	public  void deleteAttach(Integer bno) throws Exception;
+//	
+
 //	
 //	public void replaceAttach(String fullName,Integer bno) throws Exception;
 }

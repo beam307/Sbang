@@ -1,5 +1,7 @@
 package org.sbang.controller;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.sbang.domain.StudyVO;
@@ -9,9 +11,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -26,6 +30,7 @@ public class StudyController {
 	public void registGET(StudyVO study,Model model) throws Exception{
 		logger.info("register get...");
 	}
+	
 	@RequestMapping(value="/studyReg",method=RequestMethod.POST)
 	public String registPOST(StudyVO study,RedirectAttributes rttr) throws Exception{
 		logger.info("regist post........");
@@ -33,10 +38,8 @@ public class StudyController {
 		
 		service.regist(study);
 		rttr.addFlashAttribute("msg","SUCCESS");
-		
 		return "redirect:/study/studyList";
 	}
-	
 	@RequestMapping(value="/studyList",method=RequestMethod.GET)
 	public void listAll(Model model) throws Exception{
 		logger.info("show all list.........");
@@ -51,15 +54,23 @@ public class StudyController {
 	@RequestMapping(value="/studyRemove",method=RequestMethod.POST)
 	public String remove(@RequestParam("studyNo") int studyNo, RedirectAttributes rttr) throws Exception{
 		service.remove(studyNo);
+		
 		rttr.addFlashAttribute("msg","SUCCESS");
 		
 		return "redirect:/study/studyList";
 	}
 	
+	@RequestMapping("/getImg/{studyNo}")
+	@ResponseBody
+	public List<String> getImg(@PathVariable("studyNo")Integer studyNo) throws Exception{
+		logger.info(service.getImg(studyNo).toString());
+		return service.getImg(studyNo);
+	}
+	
 	@RequestMapping(value="/studyModify", method=RequestMethod.GET)
 	public void modifyGET(@RequestParam("studyNo") int studyNo, Model model) throws Exception{
 		model.addAttribute(service.read(studyNo));
-	}
+	
 	@RequestMapping(value="/studyModify",method=RequestMethod.POST)
 	public String modifyPOST(StudyVO study, RedirectAttributes rttr) throws Exception{
 		logger.info("mod post........");
