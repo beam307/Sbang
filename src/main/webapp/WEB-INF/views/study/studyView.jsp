@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -107,8 +108,11 @@
 
 			<div class="col-md-1">시작날짜</div>
 			<div class="col-md-11">
-				<input type="text" name="studyStartDate"
-					value="${studyVO.studyStartDate }" readonly="readonly">
+				<!-- 날짜 형식을 년/월/일로 표시 -->
+				<fmt:formatDate value="${studyVO.studyStartDate}"
+					pattern="yyyy-MM-dd" var="date" />
+				<input type="text" name="studyStartDate" value="${date }"
+					readonly="readonly">
 			</div>
 
 			<div class="col-md-1">시간</div>
