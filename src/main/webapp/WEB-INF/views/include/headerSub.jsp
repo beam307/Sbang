@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page session="true" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -40,23 +41,22 @@
 	    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <script>
-	$(document).ready(function() {
+    $(document).ready(function() {
 		var category = [
-			"영어" , "IT" , "교양" , "외국어" , "공무원", "자격증"
+			"영어","IT","교양","외국어","공무원","자격증"
 		];
 
-		$("#searchbox").autocomplete({
+		$("#searchBox").autocomplete({
 			source: category
 		});
+		var result = '${msg}';
+		var loginAuth = '${loginAuth}';
+		if(result == 'regSuccess')
+			alert("회원가입 완료");
+		if(loginAuth == 'loginAuth'){ // 로그인이 안됐을 경우 로그인창 보이기
+			$('#loginclick').trigger('click');
+		}
 	});
-	
-	var result = '${msg}'
-
-	if(result == 'regSuccess'){
-		alert("회원가입 완료");
-	}
-	if(result == "loginFail")
-		alert("로그인이 실패하였습니다. 다시 로그인 하십시오");
 	</script>
 </head>
 
@@ -79,6 +79,7 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
                     <ul class="nav navbar-nav navbar-right">
+                    	<c:if test="${empty login}">
                         <li>
                             <!-- Button trigger modal -->
                             <a class="" data-toggle="modal" href="#login">로그인</a>
@@ -94,7 +95,7 @@
                                         <div class="modal-body">
                                             <a href="" class="google-login">구글계정으로로그인</a>
                                             <a href="" class="naver-login">네이버계정으로로그인</a>
-                                            <form action="/user/loginPost" method="post"> <!-- 로그인 폼 -->
+                                            <form action="/login/loginPost" method="post"> <!-- 로그인 폼 -->
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">이메일 주소</label>
                                                     <input type="email" name="userEmail" class="form-control" id="exampleInputEmail1" placeholder="이메일을 입력하세요">
@@ -195,13 +196,14 @@
 	                            </div>
                             </form>
                         </li>
-                        <li><a href="/studyReg">스터디등록</a></li>
+                        </c:if>
+                        <c:if test="${not empty login}">
+	                        <li><a href="/mypage">마이페이지</a></li>
+	                        <li><a href="/login/logout">로그아웃</a></li>
+                        	<li><a href="#">1:1문의</a></li>
+                        </c:if>
+                        <li><a href="/study/studyReg">스터디등록</a></li>
                         <li><a href="#">방등록</a></li>
-                        <!-- 로그인후 추후 구현 -->
-                        <li><a href="/mypage">마이페이지</a></li>
-                        <li><a href="#">로그아웃</a></li>
-                        <li><a href="#">1:1문의</a></li>
-                        <!-- 로그인후 추후 구현 -->
                         <li><a href="#">공지사항</a></li>
                     </ul>
                 </div>

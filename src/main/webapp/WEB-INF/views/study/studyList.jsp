@@ -1,5 +1,4 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="../include/headerSub.jsp" %>
@@ -56,22 +55,22 @@
         <div class="list-thumbnail">
             <div class="row">
                 <div class="col-md-4">
-                    <div class="thumbnail"><a href="/studyView">스터디썸네일</a></div>
+                    <div class="thumbnail"><a href="/study/studyView">스터디썸네일</a></div>
                 </div>
                 <div class="col-md-4">
-                    <div class="thumbnail"><a href="/studyView">스터디썸네일</a></div>
+                    <div class="thumbnail"><a href="/study/studyView">스터디썸네일</a></div>
                 </div>
                 <div class="col-md-4">
-                    <div class="thumbnail"><a href="/studyView">스터디썸네일</a></div>
+                    <div class="thumbnail"><a href="/study/studyView">스터디썸네일</a></div>
                 </div>
                 <div class="col-md-4">
-                    <div class="thumbnail"><a href="/studyView">스터디썸네일</a></div>
+                    <div class="thumbnail"><a href="/study/studyView">스터디썸네일</a></div>
                 </div>
                 <div class="col-md-4">
-                    <div class="thumbnail"><a href="/studyView">스터디썸네일</a></div>
+                    <div class="thumbnail"><a href="/study/studyView">스터디썸네일</a></div>
                 </div>
                 <div class="col-md-4">
-                    <div class="thumbnail"><a href="/studyView">스터디썸네일</a></div>
+                    <div class="thumbnail"><a href="/study/studyView">스터디썸네일</a></div>
                 </div>
             </div>
         </div>
