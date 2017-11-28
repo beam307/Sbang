@@ -46,30 +46,30 @@ public class StudyController {
 	public void read(@RequestParam("studyNo") int studyNo,Model model) throws  Exception{
 		model.addAttribute(service.read(studyNo));
 	}
-//	
-//	@RequestMapping(value="/removePage",method=RequestMethod.POST)
-//	public String remove(@RequestParam("bno") int bno, RedirectAttributes rttr) throws Exception{
-//		service.remove(bno);
-//		
-//		rttr.addFlashAttribute("msg","SUCCESS");
-//		
-//		return "redirect:/board/listPage";
-//	}
-//	
-//	@RequestMapping(value="/modifyPage", method=RequestMethod.GET)
-//	public void modifyGET(@RequestParam("bno") int bno,@ModelAttribute("cri") Criteria cri,Model model) throws Exception{
-//		model.addAttribute(service.read(bno));
-//	}
-//	@RequestMapping(value="/modifyPage",method=RequestMethod.POST)
-//	public String modifyPOST(BoardVO board,Criteria cri,RedirectAttributes rttr) throws Exception{
-//		logger.info("mod post........");
+	
+	@RequestMapping(value="/studyRemove",method=RequestMethod.POST)
+	public String remove(@RequestParam("studyNo") int studyNo, RedirectAttributes rttr) throws Exception{
+		service.remove(studyNo);
+		
+		rttr.addFlashAttribute("msg","SUCCESS");
+		
+		return "redirect:/study/studyList";
+	}
+	
+	@RequestMapping(value="/modifyPage", method=RequestMethod.GET)
+	public void modifyGET(@RequestParam("studyNo") int bno, Model model) throws Exception{
+		model.addAttribute(service.read(bno));
+	}
+	@RequestMapping(value="/modifyPage",method=RequestMethod.POST)
+	public String modifyPOST(StudyVO study, RedirectAttributes rttr) throws Exception{
+		logger.info("mod post........");
 //		rttr.addAttribute("page",cri.getPage());
 //		rttr.addAttribute("perPageNum",cri.getPerPageNum());
-//		service.modify(board);
-//		rttr.addFlashAttribute("msg", "SUCCESS");
-//		
-//		return "redirect:/board/listPage";
-//	}
+		service.modify(study);
+		rttr.addFlashAttribute("msg", "SUCCESS");
+		
+		return "redirect:/study/studyList";
+	}
 //	
 //	@RequestMapping(value="/listPage",method=RequestMethod.GET)
 //	public void listPage(Criteria cri,Model model)throws Exception{

@@ -129,7 +129,7 @@
 								name="studyStartDate">
 							<script>
 								$(function() {
-									$("#testDatepicker").datepicker({}});
+									$("#testDatepicker").datepicker({});
 								});
 							</script>
 						</div>

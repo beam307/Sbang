@@ -7,15 +7,15 @@
     <div class="main-search">
         <form class="form-inline">
             <div class="radio">
-                <label>
-                    <button type="submit" class="btn btn-default" id="searchBox">검색</button>
+				<label>
+                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>스터디검색 </label>
             </div>
             <div class="radio">
                 <label>
                     <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"> 룸검색 </label>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="검색어입력하는곳">
+                <input type="text" class="form-control" placeholder="검색어입력하는곳" id="searchBox">
             </div>
             <button type="submit" class="btn btn-default">검색</button>
         </form>

@@ -34,10 +34,43 @@
                 <span class="sr-only">Next</span>
             </a>
         </div>
+        
+        <form role="form" method="post">
+        	<input type="hidden" name='studyNo' value="${studyVO.studyNo }">
+        </form>
+
+
+        
+        <script>
+
+			$(document).ready(function(){
+				var formObj = $("form[role='form']");
+				
+				console.log(formObj);
+				
+				/* 삭제버튼 클릭시  */
+				$("#deleteBtn").on("click", function(){
+					formObj.attr("action", "/study/studyRemove");
+					formObj.submit();
+				});
+				
+				/* 수정버튼 클릭시  */
+				$("#modifyBtn").on("click", function(){
+					formObj.attr("action", "/study/studyModify");
+					formObj.attr("method", "get");
+					formObj.submit();
+				});
+			});
+        
+         
+        </script>
+
+
 
         <div class="row">
             <div class="col-xs-12 view-tit">
-                <h1>스터디제목 <span class="view-category">영어</span><span class="view-category">it</span></h1>
+                <h1><input type="text" value="${studyVO.studyName }" readonly="readonly">
+                <span class="view-category">영어</span><span class="view-category">it</span></h1>
             </div>
             <div class="col-xs-12 view-user">
                 <div class="user-img col-xs-1">
@@ -50,27 +83,34 @@
             </div>
             <div class="col-xs-12 view-info">
                 <div class="col-md-1">카테고리</div>
-                <div class="col-md-11">it, 영어</div>
+                <div class="col-md-11"><input type="text" name="studyCategory" value="${studyVO.studyCategory }" readonly="readonly"></div>
+                
                 <div class="col-md-1">인원</div>
-                <div class="col-md-11">3명 / 10명</div>
+                <div class="col-md-11"><input type="text" name="studyCurMemCnt" value="${studyVO.studyCurMemCnt }" readonly="readonly"> / <input type="text" name="studyMaxMemCnt" value="${studyVO.studyMaxMemCnt }" readonly="readonly"></div>
+                
                 <div class="col-md-1">시작날짜</div>
-                <div class="col-md-11">2017년 12월 1일</div>
+                <div class="col-md-11"><input type="text" name="studyStartDate" value="${studyVO.studyStartDate }" readonly="readonly"></div>
+                
                 <div class="col-md-1">시간</div>
                 <div class="col-md-11">15시 ~ 17시</div>
+                
                 <div class="col-md-1">지역</div>
-                <div class="col-md-11">서울, 창원</div>
+                <div class="col-md-11"><input type="text" name="studyRegion" value="${studyVO.studyRegion }" readonly="readonly"></div>
+                
                 <div class="col-md-1">비용</div>
-                <div class="col-md-11">10000원</div>
+                <div class="col-md-11"><input type="text" name="studyMemFee" value="${studyVO.studyMemFee }" readonly="readonly"></div>
+               
                 <div class="col-md-1">일정</div>
                 <div class="col-md-11">매주 월요일</div>
+               
                 <div class="col-md-1">대상</div>
-                <div class="col-md-11">10대 ~ 20대</div>
+                <div class="col-md-11"><input type="text" name="studyTargetAge" value="${studyVO.studyTargetAge }" readonly="readonly"></div>
+               
                 <div class="col-md-1">소개글</div>
-                <div class="col-md-11">안녕하세요 스방이예요
-                    <br/> 스프링 스터디 하실분 구해요</div>
+                <div class="col-md-11"><input type="text" name="studyIntroduce" value="${studyVO.studyIntroduce }" readonly="readonly"></div>
 
-                <a href="" class="view-btn">수정</a>
-                <a href="" class="view-btn">삭제</a>
+                <button id="modifyBtn" type="submit" class="view-btn">수정</button>
+                <button id="deleteBtn" type="submit" class="view-btn">삭제</button>
                 
             </div>
         </div>

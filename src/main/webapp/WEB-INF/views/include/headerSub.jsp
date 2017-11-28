@@ -21,8 +21,8 @@
     <link href="/resources/dist/css/main.css" rel="stylesheet">
     <!-- 서브 css -->
     <link href="/resources/dist/css/sub.css" rel="stylesheet">
-     <!-- 시간 css -->
-   <link href="/resources/dist/css/timepiki.css" rel="stylesheet">
+    <!-- 시간 css -->
+   	<link href="/resources/dist/css/timepicki.css" rel="stylesheet">
     <!-- jQuery-Ui css-->
 	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css">
     <!-- jQuery -->
@@ -34,7 +34,7 @@
 	<script src="/resources/dist/js/main.js"></script>
 	
 	<!-- 시간 -->
-   <script src="/resources/dist/js/timepicki.js"></script>
+   	<script src="/resources/dist/js/timepicki.js"></script>
 	
     <!--[if lt IE 9]>
 	    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
