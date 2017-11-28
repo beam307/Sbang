@@ -67,20 +67,20 @@ public class StudyController {
 		return service.getImg(studyNo);
 	}
 	
-//	@RequestMapping(value="/modifyPage", method=RequestMethod.GET)
-//	public void modifyGET(@RequestParam("studyNo") int bno, Model model) throws Exception{
-//		model.addAttribute(service.read(bno));
-//	}
-//	@RequestMapping(value="/modifyPage",method=RequestMethod.POST)
-//	public String modifyPOST(StudyVO study, RedirectAttributes rttr) throws Exception{
-//		logger.info("mod post........");
+	@RequestMapping(value="/studyModify", method=RequestMethod.GET)
+	public void modifyGET(@RequestParam("studyNo") int studyNo, Model model) throws Exception{
+		model.addAttribute(service.read(studyNo));
+	}
+	@RequestMapping(value="/studyModify",method=RequestMethod.POST)
+	public String modifyPOST(StudyVO study, RedirectAttributes rttr) throws Exception{
+		logger.info("mod post........");
 //		rttr.addAttribute("page",cri.getPage());
 //		rttr.addAttribute("perPageNum",cri.getPerPageNum());
-//		service.modify(study);
-//		rttr.addFlashAttribute("msg", "SUCCESS");
-//		
-//		return "redirect:/study/studyList";
-//	}
+		service.modify(study);
+		rttr.addFlashAttribute("msg", "SUCCESS");
+		
+		return "redirect:/study/studyList";
+	}
 //	
 //	@RequestMapping(value="/listPage",method=RequestMethod.GET)
 //	public void listPage(Criteria cri,Model model)throws Exception{

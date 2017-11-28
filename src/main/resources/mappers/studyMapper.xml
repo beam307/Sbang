@@ -6,8 +6,8 @@
 <mapper namespace="org.sbang.mapper.StudyMapper">
 
 	<insert id="create">
-		insert into study(studyName,studyCategory,studyRegion,studyMaxMemCnt,studyStartDate) values
-		(#{studyName},#{studyCategory},#{studyRegion},#{studyMaxMemCnt},#{studyStartDate})
+		insert into study(studyName,studyCategory,studyRegion,studyTargetAge,studyMaxMemCnt,studyCurMemCnt,studyMemFee,studyWorkPerMonth,studyIntroduce,studyStartDate,studyEndDate) values
+		(#{studyName},#{studyCategory},#{studyRegion},#{studyTargetAge},#{studyMaxMemCnt},#{studyCurMemCnt},#{studyMemFee},#{studyWorkPerMonth},#{studyIntroduce},#{studyStartDate},#{studyEndDate})
 	</insert>
 
 	<select id="read" resultType="StudyVO">
@@ -19,10 +19,10 @@
 		studyNo=#{studyNo}
 	</select>
 
-
 	<update id="update">
 		update study set
-		study_name=#{studyName}, studyCategory=#{studyCategory}
+		studyName=#{studyName},studyCategory=#{studyCategory},studyRegion=#{studyRegion},studyTargetAge=#{studyTargetAge},studyMaxMemCnt=#{studyMaxMemCnt},
+		studyCurMemCnt=#{studyCurMemCnt},studyMemFee=#{studyMemFee},studyWorkPerMonth=#{studyWorkPerMonth},studyIntroduce=#{studyIntroduce},studyStartDate=#{studyStartDate},studyEndDate=#{studyEndDate}
 		where studyNo=#{studyNo}
 	</update>
 
