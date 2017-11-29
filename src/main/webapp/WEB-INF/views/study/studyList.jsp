@@ -3,7 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="../include/headerSub.jsp"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <div class="container list inner">
 	<div class="col-md-12 search-sub">
 		<div class="search-typebtn">
@@ -56,8 +56,8 @@
 		</ul>
 	</div>
 	<div class="list-thumbnail">
-		<div class="row">
-			<c:forEach items="${list}" var="studyVO">
+		<div class="row" id="studyList-thumbnail">
+			<%-- <c:forEach items="${list}" var="studyVO">
 				<div class="col-md-4">
 					
 						${studyVO.studyNo }
@@ -66,24 +66,8 @@
 						<fmt:formatDate pattern="yy-MM-dd HH:mm"
 								value="${studyVO.studyRegDate}" />
 						<span class="badge bg-red">${studyVO.studyMaxMemCnt}</span>
-					
 				</div>
 			</c:forEach>
-			<div class="col-md-4">
-				<div class="thumbnail">스터디썸네일</div>
-			</div>
-			<div class="col-md-4">
-				<div class="thumbnail">스터디썸네일</div>
-			</div>
-			<div class="col-md-4">
-				<div class="thumbnail">스터디썸네일</div>
-			</div>
-			<div class="col-md-4">
-				<div class="thumbnail">스터디썸네일</div>
-			</div>
-			<div class="col-md-4">
-				<div class="thumbnail">스터디썸네일</div>
-			</div>
 		</div>
 	</div>
 	<div class="text-center">
@@ -108,4 +92,36 @@
 		</ul>
 	</div>
 </div>
+<script type="text/javascript" src="/resources/dist/js/upload.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
+
+
+<script id="templateList" type="text/x-handlebars-template">
+	<div class="col-md-4" data-src='{{fullName}}'>
+		<span class="mailbox-attachment-icon has-img"><img src="{{imgsrc}}" alt="Attachment"></span>
+		<div class="mailbox-attachment-info">
+		<a href="{{getLink}}" class="mailbox-attachment-name">{{fileName}}</a>
+		</div>
+</script>
+<script>
+$(document).ready(function(){
+	/*스터디리스트 썸네일과같이 추력  */ 
+	var template = Handlebars.compile($("#templateList").html());
+		
+	 /*  */
+	 <c:forEach items="${list}" varStatus="listIdx" var="studyVO">
+		  $.getJSON("/study/getImgOne/" + ${studyVO.studyNo}, function(list) {
+			  $(list).each(function() {
+				var fileInfo = getFileInfo(this);
+				var html = template(fileInfo);
+				<fmt:formatDate value="${studyVO.studyStartDate}"
+					pattern="yyyy-MM-dd" var="date" />
+				var studyInfo="NO: ${studyVO.studyNo}</br>"+"Name: <a href='/study/studyView?studyNo=${studyVO.studyNo}'>${studyVO.studyName}</a></br>"+"RegDate: ${date}";
+				$("#studyList-thumbnail").append(html+studyInfo+"</div>");
+			  });
+		}); 
+	</c:forEach>; 
+})
+</script>
 <%@include file="../include/footer.jsp"%>

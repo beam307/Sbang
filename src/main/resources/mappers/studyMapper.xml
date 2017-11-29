@@ -37,7 +37,7 @@
   		from
   		study
   		where studyNo>0
-  		order by studyNo desc,studyRegDate desc
+  		order by studyNo desc,studyRegDate desc LIMIT 10
   		]]>
 	</select>
 	
@@ -52,6 +52,14 @@
 	<select id="getImg" resultType="string">
 		select imagePath from image where studyNo=#{studyNo}
 	</select>
+	
+	<select id="getImgOne" resultType="string">
+		select imagePath from image where studyNo=#{studyNo} LIMIT 1
+	</select>
+	
+	<insert id="replaceImg">
+		insert into image(imagePath,studyNo) values (#{imagePath},#{studyNo})
+	</insert>
 	
 	<select id="listPage" resultType="StudyVO">
   	<![CDATA[
@@ -125,9 +133,7 @@
 
 	
 	
-	<insert id="replaceAttach">
-		insert into tbl_attach(fullName,bno) values (#{fullName},#{bno})
-	</insert>
+	
 
 	<sql id="search">
 		<if test="searchType != null">
