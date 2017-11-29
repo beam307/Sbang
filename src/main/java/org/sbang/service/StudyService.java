@@ -2,6 +2,7 @@ package org.sbang.service;
 
 import java.util.List;
 
+import org.sbang.domain.Criteria;
 import org.sbang.domain.StudyVO;
 
 
@@ -17,9 +18,10 @@ public interface StudyService {
 	public List<StudyVO> listAll() throws Exception;
 	
 	public List<String> getImg(Integer studyNo) throws Exception;
-//	public List<StudyVO> listCriteria(Criteria cri) throws Exception;
-//	
-//	public int listCountCriteria(Criteria cri) throws Exception;
+	
+	public List<StudyVO> listCriteria(Criteria cri) throws Exception;
+	
+	public int listCountCriteria(Criteria cri) throws Exception;
 //	
 //	public List<StudyVO> listSearchCriteria(SearchCriteria cri) throws Exception;
 //	

@@ -18,6 +18,11 @@
 <div class="container write inner">
 	<form class="form-horizontal" id="registerForm"
 		action="/study/studyModify" method="post">
+		
+		<!-- page&perPageNum값 받아오기 -->
+		<input type="hidden" name='page' value="${cri.page }">
+		<input type="hidden" name='perPageNum' value="${cri.perPageNum }">
+		
 		<div class="step1">
 			<h2>1단계</h2>
 			<div class="row">
@@ -338,7 +343,7 @@
 
 		/* 취소버튼 클릭시  */
 		$("#cancelBtn").on("click", function() {
-			self.location = "/study/studyList"
+			self.location = "/study/studyList?page=${cri.page}&perPageNum=${cri.perPageNum}";
 		});
 
 		/* 완료버튼 클릭시  */

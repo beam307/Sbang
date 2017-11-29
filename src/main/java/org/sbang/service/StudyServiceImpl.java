@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.sbang.domain.Criteria;
 import org.sbang.domain.StudyVO;
 import org.sbang.persistence.StudyDAO;
 import org.springframework.stereotype.Service;
@@ -69,16 +70,16 @@ public class StudyServiceImpl implements StudyService {
 	public List<StudyVO> listAll() throws Exception {
 		return studyDAO.listAll();
 	}
-//
-//	@Override
-//	public List<BoardVO> listCriteria(Criteria cri) throws Exception {
-//		return boardDAO.listCriteria(cri);
-//	}
-//
-//	@Override
-//	public int listCountCriteria(Criteria cri) throws Exception {
-//		return boardDAO.countPaging(cri);
-//	}
+
+	@Override
+	public List<StudyVO> listCriteria(Criteria cri) throws Exception {
+		return studyDAO.listCriteria(cri);
+	}
+
+	@Override
+	public int listCountCriteria(Criteria cri) throws Exception {
+		return studyDAO.countPaging(cri);
+	}
 //	@Override
 //	public List<BoardVO> listSearchCriteria(SearchCriteria cri) throws Exception {
 //		return boardDAO.listSearch(cri);

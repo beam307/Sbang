@@ -53,43 +53,42 @@
 		select imagePath from image where studyNo=#{studyNo}
 	</select>
 	
-</mapper>
-<!-- 
-	<select id="listPage" resultType="BoardVO">
+	<select id="listPage" resultType="StudyVO">
   	<![CDATA[
   		select
   		*
   		from
-  		tbl_board
-  		where bno>0
-  		order by bno desc, regdate desc
+  		study
+  		where studyNo>0
+  		order by studyNo desc, studyRegDate desc
   		limit #{page},10
   	]]>
 	</select>
 
-	<select id="listCriteria" resultType="BoardVO">
+	<select id="listCriteria" resultType="StudyVO">
   	<![CDATA[
-  	select
-  	*
-  	from
-  	tbl_board
-  	where bno>0
-  	order by bno desc, regdate desc
-  	limit #{pageStart},#{perPageNum}
+	  	select
+	  	*
+	  	from
+	  	study
+	  	where studyNo>0
+	  	order by studyNo desc, studyRegDate desc
+	  	limit #{pageStart},#{perPageNum}
   	]]>
 	</select>
-
+ 
 	<select id="countPaging" resultType="int">
   	<![CDATA[
-  	select
-  	count(bno)
-  	from
-  	tbl_board
-  	where
-  	bno>0
+	  	select
+	  	count(studyNo)
+	  	from
+	  	study
+	  	where
+	  	studyNo>0
   	]]>
 	</select>
-
+</mapper>
+<!--
 	<select id="listSearch" resultType="BoardVO">
   	<![CDATA[
   	select *

@@ -71,8 +71,11 @@
 		</a>
 	</div>
 
-	<form role="form" method="post">
+	<!-- studyNo&page&perPageNum값 받아오기 -->
+	<form role="form" action="studyModify" method="post">
 		<input type="hidden" name='studyNo' value="${studyVO.studyNo }">
+		<input type="hidden" name='page' value="${cri.page }">
+		<input type="hidden" name='perPageNum' value="${cri.perPageNum }">
 	</form>
 
 	<div class="row">
@@ -151,6 +154,7 @@
 
 			<button id="modifyBtn" type="submit" class="view-btn">수정</button>
 			<button id="deleteBtn" type="submit" class="view-btn">삭제</button>
+			<button id="goListBtn" type="submit" class="view-btn">목록으로</button>
 
 		</div>
 	</div>
@@ -198,11 +202,15 @@
 					formObj.attr("method", "get");
 					formObj.submit();
 				});
-				var studyNo = $
-				{
-					studyVO.studyNo
-				}
-				;
+				
+				/* 목록으로버튼 클릭시  */
+				$("#goListBtn").on("click", function() {
+					formObj.attr("method", "get");
+					formObj.attr("action", "/study/studyList");
+					formObj.submit();
+				});
+				
+				var studyNo = ${studyVO.studyNo};
 				var template = Handlebars.compile($("#templateAttach").html());
 
 				$.getJSON("/study/getImg/" + studyNo, function(list) {

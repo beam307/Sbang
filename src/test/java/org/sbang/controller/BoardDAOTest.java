@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.sbang.domain.Criteria;
 import org.sbang.domain.StudyVO;
 import org.sbang.persistence.StudyDAO;
 import org.slf4j.Logger;
@@ -22,7 +23,7 @@ public class BoardDAOTest {
 	
 	private static Logger logger=LoggerFactory.getLogger(BoardDAOTest.class);
 	
-	@Test
+	/*@Test
 	public void testCreate()throws Exception{
 		StudyVO study=new StudyVO();
 		study.setStudyName("새로운 글을!!` 넣습니다");
@@ -30,7 +31,7 @@ public class BoardDAOTest {
 		study.setStudyRegion("서울시 강서구");
 		study.setStudyMaxMemCnt(5);
 		dao.create(study);
-	}
+	}*/
 	
 	/*@Test
 	public void testRead() throws Exception{
@@ -53,25 +54,25 @@ public class BoardDAOTest {
 	/*@Test
 	public void testListPage() throws Exception{
 		int page=3;
-		List<BoardVO> list=dao.listPage(page);
+		List<StudyVO> list=dao.listPage(page);
 		
-		for(BoardVO boardVO:list) {
-			logger.info(boardVO.getBno()+":"+boardVO.getTitle());
+		for(StudyVO studyVO:list) {
+			logger.info(studyVO.getStudyNo()+":"+studyVO.getStudyName());
 		}
 	}*/
 	
-	/*@Test
+	@Test
 	public void testListCriteria() throws Exception{
 		Criteria cri=new Criteria();
 		cri.setPage(2);
 		cri.setPerPageNum(20);
 		
-		List<BoardVO> list=dao.listCriteria(cri);
+		List<StudyVO> list=dao.listCriteria(cri);
 		
-		for(BoardVO boardVO:list) {
-			logger.info(boardVO.getBno()+":"+boardVO.getTitle());
+		for(StudyVO studyVO:list) {
+			logger.info(studyVO.getStudyNo()+":"+studyVO.getStudyName());
 		}
-	}*/
+	}
 	/*@Test
 	public void testURI() throws Exception{
 		UriComponents uriComponents=UriComponentsBuilder.newInstance()
