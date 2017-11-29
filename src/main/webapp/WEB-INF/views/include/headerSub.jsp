@@ -49,13 +49,10 @@
 		$("#searchBox").autocomplete({
 			source: category
 		});
+		
 		var result = '${msg}';
-		var loginAuth = '${loginAuth}';
 		if(result == 'regSuccess')
 			alert("회원가입 완료");
-		if(loginAuth == 'loginAuth'){ // 로그인이 안됐을 경우 로그인창 보이기
-			$('#loginclick').trigger('click');
-		}
 	});
 	</script>
 </head>
@@ -80,125 +77,11 @@
 
                     <ul class="nav navbar-nav navbar-right">
                     	<c:if test="${empty login}">
-                        <li>
-                            <!-- Button trigger modal -->
-                            <a class="" data-toggle="modal" href="#login">로그인</a>
-
-                            <!-- 로그인 모달창 --> 
-                            <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                            <h4 class="login-modal-title" id="loginModalLabel">로그인</h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            <a href="" class="google-login">구글계정으로로그인</a>
-                                            <a href="" class="naver-login">네이버계정으로로그인</a>
-                                            <form action="/login/loginPost" method="post"> <!-- 로그인 폼 -->
-                                                <div class="form-group">
-                                                    <label for="exampleInputEmail1">이메일 주소</label>
-                                                    <input type="email" name="userEmail" class="form-control" id="exampleInputEmail1" placeholder="이메일을 입력하세요">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="exampleInputPassword1">암호</label>
-                                                    <input type="password" name="userPwd" class="form-control" id="exampleInputPassword1" placeholder="암호">
-                                                </div>
-                                                <div class="checkbox">
-                                                    <label>
-                                                        <input type="checkbox"> 아이디저장
-                                                    </label>
-                                                    <label>
-                                                        <input type="checkbox"> 자동로그인
-                                                    </label>
-                                                </div>
-
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-                                                    <button type="submit" class="btn btn-primary">로그인</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <!-- Button trigger modal -->
-                            <a class="" data-toggle="modal" href="#join">회원가입</a>
-							<form action="/user/regUser" method="post"> <!-- 회원가입 폼 -->
-	                            <!-- 회원가입 모달창 -->
-	                            <div class="modal fade" id="join" tabindex="-1" role="dialog" aria-labelledby="joinModalLabel" aria-hidden="true">
-	                                <div class="modal-dialog">
-	                                    <div class="modal-content">
-	                                        <div class="modal-header">
-	                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	                                            <h4 class="join-modal-title" id="myModalLabel">회원가입</h4>
-	                                        </div>
-	                                        <div class="modal-body">
-                                                <div class="form-group">
-                                                    <label for="InputName">이름</label>
-                                                    <input type="text" name="userName" class="form-control" id="InputName" placeholder="실명을 입력하세요">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="InputEmail">이메일 주소</label>
-                                                    <input type="text" name="userEmail" class="form-control" id="InputEmail" placeholder="사용하시는 이메일을 입력하세요">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="InputPassword">비밀번호</label>
-                                                    <input type="password" name="userPwd" class="form-control" id="InputPassword" placeholder="비밀번호를 입력하세요">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="InputBirthday">생년월일</label>
-                                                    <input type="text" name="userBirth" class="form-control" id="InputBirthday" placeholder="ex.990101">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="InputGender">성별</label>
-                                                    <div class="radio">
-                                                        <label>
-                                                            <input type="radio" name="userGender" id="genderRadio1" value="man" aria-label="남성"> 남성
-                                                        </label>
-                                                        <label>
-                                                            <input type="radio" name="userGender" id="genderRadio2" value="woman" aria-label="여성"> 여성
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="InputGender">전화번호</label>
-                                                    <div class="row">
-                                                        <div class="col-xs-2">
-                                                            <input type="text" class="form-control" placeholder="010" name="userPhoneNumber">
-                                                        </div>
-                                                        <div class="col-xs-1">
-                                                            -
-                                                        </div>
-                                                        <div class="col-xs-2">
-                                                            <input type="text" class="form-control" placeholder="0000" name="userPhoneNumber">
-                                                        </div>
-                                                        <div class="col-xs-1">
-                                                            -
-                                                        </div>
-                                                        <div class="col-xs-2">
-                                                            <input type="text" class="form-control" placeholder="0000" name="userPhoneNumber">
-                                                        </div>
-                                                        <div class="col-xs-3">
-                                                            <button type="button" class="btn btn-default">인증하기</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-	                                        </div>
-	                                        <div class="modal-footer">
-	                                            <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-	                                            <button type="submit" class="btn btn-primary">회원가입</button>
-	                                        </div>
-	                                    </div>
-	                                </div>
-	                            </div>
-                            </form>
-                        </li>
+                        	<li><a href="/login/loginGet">로그인</a></li>
+                        	<li><a href="/user/regUser">회원가입</a></li>
                         </c:if>
                         <c:if test="${not empty login}">
-	                        <li><a href="/mypage">마이페이지</a></li>
+	                        <li><a href="/user/myPage">마이페이지</a></li>
 	                        <li><a href="/login/logout">로그아웃</a></li>
                         	<li><a href="#">1:1문의</a></li>
                         </c:if>

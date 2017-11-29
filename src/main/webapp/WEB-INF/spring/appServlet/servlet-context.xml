@@ -20,6 +20,7 @@
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
+	
 	<beans:bean id="authInterceptor" class="org.sbang.interceptor.AuthInterceptor" />
 	<beans:bean id="loginInterceptor" class="org.sbang.interceptor.LoginInterceptor" />
 	
@@ -31,6 +32,11 @@
 		
 		<interceptor>
 			<mapping path="/study/studyReg"/>
+			<beans:ref bean="authInterceptor"/>
+		</interceptor>
+		
+		<interceptor>
+			<mapping path="/user/myPage"/>
 			<beans:ref bean="authInterceptor"/>
 		</interceptor>
 	</interceptors>

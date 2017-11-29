@@ -1,5 +1,7 @@
 package org.sbang.service;
 
+import java.util.Date;
+
 import javax.inject.Inject;
 
 import org.sbang.DTO.LoginDTO;
@@ -43,6 +45,16 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public UserVO login(LoginDTO dto) throws Exception {
 		return dao.login(dto);
+	}
+
+	@Override
+	public void keepLogin(String userEmail, String sessionId, Date next) throws Exception {
+		dao.keepLogin(userEmail, sessionId, next);
+	}
+
+	@Override
+	public UserVO checkLoginBefore(String value) {
+		return dao.checkUserWithSessionKey(value);
 	}
 	
 }

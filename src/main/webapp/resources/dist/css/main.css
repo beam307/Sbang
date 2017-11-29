@@ -17,37 +17,8 @@
     padding: 200px 0;
 }
 
-.list-thumbnail h1 .more {
-	float: right;
-    font-size: 14px;
-}
-
 footer {
     border: 1px solid #000;
     text-align: center;
     padding: 10px;
-}
-
-/*로그인*/
-.google-login {
-    display: block;
-    padding:10px;
-    margin: 10px 0;
-    color:#4285f4;
-    border: 1px solid #4285f4;
-    text-align: center;
-}
-.naver-login {
-    display: block;
-    padding:10px;
-    margin: 10px 0;
-    color:#00c73c;
-    border: 1px solid #00c73c;
-    text-align: center;
-}
-
-/*회원가입*/
-.form-group .col-xs-1{
-    width:auto;
-    padding: 5px 0 0 0;
 }

@@ -3,6 +3,54 @@
 }
 
 
+
+/*로그인*/
+.login {
+    width: 500px;
+    margin: 0 auto;
+    padding: 100px 0;
+}
+
+.kakao-login {
+    display: block;
+    padding:10px;
+    margin: 10px 0;
+    color:#000;
+    background: #ffeb33;
+    border: 1px solid #ffeb33;
+    text-align: center;
+}
+
+.google-login {
+    display: block;
+    padding:10px;
+    margin: 10px 0;
+    color:#4285f4;
+    border: 1px solid #4285f4;
+    text-align: center;
+}
+
+.naver-login {
+    display: block;
+    padding:10px;
+    margin: 10px 0;
+    color:#00c73c;
+    border: 1px solid #00c73c;
+    text-align: center;
+}
+
+/*회원가입*/
+.join {
+    width:500px;
+    padding: 100px 0;
+}
+
+.form-group .col-xs-1{
+    width:auto;
+    padding: 5px 0 0 0;
+}
+
+
 /*마이페이지*/
 
 .mypage {
@@ -202,7 +250,7 @@
     width: 28%;
     border: 1px solid #ccc;
     margin: auto;
-    background: url(/resources/images/arrow.png) no-repeat;
+    background: url(../images/arrow.png) no-repeat;
     border-radius: 5px;
 }
 
@@ -241,7 +289,7 @@
     position: absolute;
     top: -10px;
     left: 20px;
-    background: url(/resources/images/top_arr.png) no-repeat;
+    background: url(../images/top_arr.png) no-repeat;
     width: 18px;
     height: 10px;
     z-index: 999;
@@ -292,7 +340,7 @@
 }
 
 
-/*view*/
+/*뷰페이지*/
 
 .view .carousel-inner {
     height: 400px;
@@ -397,4 +445,24 @@
     padding:10px;
     border: 1px solid #000;
     margin-right: 5px;
+}
+
+/*공지사항*/
+.notice {
+    padding: 50px 0;
+}
+
+/*1대1게시판*/
+.onenone {
+    padding: 50px 0;
+}
+
+.onenone .user {
+    float:right;
+    font-size: 13px;
+}
+
+/*게시판*/
+.pagination-nav {
+    text-align: center;
 }

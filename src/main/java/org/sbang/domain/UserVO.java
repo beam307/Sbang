@@ -28,5 +28,8 @@ public class UserVO {
 	private boolean userCertification;
 	private boolean userActivityAlarm;
 	private boolean userNewsAlarm;
+	
+	private String sessionKey;
+	private Date sessionLimit;
 
 }

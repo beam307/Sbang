@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 public class WeekVO {
-	
+
 	private int weekNo;
 	private int studyNo;
 

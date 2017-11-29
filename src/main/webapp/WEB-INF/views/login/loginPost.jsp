@@ -9,11 +9,6 @@
 </head>
 <body>
 	<script type="text/javascript">
-		var session = "${login}"
-		
-		if(session == "")
-			alert("로그인이 실패하였습니다. 다시 로그인하십시오.")
-
     	self.location = "/";
 	</script>
 </body>
