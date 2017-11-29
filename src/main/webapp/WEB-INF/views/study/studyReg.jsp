@@ -142,7 +142,7 @@
 							<script>
 								$(function() {
 									$("#testDatepicker").datepicker({
-						
+
 									});
 								});
 							</script>
@@ -225,8 +225,7 @@
 					<label class="col-sm-2 control-label">소개</label>
 					<div class="col-sm-10">
 						<div class="col-sm-12">
-							<label for="exampleInputFile">파일 업로드</label> <input type="file"
-								id="exampleInputFile">
+							<label for="exampleInputFile">파일 업로드</label> 
 						</div>
 					</div>
 				</div>
@@ -234,7 +233,8 @@
 					<button type="submit" class="btn btn-default">완료</button>
 					<button type="button" class="btn btn-default m_r_10">취소</button>
 				</div>
-
+				<ul class="mailbox-attachments clearfix uploadedList">
+				</ul>
 			</div>
 		</div>
 		<!-- 파일 업로드 테스트 해보자!!!  -->
@@ -248,9 +248,6 @@
 			<div>
 				<hr>
 			</div>
-
-			<ul class="mailbox-attachments clearfix uploadedList">
-			</ul>
 		</div>
 
 
@@ -289,7 +286,7 @@
 
 		var formData = new FormData();
 		formData.append("file", file);
-		
+
 		/*컴트롤러로 파일명을 보낸후 콜백으로 만들어진 이미지파일명을 받은후 템플릿에 출력시킨다.  */
 		$.ajax({
 			url : '/uploadAjax',
@@ -308,7 +305,7 @@
 			}
 		});
 	});
-	
+
 	/* input:hidden 으로 현재 업로드된 파일들의 목록을 저장한다. */
 	$("#registerForm").submit(
 			function(event) {
