@@ -41,19 +41,24 @@ public class StudyServiceImpl implements StudyService {
 		return studyDAO.getImg(studyNo);
 	}
 	
-	//@Transactional
+	@Override
+	public List<String> getImgOne(Integer studyNo) throws Exception{
+		return studyDAO.getImgOne(studyNo);
+	}
+	
+	@Transactional
 	@Override
 	public void modify(StudyVO study) throws Exception {
 		studyDAO.update(study);
-		//Integer studyId=study.getStudyId();
-		//System.out.println(studyId);
-		//studyDAO.deleteAttach(studyId);
+		Integer studyNo=study.getStudyNo();
+		System.out.println(studyNo);
+		studyDAO.deleteImg(studyNo);
 		
-//		String[] files=board.getFiles();
-//		if(files==null) {return;}
-//		for(String fileName:files) {
-//			studyDAO.replaceAttach(fileName, bno);
-//		}
+		String[] files=study.getFiles();
+		if(files==null) {return;}
+		for(String fileName:files) {
+			studyDAO.replaceImg(fileName, studyNo);
+		}
 		
 	}
 	

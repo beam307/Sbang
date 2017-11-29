@@ -198,13 +198,10 @@
 					formObj.attr("method", "get");
 					formObj.submit();
 				});
-				var studyNo = $
-				{
-					studyVO.studyNo
-				}
-				;
+				var studyNo = ${studyVO.studyNo};
 				var template = Handlebars.compile($("#templateAttach").html());
-
+				
+				/* 제이슨으로 이미지 파일 불러오기  */
 				$.getJSON("/study/getImg/" + studyNo, function(list) {
 					$(list).each(function() {
 						console.log(list);
@@ -213,6 +210,8 @@
 						$(".uploadedList").append(html);
 					});
 				});
+				
+				/* 이미지누르면 팝업창 뜨며 원본이미지 출력  */
 				$(".uploadedList").on("click", ".mailbox-attachment-info a",
 						function(event) {
 							var fileLink = $(this).attr("href");

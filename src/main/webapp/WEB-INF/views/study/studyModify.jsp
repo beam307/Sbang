@@ -273,78 +273,123 @@
 		</div>
 	</li>
 </script>
-<!-- <script type="text/javascript" src="/resources/dist/js/upload.js"></script>
+<script type="text/javascript" src="/resources/dist/js/upload.js"></script>
 <script>
-	var template = Handlebars.compile($("#template").html());
+	$(document)
+			.ready(
+					function() {
+						/* 핸들바 탬플릿 컴파일 */
+						var template = Handlebars
+								.compile($("#template").html());
 
-	$(".fileDrop").on("dragenter dragover", function(event) {
-		event.preventDefault();
-	});
+						var formObj = $("form[role='form']");
 
-	$(".fileDrop").on("drop", function(event) {
-		event.preventDefault();
+						console.log(formObj);
 
-		var files = event.originalEvent.dataTransfer.files;
-
-		var file = files[0];
-
-		//console.log(file);
-
-		var formData = new FormData();
-		formData.append("file", file);
-
-		$.ajax({
-			url : '/uploadAjax',
-			data : formData,
-			dataType : 'text',
-			processData : false,
-			contentType : false,
-			type : 'POST',
-			success : function(data) {
-
-				var fileInfo = getFileInfo(data);
-
-				var html = template(fileInfo);
-
-				$(".uploadedList").append(html);
-			}
-		});
-	});
-
-	$("#registerForm").submit(
-			function(event) {
-				event.preventDefault();
-
-				var that = $(this);
-
-				var str = "";
-
-				$(".uploadedList .delbtn").each(
-						function(index) {
-							str += "<input type='hidden' name='files[" + index
-									+ "]' value='" + $(this).attr("data-src")
-									+ "'>";
+						/* 취소버튼 클릭시  */
+						$("#cancelBtn").on("click", function() {
+							self.location = "/study/studyList"
 						});
-				that.append(str);
-				that.get(0).submit();
-			});
-</script>
- -->
-<script>
-	$(document).ready(function() {
-		var formObj = $("form[role='form']");
 
-		console.log(formObj);
+						/* 완료버튼 클릭시  */
+						$("#confirmBtn").on("click", function() {
+							formObj.submit();
+						});
+						/*업로드된 이미지 출력  */
+						var studyNo = ${studyVO.studyNo};
+						$.getJSON("/study/getImg/" + studyNo, function(list) {
+							$(list).each(function() {
+								var fileInfo = getFileInfo(this);
+								var html = template(fileInfo);
+								$(".uploadedList").append(html);
+							});
+						});
+						
+						/*파일 드랍시 업로드(ajax)  */
+						$(".fileDrop").on("dragenter dragover",
+								function(event) {
+									event.preventDefault();
+								});
 
-		/* 취소버튼 클릭시  */
-		$("#cancelBtn").on("click", function() {
-			self.location = "/study/studyList"
-		});
+						$(".fileDrop").on("drop", function(event) {
+							event.preventDefault();
 
-		/* 완료버튼 클릭시  */
-		$("#confirmBtn").on("click", function() {
-			formObj.submit();
-		});
-	});
+							var files = event.originalEvent.dataTransfer.files;
+
+							var file = files[0];
+
+							//console.log(file);
+
+							var formData = new FormData();
+							formData.append("file", file);
+
+							$.ajax({
+								url : '/uploadAjax',
+								data : formData,
+								dataType : 'text',
+								processData : false,
+								contentType : false,
+								type : 'POST',
+								success : function(data) {
+
+									var fileInfo = getFileInfo(data);
+
+									var html = template(fileInfo);
+
+									$(".uploadedList").append(html);
+								}
+							});
+						});
+						
+						/*x버튼 클릭시 로컬에서 파일제거  */
+						$(".uploadedList").on(
+								"click",
+								"a",
+								function(event) {
+									var that = $(this);
+
+									$.ajax({
+										url : "/deleteFile",
+										type : "post",
+										data : {
+											fileName : $(this).attr("data-src")
+										},
+										dataType : "text",
+										success : function(result) {
+											if (result == 'deleted') {
+												alert("deleted");
+												that.parent("div").parent("li")
+														.remove();
+											}
+										}
+									});
+								});
+						
+						/* 완료 버튼 클릭시 소스 보냄  */
+						$("#registerForm")
+								.submit(
+										function(event) {
+											event.preventDefault();
+
+											var that = $(this);
+
+											var str = "";
+
+											$(".uploadedList .delbtn")
+													.each(
+															function(index) {
+																str += "<input type='hidden' name='files["
+																		+ index
+																		+ "]' value='"
+																		+ $(
+																				this)
+																				.attr(
+																						"data-src")
+																		+ "'>";
+															});
+											that.append(str);
+											that.get(0).submit();
+										});
+					});
 </script>
 <%@include file="../include/footer.jsp"%>

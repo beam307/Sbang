@@ -1,6 +1,8 @@
 package org.sbang.persistence;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -55,6 +57,21 @@ public class StudyDAOImpl implements StudyDAO {
 		return session.selectList(namespace+".getImg",studyNo);
 	}
 	
+	@Override
+	public List<String> getImgOne(Integer studyNo) throws Exception{
+		return session.selectList(namespace+".getImgOne",studyNo);
+	}
+	
+	@Override
+	public void replaceImg(String imagePath,Integer studyNo) throws Exception{
+		Map<String,Object> paramMap=new HashMap<String,Object>();
+		
+		paramMap.put("studyNo", studyNo);
+		paramMap.put("imagePath", imagePath);
+		
+		session.insert(namespace+".replaceImg",paramMap);
+	}
+	
 //
 //	@Override
 //	public List<BoardVO> listPage(int page) throws Exception {
@@ -106,13 +123,5 @@ public class StudyDAOImpl implements StudyDAO {
 //	
 
 //	
-//	@Override
-//	public void replaceAttach(String fullName,Integer bno) throws Exception{
-//		Map<String,Object> paramMap=new HashMap<String,Object>();
-//		
-//		paramMap.put("bno", bno);
-//		paramMap.put("fullName", fullName);
-//		
-//		session.insert(namespace+".replaceAttach",paramMap);
-//	}
+//	
 }
