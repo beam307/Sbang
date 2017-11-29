@@ -9,14 +9,12 @@ import org.sbang.domain.UserVO;
 import org.sbang.persistence.UserDAO;
 import org.springframework.stereotype.Repository;
 
-
 @Repository
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
 	@Inject
 	private UserDAO dao;
-	
-	
+
 	@Override
 	public void create(UserVO vo) throws Exception {
 		// TODO Auto-generated method stub
@@ -25,26 +23,38 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public UserVO read(String id) throws Exception {
+	public UserVO read(String userEmail) throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		return dao.read(userEmail);
 	}
 
 	@Override
 	public void update(UserVO vo) throws Exception {
 		// TODO Auto-generated method stub
-		
+		dao.update(vo);
+
 	}
 
 	@Override
-	public void delete(String id) throws Exception {
+	public void delete(String userEmail) throws Exception {
 		// TODO Auto-generated method stub
-		
+		dao.delete(userEmail);
 	}
 
 	@Override
 	public UserVO login(LoginDTO dto) throws Exception {
 		return dao.login(dto);
+	}
+
+	@Override
+	public void changePwd(UserVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		dao.changePwd(vo);
+	}
+
+	@Override
+	public boolean checkPw(String userEmail, String userPwd) {
+		return dao.checkPw(userEmail, userPwd);
 	}
 
 	@Override
@@ -56,5 +66,5 @@ public class UserServiceImpl implements UserService{
 	public UserVO checkLoginBefore(String value) {
 		return dao.checkUserWithSessionKey(value);
 	}
-	
+
 }

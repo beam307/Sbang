@@ -23,29 +23,50 @@ public class UserDAOImpl implements UserDAO {
 	public void create(UserVO vo) throws Exception {
 		// TODO Auto-generated method stub
 		session.insert(namespace + ".create", vo);
+
 	}
 
 	@Override
-	public UserVO read(String id) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public UserVO read(String userEmail) throws Exception {
+		return session.selectOne(namespace + ".read", userEmail);
 	}
 
 	@Override
 	public void update(UserVO vo) throws Exception {
 		// TODO Auto-generated method stub
+		session.update(namespace + ".modify", vo);
 
 	}
 
 	@Override
-	public void delete(String id) throws Exception {
+	public void delete(String userEmail) throws Exception {
 		// TODO Auto-generated method stub
-
+		session.delete(namespace + ".delete", userEmail);
 	}
 
 	@Override
 	public UserVO login(LoginDTO dto) throws Exception {
 		return session.selectOne(namespace + ".login", dto);
+	}
+
+	@Override
+	public void changePwd(UserVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		session.selectOne(namespace + ".updatePwd", vo);
+	}
+
+	@Override
+	public boolean checkPw(String userEmail, String userPwd) {
+		boolean result = false;
+
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("userEmail", userEmail);
+		map.put("userPwd", userPwd);
+
+		int count = session.selectOne(namespace + ".checkPwd", map);
+		if (count == 1)
+			result = true;
+		return result;
 	}
 
 	@Override
