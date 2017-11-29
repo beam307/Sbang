@@ -83,11 +83,11 @@
                         <c:if test="${not empty login}">
 	                        <li><a href="/user/myPage">마이페이지</a></li>
 	                        <li><a href="/login/logout">로그아웃</a></li>
-                        	<li><a href="#">1:1문의</a></li>
+                        	<li><a href="/board/onenone">1:1문의</a></li>
                         </c:if>
                         <li><a href="/study/studyReg">스터디등록</a></li>
                         <li><a href="#">방등록</a></li>
-                        <li><a href="#">공지사항</a></li>
+                        <li><a href="/study/studyReg">공지사항</a></li>
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->
