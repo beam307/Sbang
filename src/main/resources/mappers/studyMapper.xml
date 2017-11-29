@@ -37,7 +37,7 @@
   		from
   		study
   		where studyNo>0
-  		order by studyNo desc,studyRegDate desc LIMIT 10
+  		order by studyNo desc,studyRegDate desc LIMIT 9
   		]]>
 	</select>
 	

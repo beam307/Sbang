@@ -84,7 +84,6 @@ public class StudyController {
 	@RequestMapping("/getImgOne/{studyNo}")
 	@ResponseBody
 	public List<String> getImgOne(@PathVariable("studyNo")Integer studyNo) throws Exception{
-		System.out.println("study/getImgOne");
 		return service.getImgOne(studyNo);
 	}
 	
