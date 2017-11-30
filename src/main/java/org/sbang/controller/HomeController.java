@@ -1,5 +1,9 @@
 package org.sbang.controller;
 
+import javax.inject.Inject;
+
+import org.sbang.domain.SearchCriteria;
+import org.sbang.service.StudyService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -11,14 +15,20 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 /**
  * Handles requests for the application home page.
  */
+
+
 @Controller
 public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
+	@Inject
+	private StudyService service;
+	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Model model , RedirectAttributes rttr) {
+	public String home(Model model ,SearchCriteria cri, RedirectAttributes rttr) throws Exception {
 		logger.info("go home");
+		model.addAttribute("list",service.listSearchCriteria(cri));
 		return "index";
 	} 
 	

@@ -57,13 +57,12 @@ public class StudyController {
 //		pageMaker.setTotalCount(131);
 //		pageMaker.setTotalCount(service.listCountCriteria(cri));
 		pageMaker.setTotalCount(service.listSearchCount(cri));
-		
+		System.out.println("controller : "+pageMaker.toString());
 		model.addAttribute("pageMaker",pageMaker);
 	}
 	
 	@RequestMapping(value="/studyView",method=RequestMethod.GET)
 	public void read(@RequestParam("studyNo") int studyNo, @ModelAttribute("cri") SearchCriteria cri, Model model) throws  Exception{
-		System.out.println(cri.toString());
 		model.addAttribute(service.read(studyNo));
 	}
 	
@@ -82,12 +81,6 @@ public class StudyController {
 	@ResponseBody
 	public List<String> getImg(@PathVariable("studyNo")Integer studyNo) throws Exception{
 		return service.getImg(studyNo);
-	}
-	
-	@RequestMapping("/getImgOne/{studyNo}")
-	@ResponseBody
-	public List<String> getImgOne(@PathVariable("studyNo")Integer studyNo) throws Exception{
-		return service.getImgOne(studyNo);
 	}
 	
 	@RequestMapping(value="/studyModify", method=RequestMethod.GET)

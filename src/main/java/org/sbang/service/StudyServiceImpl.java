@@ -42,12 +42,7 @@ public class StudyServiceImpl implements StudyService {
 	public List<String> getImg(Integer studyNo) throws Exception{
 		return studyDAO.getImg(studyNo);
 	}
-	
-	@Override
-	public List<String> getImgOne(Integer studyNo) throws Exception{
-		return studyDAO.getImgOne(studyNo);
-	}
-	
+
 	@Transactional
 	@Override
 	public void modify(StudyVO study) throws Exception {

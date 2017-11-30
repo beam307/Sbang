@@ -23,8 +23,6 @@ public interface StudyDAO {
 	
 	public List<String> getImg(Integer studyNo) throws Exception;
 	
-	public List<String> getImgOne(Integer studyNo) throws Exception;
-	
 	public void replaceImg(String imagePath,Integer studyNo) throws Exception;
 	
 	public List<StudyVO> listPage(int page) throws Exception;

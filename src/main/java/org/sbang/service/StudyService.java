@@ -19,8 +19,6 @@ public interface StudyService {
 
 	public List<String> getImg(Integer studyNo) throws Exception;
 	
-	public List<String> getImgOne(Integer studyNo) throws Exception;
-	
 	public List<StudyVO> listCriteria(Criteria cri) throws Exception;
 	
 	public int listCountCriteria(Criteria cri) throws Exception;

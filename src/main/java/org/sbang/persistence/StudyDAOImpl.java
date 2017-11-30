@@ -78,12 +78,7 @@ public class StudyDAOImpl implements StudyDAO {
 	public int countPaging(Criteria cri) throws Exception {
 		return session.selectOne(namespace + ".countPaging", cri);
 	}
-	
-	@Override
-	public List<String> getImgOne(Integer studyNo) throws Exception{
-		return session.selectList(namespace+".getImgOne",studyNo);
-	}
-	
+
 	@Override
 	public void replaceImg(String imagePath,Integer studyNo) throws Exception{
 		Map<String,Object> paramMap=new HashMap<String,Object>();

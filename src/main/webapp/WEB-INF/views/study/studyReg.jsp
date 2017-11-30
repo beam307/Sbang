@@ -224,6 +224,7 @@
 				<div class="form-group">
 					<label class="col-sm-2 control-label">소개</label>
 					<div class="col-sm-10">
+						<input type="file" id="exampleInputFile">
 						<div class="col-sm-12">
 							<div class="fileDrop"></div>
 						</div>
@@ -257,7 +258,7 @@
 </script>
 <script type="text/javascript" src="/resources/dist/js/upload.js"></script>
 <script>
-	/*화면에 업로드된리스트출력  */
+	/*화면에 업로드된 리스트출력  */
 	var template = Handlebars.compile($("#template").html());
 
 	$(".fileDrop").on("dragenter dragover", function(event) {
@@ -275,6 +276,37 @@
 
 		var formData = new FormData();
 		formData.append("file", file);
+
+		/*컴트롤러로 파일명을 보낸후 콜백으로 만들어진 이미지파일명을 받은후 템플릿에 출력시킨다.  */
+		$.ajax({
+			url : '/uploadAjax',
+			data : formData,
+			dataType : 'text',
+			processData : false,
+			contentType : false,
+			type : 'POST',
+			success : function(data) {
+
+				var fileInfo = getFileInfo(data);
+
+				var html = template(fileInfo);
+
+				$(".uploadedList").append(html);
+			}
+		});
+	});
+	/*input:file로 파일 업로드하기  */
+	$("#exampleInputFile").on("change",function(event) {
+		event.preventDefault();
+
+		/* var files = event.originalEvent.dataTransfer.files;
+
+		var file = files[0];
+ */
+		//console.log(file);
+
+		var formData = new FormData();
+		formData.append("file", $("input[id=exampleInputFile]")[0].files[0]);
 
 		/*컴트롤러로 파일명을 보낸후 콜백으로 만들어진 이미지파일명을 받은후 템플릿에 출력시킨다.  */
 		$.ajax({

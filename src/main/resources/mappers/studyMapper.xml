@@ -57,11 +57,6 @@
 		studyNo=#{studyNo}
 	</select>
 
-	<select id="getImgOne" resultType="string">
-		select imagePath from image
-		where studyNo=#{studyNo} LIMIT 1
-	</select>
-
 	<insert id="replaceImg">
 		insert into image(imagePath,studyNo) values
 		(#{imagePath},#{studyNo})
@@ -104,13 +99,13 @@
 
 	<select id="listSearch" resultType="StudyVO">
   	<![CDATA[
-	  	select *
-	  	from study
-	  	where studyNo>0
+	  	select s.studyNo,s.studyName,s.studyRegDate, i.imagePath
+	  	from study s, (select  imagePath, studyNo from image group by studyNo) i
+	  	where i.studyNo  =s.studyNo
   	]]>
 		<include refid="search"></include>
   	<![CDATA[
-	  	order by studyNo desc
+	  	order by s.studyNo desc
 	  	limit #{pageStart},#{perPageNum}
   	]]>
 	</select>

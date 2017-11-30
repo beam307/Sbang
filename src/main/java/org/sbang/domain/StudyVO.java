@@ -23,6 +23,7 @@ public class StudyVO {
 	private int studyMemFee;
 	private int studyWorkPerMonth;
 	
+	private String imagePath;
 	
 	
 	private Date studyStartDate;

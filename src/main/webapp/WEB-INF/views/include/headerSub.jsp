@@ -14,21 +14,21 @@
     <!-- 부트스트랩 -->
     <link href="/resources/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- 폰트어썸 -->
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- 초기화 css -->
     <link href="/resources/dist/css/setting.css" rel="stylesheet">
     <!-- 메인 css -->
     <link href="/resources/dist/css/main.css" rel="stylesheet">
     <!-- 서브 css -->
     <link href="/resources/dist/css/sub.css" rel="stylesheet">
-     <!-- 시간 css -->
-   <link href="/resources/dist/css/timepicki.css" rel="stylesheet">
+    <!-- 시간 css -->
+    <link href="/resources/dist/css/timepicki.css" rel="stylesheet">
     <!-- jQuery-Ui css-->
 	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css">
     <!-- jQuery -->
-	<script src="https://code.jquery.com/jquery-2.2.4.js"></script>
+	<script src="/resources/dist/js/jquery.js"></script>
 	<!-- jQUery-Ui -->
-	<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+	<script src="/resources/dist/js/jquery-ui.js"></script>
 	<!--  부트스트랩 -->
 	<script src="/resources/dist/js/bootstrap.min.js"></script>
 	<script src="/resources/dist/js/main.js"></script>
