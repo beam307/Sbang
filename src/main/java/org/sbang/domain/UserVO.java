@@ -33,5 +33,5 @@ public class UserVO {
    
    private String sessionKey;
    private Date sessionLimit;
-
+   
 }

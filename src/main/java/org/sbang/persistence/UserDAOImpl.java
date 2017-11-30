@@ -21,9 +21,7 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public void create(UserVO vo) throws Exception {
-		// TODO Auto-generated method stub
 		session.insert(namespace + ".create", vo);
-
 	}
 
 	@Override
@@ -33,14 +31,11 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public void update(UserVO vo) throws Exception {
-		// TODO Auto-generated method stub
 		session.update(namespace + ".modify", vo);
-
 	}
 
 	@Override
 	public void delete(String userEmail) throws Exception {
-		// TODO Auto-generated method stub
 		session.delete(namespace + ".delete", userEmail);
 	}
 
@@ -51,7 +46,6 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public void changePwd(UserVO vo) throws Exception {
-		// TODO Auto-generated method stub
 		session.selectOne(namespace + ".updatePwd", vo);
 	}
 
@@ -71,19 +65,39 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public void keepLogin(String userEmail, String sessionId, Date next) {
-		Map<String, Object> paramMap = new HashMap<String, Object>();
+		Map<String, Object> map = new HashMap<String, Object>();
 
-		paramMap.put("userEmail", userEmail);
-		paramMap.put("sessionId", sessionId);
-		paramMap.put("next", next);
+		map.put("userEmail", userEmail);
+		map.put("sessionId", sessionId);
+		map.put("next", next);
 
-		session.update(namespace + ".keepLogin", paramMap);
+		session.update(namespace + ".keepLogin", map);
 
 	}
 
 	@Override
 	public UserVO checkUserWithSessionKey(String value) {
 		return session.selectOne(namespace + ".checkUserWithSessionKey", value);
+	}
+
+	@Override
+	public void createAuthKey(String userEmail, String authKey) throws Exception { // 인증키 DB에 넣기
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		map.put("userEmail", userEmail);
+		map.put("authKey", authKey);
+
+		session.selectOne(namespace + ".createAuthKey", map);
+	}
+
+	@Override
+	public void userAuth(String userEmail) throws Exception { // 인증키 일치시 DB칼럼(인증여부) false->true 로 변경
+		session.update(namespace + ".userAuth", userEmail);
+	}
+
+	@Override
+	public void deleteAuth(String userEmail) throws Exception {
+		session.delete(namespace + ".deleteAuth", userEmail);
 	}
 
 }
