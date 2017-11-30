@@ -6,7 +6,7 @@
 
 <style>
 .fileDrop {
-	width: 80%;
+	width: 100%;
 	height: 100px;
 	border: 1px dotted gray;
 	background-color: lightslategrey;
@@ -225,7 +225,7 @@
 					<label class="col-sm-2 control-label">소개</label>
 					<div class="col-sm-10">
 						<div class="col-sm-12">
-							<label for="exampleInputFile">파일 업로드</label> 
+							<div class="fileDrop"></div>
 						</div>
 					</div>
 				</div>
@@ -238,17 +238,6 @@
 			</div>
 		</div>
 		<!-- 파일 업로드 테스트 해보자!!!  -->
-		<div class="form-group">
-			<label for="exampleInputEmail">File DROP</label>
-			<div class="fileDrop"></div>
-		</div>
-
-
-		<div class="box-footer">
-			<div>
-				<hr>
-			</div>
-		</div>
 
 
 	</form>
@@ -258,8 +247,8 @@
 <!-- 업로드된 리스트 템플릿  -->
 <script id="template" type="text/x-handlebars-template">
 
-	<li>
-		<span class="mailbox-attachment-icon has-img"><img src="{{imgsrc}}" alt="Attachment"></span>
+	<li class="col-sm-4">
+		<span class="mailbox-attachment-icon has-img"><img style="width:100%" src="{{imgsrc}}" alt="Attachment"></span>
 		<div class="mailbox-attachment-info">
 			<a href="{{getLink}}" class="mailbox-attachment-name">{{fileName}}</a>
 			<a data-src="{{fullName}}"  class="btn btn-default btn-xs pull-right delbtn"><i class="fa fa-fw fa-remove"></i></a>

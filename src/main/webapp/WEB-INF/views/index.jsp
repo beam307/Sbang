@@ -29,27 +29,8 @@
 		스터디목록 <a href="/studyList" class="more">더보기</a>
 	</h1>
 	<div class="study-thumbnail">
-		<div class="row">
-			<div class="col-md-4">
-				<div class="thumbnail">
-					<a href="/studyView">스터디썸네일</a>
-				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="thumbnail">스터디썸네일</div>
-			</div>
-			<div class="col-md-4">
-				<div class="thumbnail">스터디썸네일</div>
-			</div>
-			<div class="col-md-4">
-				<div class="thumbnail">스터디썸네일</div>
-			</div>
-			<div class="col-md-4">
-				<div class="thumbnail">스터디썸네일</div>
-			</div>
-			<div class="col-md-4">
-				<div class="thumbnail">스터디썸네일</div>
-			</div>
+		<div class="row" id="studyList-thumbnail">
+			
 		</div>
 	</div>
 	<h1>
@@ -78,4 +59,36 @@
 		</div>
 	</div>
 </div>
+<script type="text/javascript" src="/resources/dist/js/upload.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
+
+
+<script id="templateList" type="text/x-handlebars-template">
+	<div class="col-md-4" data-src='{{fullName}}'>
+		<span class="mailbox-attachment-icon has-img"><img src="{{imgsrc}}" alt="Attachment"></span>
+		<div class="mailbox-attachment-info">
+		<a href="{{getLink}}" class="mailbox-attachment-name">{{fileName}}</a>
+		</div>
+</script>
+<script>
+$(document).ready(function(){
+	/*스터디리스트 썸네일과같이 추력  */ 
+	var template = Handlebars.compile($("#templateList").html());
+		
+	 /*  */
+	 <c:forEach items="${list}" varStatus="listIdx" var="studyVO">
+		  $.getJSON("/study/getImgOne/" + ${studyVO.studyNo}, function(list) {
+			  $(list).each(function() {
+				var fileInfo = getFileInfo(this);
+				var html = template(fileInfo);
+				<fmt:formatDate value="${studyVO.studyRegDate}"
+					pattern="yyyy-MM-dd" var="date" />
+				var studyInfo="NO: ${studyVO.studyNo}</br>"+"Name: <a href='/study/studyView?${pageMaker.makeQuery(pageMaker.cri.page)}&studyNo=${studyVO.studyNo}'>${studyVO.studyName}</a></br>"+"RegDate: ${date}";
+				$("#studyList-thumbnail").append(html+studyInfo+"</div>");
+			  });
+		}); 
+	</c:forEach>; 
+})
+</script>
 <%@include file="include/footer.jsp"%>

@@ -57,17 +57,7 @@
 	</div>
 	<div class="list-thumbnail">
 		<div class="row" id="studyList-thumbnail">
-			<c:forEach items="${list}" var="studyVO">
-				<div class="col-md-4">
-					
-						${studyVO.studyNo }
-						<a href='/study/studyView${pageMaker.makeQuery(pageMaker.cri.page)}&studyNo=${studyVO.studyNo}'>${studyVO.studyName}</a>
-						<%-- <td><a href='/board/read?bno=${boardVO.bno}'>${boardVO.title}</a></td> --%>
-						<fmt:formatDate pattern="yy-MM-dd HH:mm"
-								value="${studyVO.studyRegDate}" />
-						<span class="badge bg-red">${studyVO.studyMaxMemCnt}</span>
-				</div>
-			</c:forEach>
+			
 		</div>
 	</div>
 	<div class="text-center">
@@ -117,7 +107,7 @@ $(document).ready(function(){
 				var html = template(fileInfo);
 				<fmt:formatDate value="${studyVO.studyRegDate}"
 					pattern="yyyy-MM-dd" var="date" />
-				var studyInfo="NO: ${studyVO.studyNo}</br>"+"Name: <a href='/study/studyView?studyNo=${studyVO.studyNo}'>${studyVO.studyName}</a></br>"+"RegDate: ${date}";
+				var studyInfo="NO: ${studyVO.studyNo}</br>"+"Name: <a href='/study/studyView?${pageMaker.makeQuery(pageMaker.cri.page)}&studyNo=${studyVO.studyNo}'>${studyVO.studyName}</a></br>"+"RegDate: ${date}";
 				$("#studyList-thumbnail").append(html+studyInfo+"</div>");
 			  });
 		}); 
