@@ -8,6 +8,7 @@ import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
 import org.sbang.domain.Criteria;
+import org.sbang.domain.SearchCriteria;
 import org.sbang.domain.StudyVO;
 import org.springframework.stereotype.Repository;
 
@@ -93,16 +94,16 @@ public class StudyDAOImpl implements StudyDAO {
 		session.insert(namespace+".replaceImg",paramMap);
 	}
 	
-//
-//	@Override
-//	public List<BoardVO> listSearch(SearchCriteria cri) throws Exception {
-//		return session.selectList(namespace+".listSearch",cri);
-//	}
-//	
-//	@Override
-//	public int listSearchCount(SearchCriteria cri) throws Exception{
-//		return session.selectOne(namespace+".listSearchCount",cri);
-//	}
+
+	@Override
+	public List<StudyVO> listSearch(SearchCriteria cri) throws Exception {
+		return session.selectList(namespace+".listSearch",cri);
+	}
+	
+	@Override
+	public int listSearchCount(SearchCriteria cri) throws Exception{
+		return session.selectOne(namespace+".listSearchCount",cri);
+	}
 //	
 //	@Override
 //	public void updateReplyCnt(Integer bno,int amount) throws Exception{
