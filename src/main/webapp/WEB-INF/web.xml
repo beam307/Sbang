@@ -41,6 +41,8 @@
 	<servlet-mapping>
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>
+		<url-pattern>/login/naverLogin.jsp</url-pattern>
+		<url-pattern>/login/callback.jsp</url-pattern>
 	</servlet-mapping>
 
 </web-app>

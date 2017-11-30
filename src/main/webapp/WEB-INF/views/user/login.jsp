@@ -3,8 +3,9 @@
 	pageEncoding="UTF-8"%>
 <%@include file="../include/headerSub.jsp"%>
 <div class="login container inner">
-	<a href="" class="kakao-login">카카오계정으로로그인</a> <a href=""
-		class="google-login">구글계정으로로그인</a> <a href="" class="naver-login">네이버계정으로로그인</a>
+	<a href="#"><img src="/resources/images/kakaoLogin.png" alt="kakaoLogin"></a> 
+	<a href="/login/naverLogin"><img src="/resources/images/naver.png" alt="naverLogin"></a> 
+	<a href="#" class="google-login">구글계정으로로그인</a>
 	<form action="/login/loginPost" method="post">
 		<div class="form-group">
 			<label for="exampleInputEmail1">이메일 주소</label> <input

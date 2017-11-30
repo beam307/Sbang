@@ -5,9 +5,9 @@
 <div class="container mypage inner">
 
         <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation"><a href="/mypage">개인정보관리</a></li>
-            <li role="presentation"><a href="/studyManage">스터디관리</a></li>
-            <li role="presentation" class="active"><a href="/roomManage">룸관리</a></li>
+            <li role="presentation"><a href="/user/myPage">개인정보관리</a></li>
+            <li role="presentation"><a href="/user/studyManage">스터디관리</a></li>
+            <li role="presentation" class="active"><a href="/user/roomManage">룸관리</a></li>
         </ul>
 
 

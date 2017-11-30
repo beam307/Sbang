@@ -26,7 +26,7 @@
 
 	<beans:bean id="authInterceptor" class="org.sbang.interceptor.AuthInterceptor" />
 	<beans:bean id="loginInterceptor" class="org.sbang.interceptor.LoginInterceptor" />
-
+	<beans:bean id="naverLoginBO" class="org.sbang.naver.NaverLoginBO" />
 	<interceptors>
 		<interceptor>
 			<mapping path="/login/loginPost" />
@@ -45,7 +45,5 @@
 	</interceptors>
 
 	<context:component-scan base-package="org.sbang.controller" />
-
-
 
 </beans:beans>

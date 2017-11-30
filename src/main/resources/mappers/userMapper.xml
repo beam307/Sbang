@@ -41,7 +41,7 @@
 
 	<update id="modify">
 		update user set
-		userPhoneNumber = #{userPhoneNumber}
+		userPhoneNumber = #{userPhoneNumber}, userName = #{userName}
 		where userEmail = #{userEmail}
 	</update>
 

@@ -43,18 +43,4 @@ public class HomeController {
 		return "/index";
 	}
 
-	@RequestMapping(value = "/roomManage", method = RequestMethod.GET)
-	public String roomManage(Model model) {
-		logger.info("go roomManage");
-
-		return "/user/roomManage";
-	}
-
-	@RequestMapping(value = "/studyManage", method = RequestMethod.GET)
-	public String studyManage(Model model) {
-		logger.info("go studyManage");
-
-		return "/user/studyManage";
-	}
-	
 }

@@ -5,9 +5,9 @@
 <div class="container mypage inner">
 
    <ul class="nav nav-tabs" role="tablist">
-      <li role="presentation" class="active"><a href="/mypage">개인정보관리</a></li>
-      <li role="presentation"><a href="/studyManage">스터디관리</a></li>
-      <li role="presentation"><a href="/roomManage">룸관리</a></li>
+      <li role="presentation" class="active"><a href="/user/myPage">개인정보관리</a></li>
+      <li role="presentation"><a href="/user/studyManage">스터디관리</a></li>
+      <li role="presentation"><a href="/user/roomManage">룸관리</a></li>
    </ul>
 
    <!-- Tab panes -->
@@ -60,7 +60,7 @@
                         <label for="name" class="col-sm-2 control-label">이름</label>
                         <div class="col-sm-10 m_t_5">
                            <input type="text" class="form-control" name="userName"
-                              value="${user.getUserName()}" readonly>
+                              value="${user.getUserName()}">
                         </div>
                      </div>
                      <div class="form-group">
