@@ -88,7 +88,6 @@
 	<div class="list-thumbnail">
 		<div class="row" id="studyList-thumbnail"></div>
 	</div>
-
 	<div class="text-center">
 		<ul class="pagination">
 			<c:if test="${pageMaker.prev }">

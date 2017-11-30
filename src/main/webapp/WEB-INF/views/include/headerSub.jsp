@@ -31,8 +31,8 @@
 	<script src="/resources/dist/js/jquery-ui.js"></script>
 	<!--  부트스트랩 -->
 	<script src="/resources/dist/js/bootstrap.min.js"></script>
+	<!-- 메인 -->
 	<script src="/resources/dist/js/main.js"></script>
-	
 	<!-- 시간 -->
    	<script src="/resources/dist/js/timepicki.js"></script>
 	
