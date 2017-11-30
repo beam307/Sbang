@@ -12,6 +12,36 @@
 		</div>
 		<form class="form-horizontal">
 			<div class="form-group">
+				<label class="col-sm-2 control-label">검색</label>
+				<div class="col-sm-10">
+					<select name="searchType">
+						<option value="n"
+							<c:out value="${cri.searchType == null?'selected':''}"/>>
+							---</option>
+						<option value="t"
+							<c:out value="${cri.searchType eq 't'?'selected':''}"/>>
+							Title</option>
+						<option value="c"
+							<c:out value="${cri.searchType eq 'c'?'selected':''}"/>>
+							Content</option>
+						<option value="w"
+							<c:out value="${cri.searchType eq 'w'?'selected':''}"/>>
+							Writer</option>
+						<option value="tc"
+							<c:out value="${cri.searchType eq 'tc'?'selected':''}"/>>
+							Title OR Content</option>
+						<option value="cw"
+							<c:out value="${cri.searchType eq 'cw'?'selected':''}"/>>
+							Content OR Writer</option>
+						<option value="tcw"
+							<c:out value="${cri.searchType eq 'tcw'?'selected':''}"/>>
+							Title OR Content OR Writer</option>
+					</select> <input type="text" name='keyword' id="keywordInput"
+						value='${cri.keyword}'>
+					<button id='searchBtn'>검색</button>
+				</div>
+			</div>
+			<div class="form-group">
 				<label class="col-sm-2 control-label">지역</label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" placeholder="지역을 입력해주세요">
@@ -56,28 +86,26 @@
 		</ul>
 	</div>
 	<div class="list-thumbnail">
-		<div class="row" id="studyList-thumbnail">
-			
-		</div>
+		<div class="row" id="studyList-thumbnail"></div>
 	</div>
 	<div class="text-center">
 		<ul class="pagination">
 			<c:if test="${pageMaker.prev }">
 				<li><a
-					href="studyList${pageMaker.makeQuery(pageMaker.startPage -1) }">&laquo;</a></li>
+					href="studyList${pageMaker.makeSearch(pageMaker.startPage -1) }">&laquo;</a></li>
 			</c:if>
 
 			<c:forEach begin="${pageMaker.startPage }"
 				end="${pageMaker.endPage }" var="idx">
 				<li
 					<c:out value="${pageMaker.cri.page == idx?'class =active':''}" />>
-					<a href="studyList${pageMaker.makeQuery(idx) }">${idx }</a>
+					<a href="studyList${pageMaker.makeSearch(idx) }">${idx }</a>
 				</li>
 			</c:forEach>
 
 			<c:if test="${pageMaker.next && pageMaker.endPage > 0 }">
 				<li><a
-					href="studyList${pageMaker.makeQuery(pageMaker.endPage + 1) }">&raquo;</a></li>
+					href="studyList${pageMaker.makeSearch(pageMaker.endPage + 1) }">&raquo;</a></li>
 			</c:if>
 		</ul>
 	</div>
@@ -107,7 +135,7 @@ $(document).ready(function(){
 				var html = template(fileInfo);
 				<fmt:formatDate value="${studyVO.studyRegDate}"
 					pattern="yyyy-MM-dd" var="date" />
-				var studyInfo="NO: ${studyVO.studyNo}</br>"+"Name: <a href='/study/studyView?${pageMaker.makeQuery(pageMaker.cri.page)}&studyNo=${studyVO.studyNo}'>${studyVO.studyName}</a></br>"+"RegDate: ${date}";
+				var studyInfo="NO: ${studyVO.studyNo}</br>"+"Name: <a href='/study/studyView?${pageMaker.makeSearch(pageMaker.cri.page)}&studyNo=${studyVO.studyNo}'>${studyVO.studyName}</a></br>"+"RegDate: ${date}";
 				$("#studyList-thumbnail").append(html+studyInfo+"</div>");
 			  });
 		}); 

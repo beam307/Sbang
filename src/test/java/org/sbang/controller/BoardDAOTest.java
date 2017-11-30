@@ -6,7 +6,7 @@ import javax.inject.Inject;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.sbang.domain.Criteria;
+import org.sbang.domain.SearchCriteria;
 import org.sbang.domain.StudyVO;
 import org.sbang.persistence.StudyDAO;
 import org.slf4j.Logger;
@@ -61,7 +61,7 @@ public class BoardDAOTest {
 		}
 	}*/
 	
-	@Test
+	/*@Test
 	public void testListCriteria() throws Exception{
 		Criteria cri=new Criteria();
 		cri.setPage(2);
@@ -72,7 +72,7 @@ public class BoardDAOTest {
 		for(StudyVO studyVO:list) {
 			logger.info(studyVO.getStudyNo()+":"+studyVO.getStudyName());
 		}
-	}
+	}*/
 	/*@Test
 	public void testURI() throws Exception{
 		UriComponents uriComponents=UriComponentsBuilder.newInstance()
@@ -96,7 +96,7 @@ public class BoardDAOTest {
 		logger.info(uriComponents.toString());
 	}*/
 	
-	/*@Test
+	@Test
 	public void testDynamic1() throws Exception{
 		SearchCriteria cri=new SearchCriteria();
 		cri.setPage(1);
@@ -105,12 +105,12 @@ public class BoardDAOTest {
 		
 		logger.info("========================");
 		
-		List<BoardVO> list=dao.listSearch(cri);
+		List<StudyVO> list=dao.listSearch(cri);
 		
-		for(BoardVO boardVO :list) {
-			logger.info(boardVO.getBno()+": "+boardVO.getTitle());
+		for(StudyVO studyVO :list) {
+			logger.info(studyVO.getStudyNo()+": "+studyVO.getStudyName());
 		}
 		logger.info("==========================");
 		logger.info("COUNT: "+dao.listSearchCount(cri));
-	}*/
+	}
 }

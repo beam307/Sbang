@@ -71,11 +71,13 @@
 		</a>
 	</div>
 
-	<!-- studyNo&page&perPageNum값 받아오기 -->
+	<!-- 쿼리스트링 값 받아오기 -->
 	<form role="form" action="studyModify" method="post">
 		<input type="hidden" name='studyNo' value="${studyVO.studyNo }">
 		<input type="hidden" name='page' value="${cri.page }">
 		<input type="hidden" name='perPageNum' value="${cri.perPageNum }">
+		<input type="hidden" name='searchType' value="${cri.searchType }">
+		<input type="hidden" name='keyword' value="${cri.keyword }">
 	</form>
 
 	<div class="row">

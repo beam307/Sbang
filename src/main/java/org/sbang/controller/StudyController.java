@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import org.sbang.domain.Criteria;
 import org.sbang.domain.PageMaker;
+import org.sbang.domain.SearchCriteria;
 import org.sbang.domain.StudyVO;
 import org.sbang.service.StudyService;
 import org.slf4j.Logger;
@@ -43,29 +44,31 @@ public class StudyController {
 		return "redirect:/study/studyList";
 	}
 	@RequestMapping(value="/studyList",method=RequestMethod.GET)
-	public void listAll(Criteria cri, Model model) throws Exception{
+	public void listAll(@ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception{
 		logger.info("show all list.........");
-		model.addAttribute("list",service.listAll());
+//		model.addAttribute("list",service.listAll());
 		
 		logger.info(cri.toString());
 		
-		model.addAttribute("list",service.listCriteria(cri));
+//		model.addAttribute("list",service.listCriteria(cri));
+		model.addAttribute("list",service.listSearchCriteria(cri));
 		PageMaker pageMaker=new PageMaker();
 		pageMaker.setCri(cri);
 //		pageMaker.setTotalCount(131);
-		pageMaker.setTotalCount(service.listCountCriteria(cri));
+//		pageMaker.setTotalCount(service.listCountCriteria(cri));
+		pageMaker.setTotalCount(service.listSearchCount(cri));
 		
 		model.addAttribute("pageMaker",pageMaker);
 	}
 	
 	@RequestMapping(value="/studyView",method=RequestMethod.GET)
-	public void read(@RequestParam("studyNo") int studyNo, @ModelAttribute("cri") Criteria cri, Model model) throws  Exception{
+	public void read(@RequestParam("studyNo") int studyNo, @ModelAttribute("cri") SearchCriteria cri, Model model) throws  Exception{
 		System.out.println(cri.toString());
 		model.addAttribute(service.read(studyNo));
 	}
 	
 	@RequestMapping(value="/studyRemove",method=RequestMethod.POST)
-	public String remove(@RequestParam("studyNo") int studyNo, Criteria cri, RedirectAttributes rttr) throws Exception{
+	public String remove(@RequestParam("studyNo") int studyNo, SearchCriteria cri, RedirectAttributes rttr) throws Exception{
 		service.remove(studyNo);
 		
 		rttr.addAttribute("page", cri.getPage());
@@ -88,14 +91,16 @@ public class StudyController {
 	}
 	
 	@RequestMapping(value="/studyModify", method=RequestMethod.GET)
-	public void modifyGET(@RequestParam("studyNo") int studyNo, @ModelAttribute("cri") Criteria cri, Model model) throws Exception{
+	public void modifyGET(@RequestParam("studyNo") int studyNo, @ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception{
 		model.addAttribute(service.read(studyNo));
 	}
 	@RequestMapping(value="/studyModify",method=RequestMethod.POST)
-	public String modifyPOST(StudyVO study, Criteria cri, RedirectAttributes rttr) throws Exception{
+	public String modifyPOST(StudyVO study, SearchCriteria cri, RedirectAttributes rttr) throws Exception{
 		logger.info("mod post........");
 		rttr.addAttribute("page",cri.getPage());
 		rttr.addAttribute("perPageNum",cri.getPerPageNum());
+		rttr.addAttribute("searchType",cri.getSearchType());
+		rttr.addAttribute("keyword",cri.getKeyword());
 		service.modify(study);
 		rttr.addFlashAttribute("msg", "SUCCESS");
 		

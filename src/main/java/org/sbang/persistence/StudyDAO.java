@@ -3,6 +3,7 @@ package org.sbang.persistence;
 import java.util.List;
 
 import org.sbang.domain.Criteria;
+import org.sbang.domain.SearchCriteria;
 import org.sbang.domain.StudyVO;
 
 public interface StudyDAO {
@@ -31,10 +32,10 @@ public interface StudyDAO {
 	public List<StudyVO> listCriteria(Criteria cri) throws Exception;
 	
 	public int countPaging(Criteria cri) throws Exception;
-//	
-//	public List<StudyVO> listSearch(SearchCriteria cri) throws Exception;
-//	
-//	public int listSearchCount(SearchCriteria cri)throws Exception;
+	
+	public List<StudyVO> listSearch(SearchCriteria cri) throws Exception;
+	
+	public int listSearchCount(SearchCriteria cri)throws Exception;
 //	
 //	public void updateReplyCnt(Integer bno, int amount) throws Exception;
 //	

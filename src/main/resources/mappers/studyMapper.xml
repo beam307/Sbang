@@ -6,7 +6,9 @@
 <mapper namespace="org.sbang.mapper.StudyMapper">
 
 	<insert id="create">
-		insert into study(studyName,studyCategory,studyRegion,studyTargetAge,studyMaxMemCnt,studyCurMemCnt,studyMemFee,studyWorkPerMonth,studyIntroduce,studyStartDate,studyEndDate) values
+		insert into
+		study(studyName,studyCategory,studyRegion,studyTargetAge,studyMaxMemCnt,studyCurMemCnt,studyMemFee,studyWorkPerMonth,studyIntroduce,studyStartDate,studyEndDate)
+		values
 		(#{studyName},#{studyCategory},#{studyRegion},#{studyTargetAge},#{studyMaxMemCnt},#{studyCurMemCnt},#{studyMemFee},#{studyWorkPerMonth},#{studyIntroduce},#{studyStartDate},#{studyEndDate})
 	</insert>
 
@@ -40,27 +42,31 @@
   		order by studyNo desc,studyRegDate desc LIMIT 9
   		]]>
 	</select>
-	
+
 	<insert id="addImg">
-	insert into image(imagePath,studyNo) values(#{imagePath},LAST_INSERT_ID())
+		insert into image(imagePath,studyNo)
+		values(#{imagePath},LAST_INSERT_ID())
 	</insert>
-	
+
 	<delete id="deleteImg">
 		delete from image where studyNo=#{studyNo}
 	</delete>
-	
+
 	<select id="getImg" resultType="string">
-		select imagePath from image where studyNo=#{studyNo}
+		select imagePath from image where
+		studyNo=#{studyNo}
 	</select>
-	
+
 	<select id="getImgOne" resultType="string">
-		select imagePath from image where studyNo=#{studyNo} LIMIT 1
+		select imagePath from image
+		where studyNo=#{studyNo} LIMIT 1
 	</select>
-	
+
 	<insert id="replaceImg">
-		insert into image(imagePath,studyNo) values (#{imagePath},#{studyNo})
+		insert into image(imagePath,studyNo) values
+		(#{imagePath},#{studyNo})
 	</insert>
-	
+
 	<select id="listPage" resultType="StudyVO">
   	<![CDATA[
   		select
@@ -84,7 +90,7 @@
 	  	limit #{pageStart},#{perPageNum}
   	]]>
 	</select>
- 
+
 	<select id="countPaging" resultType="int">
   	<![CDATA[
 	  	select
@@ -95,71 +101,65 @@
 	  	studyNo>0
   	]]>
 	</select>
-</mapper>
-<!--
-	<select id="listSearch" resultType="BoardVO">
+
+	<select id="listSearch" resultType="StudyVO">
   	<![CDATA[
-  	select *
-  	from tbl_board
-  	where bno>0
+	  	select *
+	  	from study
+	  	where studyNo>0
   	]]>
 		<include refid="search"></include>
   	<![CDATA[
-  	order by bno desc
-  	limit #{pageStart},#{perPageNum}
+	  	order by studyNo desc
+	  	limit #{pageStart},#{perPageNum}
   	]]>
 	</select>
-	
+
 	<select id="listSearchCount" resultType="int">
   	<![CDATA[
-  	select count(bno)
-  	from tbl_board
-  	where bno>0
+	  	select count(studyNo)
+	  	from study
+	  	where studyNo>0
   	]]>
-  	<include refid="search"></include>
- 
-	</select>
-	
-	<update id="updateReplyCnt">
-		update tbl_board set replycnt=replycnt+#{amount} where bno=#{bno}
-	</update>
-	
-	<update id="updateViewCnt">
-		update tbl_board set viewcnt=viewcnt+1 where bno=#{bno}
-	</update>
-	
-	
-	
+		<include refid="search"></include>
 
-	
-	
-	
+	</select>
+
+	<!-- <update id="updateReplyCnt"> update tbl_board set replycnt=replycnt+#{amount} 
+		where bno=#{bno} </update> <update id="updateViewCnt"> update tbl_board set 
+		viewcnt=viewcnt+1 where bno=#{bno} </update> -->
+
+
+
+
+
+
 
 	<sql id="search">
 		<if test="searchType != null">
 			<if test="searchType == 't'.toString()">
-				and title like CONCAT('%', #{keyword}, '%')
+				and studyName like CONCAT('%', #{keyword}, '%')
 			</if>
 			<if test="searchType == 'c'.toString()">
-				and content like CONCAT('%', #{keyword}, '%')
+				and studyIntroduce like CONCAT('%', #{keyword}, '%')
 			</if>
 			<if test="searchType == 'w'.toString()">
 				and writer like CONCAT('%', #{keyword}, '%')
 			</if>
 			<if test="searchType == 'tc'.toString()">
-				and ( title like CONCAT('%', #{keyword}, '%') OR content
+				and ( studyName like CONCAT('%', #{keyword}, '%') OR studyIntroduce
 				like
 				CONCAT('%', #{keyword}, '%'))
 			</if>
 			<if test="searchType == 'cw'.toString()">
-				and ( content like CONCAT('%', #{keyword}, '%') OR writer
+				and ( studyIntroduce like CONCAT('%', #{keyword}, '%') OR writer
 				like
 				CONCAT('%', #{keyword}, '%'))
 			</if>
 			<if test="searchType == 'tcw'.toString()">
-				and ( title like CONCAT('%', #{keyword}, '%')
+				and ( studyName like CONCAT('%', #{keyword}, '%')
 				OR
-				content
+				studyIntroduce
 				like CONCAT('%', #{keyword}, '%')
 				OR
 				writer like CONCAT('%',
@@ -167,6 +167,6 @@
 			</if>
 		</if>
 	</sql>
-
- -->
+</mapper>
+ 
 
