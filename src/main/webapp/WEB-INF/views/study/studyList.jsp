@@ -135,7 +135,7 @@ $(document).ready(function(){
 				var html = template(fileInfo);
 				<fmt:formatDate value="${studyVO.studyRegDate}"
 					pattern="yyyy-MM-dd" var="date" />
-				var studyInfo="NO: ${studyVO.studyNo}</br>"+"Name: <a href='/study/studyView?${pageMaker.makeSearch(pageMaker.cri.page)}&studyNo=${studyVO.studyNo}'>${studyVO.studyName}</a></br>"+"RegDate: ${date}";
+				var studyInfo="NO: ${studyVO.studyNo}</br>"+"Name: <a href='/study/studyView${pageMaker.makeSearch(pageMaker.cri.page)}&studyNo=${studyVO.studyNo}'>${studyVO.studyName}</a></br>"+"RegDate: ${date}";
 				$("#studyList-thumbnail").append(html+studyInfo+"</div>");
 			  });
 		}); 
