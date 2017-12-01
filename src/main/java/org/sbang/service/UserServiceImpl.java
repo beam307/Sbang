@@ -112,4 +112,10 @@ public class UserServiceImpl implements UserService {
 
 	}
 
+
+	@Override
+	public void insertNaver(UserVO vo) throws Exception {
+		dao.insertNaver(vo);
+	}
+
 }

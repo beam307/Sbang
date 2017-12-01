@@ -31,4 +31,5 @@ public interface UserService {
 
 	public void createPwd(String userEmail) throws Exception;
 
+	public void insertNaver(UserVO vo) throws Exception;
 }

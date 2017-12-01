@@ -31,6 +31,8 @@ public interface UserDAO {
 
 	public void deleteAuth(String userEmail) throws Exception;
 
+	public void insertNaver(UserVO vo) throws Exception;
+
 	public String findId(String userBirth, String userName) throws Exception;
 
 	public void createPwd(String userEmail, String key) throws Exception;

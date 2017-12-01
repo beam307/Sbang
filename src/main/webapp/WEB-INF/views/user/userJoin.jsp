@@ -7,15 +7,7 @@
 			<label for="InputName">이름</label> <input name="userName" type="text" class="form-control" id="InputName" placeholder="실명을 입력하세요">
 		</div>
 		<div class="form-group">
-			<label for="InputEmail">이메일 주소</label>
-			<div class="row">
-				<div class="col-xs-9">
-					<input name="userEmail" type="email" class="form-control" id="InputEmail" placeholder="사용하시는 이메일을 입력하세요">
-				</div>
-				<div class="col-xs-3">
-					<button type="button" class="btn btn-default">인증하기</button>
-				</div>
-			</div>
+			<label for="InputEmail">이메일 주소</label> <input name="userEmail" type="email" class="form-control" id="InputEmail" placeholder="사용하시는 이메일을 입력하세요">
 		</div>
 		<div class="form-group">
 			<label for="InputPassword">비밀번호</label> <input name="userPwd" type="password" class="form-control" id="InputPassword" placeholder="비밀번호를 입력하세요">

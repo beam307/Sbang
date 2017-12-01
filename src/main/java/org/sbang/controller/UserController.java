@@ -89,14 +89,10 @@ public class UserController {
 
 	@RequestMapping(value = "/emailConfirm", method = RequestMethod.GET)
 	public String emailConfirm(String userEmail, Model model) throws Exception {
-
 		service.userAuth(userEmail);
-		model.addAttribute("check", true);
 		model.addAttribute("userEmail", userEmail);
 
 		return "/user/emailConfirm";
-
-		// 내가 인증을 눌렀을 때 link가 가서 그것을 눌렸을 때 넘어오는 것이당
 	}
 
 	@RequestMapping(value = "/sendPwd", method = RequestMethod.GET)

@@ -50,7 +50,7 @@
 
 		var result = '${msg}';
 		if (result == 'regSuccess')
-			alert("회원가입 완료");
+			alert("회원가입 완료, 가입하신 메일로 인증메일 보내드렸습니다. 인증을 해야 로그인이 가능 합니다.");
 	});
 </script>
 </head>

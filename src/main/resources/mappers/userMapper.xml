@@ -51,11 +51,11 @@
 	</update>
 
 	<delete id="delete">
-		delete from user where userEmail = #{userEmail}
+		delete from user where userEmail=#{userEmail}
 	</delete>
 
 	<delete id="deleteAuth">
-		delete from userAuth where userEmail = #{userEmail}
+		delete from userAuth where userEmail=#{userEmail}
 	</delete>
 
 	<update id="keepLogin">
@@ -70,5 +70,10 @@
 	<update id="userAuth">
 		<![CDATA[update user set userCertification = 1 where (select count(*) from userAuth where userEmail = #{userEmail}) > 0]]>
 	</update>
+
+	<insert id="insertNaver">
+		insert into user(userEmail, userGender, userNaver) values(#{userEmail},
+		#{userGender}, #{userNaver})
+	</insert>
 
 </mapper>

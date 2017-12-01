@@ -8,14 +8,9 @@
 </head>
 <body>
 	<script type="text/javascript">
-		var result = $
-		{
-			check
-		};
 		var userEmail = '${userEmail}';
 
-		if (result)
-			alert(userEmail + '님 회원가입을 축하합니다. 이제 로그인이 가능 합니다.');
+		alert(userEmail + '님 회원가입을 축하합니다. 이제 로그인이 가능 합니다.');
 
 		window.open('', '_self', '');
 		window.close();

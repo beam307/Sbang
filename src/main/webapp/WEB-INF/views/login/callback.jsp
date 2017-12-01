@@ -4,8 +4,9 @@
 <title>NaverLoginTest</title>
 </head>
 <body>
-	<br>
-	<div style="text-align: center">${result}</div>
+	<script>
+		self.location = "/";
+	</script>
 </body>
 
 </html>

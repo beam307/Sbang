@@ -1,6 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@include file="../include/headerSub.jsp"%>
 <div class="container mypage inner">
 
@@ -63,7 +62,7 @@
 
 							<div class="form-group">
 								<label for="birth" class="col-sm-2 control-label">생년월일</label>
-								<div class="col-sm-10 m_t_5">
+									<div class="col-sm-10 m_t_5">
 								<input type="text" class="form-control" name="userBirth" value="${user.getUserBirth()}" readonly>
 								</div>
 							</div>

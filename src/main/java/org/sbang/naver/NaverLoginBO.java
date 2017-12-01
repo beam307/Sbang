@@ -5,7 +5,7 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
-import org.springframework.util.StringUtils;
+import org.apache.commons.lang.StringUtils;
 
 import com.github.scribejava.core.builder.ServiceBuilder;
 import com.github.scribejava.core.model.OAuth2AccessToken;
@@ -41,7 +41,7 @@ public class NaverLoginBO {
 
 		/* Callback으로 전달받은 세선검증용 난수값과 세션에 저장되어있는 값이 일치하는지 확인 */
 		String sessionState = getSession(session);
-		if (StringUtils.pathEquals(sessionState, state)) {
+		if (StringUtils.equals(sessionState, state)) {
 
 			OAuth20Service oauthService = new ServiceBuilder().apiKey(CLIENT_ID).apiSecret(CLIENT_SECRET).callback(REDIRECT_URI).state(state).build(NaverLoginApi.instance());
 
