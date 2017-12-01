@@ -88,16 +88,13 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/emailConfirm", method = RequestMethod.GET)
-	public String emailConfirm(String userEmail, Model model) {
-		try {
-			service.userAuth(userEmail);
-			model.addAttribute("check", true);
-			model.addAttribute("userEmail", userEmail);
-		} catch (Exception e) {}
-		
+	public String emailConfirm(String userEmail, Model model) throws Exception {
+		service.userAuth(userEmail);
+		model.addAttribute("userEmail", userEmail);
+
 		return "/user/emailConfirm";
 	}
-	
+
 	@RequestMapping(value = "/roomManage", method = RequestMethod.GET)
 	public String roomManage(Model model) {
 		logger.info("go roomManage");

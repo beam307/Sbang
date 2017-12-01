@@ -17,8 +17,8 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserServiceImpl implements UserService {
 
 	@Inject
-    private JavaMailSender mailSender;
-	
+	private JavaMailSender mailSender;
+
 	@Inject
 	private UserDAO dao;
 
@@ -29,17 +29,12 @@ public class UserServiceImpl implements UserService {
 		String key = new TempKey().getKey(50, false); // 인증키 생성
 		dao.createAuthKey(vo.getUserEmail(), key); // 인증키 DB저장
 		MailHandler sendMail = new MailHandler(mailSender);
-        sendMail.setSubject("[스방 홈페이지 이메일 인증]");
-        sendMail.setText(new StringBuffer().append("<h1>메일인증</h1>")
-                .append("<a href='http://localhost/user/emailConfirm?userEmail=")
-                .append(vo.getUserEmail())
-                .append("&key=")
-                .append(key)
-                .append("' target='_blenk'>이메일 인증 확인</a>")
-                .toString());
-        sendMail.setFrom("beam2073@gmail.com", "스방관리자");
-        sendMail.setTo(vo.getUserEmail());
-        sendMail.send();
+		sendMail.setSubject("[스방 홈페이지 이메일 인증]");
+		sendMail.setText(
+				new StringBuffer().append("<h1>메일인증</h1>").append("<a href='http://localhost/user/emailConfirm?userEmail=").append(vo.getUserEmail()).append("&key=").append(key).append("' target='_blenk'>이메일 인증 확인</a>").toString());
+		sendMail.setFrom("beam2073@gmail.com", "스방관리자");
+		sendMail.setTo(vo.getUserEmail());
+		sendMail.send();
 
 	}
 
@@ -52,7 +47,7 @@ public class UserServiceImpl implements UserService {
 	public void update(UserVO vo) throws Exception {
 		dao.update(vo);
 	}
-	
+
 	@Transactional
 	@Override
 	public void delete(String userEmail) throws Exception {
@@ -71,7 +66,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public boolean checkPw(String userEmail, String userPwd) {
+	public boolean checkPw(String userEmail, String userPwd) throws Exception {
 		return dao.checkPw(userEmail, userPwd);
 	}
 
@@ -81,7 +76,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public UserVO checkLoginBefore(String value) {
+	public UserVO checkLoginBefore(String value) throws Exception {
 		return dao.checkUserWithSessionKey(value);
 	}
 
@@ -89,5 +84,10 @@ public class UserServiceImpl implements UserService {
 	public void userAuth(String userEmail) throws Exception {
 		dao.userAuth(userEmail);
 	}
-	
+
+	@Override
+	public void insertNaver(UserVO vo) throws Exception {
+		dao.insertNaver(vo);
+	}
+
 }

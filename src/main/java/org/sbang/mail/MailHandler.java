@@ -41,7 +41,7 @@ public class MailHandler { // 메일보내기 유틸
 	}
 
 	public void send() {
-        mailSender.send(message);
-    }
+		mailSender.send(message);
+	}
 
 }

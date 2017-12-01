@@ -1,6 +1,5 @@
 package org.sbang.controller;
 
-import java.io.IOException;
 import java.util.Date;
 
 import javax.inject.Inject;
@@ -11,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import org.sbang.DTO.LoginDTO;
 import org.sbang.domain.UserVO;
+import org.sbang.naver.JsonParser;
 import org.sbang.naver.NaverLoginBO;
 import org.sbang.service.UserService;
 import org.slf4j.Logger;
@@ -34,7 +34,6 @@ public class LoginController {
 
 	/* NaverLoginBO */
 	private NaverLoginBO naverLoginBO;
-	private String apiResult = null;
 
 	/* NaverLoginBO */
 	@Inject
@@ -92,22 +91,28 @@ public class LoginController {
 		return "/login/logout";
 	}
 
-	@RequestMapping(value="/naverLogin", method = RequestMethod.GET)
+	@RequestMapping(value = "/naverLogin", method = RequestMethod.GET)
 	public ModelAndView login(HttpSession session) {
 		/* 네아로 인증 URL을 생성하기 위하여 getAuthorizationUrl을 호출 */
 		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
-		
+
 		return new ModelAndView("login/naverLogin", "url", naverAuthUrl);
 	}
 
-	@RequestMapping(value="/callback",method = RequestMethod.GET)
-	public ModelAndView callback(@RequestParam String code, @RequestParam String state, HttpSession session) throws IOException {
+	@RequestMapping(value = "/callback", method = RequestMethod.GET)
+	public String callback(@RequestParam String code, @RequestParam String state, HttpSession session, Model model) throws Exception {
 		/* 네아로 인증이 성공적으로 완료되면 code 파라미터가 전달되며 이를 통해 access token을 발급 */
-		
+		logger.info("naver login............");
 		OAuth2AccessToken oauthToken = naverLoginBO.getAccessToken(session, code, state);
-		apiResult = naverLoginBO.getUserProfile(oauthToken);
-		System.out.println(apiResult);
-		return new ModelAndView("login/loginPost", "result", apiResult);
+		String apiResult = naverLoginBO.getUserProfile(oauthToken);
+
+		JsonParser json = new JsonParser();
+		UserVO vo = json.changeJson(apiResult);
+
+		service.insertNaver(vo);
+		session.setAttribute("login", vo); //
+
+		return "/login/callback";
 	}
 
 }

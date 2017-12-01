@@ -37,10 +37,10 @@ public class LoginInterceptor extends HandlerInterceptorAdapter { // 로그인 �
 			}
 
 			Cookie idCookie = new Cookie("rememberID", vo.getUserEmail());
-			
+
 			if (request.getParameter("rememberEmail") != null) {
 				idCookie.setMaxAge(60 * 60 * 24 * 7);
-				idCookie.setPath("/"); 
+				idCookie.setPath("/");
 				response.addCookie(idCookie);
 			} else {
 				idCookie.setMaxAge(0);

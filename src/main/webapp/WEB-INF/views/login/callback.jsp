@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html>
 <head>
-<title>NaverLoginTest</title>
+<title>NaverLogin</title>
 </head>
 <body>
-	<br>
-	<div style="text-align:center">${result}</div>
+	<script>
+		self.location = "/";
+	</script>
 </body>
 
 </html>

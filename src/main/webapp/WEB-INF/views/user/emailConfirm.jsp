@@ -1,6 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,15 +8,12 @@
 </head>
 <body>
 	<script type="text/javascript">
-		var result = ${check};
 		var userEmail = '${userEmail}';
-		
-		if(result)
-			alert(userEmail +'님 회원가입을 축하합니다. 이제 로그인이 가능 합니다.');
-		
+
+		alert(userEmail + '님 회원가입을 축하합니다. 이제 로그인이 가능 합니다.');
+
 		window.open('', '_self', '');
 		window.close();
-		
 	</script>
 </body>
 </html>

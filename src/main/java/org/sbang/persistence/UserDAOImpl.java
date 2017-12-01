@@ -50,7 +50,7 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public boolean checkPw(String userEmail, String userPwd) {
+	public boolean checkPw(String userEmail, String userPwd) throws Exception {
 		boolean result = false;
 
 		Map<String, String> map = new HashMap<String, String>();
@@ -64,7 +64,7 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public void keepLogin(String userEmail, String sessionId, Date next) {
+	public void keepLogin(String userEmail, String sessionId, Date next) throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
 
 		map.put("userEmail", userEmail);
@@ -76,7 +76,7 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public UserVO checkUserWithSessionKey(String value) {
+	public UserVO checkUserWithSessionKey(String value) throws Exception {
 		return session.selectOne(namespace + ".checkUserWithSessionKey", value);
 	}
 
@@ -98,6 +98,11 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public void deleteAuth(String userEmail) throws Exception {
 		session.delete(namespace + ".deleteAuth", userEmail);
+	}
+
+	@Override
+	public void insertNaver(UserVO vo) throws Exception {
+		session.update(namespace + ".insertNaver", vo);
 	}
 
 }

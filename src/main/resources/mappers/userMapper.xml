@@ -6,11 +6,9 @@
 <mapper namespace="org.sbang.mapper.UserMapper">
 
 	<insert id="create">
-		insert into user(userName, userEmail, userPwd,
-		userBirth, userGender,
-		userPhoneNumber)
-		values
-		(#{userName},#{userEmail},#{userPwd},#{userBirth},#{userGender},#{userPhoneNumber})
+		insert into user(userName, userEmail, userPwd, userBirth, userGender,
+		userPhoneNumber) values(#{userName}, #{userEmail}, #{userPwd}, #{userBirth}, #{userGender},
+		#{userPhoneNumber})
 	</insert>
 
 	<insert id="createAuthKey">
@@ -18,45 +16,40 @@
 	</insert>
 
 	<select id="login" resultType="UserVO">
-		<![CDATA[select userEmail, userName from
-		user where userEmail = #{userEmail} and
-		userPwd = #{userPwd} and userCertification > 0]]>
+		<![CDATA[select userEmail, userName fromuser where userEmail = #{userEmail} and userPwd = #{userPwd} and userCertification > 0]]>
 	</select>
 
 	<select id="read" resultType="UserVO">
-		select userEmail, userName,
-		userPhoneNumber from user where userEmail =
-		#{userEmail}
+		select userEmail, userName, userBirth,userPhoneNumber from user
+		where userEmail = #{userEmail}
 	</select>
 
-	<select id="updatePwd">
-		update user set userPwd = #{userNewPwd} where
-		userEmail = #{userEmail} and userPwd = #{userPwd}
-	</select>
+	<update id="updatePwd">
+		update user set userPwd = #{userNewPwd} whereuserEmail = #{userEmail} and userPwd
+		= #{userPwd}
+	</update>
 
 	<select id="checkPwd" resultType="int">
-		select count(*) from user where
-		userEmail = #{userEmail} and userPwd = #{userPwd}
+		select count(*) from user whereuserEmail = #{userEmail} and
+		userPwd = #{userPwd}
 	</select>
 
 	<update id="modify">
-		update user set
-		userPhoneNumber = #{userPhoneNumber}, userName = #{userName}
-		where userEmail = #{userEmail}
+		update user setuserPhoneNumber = #{userPhoneNumber}, userName = #{userName} where
+		userEmail = #{userEmail}
 	</update>
 
 	<delete id="delete">
 		delete from user where userEmail=#{userEmail}
 	</delete>
-	
+
 	<delete id="deleteAuth">
 		delete from userAuth where userEmail=#{userEmail}
 	</delete>
 
 	<update id="keepLogin">
-		update user set sessionKey = #{sessionId},
-		sessionLimit = #{next} where
-		userEmail = #{userEmail}
+		update user set sessionKey = #{sessionId}, sessionLimit = #{next} whereuserEmail
+		=#{userEmail}
 	</update>
 
 	<select id="checkUserWithSessionKey" resultType="UserVO">
@@ -66,5 +59,10 @@
 	<update id="userAuth">
 		<![CDATA[update user set userCertification = 1 where (select count(*) from userAuth where userEmail = #{userEmail}) > 0]]>
 	</update>
+
+	<insert id="insertNaver">
+		insert into user(userEmail, userGender, userNaver) values(#{userEmail},
+		#{userGender}, #{userNaver})
+	</insert>
 
 </mapper>
