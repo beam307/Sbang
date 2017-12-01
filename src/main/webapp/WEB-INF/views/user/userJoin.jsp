@@ -34,9 +34,9 @@
 			<label for="InputGender">성별</label>
 			<div class="radio">
 				<label> <input type="radio" name="userGender"
-					id="genderRadio1" value="man" aria-label="남성"> 남성
+					id="genderRadio1" value="M" aria-label="남성"> 남성
 				</label> <label> <input type="radio" name="userGender"
-					id="genderRadio2" value="woman" aria-label="여성"> 여성
+					id="genderRadio2" value="W       " aria-label="여성"> 여성
 				</label>
 			</div>
 		</div>
@@ -66,7 +66,7 @@
 		</div>
 	</form>
 </div>
-<script>
+<!-- <script>
 	function checkMail() {
 		var email = document.getElementById("InputEmail").value;
 
@@ -95,5 +95,5 @@
 		}
 
 	}
-</script>
+</script> -->
 <%@include file="../include/footer.jsp"%>

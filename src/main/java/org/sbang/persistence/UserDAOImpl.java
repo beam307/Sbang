@@ -50,7 +50,7 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public boolean checkPw(String userEmail, String userPwd) {
+	public boolean checkPw(String userEmail, String userPwd) throws Exception {
 		boolean result = false;
 
 		Map<String, String> map = new HashMap<String, String>();
@@ -64,7 +64,7 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public void keepLogin(String userEmail, String sessionId, Date next) {
+	public void keepLogin(String userEmail, String sessionId, Date next) throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
 
 		map.put("userEmail", userEmail);
@@ -76,12 +76,12 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public UserVO checkUserWithSessionKey(String value) {
+	public UserVO checkUserWithSessionKey(String value) throws Exception {
 		return session.selectOne(namespace + ".checkUserWithSessionKey", value);
 	}
 
 	@Override
-	public void createAuthKey(String userEmail, String authKey) throws Exception { // 인증키 DB에 넣기
+	public void createAuthKey(String userEmail, String authKey) throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
 
 		map.put("userEmail", userEmail);
@@ -91,13 +91,33 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public void userAuth(String userEmail) throws Exception { // 인증키 일치시 DB칼럼(인증여부) false->true 로 변경
+	public void userAuth(String userEmail) throws Exception {
 		session.update(namespace + ".userAuth", userEmail);
 	}
 
 	@Override
 	public void deleteAuth(String userEmail) throws Exception {
 		session.delete(namespace + ".deleteAuth", userEmail);
+	}
+
+	@Override
+	public String findId(String userBirth, String userName) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		map.put("userBirth", userBirth);
+		map.put("userName", userName);
+		return session.selectOne(namespace + ".findId", map);
+		
+	}
+
+	@Override
+	public void createPwd(String userEmail, String key) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		map.put("userEmail", userEmail);
+		map.put("key", key);
+		session.update(namespace + ".createPwd", map);
+
 	}
 
 }

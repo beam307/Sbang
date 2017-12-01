@@ -42,19 +42,22 @@
 	    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <script>
-    $(document).ready(function() {
+	$(document).ready(function() {
 		var category = [
 			"영어","IT","교양","외국어","공무원","자격증"
 		];
-
+		
+		
 		$("#searchBox").autocomplete({
 			source: category
 		});
+		
 		
 		var result = '${msg}';
 		if(result == 'regSuccess')
 			alert("회원가입 완료");
 	});
+	
 	</script>
 </head>
 

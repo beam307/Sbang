@@ -12,6 +12,13 @@
 		values
 		(#{userName},#{userEmail},#{userPwd},#{userBirth},#{userGender},#{userPhoneNumber})
 	</insert>
+	
+	
+
+	<update id="createPwd">
+		update user set userPwd = #{key} where
+		userEmail = #{userEmail}
+	</update>
 
 	<insert id="createAuthKey">
 		insert into userAuth values(#{userEmail}, #{authKey})
@@ -22,17 +29,26 @@
 		user where userEmail = #{userEmail} and
 		userPwd = #{userPwd} and userCertification > 0]]>
 	</select>
+	
+	<select id="findId" resultType="String">
+		select userEmail from user where userName = #{userName} and userBirth = #{userBirth}
+	</select>
+
+	<update id="findPwd">
+		update user set userPwd = #{userNewPwd} where
+		userEmail = #{userEmail}
+	</update>
 
 	<select id="read" resultType="UserVO">
-		select userEmail, userName,
+		select userEmail, userName, userBirth,
 		userPhoneNumber from user where userEmail =
 		#{userEmail}
 	</select>
 
-	<select id="updatePwd">
+	<update id="updatePwd">
 		update user set userPwd = #{userNewPwd} where
 		userEmail = #{userEmail} and userPwd = #{userPwd}
-	</select>
+	</update>
 
 	<select id="checkPwd" resultType="int">
 		select count(*) from user where
@@ -41,7 +57,7 @@
 
 	<update id="modify">
 		update user set
-		userPhoneNumber = #{userPhoneNumber}
+		userPhoneNumber = #{userPhoneNumber} , userName = #{userName}
 		where userEmail = #{userEmail}
 	</update>
 

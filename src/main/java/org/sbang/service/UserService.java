@@ -19,11 +19,16 @@ public interface UserService {
 
 	public UserVO login(LoginDTO dto) throws Exception;
 
-	public boolean checkPw(String userEmail, String userPwd);
+	public boolean checkPw(String userEmail, String userPwd) throws Exception;
 
 	public void keepLogin(String userEmail, String sessionId, Date next) throws Exception;
 
-	public UserVO checkLoginBefore(String value);
-	
+	public UserVO checkLoginBefore(String value) throws Exception;
+
 	public void userAuth(String userEmail) throws Exception;
+
+	public void findId(String userEmail, String userBirth, String userName) throws Exception;
+
+	public void createPwd(String userEmail) throws Exception;
+
 }

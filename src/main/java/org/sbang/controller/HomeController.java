@@ -25,7 +25,7 @@ public class HomeController {
 	private UserService service;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(RedirectAttributes rttr, HttpSession session, HttpServletRequest request) {
+	public String home(RedirectAttributes rttr, HttpSession session, HttpServletRequest request) throws Exception{
 		logger.info("go home");
 		
 		Cookie loginCookie = WebUtils.getCookie(request, "loginCookie");
@@ -43,18 +43,5 @@ public class HomeController {
 		return "/index";
 	}
 
-	@RequestMapping(value = "/roomManage", method = RequestMethod.GET)
-	public String roomManage(Model model) {
-		logger.info("go roomManage");
 
-		return "/user/roomManage";
-	}
-
-	@RequestMapping(value = "/studyManage", method = RequestMethod.GET)
-	public String studyManage(Model model) {
-		logger.info("go studyManage");
-
-		return "/user/studyManage";
-	}
-	
 }
