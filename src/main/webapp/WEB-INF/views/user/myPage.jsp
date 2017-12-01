@@ -63,7 +63,7 @@
 							<div class="form-group">
 								<label for="birth" class="col-sm-2 control-label">생년월일</label>
 									<div class="col-sm-10 m_t_5">
-								<input type="text" class="form-control" name="userBirth" value="${user.getUserBirth()}" readonly>
+								<input type="text" class="form-control" name="userBirth" value="${user.getUserBirth()}">
 								</div>
 							</div>
 							<button type="submit" class="btn btn-default f_right">저장하기</button>
