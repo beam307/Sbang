@@ -13,7 +13,7 @@ public class StudyVO {
 	private String studyCategory;
 	private String studyRegion;
 	private String studyIntroduce;
-	
+
 	private Date studyRegDate;
 	private Date studyUpdateDate;
 
@@ -22,7 +22,7 @@ public class StudyVO {
 	private int studyCurMemCnt;
 	private int studyMemFee;
 	private int studyWorkPerMonth;
-		
+
 	private Date studyStartDate;
 	private Date studyEndDate;
 

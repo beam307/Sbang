@@ -7,7 +7,7 @@ public class ImageVO {
 
 	private int imageNo;
 	private int studyNo;
-	
+
 	private String imagePath;
 
 }

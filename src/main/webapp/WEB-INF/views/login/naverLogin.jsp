@@ -2,12 +2,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>NaverLogin</title>
+
 </head>
 <body>
-	<script type="text/javascript">
-		self.location = "/";
+	<script>
+		self.location = '${url}';
 	</script>
 </body>
+
 </html>

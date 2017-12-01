@@ -8,9 +8,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-public class AuthInterceptor extends HandlerInterceptorAdapter { // 로그인 인증 인터셉터(ex 로그인 X 일때 등록페이지 이동)
+public class AuthInterceptor extends HandlerInterceptorAdapter { // 로그인 인증
+																	// 인터셉터(ex
+																	// 로그인 X 일때
+																	// 등록페이지 이동)
 	private static final Logger logger = LoggerFactory.getLogger(AuthInterceptor.class);
-	
+
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
@@ -18,7 +21,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter { // 로그인 �
 		if (session.getAttribute("login") == null) { // login세션이 없으면
 			logger.info("current user is not logined");
 			saveDest(request); // 위치값 가져오기
-			
+
 			response.sendRedirect("/login/loginGet");
 			return false;
 		}

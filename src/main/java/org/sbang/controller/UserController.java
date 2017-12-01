@@ -95,10 +95,10 @@ public class UserController {
 		model.addAttribute("userEmail", userEmail);
 
 		return "/user/emailConfirm";
-		
-		// 내가 인증을 눌렀을 때 link가 가서 그것을 눌렸을 때 넘어오는 것이당 
+
+		// 내가 인증을 눌렀을 때 link가 가서 그것을 눌렸을 때 넘어오는 것이당
 	}
-	
+
 	@RequestMapping(value = "/sendPwd", method = RequestMethod.GET)
 	public String sendPwd(String userEmail, Model model) throws Exception {
 
@@ -107,15 +107,27 @@ public class UserController {
 
 		return "/user/sendPwd";
 	}
-	
 
 	@RequestMapping(value = "/findId", method = RequestMethod.GET)
 	public String findIdGet(String userEmail, String userBirth, String userName) throws Exception {
 
 		service.findId(userEmail, userBirth, userName);
-		
 
 		return "/user/login";
+	}
+
+	@RequestMapping(value = "/roomManage", method = RequestMethod.GET)
+	public String roomManage(Model model) {
+		logger.info("go roomManage");
+
+		return "/user/roomManage";
+	}
+
+	@RequestMapping(value = "/studyManage", method = RequestMethod.GET)
+	public String studyManage(Model model) {
+		logger.info("go studyManage");
+
+		return "/user/studyManage";
 	}
 
 	@RequestMapping(value = "/roomManage", method = RequestMethod.GET)

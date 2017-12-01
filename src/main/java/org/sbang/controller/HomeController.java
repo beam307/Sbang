@@ -20,28 +20,27 @@ import org.springframework.web.util.WebUtils;
 public class HomeController {
 
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	
+
 	@Inject
 	private UserService service;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(RedirectAttributes rttr, HttpSession session, HttpServletRequest request) throws Exception{
+	public String home(RedirectAttributes rttr, HttpSession session, HttpServletRequest request) throws Exception {
 		logger.info("go home");
-		
+
 		Cookie loginCookie = WebUtils.getCookie(request, "loginCookie");
-		
-		if(loginCookie != null){ // 자동로그인 쿠키
+
+		if (loginCookie != null) { // 자동로그인 쿠키
 			UserVO userVO = service.checkLoginBefore(loginCookie.getValue());
-			
+
 			logger.info("USERVO: " + userVO);
-			
-			if(userVO != null){
+
+			if (userVO != null) {
 				session.setAttribute("login", userVO);
 			}
 		}
-		
+
 		return "/index";
 	}
-
 
 }

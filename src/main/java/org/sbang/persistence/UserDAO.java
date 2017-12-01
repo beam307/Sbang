@@ -24,15 +24,15 @@ public interface UserDAO {
 	public void keepLogin(String userEmail, String sessionId, Date next) throws Exception;
 
 	public UserVO checkUserWithSessionKey(String value) throws Exception;
-	
+
 	public void createAuthKey(String userEmail, String authKey) throws Exception;
-	
+
 	public void userAuth(String userEmail) throws Exception;
-	
+
 	public void deleteAuth(String userEmail) throws Exception;
-	
+
 	public String findId(String userBirth, String userName) throws Exception;
-	
+
 	public void createPwd(String userEmail, String key) throws Exception;
 
 }

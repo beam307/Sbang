@@ -107,7 +107,7 @@ public class UserDAOImpl implements UserDAO {
 		map.put("userBirth", userBirth);
 		map.put("userName", userName);
 		return session.selectOne(namespace + ".findId", map);
-		
+
 	}
 
 	@Override
