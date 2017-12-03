@@ -22,9 +22,9 @@ public class UserServiceImpl implements UserService {
 	@Inject
 	private UserDAO dao;
 
+	@Transactional
 	@Override
 	public void create(UserVO vo) throws Exception {
-		// TODO Auto-generated method stub
 		dao.create(vo); // 회원가입
 		String key = new TempKey().getKey(50, false); // 인증키 생성
 		dao.createAuthKey(vo.getUserEmail(), key); // 인증키 DB저장
@@ -35,7 +35,6 @@ public class UserServiceImpl implements UserService {
 		sendMail.setFrom("beam2073@gmail.com", "스방관리자");
 		sendMail.setTo(vo.getUserEmail());
 		sendMail.send();
-
 	}
 
 	@Override
@@ -99,7 +98,6 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void createPwd(String userEmail) throws Exception {
-		// TODO Auto-generated method stub
 
 		String key = new TempKey().getKey(4, false); // 인증키 생성
 		dao.createPwd(userEmail, key);
@@ -112,10 +110,24 @@ public class UserServiceImpl implements UserService {
 
 	}
 
-
 	@Override
 	public void insertNaver(UserVO vo) throws Exception {
 		dao.insertNaver(vo);
+	}
+
+	@Override
+	public int selectNaver(UserVO vo) throws Exception {
+		return dao.selectNaver(vo);
+	}
+
+	@Override
+	public void insertKakao(UserVO vo) throws Exception {
+		dao.insertKakao(vo);
+	}
+
+	@Override
+	public int selectKakao(UserVO vo) throws Exception {
+		return dao.selectKakao(vo);
 	}
 
 }

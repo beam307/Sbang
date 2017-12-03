@@ -37,4 +37,10 @@ public interface UserDAO {
 
 	public void createPwd(String userEmail, String key) throws Exception;
 
+	public int selectNaver(UserVO vo) throws Exception;
+
+	public void insertKakao(UserVO vo) throws Exception;
+
+	public int selectKakao(UserVO vo) throws Exception;
+
 }

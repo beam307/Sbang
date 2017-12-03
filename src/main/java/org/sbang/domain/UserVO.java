@@ -6,9 +6,10 @@ import lombok.Data;
 
 @Data
 public class UserVO {
-
+	
 	private String userEmail;
 	private String userPwd;
+	private String userPwdCheck;
 	private String userName;
 	private String userBirth;
 	private String userGender;
@@ -24,7 +25,7 @@ public class UserVO {
 	private Date userRegDate;
 	private Date userUpdateDate;
 
-	private String userGoogle;
+	private String userKakao;
 	private String userNaver;
 
 	private boolean userCertification;
@@ -33,5 +34,5 @@ public class UserVO {
 
 	private String sessionKey;
 	private Date sessionLimit;
-
+	
 }

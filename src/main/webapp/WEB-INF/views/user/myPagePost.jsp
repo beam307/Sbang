@@ -7,7 +7,7 @@
 </head>
 <body>
 	<script type="text/javascript">
-		alert("변경 하였습니다.");
+		alert("회원정보를 수정하였습니다.");
 		self.location = "/user/myPage";
 	</script>
 </body>

@@ -125,4 +125,19 @@ public class UserDAOImpl implements UserDAO {
 		session.update(namespace + ".insertNaver", vo);
 	}
 
+	@Override
+	public int selectNaver(UserVO vo) throws Exception {
+		return session.selectOne(namespace + ".selectNaver", vo);
+	}
+
+	@Override
+	public void insertKakao(UserVO vo) throws Exception {
+		session.update(namespace + ".insertKakao", vo);
+	}
+
+	@Override
+	public int selectKakao(UserVO vo) throws Exception {
+		return session.selectOne(namespace + ".selectKakao", vo);
+	}
+
 }

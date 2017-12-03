@@ -12,13 +12,12 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-public class LoginInterceptor extends HandlerInterceptorAdapter { // 로그인 인터셉터
+public class LoginInterceptor extends HandlerInterceptorAdapter {
 	private static final String LOGIN = "login";
 	private static final Logger logger = LoggerFactory.getLogger(LoginInterceptor.class);
 
 	@Override
-	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception { // 인터셉터
-																																					// 후
+	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
 		HttpSession session = request.getSession();
 
 		ModelMap modelMap = modelAndView.getModelMap();
@@ -31,10 +30,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter { // 로그인 �
 
 			if (request.getParameter("useCookie") != null) {
 				logger.info("remember me........");
-				Cookie loginCookie = new Cookie("loginCookie", session.getId()); // loginCookie
-																					// 쿠키에
-																					// 세션id
-																					// 저장
+				Cookie loginCookie = new Cookie("loginCookie", session.getId()); // loginCookie 쿠키에 세션id 저장
 				loginCookie.setPath("/");
 				loginCookie.setMaxAge(60 * 60 * 24 * 7);
 				response.addCookie(loginCookie);
@@ -55,11 +51,11 @@ public class LoginInterceptor extends HandlerInterceptorAdapter { // 로그인 �
 			Object dest = session.getAttribute("dest"); // URI 세션 저장
 			response.sendRedirect(dest != null ? (String) dest : "/");
 		}
+		response.sendRedirect("/login/loginGet");
 	}
 
 	@Override
-	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception { // 인터셉터
-																															// 전
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		HttpSession session = request.getSession();
 		if (session.getAttribute(LOGIN) != null) { // 기존 로그인정보 삭제
 			logger.info("clear login data before");

@@ -25,8 +25,7 @@ public class UserController {
 
 	@RequestMapping(value = "/regUser", method = RequestMethod.GET)
 	public String registerGet() throws Exception {
-		logger.info("regUserGet......");
-
+		logger.info("register user get....");
 		return "/user/userJoin";
 	}
 
@@ -35,7 +34,6 @@ public class UserController {
 		logger.info("register user post....");
 		service.create(vo);
 		rttr.addFlashAttribute("msg", "regSuccess");
-
 		return "redirect:/";
 	}
 
@@ -54,9 +52,8 @@ public class UserController {
 
 		logger.info("go mypage");
 		UserVO vo = (UserVO) session.getAttribute("login");
-		UserVO vo2 = service.read(vo.getUserEmail());
 
-		model.addAttribute("UserVO", vo2);
+		model.addAttribute("UserVO", service.read(vo.getUserEmail()));
 		return "/user/myPage";
 
 	}

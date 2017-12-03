@@ -8,10 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-public class AuthInterceptor extends HandlerInterceptorAdapter { // 로그인 인증
-																	// 인터셉터(ex
-																	// 로그인 X 일때
-																	// 등록페이지 이동)
+public class AuthInterceptor extends HandlerInterceptorAdapter {
 	private static final Logger logger = LoggerFactory.getLogger(AuthInterceptor.class);
 
 	@Override
