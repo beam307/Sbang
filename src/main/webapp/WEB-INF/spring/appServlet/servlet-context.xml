@@ -23,7 +23,7 @@
    <beans:bean id="authInterceptor" class="org.sbang.interceptor.AuthInterceptor" />
    <beans:bean id="loginInterceptor" class="org.sbang.interceptor.LoginInterceptor" />
    <beans:bean id="naverLoginBO" class="org.sbang.naver.NaverLoginBO" />
-   <interceptors>
+   <!-- <interceptors>
       <interceptor>
          <mapping path="/login/loginPost" />
          <beans:ref bean="loginInterceptor" />
@@ -38,7 +38,7 @@
          <mapping path="/user/myPage" />
          <beans:ref bean="authInterceptor" />
       </interceptor>
-   </interceptors>
+   </interceptors> -->
 
    <context:component-scan base-package="org.sbang.controller" />
 
