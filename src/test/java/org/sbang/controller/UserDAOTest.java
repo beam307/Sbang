@@ -6,8 +6,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.sbang.domain.UserVO;
 import org.sbang.persistence.UserDAO;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -18,8 +16,6 @@ public class UserDAOTest {
 
 	@Inject
 	private UserDAO dao;
-	
-	private static Logger logger = LoggerFactory.getLogger(UserDAOTest.class);
 	
 	@Test
 	public void testCreate() throws Exception {

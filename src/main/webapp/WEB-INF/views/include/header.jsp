@@ -1,5 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <%@ page session="true"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -71,17 +73,17 @@
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
 					<ul class="nav navbar-nav navbar-right">
-						<c:if test="${empty login}">
+						<sec:authorize access="isAnonymous()">
 							<!-- 로그인 안됐을 경우(로그인세션이 비울 경우) -->
 							<li><a href="/login/loginGet">로그인</a></li>
 							<li><a href="/user/regUser">회원가입</a></li>
-						</c:if>
-						<c:if test="${not empty login}">
+						</sec:authorize>
+						<sec:authorize access="isAuthenticated()">
 							<!-- 로그인된 경우(로그인세션이 있을 경우) -->
 							<li><a href="/user/myPage">마이페이지</a></li>
 							<li><a href="/login/logout">로그아웃</a></li>
 							<li><a href="/board/onenone">1:1문의</a></li>
-						</c:if>
+						</sec:authorize>
 						<li><a href="/study/studyReg">스터디등록</a></li>
 						<li><a href="#">방등록</a></li>
 						<li><a href="/board/notice">공지사항</a></li>

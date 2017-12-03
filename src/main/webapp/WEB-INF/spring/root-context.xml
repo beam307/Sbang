@@ -50,10 +50,8 @@
 			</props>
 		</property>
 	</bean>
-
+	
 	<context:component-scan base-package="org.sbang.persistence" />
-
 	<context:component-scan base-package="org.sbang.service" />
-
 
 </beans>
