@@ -33,6 +33,7 @@ public interface UserService {
 
 	public void insertNaver(UserVO vo) throws Exception;
 
+<<<<<<< HEAD
 	public int selectNaver(UserVO vo) throws Exception;
 
 	public void insertKakao(UserVO vo) throws Exception;
@@ -40,5 +41,8 @@ public interface UserService {
 	public int selectKakao(UserVO vo) throws Exception;
 	
 	public String getPwd(LoginDTO dto) throws Exception;
+=======
+	public void imageUpload(UserVO vo) throws Exception;
+>>>>>>> branch 'user' of https://github.com/beam307/Sbang.git
 
 }

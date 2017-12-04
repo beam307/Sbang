@@ -68,7 +68,9 @@ public class LoginController {
 
 			Date sessionLimit = new Date(System.currentTimeMillis() + (1000 * amount));
 
-			service.keepLogin(vo.getUserEmail(), session.getId(), sessionLimit); // 세션ID, 세션시간 저장
+			service.keepLogin(vo.getUserEmail(), session.getId(), sessionLimit); // 세션ID,
+																					// 세션시간
+																					// 저장
 		}
 
 	}

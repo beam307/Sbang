@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans:beans xmlns="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context"
+<<<<<<< HEAD
 	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+=======
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+      http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+      http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+>>>>>>> branch 'user' of https://github.com/beam307/Sbang.git
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 
@@ -25,6 +31,37 @@
 	<beans:bean id="authInterceptor" class="org.sbang.interceptor.AuthInterceptor" />
 	<beans:bean id="loginInterceptor" class="org.sbang.interceptor.LoginInterceptor" />
 	<beans:bean id="naverLoginBO" class="org.sbang.naver.NaverLoginBO" />
+<<<<<<< HEAD
+	<interceptors>
+		<interceptor>
+			<mapping path="/login/loginPost" />
+			<beans:ref bean="loginInterceptor" />
+		</interceptor>
+=======
+>>>>>>> branch 'user' of https://github.com/beam307/Sbang.git
+
+<<<<<<< HEAD
+		<interceptor>
+			<mapping path="/study/studyReg" />
+			<beans:ref bean="authInterceptor" />
+		</interceptor>
+=======
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="10485760"></beans:property>
+	</beans:bean>
+>>>>>>> branch 'user' of https://github.com/beam307/Sbang.git
+
+<<<<<<< HEAD
+		<interceptor>
+			<mapping path="/user/myPage" />
+			<beans:ref bean="authInterceptor" />
+		</interceptor>
+	</interceptors>
+	
+=======
+	<beans:bean id="uploadPath" class="java.lang.String">
+		<beans:constructor-arg value="C:\\zzz\\upload"></beans:constructor-arg>
+	</beans:bean>
 	<interceptors>
 		<interceptor>
 			<mapping path="/login/loginPost" />
@@ -41,7 +78,8 @@
 			<beans:ref bean="authInterceptor" />
 		</interceptor>
 	</interceptors>
-	
+
+>>>>>>> branch 'user' of https://github.com/beam307/Sbang.git
 	<context:component-scan base-package="org.sbang.controller" />
 
 </beans:beans>

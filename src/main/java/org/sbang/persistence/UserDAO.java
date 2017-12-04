@@ -37,6 +37,7 @@ public interface UserDAO {
 
 	public void createPwd(String userEmail, String key) throws Exception;
 
+<<<<<<< HEAD
 	public int selectNaver(UserVO vo) throws Exception;
 
 	public void insertKakao(UserVO vo) throws Exception;
@@ -44,5 +45,8 @@ public interface UserDAO {
 	public int selectKakao(UserVO vo) throws Exception;
 	
 	public String getPwd(LoginDTO dto) throws Exception;
+=======
+	public void imageUpload(UserVO vo) throws Exception;
+>>>>>>> branch 'user' of https://github.com/beam307/Sbang.git
 
 }

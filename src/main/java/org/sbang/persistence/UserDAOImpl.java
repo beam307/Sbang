@@ -86,7 +86,9 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public void createAuthKey(String userEmail, String authKey) throws Exception { // 인증키 DB에 넣기
+	public void createAuthKey(String userEmail, String authKey) throws Exception { // 인증키
+																					// DB에
+																					// 넣기
 		Map<String, Object> map = new HashMap<String, Object>();
 
 		map.put("userEmail", userEmail);
@@ -96,13 +98,17 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public void userAuth(String userEmail) throws Exception { // 인증키 일치시 DB칼럼(인증여부) false->true 로 변경
+	public void userAuth(String userEmail) throws Exception { // 인증키 일치시
+																// DB칼럼(인증여부)
+																// false->true 로
+																// 변경
 		session.update(namespace + ".userAuth", userEmail);
 	}
 
 	@Override
 	public void deleteAuth(String userEmail) throws Exception {
 		session.delete(namespace + ".deleteAuth", userEmail);
+
 	}
 
 	@Override
@@ -131,6 +137,7 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
+<<<<<<< HEAD
 	public int selectNaver(UserVO vo) throws Exception {
 		return session.selectOne(namespace + ".selectNaver", vo);
 	}
@@ -143,6 +150,10 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public int selectKakao(UserVO vo) throws Exception {
 		return session.selectOne(namespace + ".selectKakao", vo);
+=======
+	public void imageUpload(UserVO vo) throws Exception {
+		session.update(namespace + ".imageUpload", vo);
+>>>>>>> branch 'user' of https://github.com/beam307/Sbang.git
 	}
 
 }

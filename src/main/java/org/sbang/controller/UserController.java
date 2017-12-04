@@ -1,5 +1,6 @@
 package org.sbang.controller;
 
+import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -18,7 +20,14 @@ public class UserController {
 
 	@Inject
 	private UserService service;
+<<<<<<< HEAD
 	
+=======
+
+	@Resource(name = "uploadPath")
+	private String uploadPath;
+
+>>>>>>> branch 'user' of https://github.com/beam307/Sbang.git
 	@RequestMapping(value = "/regUser", method = RequestMethod.GET)
 	public String registerGet() throws Exception {
 		return "/user/userJoin";
@@ -32,8 +41,8 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/myPage", method = RequestMethod.POST)
-	public String myPagePost(UserVO vo, RedirectAttributes rttr) throws Exception {
-
+	public String myPagePost(UserVO vo, RedirectAttributes rttr, MultipartFile file) throws Exception {
+		
 		service.update(vo);
 
 		rttr.addFlashAttribute("msg", "regSuccess");
@@ -102,14 +111,25 @@ public class UserController {
 		return "/user/login";
 	}
 
+
 	@RequestMapping(value = "/roomManage", method = RequestMethod.GET)
+<<<<<<< HEAD
 	public String roomManage(Model model) {
+=======
+	public String roomManage(Model model) throws Exception {
+		logger.info("go roomManage");
+>>>>>>> branch 'user' of https://github.com/beam307/Sbang.git
 
 		return "/user/roomManage";
 	}
 
 	@RequestMapping(value = "/studyManage", method = RequestMethod.GET)
+<<<<<<< HEAD
 	public String studyManage(Model model) {
+=======
+	public String studyManage(Model model) throws Exception {
+		logger.info("go studyManage");
+>>>>>>> branch 'user' of https://github.com/beam307/Sbang.git
 
 		return "/user/studyManage";
 	}
