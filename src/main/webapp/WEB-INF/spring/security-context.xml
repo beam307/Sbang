@@ -8,11 +8,11 @@
         http://www.springframework.org/schema/security
         http://www.springframework.org/schema/security/spring-security.xsd">
 
-	<http auto-config="true">
+	<http use-expressions="true">
 		<intercept-url pattern="/login/loginGet" access="permitAll" />
 		<intercept-url pattern="/" access="permitAll" />
 		<intercept-url pattern="/admin/**" access="hasRole('ADMIN')" />
-		<intercept-url pattern="/**" access="hasRole('USER','ADMIN')" />
+		<intercept-url pattern="/**" access="hasAnyRole('USER','ADMIN')" />
 
 		<form-login 
 			login-page="/login/loginGet"
@@ -30,8 +30,8 @@
 	<authentication-manager>
 		<authentication-provider>
 			<user-service>
-				<user name="user" password="password" authorities="ROLE_USER" />
-				<user name="admin" password="password" authorities="ROLE_ADMIN" />
+				<user name="user@naver.com" password="1234" authorities="ROLE_USER" />
+				<user name="admin@naver.com" password="1234" authorities="ROLE_ADMIN" />
 			</user-service>
 		</authentication-provider>
 	</authentication-manager>
