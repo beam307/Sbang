@@ -37,4 +37,6 @@ public interface UserDAO {
 
 	public void createPwd(String userEmail, String key) throws Exception;
 
+	public void imageUpload(UserVO vo) throws Exception;
+
 }

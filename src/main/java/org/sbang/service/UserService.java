@@ -32,4 +32,7 @@ public interface UserService {
 	public void createPwd(String userEmail) throws Exception;
 
 	public void insertNaver(UserVO vo) throws Exception;
+
+	public void imageUpload(UserVO vo) throws Exception;
+
 }

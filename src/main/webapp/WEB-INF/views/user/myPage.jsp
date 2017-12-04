@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@include file="../include/headerSub.jsp"%>
 <div class="container mypage inner">
@@ -15,8 +16,10 @@
 			<!-- Nav tabs -->
 			<ul class="nav nav-tabs" role="tablist">
 				<li role="presentation" class="active"><a href="#profile" aria-controls="home" role="tab" data-toggle="tab">프로필</a></li>
-				<li role="presentation"><a href="#password" aria-controls="password" role="tab" data-toggle="tab">비밀번호변경</a></li>
-				<li role="presentation"><a href="#withdrawal" aria-controls="withdrawal" role="tab" data-toggle="tab">회원탈퇴</a></li>
+				<c:if test="${empty login.getUserNaver() && empty login.getUserKakao()}">
+					<li role="presentation"><a href="#password" aria-controls="password" role="tab" data-toggle="tab">비밀번호변경</a></li>
+					<li role="presentation"><a href="#withdrawal" aria-controls="withdrawal" role="tab" data-toggle="tab">회원탈퇴</a></li>
+				</c:if>
 			</ul>
 
 			<!-- Tab panes -->
@@ -41,29 +44,38 @@
 						<form class="form-horizontal" action="/user/myPage" method="post">
 							<div class="form-group">
 								<label for="id" class="col-sm-2 control-label">아이디</label>
-								<c:set var="user" value="${UserVO}" />
-
 								<div class="col-sm-10 m_t_5">
-									<input type="text" class="form-control" name="userEmail" value="${user.getUserEmail()}" readonly>
+									<input type="text" class="form-control" name="userEmail" value="${UserVO.getUserEmail()}" readonly>
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="name" class="col-sm-2 control-label">이름</label>
 								<div class="col-sm-10 m_t_5">
-									<input type="text" class="form-control" name="userName" value="${user.getUserName()}">
+									<input type="text" class="form-control" name="userName" value="${UserVO.getUserName()}">
 								</div>
 							</div>
+							<c:set var="phoneArray" value="${fn:split(UserVO.getUserPhoneNumber(),',')}" />
 							<div class="form-group">
 								<label for="number" class="col-sm-2 control-label">전화번호</label>
-								<div class="col-sm-10 m_t_5">
-									<input type="text" class="form-control" name="userPhoneNumber" value="${user.getUserPhoneNumber()}">
+								<div class="row">
+									<div class="col-xs-2">
+										<input type="text" name="userPhoneNumber" class="form-control" value="${phoneArray[0]}">
+									</div>
+									<div class="col-xs-1">-</div>
+									<div class="col-xs-2">
+										<input type="text" name="userPhoneNumber" class="form-control" value="${phoneArray[1]}">
+									</div>
+									<div class="col-xs-1">-</div>
+									<div class="col-xs-2">
+										<input type="text" name="userPhoneNumber" class="form-control" value="${phoneArray[2]}">
+									</div>
 								</div>
 							</div>
 
 							<div class="form-group">
 								<label for="birth" class="col-sm-2 control-label">생년월일</label>
-									<div class="col-sm-10 m_t_5">
-								<input type="text" class="form-control" name="userBirth" value="${user.getUserBirth()}">
+								<div class="col-sm-10 m_t_5">
+									<input type="text" class="form-control" name="userBirth" value="${UserVO.getUserBirth()}">
 								</div>
 							</div>
 							<button type="submit" class="btn btn-default f_right">저장하기</button>
@@ -97,8 +109,6 @@
 						</form>
 					</div>
 				</div>
-
-
 				<div role="tabpanel" class="tab-pane" id="withdrawal">
 					<div class="col-xs-12 tab-content-in">
 						<h4>회원탈퇴</h4>
@@ -113,7 +123,6 @@
 					</div>
 				</div>
 			</div>
-
 		</div>
 	</div>
 </div>

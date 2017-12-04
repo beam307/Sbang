@@ -14,17 +14,17 @@
 <!-- 부트스트랩 -->
 <link href="/resources/dist/css/bootstrap.min.css" rel="stylesheet">
 <!-- 폰트어썸 -->
-<link href="/resources/dist/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <!-- 초기화 css -->
 <link href="/resources/dist/css/setting.css" rel="stylesheet">
 <!-- 메인 css -->
 <link href="/resources/dist/css/main.css" rel="stylesheet">
 <!-- 서브 css -->
 <link href="/resources/dist/css/sub.css" rel="stylesheet">
-<!-- jQuery-Ui css-->
-<link href="/resources/dist/css/jquery-ui.css" rel="stylesheet">
-<!-- timepicki css -->
+<!-- 시간 css -->
 <link href="/resources/dist/css/timepicki.css" rel="stylesheet">
+<!-- jQuery-Ui css-->
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css">
 <!-- jQuery -->
 <script src="/resources/dist/js/jquery.js"></script>
 <!-- jQUery-Ui -->
@@ -51,6 +51,7 @@
 		var result = '${msg}';
 		if (result == 'regSuccess')
 			alert("회원가입 완료, 가입하신 메일로 인증메일 보내드렸습니다. 인증을 해야 로그인이 가능 합니다.");
+
 	});
 </script>
 </head>

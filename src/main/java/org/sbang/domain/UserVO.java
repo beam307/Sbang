@@ -14,7 +14,7 @@ public class UserVO {
 	private String userGender;
 	private String userPhoneNumber;
 	private String userIntroduce;
-	private String userProfileImagePath;
+	private String userProfileImgPath;
 	private String userRegion;
 	private String userFavoriteCategory;
 	private String userWishList;
@@ -24,7 +24,7 @@ public class UserVO {
 	private Date userRegDate;
 	private Date userUpdateDate;
 
-	private String userGoogle;
+	private String userKakao;
 	private String userNaver;
 
 	private boolean userCertification;

@@ -31,10 +31,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter { // 로그인 �
 
 			if (request.getParameter("useCookie") != null) {
 				logger.info("remember me........");
-				Cookie loginCookie = new Cookie("loginCookie", session.getId()); // loginCookie
-																					// 쿠키에
-																					// 세션id
-																					// 저장
+				Cookie loginCookie = new Cookie("loginCookie", session.getId());
 				loginCookie.setPath("/");
 				loginCookie.setMaxAge(60 * 60 * 24 * 7);
 				response.addCookie(loginCookie);
@@ -54,7 +51,8 @@ public class LoginInterceptor extends HandlerInterceptorAdapter { // 로그인 �
 
 			Object dest = session.getAttribute("dest"); // URI 세션 저장
 			response.sendRedirect(dest != null ? (String) dest : "/");
-		}
+		} else
+			response.sendRedirect("login/loginGet");
 	}
 
 	@Override

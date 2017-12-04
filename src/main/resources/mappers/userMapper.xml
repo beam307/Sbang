@@ -24,16 +24,19 @@
 
 	<select id="findId" resultType="String">
 		select userEmail from user where userName = #{userName} and
-		userBirth = #{userBirth}
+		userBirth =
+		#{userBirth}
 	</select>
 
 	<update id="findPwd">
-		update user set userPwd = #{userNewPwd} where userEmail = #{userEmail}
+		update user set userPwd = #{userNewPwd} where userEmail = #{userEmail} and userName = #{userName} and
+		userBirth = #{userBirth}
 	</update>
 
 	<select id="read" resultType="UserVO">
 		select userEmail, userName, userBirth, userPhoneNumber from
-		user where userEmail =#{userEmail}
+		user where userEmail =
+		#{userEmail}
 	</select>
 
 	<update id="updatePwd">
@@ -43,11 +46,13 @@
 
 	<select id="checkPwd" resultType="int">
 		select count(*) from user where userEmail = #{userEmail}
-		and userPwd = #{userPwd}
+		and userPwd =
+		#{userPwd}
 	</select>
 
 	<update id="modify">
-		update user set userPhoneNumber = #{userPhoneNumber} , userName = #{userName}
+		update user set userPhoneNumber = #{userPhoneNumber} , userName = #{userName} , userBirth =
+		#{userBirth} where userEmail = #{userEmail}
 	</update>
 
 	<delete id="delete">
@@ -75,5 +80,9 @@
 		insert into user(userEmail, userGender, userNaver) values(#{userEmail},
 		#{userGender}, #{userNaver})
 	</insert>
+
+	<update id="imageUpload">
+		update user set userProfileImgPath = #{userProfileImgPath} where userEmail = #{userEmail}
+	</update>
 
 </mapper>

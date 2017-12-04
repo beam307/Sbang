@@ -81,7 +81,9 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public void createAuthKey(String userEmail, String authKey) throws Exception { // 인증키 DB에 넣기
+	public void createAuthKey(String userEmail, String authKey) throws Exception { // 인증키
+																					// DB에
+																					// 넣기
 		Map<String, Object> map = new HashMap<String, Object>();
 
 		map.put("userEmail", userEmail);
@@ -91,13 +93,17 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public void userAuth(String userEmail) throws Exception { // 인증키 일치시 DB칼럼(인증여부) false->true 로 변경
+	public void userAuth(String userEmail) throws Exception { // 인증키 일치시
+																// DB칼럼(인증여부)
+																// false->true 로
+																// 변경
 		session.update(namespace + ".userAuth", userEmail);
 	}
 
 	@Override
 	public void deleteAuth(String userEmail) throws Exception {
 		session.delete(namespace + ".deleteAuth", userEmail);
+
 	}
 
 	@Override
@@ -123,6 +129,11 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public void insertNaver(UserVO vo) throws Exception {
 		session.update(namespace + ".insertNaver", vo);
+	}
+
+	@Override
+	public void imageUpload(UserVO vo) throws Exception {
+		session.update(namespace + ".imageUpload", vo);
 	}
 
 }

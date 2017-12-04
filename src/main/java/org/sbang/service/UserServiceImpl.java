@@ -87,7 +87,6 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void findId(String userEmail, String userBirth, String userName) throws Exception {
-		// TODO Auto-generated method stub
 		String MyEmail = dao.findId(userBirth, userName);
 		MailHandler sendMail = new MailHandler(mailSender);
 		sendMail.setSubject("[스방 홈페이지 이메일 인증]");
@@ -99,8 +98,6 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void createPwd(String userEmail) throws Exception {
-		// TODO Auto-generated method stub
-
 		String key = new TempKey().getKey(4, false); // 인증키 생성
 		dao.createPwd(userEmail, key);
 		MailHandler sendMail = new MailHandler(mailSender);
@@ -112,10 +109,14 @@ public class UserServiceImpl implements UserService {
 
 	}
 
-
 	@Override
 	public void insertNaver(UserVO vo) throws Exception {
 		dao.insertNaver(vo);
+	}
+
+	@Override
+	public void imageUpload(UserVO vo) throws Exception {
+		dao.imageUpload(vo);
 	}
 
 }
