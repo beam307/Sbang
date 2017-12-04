@@ -5,8 +5,10 @@ import java.util.List;
 import org.sbang.domain.Criteria;
 import org.sbang.domain.SearchCriteria;
 import org.sbang.domain.StudyVO;
+import org.sbang.domain.WeekVO;
 
 public interface StudyService {
+	
 	public void regist(StudyVO study) throws Exception;
 
 	public StudyVO read(Integer studyNo) throws Exception;
@@ -19,13 +21,14 @@ public interface StudyService {
 
 	public List<String> getImg(Integer studyNo) throws Exception;
 	
+	public List<WeekVO> getWeek(Integer studyNo) throws Exception;
+
 	public List<StudyVO> listCriteria(Criteria cri) throws Exception;
-	
+
 	public int listCountCriteria(Criteria cri) throws Exception;
-	
+
 	public List<StudyVO> listSearchCriteria(SearchCriteria cri) throws Exception;
-	
+
 	public int listSearchCount(SearchCriteria cri) throws Exception;
-//	
-//	
+	
 }

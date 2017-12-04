@@ -18,13 +18,13 @@ public class UserVO {
 	private String userRegion;
 	private String userFavoriteCategory;
 	private String userWishList;
-	
+
 	private Date userRegDate;
 	private Date userUpdateDate;
-	
+
 	private String userGoogle;
 	private String userNaver;
-	
+
 	private boolean userCertification;
 	private boolean userActivityAlarm;
 	private boolean userNewsAlarm;

@@ -1,7 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@include file="../include/headerSub.jsp"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <div class="container list inner">
@@ -15,29 +14,21 @@
 				<label class="col-sm-2 control-label">검색</label>
 				<div class="col-sm-10">
 					<select name="searchType">
-						<option value="n"
-							<c:out value="${cri.searchType == null?'selected':''}"/>>
+						<option value="n" <c:out value="${cri.searchType == null?'selected':''}"/>>
 							---</option>
-						<option value="t"
-							<c:out value="${cri.searchType eq 't'?'selected':''}"/>>
+						<option value="t" <c:out value="${cri.searchType eq 't'?'selected':''}"/>>
 							Title</option>
-						<option value="c"
-							<c:out value="${cri.searchType eq 'c'?'selected':''}"/>>
+						<option value="c" <c:out value="${cri.searchType eq 'c'?'selected':''}"/>>
 							Content</option>
-						<option value="w"
-							<c:out value="${cri.searchType eq 'w'?'selected':''}"/>>
+						<option value="w" <c:out value="${cri.searchType eq 'w'?'selected':''}"/>>
 							Writer</option>
-						<option value="tc"
-							<c:out value="${cri.searchType eq 'tc'?'selected':''}"/>>
+						<option value="tc" <c:out value="${cri.searchType eq 'tc'?'selected':''}"/>>
 							Title OR Content</option>
-						<option value="cw"
-							<c:out value="${cri.searchType eq 'cw'?'selected':''}"/>>
+						<option value="cw" <c:out value="${cri.searchType eq 'cw'?'selected':''}"/>>
 							Content OR Writer</option>
-						<option value="tcw"
-							<c:out value="${cri.searchType eq 'tcw'?'selected':''}"/>>
+						<option value="tcw" <c:out value="${cri.searchType eq 'tcw'?'selected':''}"/>>
 							Title OR Content OR Writer</option>
-					</select> <input type="text" name='keyword' id="keywordInput"
-						value='${cri.keyword}'>
+					</select> <input type="text" name='keyword' id="keywordInput" value='${cri.keyword}'>
 					<button id='searchBtn'>검색</button>
 				</div>
 			</div>
@@ -74,16 +65,20 @@
 			</div>
 		</form>
 	</div>
-	<!-- Single button -->
+	<!-- 정렬 -->
 	<div class="btn-group">
-		<button type="button" class="btn btn-default dropdown-toggle"
-			data-toggle="dropdown" aria-expanded="false">
-			정렬 <span class="caret"></span>
-		</button>
-		<ul class="dropdown-menu" role="menu">
-			<li><a href="#">인원순</a></li>
-			<li><a href="#">최신순</a></li>
-		</ul>
+		<select class="form-control" id="line-up">
+			<option value="studyList${pageMaker.makeLineUp('n') }" <c:out value="${cri.lineUp == null?'selected':''}"/>>
+							최신순</option>
+			<option value="studyList${pageMaker.makeLineUp('v') }" <c:out value="${cri.lineUp eq 'v'?'selected':''}"/>>
+							조회순</option>
+			<option value="studyList${pageMaker.makeLineUp('p') }" <c:out value="${cri.lineUp eq 'p'?'selected':''}"/>>
+							가격순</option>
+			<option value="studyList${pageMaker.makeLineUp('r') }" <c:out value="${cri.lineUp eq 'r'?'selected':''}"/>>
+							댓글순</option>
+			<option>또뭐가있을까??</option>
+			
+		</select>
 	</div>
 	<div class="list-thumbnail">
 		<div class="row" id="studyList-thumbnail"></div>
@@ -91,28 +86,21 @@
 	<div class="text-center">
 		<ul class="pagination">
 			<c:if test="${pageMaker.prev }">
-				<li><a
-					href="studyList${pageMaker.makeSearch(pageMaker.startPage -1) }">&laquo;</a></li>
+				<li><a href="studyList${pageMaker.makeSearch(pageMaker.startPage -1) }">&laquo;</a></li>
 			</c:if>
 
-			<c:forEach begin="${pageMaker.startPage }"
-				end="${pageMaker.endPage }" var="idx">
-				<li
-					<c:out value="${pageMaker.cri.page == idx?'class =active':''}" />>
-					<a href="studyList${pageMaker.makeSearch(idx) }">${idx }</a>
-				</li>
+			<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
+				<li <c:out value="${pageMaker.cri.page == idx?'class =active':''}" />><a href="studyList${pageMaker.makeSearch(idx) }">${idx }</a></li>
 			</c:forEach>
 
 			<c:if test="${pageMaker.next && pageMaker.endPage > 0 }">
-				<li><a
-					href="studyList${pageMaker.makeSearch(pageMaker.endPage + 1) }">&raquo;</a></li>
+				<li><a href="studyList${pageMaker.makeSearch(pageMaker.endPage + 1) }">&raquo;</a></li>
 			</c:if>
 		</ul>
 	</div>
 </div>
 <script type="text/javascript" src="/resources/dist/js/upload.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 
 
 <script id="templateList" type="text/x-handlebars-template">
@@ -127,22 +115,39 @@
 			.ready(
 					function() {
 						/*스터디리스트 썸네일과같이 추력  */
-						var template = Handlebars.compile($("#templateList")
-								.html());
+						var template = Handlebars.compile($("#templateList").html());
 
 						/*리스트 페이지 썸네일과 같이 출력  --> 콜백순서대로 출력되니 정렬이 안되네*/
 						<c:forEach items="${list}" varStatus="listIdx" var="studyVO">
+						if ("${studyVO.imagePath}") {
+							var fileInfo = getFileInfo("${studyVO.imagePath}");
+						} else {
+							var fileInfo = getFileInfo(" ");
+						}
 
-						var fileInfo = getFileInfo("${studyVO.imagePath}.");
 						var html = template(fileInfo);
 						<fmt:formatDate value="${studyVO.studyRegDate}"
 					pattern="yyyy-MM-dd" var="date" />
 						var studyInfo = "NO: ${studyVO.studyNo}</br>"
-								+ "Name: <a href='/study/studyView${pageMaker.makeSearch(pageMaker.cri.page)}&studyNo=${studyVO.studyNo}'>${studyVO.studyName}</a></br>"
-								+ "RegDate: ${date}";
-						$("#studyList-thumbnail").append(
-								html + studyInfo + "</div>");
+								+ "스터디명: <a href='/study/studyView${pageMaker.makeSearch(pageMaker.cri.page)}&studyNo=${studyVO.studyNo}'>${studyVO.studyName}</a></br>"
+								+ "등록날짜: ${date}</br>" + "조회수: ${studyVO.studyViewCnt}</br>" + "댓글수:${studyVO.studyReplyCnt}";
+						$("#studyList-thumbnail").append(html + studyInfo + "</div>");
 						</c:forEach>
+
+						/*정렬 출력  */
+						/* $("#line-up").on("change",function({
+							$.get("studyList${pageMaker.makeLineUp('v') }",function(event){
+								alert('success');
+							},'text');
+						}) */
+						$("#line-up").click(function() {
+							var open = $(this).data("isopen");
+							if (open) {
+								window.location.href = $(this).val()
+							}
+							$(this).data("isopen", !open);
+						});
+
 					})
 </script>
 <%@include file="../include/footer.jsp"%>

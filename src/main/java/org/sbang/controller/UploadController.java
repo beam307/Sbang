@@ -29,12 +29,6 @@ import org.springframework.web.multipart.MultipartFile;
 public class UploadController {
 	private static final Logger logger = LoggerFactory.getLogger(UploadController.class);
 
-	/*
-	 * @RequestMapping(value="/uploadForm",method=RequestMethod.GET) public void
-	 * uploadForm() {
-	 * 
-	 * }
-	 */
 	@Resource(name = "uploadPath")
 	private String uploadPath;
 
@@ -70,8 +64,7 @@ public class UploadController {
 		logger.info("orginalName: " + file.getOriginalFilename());
 		logger.info("size: " + file.getSize());
 		logger.info("contentType: " + file.getContentType());
-		return new ResponseEntity<>(UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(), file.getBytes()),
-				HttpStatus.CREATED);
+		return new ResponseEntity<>(UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(), file.getBytes()), HttpStatus.CREATED);
 	}
 
 	@ResponseBody
@@ -87,16 +80,14 @@ public class UploadController {
 			try {
 				in = new FileInputStream(uploadPath + fileName);
 			} catch (Exception e) {
-				in = new FileInputStream(
-						"C:\\Users\\Hoon\\git\\Sbang\\src\\main\\webapp\\resources\\images\\s_user.jpg");
+				in = new FileInputStream("C:\\Users\\Hoon\\git\\Sbang\\src\\main\\webapp\\resources\\images\\s_user.jpg");
 			}
 			if (mType != null) {
 				headers.setContentType(mType);
 			} else {
 				fileName = fileName.substring(fileName.indexOf("_") + 1);
 				headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
-				headers.add("Content-Disposition",
-						"attachment; filename=\"" + new String(fileName.getBytes("UTF-8"), "ISO-8859-1") + "\"");
+				headers.add("Content-Disposition", "attachment; filename=\"" + new String(fileName.getBytes("UTF-8"), "ISO-8859-1") + "\"");
 			}
 			entity = new ResponseEntity<byte[]>(IOUtils.toByteArray(in), headers, HttpStatus.CREATED);
 		} catch (Exception e) {

@@ -13,18 +13,15 @@
 	</insert>
 
 	<select id="read" resultType="StudyVO">
-		select
-		*
-		from
-		study
-		where
-		studyNo=#{studyNo}
+		select * 
+		from study 
+	  	where studyNo=#{studyNo}
 	</select>
 
 	<update id="update">
 		update study set
 		studyName=#{studyName},studyCategory=#{studyCategory},studyRegion=#{studyRegion},studyTargetAge=#{studyTargetAge},studyMaxMemCnt=#{studyMaxMemCnt},
-		studyCurMemCnt=#{studyCurMemCnt},studyMemFee=#{studyMemFee},studyWorkPerMonth=#{studyWorkPerMonth},studyIntroduce=#{studyIntroduce},studyStartDate=#{studyStartDate},studyEndDate=#{studyEndDate}
+		studyCurMemCnt=#{studyCurMemCnt},studyMemFee=#{studyMemFee},studyWorkPerMonth=#{studyWorkPerMonth},studyIntroduce=#{studyIntroduce},studyStartDate=#{studyStartDate},studyEndDate=#{studyEndDate},studyUpdateDate=now()
 		where studyNo=#{studyNo}
 	</update>
 
@@ -34,18 +31,12 @@
 
 	<select id="listAll" resultType="StudyVO">
   		<![CDATA[
-  		select
-  		*
-  		from
-  		study
-  		where studyNo>0
-  		order by studyNo desc,studyRegDate desc LIMIT 9
+  		select * from study where studyNo>0 order by studyNo desc,studyRegDate desc LIMIT 9
   		]]>
 	</select>
 
 	<insert id="addImg">
-		insert into image(imagePath,studyNo)
-		values(#{imagePath},LAST_INSERT_ID())
+		insert into image(imagePath,studyNo) values(#{imagePath},LAST_INSERT_ID())
 	</insert>
 
 	<delete id="deleteImg">
@@ -53,112 +44,86 @@
 	</delete>
 
 	<select id="getImg" resultType="string">
-		select imagePath from image where
-		studyNo=#{studyNo}
+		select imagePath from image where studyNo=#{studyNo}
 	</select>
 
 	<insert id="replaceImg">
-		insert into image(imagePath,studyNo) values
-		(#{imagePath},#{studyNo})
+		insert into image(imagePath,studyNo) values (#{imagePath},#{studyNo})
 	</insert>
-
-	<select id="listPage" resultType="StudyVO">
-  	<![CDATA[
-  		select
-  		*
-  		from
-  		study
-  		where studyNo>0
-  		order by studyNo desc, studyRegDate desc
-  		limit #{page},10
-  	]]>
-	</select>
-
-	<select id="listCriteria" resultType="StudyVO">
-  	<![CDATA[
-	  	select
-	  	*
-	  	from
-	  	study
-	  	where studyNo>0
-	  	order by studyNo desc, studyRegDate desc
-	  	limit #{pageStart},#{perPageNum}
-  	]]>
-	</select>
 
 	<select id="countPaging" resultType="int">
   	<![CDATA[
-	  	select
-	  	count(studyNo)
-	  	from
-	  	study
-	  	where
-	  	studyNo>0
+	  	select count(studyNo) from study where studyNo>0
   	]]>
 	</select>
 
 	<select id="listSearch" resultType="StudyVO">
   	<![CDATA[
-	  	select s.studyNo,s.studyName,s.studyRegDate, i.imagePath
-	  	from study s, (select  imagePath, studyNo from image group by studyNo) i
-	  	where i.studyNo  =s.studyNo
+	  	select s.studyNo, s.studyName, s.studyRegDate, s.studyViewCnt, s.studyReplyCnt, i.imagePath 
+	  	from study s left outer join (select  imagePath, studyNo from image group by studyNo) i 
+	  	on i.studyNo =s.studyNo where s.studyNo>0
   	]]>
 		<include refid="search"></include>
   	<![CDATA[
-	  	order by s.studyNo desc
-	  	limit #{pageStart},#{perPageNum}
+	  	order by 
+	  	]]>
+		<include refid="line"></include>
+	  <![CDATA[	
+	  	s.studyNo desc, s.studyRegDate limit #{pageStart},#{perPageNum}
   	]]>
 	</select>
 
 	<select id="listSearchCount" resultType="int">
   	<![CDATA[
-	  	select count(studyNo)
-	  	from study
-	  	where studyNo>0
+	  	select count(s.studyNo) from study s where s.studyNo>0 
   	]]>
 		<include refid="search"></include>
 
 	</select>
 
-	<!-- <update id="updateReplyCnt"> update tbl_board set replycnt=replycnt+#{amount} 
-		where bno=#{bno} </update> <update id="updateViewCnt"> update tbl_board set 
-		viewcnt=viewcnt+1 where bno=#{bno} </update> -->
-
-
-
-
-
-
-
+	<update id="updateReplyCnt">
+		update study set studyReplyCnt=studyReplyCnt+#{amount} where studyNo=#{studyNo}
+	</update>
+	
+	<update id="updateViewCnt">
+		update study set studyViewCnt=studyViewCnt+1 where studyNo=#{studyNo}
+	</update>
+	<!--정렬 sql 모듈 -->
+	<sql id="line">
+		<if test="lineUp !=null">
+			<if test="lineUp == 'v'.toString()">
+				s.studyViewCnt desc,
+			</if>
+			<if test="lineUp == 'p'.toString()">
+				s.studyMemFee desc,
+			</if>
+			<if test="lineUp == 'r'.toString()">
+				s.studyReplyCnt desc,
+			</if>
+		</if>
+	</sql>
+	<!--검색 sql 모듈 -->
 	<sql id="search">
 		<if test="searchType != null">
 			<if test="searchType == 't'.toString()">
-				and studyName like CONCAT('%', #{keyword}, '%')
+				and s.studyName like CONCAT('%', #{keyword}, '%')
 			</if>
 			<if test="searchType == 'c'.toString()">
-				and studyIntroduce like CONCAT('%', #{keyword}, '%')
+				and s.studyIntroduce like CONCAT('%', #{keyword}, '%')
 			</if>
 			<if test="searchType == 'w'.toString()">
 				and writer like CONCAT('%', #{keyword}, '%')
 			</if>
 			<if test="searchType == 'tc'.toString()">
-				and ( studyName like CONCAT('%', #{keyword}, '%') OR studyIntroduce
-				like
-				CONCAT('%', #{keyword}, '%'))
+				and ( s.studyName like CONCAT('%', #{keyword}, '%') OR s.studyIntroduce like CONCAT('%', #{keyword},
+				'%'))
 			</if>
 			<if test="searchType == 'cw'.toString()">
-				and ( studyIntroduce like CONCAT('%', #{keyword}, '%') OR writer
-				like
-				CONCAT('%', #{keyword}, '%'))
+				and ( s.studyIntroduce like CONCAT('%', #{keyword}, '%') OR writer like CONCAT('%', #{keyword}, '%'))
 			</if>
 			<if test="searchType == 'tcw'.toString()">
-				and ( studyName like CONCAT('%', #{keyword}, '%')
-				OR
-				studyIntroduce
-				like CONCAT('%', #{keyword}, '%')
-				OR
-				writer like CONCAT('%',
-				#{keyword}, '%'))
+				and ( s.studyName like CONCAT('%', #{keyword}, '%') OR s.studyIntroduce like CONCAT('%', #{keyword}, '%')
+				OR writer like CONCAT('%', #{keyword}, '%'))
 			</if>
 		</if>
 	</sql>
