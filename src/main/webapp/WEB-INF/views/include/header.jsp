@@ -1,7 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <%@ page session="true"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -14,29 +12,29 @@
 <title>스방</title>
 
 <!-- 부트스트랩 -->
-<link href="/resources/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="/resources/dist/css/bootstrap.min.css" rel="stylesheet">
 <!-- 폰트어썸 -->
-<link href="/resources/dist/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <!-- 초기화 css -->
-<link href="/resources/dist/css/setting.css" rel="stylesheet" type="text/css">
+<link href="/resources/dist/css/setting.css" rel="stylesheet">
 <!-- 메인 css -->
-<link href="/resources/dist/css/main.css" rel="stylesheet" type="text/css">
+<link href="/resources/dist/css/main.css" rel="stylesheet">
 <!-- 서브 css -->
-<link href="/resources/dist/css/sub.css" rel="stylesheet" type="text/css">
+<link href="/resources/dist/css/sub.css" rel="stylesheet">
 <!-- jQuery-Ui css-->
-<link href="/resources/dist/css/jquery-ui.css" rel="stylesheet" type="text/css">
+<link href="/resources/dist/css/jquery-ui.css" rel="stylesheet">
 <!-- timepicki css -->
-<link href="/resources/dist/css/timepicki.css" rel="stylesheet" type="text/css">
+<link href="/resources/dist/css/timepicki.css" rel="stylesheet">
 <!-- jQuery -->
-<script src="/resources/dist/js/jquery.js" type="application/js"></script>
+<script src="/resources/dist/js/jquery.js"></script>
 <!-- jQUery-Ui -->
-<script src="/resources/dist/js/jquery-ui.js" type="application/js"></script>
+<script src="/resources/dist/js/jquery-ui.js"></script>
 <!--  부트스트랩 -->
-<script src="/resources/dist/js/bootstrap.min.js" type="application/js"></script>
+<script src="/resources/dist/js/bootstrap.min.js"></script>
 <!-- 메인 -->
-<script src="/resources/dist/js/main.js" type="application/js"></script>
+<script src="/resources/dist/js/main.js"></script>
 <!-- 시간 -->
-<script src="/resources/dist/js/timepicki.js" type="application/js"></script>
+<script src="/resources/dist/js/timepicki.js"></script>
 
 <!--[if lt IE 9]>
 	    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -71,19 +69,18 @@
 				</div>
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
 					<ul class="nav navbar-nav navbar-right">
-						<sec:authorize access="isAnonymous()">
+						<c:if test="${empty login}">
 							<!-- 로그인 안됐을 경우(로그인세션이 비울 경우) -->
-							<li><a href="<c:url value='/login/loginGet'/> ">로그인</a></li>
-							<li><a href="<c:url value='/user/regUser'/> ">회원가입</a></li>
-						</sec:authorize>
-						<sec:authorize access="isAuthenticated()">
+							<li><a href="/login/loginGet">로그인</a></li>
+							<li><a href="/user/regUser">회원가입</a></li>
+						</c:if>
+						<c:if test="${not empty login}">
 							<!-- 로그인된 경우(로그인세션이 있을 경우) -->
-							<li><a href="<c:url value='/user/myPage'/> ">마이페이지</a></li>
-							<li><a href="<c:url value='/login/logout'/> ">로그아웃</a></li>
-							<li><a href="<c:url value='/board/onenone'/> ">1:1문의</a></li>
-						</sec:authorize>
+							<li><a href="/user/myPage">마이페이지</a></li>
+							<li><a href="/login/logout">로그아웃</a></li>
+							<li><a href="/board/onenone">1:1문의</a></li>
+						</c:if>
 						<li><a href="/study/studyReg">스터디등록</a></li>
 						<li><a href="#">방등록</a></li>
 						<li><a href="/board/notice">공지사항</a></li>

@@ -1,5 +1,4 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@include file="../include/headerSub.jsp"%>
 <div class="login container inner">
@@ -22,9 +21,6 @@
 			</label>
 		</div>
 		<button type="submit" class="btn btn-default">로그인</button>
-		<c:if test="${param.error != null}">
-			<p>아이디와 비밀번호가 잘못됐습니다.</p>
-		</c:if>
 	</form>
 	<div class="find-user">
 		<!-- Button trigger modal -->

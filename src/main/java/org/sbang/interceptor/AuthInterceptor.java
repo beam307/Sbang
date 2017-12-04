@@ -4,19 +4,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 public class AuthInterceptor extends HandlerInterceptorAdapter {
-	private static final Logger logger = LoggerFactory.getLogger(AuthInterceptor.class);
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
 		HttpSession session = request.getSession();
 		if (session.getAttribute("login") == null) { // login세션이 없으면
-			logger.info("current user is not logined");
 			saveDest(request); // 위치값 가져오기
 
 			response.sendRedirect("/login/loginGet");
@@ -36,7 +32,6 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 			query = "?" + query;
 
 		if (req.getMethod().equals("GET")) {
-			logger.info("dest : " + (uri + query));
 			req.getSession().setAttribute("dest", uri + query);
 		}
 	}

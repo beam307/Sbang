@@ -38,5 +38,7 @@ public interface UserService {
 	public void insertKakao(UserVO vo) throws Exception;
 
 	public int selectKakao(UserVO vo) throws Exception;
+	
+	public String getPwd(LoginDTO dto) throws Exception;
 
 }

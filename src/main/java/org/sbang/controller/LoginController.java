@@ -14,8 +14,7 @@ import org.sbang.kakao.KakaoLogin;
 import org.sbang.naver.JsonParser;
 import org.sbang.naver.NaverLoginBO;
 import org.sbang.service.UserService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,10 +31,11 @@ import com.github.scribejava.core.model.OAuth2AccessToken;
 @RequestMapping("/login")
 public class LoginController {
 
-	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
-
 	/* NaverLoginBO */
 	private NaverLoginBO naverLoginBO;
+
+	@Inject
+	private BCryptPasswordEncoder pwdEncoder;
 
 	/* NaverLoginBO */
 	@Inject
@@ -48,16 +48,18 @@ public class LoginController {
 
 	@RequestMapping(value = "/loginGet", method = RequestMethod.GET)
 	public String loginGet() throws Exception {
-		logger.info("loginGet.......");
 
 		return "/user/login";
 	}
 
 	@RequestMapping(value = "/loginPost", method = RequestMethod.POST)
-	public void loginPost(LoginDTO dto, Model model, HttpSession session, RedirectAttributes rttr) throws Exception {
-		logger.info("loginPost......");
-		UserVO vo = service.login(dto); // vo에 userEmail만 저장
-		if (vo == null) {
+	public void loginPost(LoginDTO dto, Model model, HttpSession session, RedirectAttributes rttr, UserVO vo) throws Exception {
+		
+		if (pwdEncoder.matches(dto.getUserPwd(), service.getPwd(dto))){ 
+			vo = service.login(dto); // vo에 userEmail만 저장
+		}
+		
+		if (vo == null){
 			return;
 		}
 		model.addAttribute("userVO", vo); // model에 {userVO : vo} 저장
@@ -74,7 +76,6 @@ public class LoginController {
 	@RequestMapping(value = "/logout", method = RequestMethod.GET) // 로그아웃
 	public String logout(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception {
 		Object obj = session.getAttribute("login");
-		logger.info("logoutGet.......");
 
 		if (obj != null) {
 			UserVO vo = (UserVO) obj;
@@ -104,7 +105,6 @@ public class LoginController {
 	@RequestMapping(value = "/callback", method = RequestMethod.GET)
 	public String callback(@RequestParam String code, @RequestParam String state, HttpSession session, Model model, UserVO vo) throws Exception {
 		/* 네아로 인증이 성공적으로 완료되면 code 파라미터가 전달되며 이를 통해 access token을 발급 */
-		logger.info("naver login............");
 		JsonParser json = new JsonParser();
 
 		OAuth2AccessToken oauthToken = naverLoginBO.getAccessToken(session, code, state);

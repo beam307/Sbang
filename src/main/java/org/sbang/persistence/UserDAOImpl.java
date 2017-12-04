@@ -45,6 +45,11 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
+	public String getPwd(LoginDTO dto) throws Exception {
+		return session.selectOne(namespace + ".getPwd", dto);
+	}
+
+	@Override
 	public void changePwd(UserVO vo) throws Exception {
 		session.selectOne(namespace + ".updatePwd", vo);
 	}

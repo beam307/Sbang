@@ -10,6 +10,7 @@ import org.sbang.mail.MailHandler;
 import org.sbang.mail.TempKey;
 import org.sbang.persistence.UserDAO;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,6 +19,9 @@ public class UserServiceImpl implements UserService {
 
 	@Inject
 	private JavaMailSender mailSender;
+	
+	@Inject
+	private BCryptPasswordEncoder pwdEncoder;
 
 	@Inject
 	private UserDAO dao;
@@ -25,7 +29,9 @@ public class UserServiceImpl implements UserService {
 	@Transactional
 	@Override
 	public void create(UserVO vo) throws Exception {
+		vo.setUserPwd(pwdEncoder.encode(vo.getUserPwd()));
 		dao.create(vo); // 회원가입
+		
 		String key = new TempKey().getKey(50, false); // 인증키 생성
 		dao.createAuthKey(vo.getUserEmail(), key); // 인증키 DB저장
 		MailHandler sendMail = new MailHandler(mailSender);
@@ -57,6 +63,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public UserVO login(LoginDTO dto) throws Exception {
 		return dao.login(dto);
+	}
+	
+	@Override
+	public String getPwd(LoginDTO dto) throws Exception {
+		return dao.getPwd(dto);
 	}
 
 	@Override

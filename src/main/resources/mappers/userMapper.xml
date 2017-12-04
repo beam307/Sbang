@@ -15,11 +15,15 @@
 	</update>
 
 	<insert id="createAuthKey">
-		insert into userAuth values(#{userEmail}, #{authKey})
+		insert into userAuth(userEmail, userKey) values(#{userEmail}, #{authKey})
 	</insert>
 
 	<select id="login" resultType="UserVO">
 		<![CDATA[select userEmail from user where userEmail = #{userEmail} and userPwd = #{userPwd} and userCertification > 0]]>
+	</select>
+	
+	<select id="getPwd" resultType="String">
+		select userPwd from user where userEmail = #{userEmail}
 	</select>
 
 	<select id="findId" resultType="String">
