@@ -24,92 +24,94 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 @RequestMapping("/study/*")
 public class StudyController {
-	private static final Logger logger=LoggerFactory.getLogger(StudyController.class);
-	
+	private static final Logger logger = LoggerFactory.getLogger(StudyController.class);
+
 	@Inject
 	private StudyService service;
-	
-	@RequestMapping(value="/studyReg",method=RequestMethod.GET)
-	public void registGET(StudyVO study,Model model) throws Exception{
+
+	@RequestMapping(value = "/studyReg", method = RequestMethod.GET)
+	public void registGET(StudyVO study, Model model) throws Exception {
 		logger.info("register get...");
 	}
-	
-	@RequestMapping(value="/studyReg",method=RequestMethod.POST)
-	public String registPOST(StudyVO study,RedirectAttributes rttr) throws Exception{
+
+	@RequestMapping(value = "/studyReg", method = RequestMethod.POST)
+	public String registPOST(StudyVO study, RedirectAttributes rttr) throws Exception {
 		logger.info("regist post........");
 		logger.info(study.toString());
-		
+
 		service.regist(study);
-		rttr.addFlashAttribute("msg","SUCCESS");
+		rttr.addFlashAttribute("msg", "SUCCESS");
 		return "redirect:/study/studyList";
 	}
-	@RequestMapping(value="/studyList",method=RequestMethod.GET)
-	public void listAll(@ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception{
+
+	@RequestMapping(value = "/studyList", method = RequestMethod.GET)
+	public void listAll(@ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
 		logger.info("show all list.........");
-//		model.addAttribute("list",service.listAll());
-		
+		// model.addAttribute("list",service.listAll());
+
 		logger.info(cri.toString());
-		
-//		model.addAttribute("list",service.listCriteria(cri));
-		model.addAttribute("list",service.listSearchCriteria(cri));
-		PageMaker pageMaker=new PageMaker();
+
+		// model.addAttribute("list",service.listCriteria(cri));
+		model.addAttribute("list", service.listSearchCriteria(cri));
+		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
-//		pageMaker.setTotalCount(131);
-//		pageMaker.setTotalCount(service.listCountCriteria(cri));
+		// pageMaker.setTotalCount(131);
+		// pageMaker.setTotalCount(service.listCountCriteria(cri));
 		pageMaker.setTotalCount(service.listSearchCount(cri));
-		System.out.println("controller : "+pageMaker.toString());
-		model.addAttribute("pageMaker",pageMaker);
+		System.out.println("controller : " + pageMaker.toString());
+		model.addAttribute("pageMaker", pageMaker);
 	}
-	
-	@RequestMapping(value="/studyView",method=RequestMethod.GET)
-	public void read(@RequestParam("studyNo") int studyNo, @ModelAttribute("cri") SearchCriteria cri, Model model) throws  Exception{
+
+	@RequestMapping(value = "/studyView", method = RequestMethod.GET)
+	public void read(@RequestParam("studyNo") int studyNo, @ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
 		model.addAttribute(service.read(studyNo));
 	}
-	
-	@RequestMapping(value="/studyRemove",method=RequestMethod.POST)
-	public String remove(@RequestParam("studyNo") int studyNo, SearchCriteria cri, RedirectAttributes rttr) throws Exception{
+
+	@RequestMapping(value = "/studyRemove", method = RequestMethod.POST)
+	public String remove(@RequestParam("studyNo") int studyNo, SearchCriteria cri, RedirectAttributes rttr) throws Exception {
 		service.remove(studyNo);
-		
+
 		rttr.addAttribute("page", cri.getPage());
-		rttr.addAttribute("perPageNum", cri.getPerPageNum());		
-		rttr.addFlashAttribute("msg","SUCCESS");
-		
+		rttr.addAttribute("perPageNum", cri.getPerPageNum());
+		rttr.addFlashAttribute("msg", "SUCCESS");
+
 		return "redirect:/study/studyList";
 	}
-	
+
 	@RequestMapping("/getImg/{studyNo}")
 	@ResponseBody
-	public List<String> getImg(@PathVariable("studyNo")Integer studyNo) throws Exception{
+	public List<String> getImg(@PathVariable("studyNo") Integer studyNo) throws Exception {
 		return service.getImg(studyNo);
 	}
-	
-	@RequestMapping(value="/studyModify", method=RequestMethod.GET)
-	public void modifyGET(@RequestParam("studyNo") int studyNo, @ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception{
+
+	@RequestMapping(value = "/studyModify", method = RequestMethod.GET)
+	public void modifyGET(@RequestParam("studyNo") int studyNo, @ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
 		model.addAttribute(service.read(studyNo));
 	}
-	@RequestMapping(value="/studyModify",method=RequestMethod.POST)
-	public String modifyPOST(StudyVO study, SearchCriteria cri, RedirectAttributes rttr) throws Exception{
+
+	@RequestMapping(value = "/studyModify", method = RequestMethod.POST)
+	public String modifyPOST(StudyVO study, SearchCriteria cri, RedirectAttributes rttr) throws Exception {
 		logger.info("mod post........");
-		rttr.addAttribute("page",cri.getPage());
-		rttr.addAttribute("perPageNum",cri.getPerPageNum());
-		rttr.addAttribute("searchType",cri.getSearchType());
-		rttr.addAttribute("keyword",cri.getKeyword());
+		rttr.addAttribute("page", cri.getPage());
+		rttr.addAttribute("perPageNum", cri.getPerPageNum());
+		rttr.addAttribute("searchType", cri.getSearchType());
+		rttr.addAttribute("keyword", cri.getKeyword());
 		service.modify(study);
 		rttr.addFlashAttribute("msg", "SUCCESS");
-		
+
 		return "redirect:/study/studyList";
 	}
-//	
-//	@RequestMapping(value="/listPage",method=RequestMethod.GET)
-//	public void listPage(Criteria cri,Model model)throws Exception{
-//		logger.info(cri.toString());
-//		
-//		model.addAttribute("list",service.listCriteria(cri));
-//		PageMaker pageMaker=new PageMaker();
-//		pageMaker.setCri(cri);
-////		pageMaker.setTotalCount(131);
-//		pageMaker.setTotalCount(service.listCountCriteria(cri));
-//		
-//		model.addAttribute("pageMaker",pageMaker);
-//	}
+	//
+	// @RequestMapping(value="/listPage",method=RequestMethod.GET)
+	// public void listPage(Criteria cri,Model model)throws Exception{
+	// logger.info(cri.toString());
+	//
+	// model.addAttribute("list",service.listCriteria(cri));
+	// PageMaker pageMaker=new PageMaker();
+	// pageMaker.setCri(cri);
+	//// pageMaker.setTotalCount(131);
+	// pageMaker.setTotalCount(service.listCountCriteria(cri));
+	//
+	// model.addAttribute("pageMaker",pageMaker);
+	// }
 }

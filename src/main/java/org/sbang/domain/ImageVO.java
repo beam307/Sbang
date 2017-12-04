@@ -6,7 +6,7 @@ import lombok.Data;
 public class ImageVO {
 
 	private int studyNo;
-	
+
 	private String imagePath;
 
 }

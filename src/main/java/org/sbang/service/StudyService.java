@@ -18,14 +18,14 @@ public interface StudyService {
 	public List<StudyVO> listAll() throws Exception;
 
 	public List<String> getImg(Integer studyNo) throws Exception;
-	
+
 	public List<StudyVO> listCriteria(Criteria cri) throws Exception;
-	
+
 	public int listCountCriteria(Criteria cri) throws Exception;
-	
+
 	public List<StudyVO> listSearchCriteria(SearchCriteria cri) throws Exception;
-	
+
 	public int listSearchCount(SearchCriteria cri) throws Exception;
-//	
-//	
+	//
+	//
 }
