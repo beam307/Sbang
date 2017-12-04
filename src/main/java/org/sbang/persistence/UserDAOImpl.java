@@ -137,7 +137,6 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-<<<<<<< HEAD
 	public int selectNaver(UserVO vo) throws Exception {
 		return session.selectOne(namespace + ".selectNaver", vo);
 	}
@@ -150,10 +149,5 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public int selectKakao(UserVO vo) throws Exception {
 		return session.selectOne(namespace + ".selectKakao", vo);
-=======
-	public void imageUpload(UserVO vo) throws Exception {
-		session.update(namespace + ".imageUpload", vo);
->>>>>>> branch 'user' of https://github.com/beam307/Sbang.git
 	}
-
 }

@@ -19,7 +19,7 @@ public class UserServiceImpl implements UserService {
 
 	@Inject
 	private JavaMailSender mailSender;
-	
+
 	@Inject
 	private BCryptPasswordEncoder pwdEncoder;
 
@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
 	public void create(UserVO vo) throws Exception {
 		vo.setUserPwd(pwdEncoder.encode(vo.getUserPwd()));
 		dao.create(vo); // 회원가입
-		
+
 		String key = new TempKey().getKey(50, false); // 인증키 생성
 		dao.createAuthKey(vo.getUserEmail(), key); // 인증키 DB저장
 		MailHandler sendMail = new MailHandler(mailSender);
@@ -64,7 +64,7 @@ public class UserServiceImpl implements UserService {
 	public UserVO login(LoginDTO dto) throws Exception {
 		return dao.login(dto);
 	}
-	
+
 	@Override
 	public String getPwd(LoginDTO dto) throws Exception {
 		return dao.getPwd(dto);
@@ -108,10 +108,6 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void createPwd(String userEmail) throws Exception {
-<<<<<<< HEAD
-
-=======
->>>>>>> branch 'user' of https://github.com/beam307/Sbang.git
 		String key = new TempKey().getKey(4, false); // 인증키 생성
 		dao.createPwd(userEmail, key);
 		MailHandler sendMail = new MailHandler(mailSender);
@@ -129,7 +125,6 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-<<<<<<< HEAD
 	public int selectNaver(UserVO vo) throws Exception {
 		return dao.selectNaver(vo);
 	}
@@ -142,10 +137,5 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public int selectKakao(UserVO vo) throws Exception {
 		return dao.selectKakao(vo);
-=======
-	public void imageUpload(UserVO vo) throws Exception {
-		dao.imageUpload(vo);
->>>>>>> branch 'user' of https://github.com/beam307/Sbang.git
 	}
-
 }

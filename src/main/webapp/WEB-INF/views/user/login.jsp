@@ -2,17 +2,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@include file="../include/headerSub.jsp"%>
 <div class="login container inner">
-<<<<<<< HEAD
 	<a
 		href="https://kauth.kakao.com/oauth/authorize?client_id=e28b842cf3d2e3343f9bf0556066bb85&redirect_uri=http://localhost/login/kakaoLogin&response_type=code"><img
 		src="/resources/images/kakaoLogin.png" alt="kakaoLogin"></a> <a href="/login/naverLogin"><img src="/resources/images/naver.png"
 		alt="naverLogin"></a>
 	<form action="/login/loginPost" method="post" id="loginForm">
-=======
-	<a href="#"><img src="/resources/images/kakaoLogin.png" alt="kakaoLogin"></a> <a href="/login/naverLogin"><img
-		src="/resources/images/naver.png" alt="naverLogin"></a>
-	<form action="/login/loginPost" method="post">
->>>>>>> branch 'user' of https://github.com/beam307/Sbang.git
 		<div class="form-group">
 			<label for="exampleInputEmail1">이메일 주소</label> <input name="userEmail" type="email" class="form-control" id="exampleInputEmail1"
 				placeholder="이메일을 입력하세요" value="${cookie.rememberID.value}">

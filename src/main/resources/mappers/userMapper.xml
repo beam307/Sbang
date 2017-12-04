@@ -21,18 +21,13 @@
 	<select id="login" resultType="UserVO">
 		<![CDATA[select userEmail from user where userEmail = #{userEmail} and userPwd = #{userPwd} and userCertification > 0]]>
 	</select>
-	
+
 	<select id="getPwd" resultType="String">
 		select userPwd from user where userEmail = #{userEmail}
 	</select>
 
 	<select id="findId" resultType="String">
-<<<<<<< HEAD
 		select userEmail from user where userName = #{userName} and userBirth =
-=======
-		select userEmail from user where userName = #{userName} and
-		userBirth =
->>>>>>> branch 'user' of https://github.com/beam307/Sbang.git
 		#{userBirth}
 	</select>
 
@@ -42,14 +37,8 @@
 	</update>
 
 	<select id="read" resultType="UserVO">
-<<<<<<< HEAD
-		select userEmail, userName, userBirth, userPhoneNumber from user where userEmail
-		=#{userEmail}
-=======
-		select userEmail, userName, userBirth, userPhoneNumber from
-		user where userEmail =
-		#{userEmail}
->>>>>>> branch 'user' of https://github.com/beam307/Sbang.git
+		select userEmail, userName, userBirth, userPhoneNumber from user where
+		userEmail=#{userEmail}
 	</select>
 
 	<update id="updatePwd">
@@ -57,12 +46,7 @@
 	</update>
 
 	<select id="checkPwd" resultType="int">
-<<<<<<< HEAD
 		select count(*) from user where userEmail = #{userEmail} and userPwd =
-=======
-		select count(*) from user where userEmail = #{userEmail}
-		and userPwd =
->>>>>>> branch 'user' of https://github.com/beam307/Sbang.git
 		#{userPwd}
 	</select>
 
@@ -96,9 +80,7 @@
 		#{userGender}, #{userNaver}, #{userName}, 1)
 	</insert>
 
-<<<<<<< HEAD
-	<select id="selectNaver" resultType="int">
-		select count(*) from user where userNaver = #{userNaver}
+	<select id="selectNaver" resultType="int"> select count(*) from user where userNaver = #{userNaver}
 	</select>
 
 	<insert id="insertKakao">
@@ -109,10 +91,4 @@
 	<select id="selectKakao" resultType="int">
 		select count(*) from user where userKakao = #{userKakao}
 	</select>
-=======
-	<update id="imageUpload">
-		update user set userProfileImgPath = #{userProfileImgPath} where userEmail = #{userEmail}
-	</update>
->>>>>>> branch 'user' of https://github.com/beam307/Sbang.git
-
 </mapper>
