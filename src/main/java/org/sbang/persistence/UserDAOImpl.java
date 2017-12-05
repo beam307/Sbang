@@ -20,75 +20,12 @@ public class UserDAOImpl implements UserDAO {
 	private static String namespace = "org.sbang.mapper.UserMapper";
 
 	@Override
-	public void create(UserVO vo) throws Exception {
+	public void create(UserVO vo) throws Exception { // 회원가입
 		session.insert(namespace + ".create", vo);
 	}
 
 	@Override
-	public UserVO read(String userEmail) throws Exception {
-		return session.selectOne(namespace + ".read", userEmail);
-	}
-
-	@Override
-	public void update(UserVO vo) throws Exception {
-		session.update(namespace + ".modify", vo);
-	}
-
-	@Override
-	public void delete(String userEmail) throws Exception {
-		session.delete(namespace + ".delete", userEmail);
-	}
-
-	@Override
-	public UserVO login(LoginDTO dto) throws Exception {
-		return session.selectOne(namespace + ".login", dto);
-	}
-
-	@Override
-	public String getPwd(LoginDTO dto) throws Exception {
-		return session.selectOne(namespace + ".getPwd", dto);
-	}
-
-	@Override
-	public void changePwd(UserVO vo) throws Exception {
-		session.selectOne(namespace + ".updatePwd", vo);
-	}
-
-	@Override
-	public boolean checkPw(String userEmail, String userPwd) throws Exception {
-		boolean result = false;
-
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("userEmail", userEmail);
-		map.put("userPwd", userPwd);
-
-		int count = session.selectOne(namespace + ".checkPwd", map);
-		if (count == 1)
-			result = true;
-		return result;
-	}
-
-	@Override
-	public void keepLogin(String userEmail, String sessionId, Date next) throws Exception {
-		Map<String, Object> map = new HashMap<String, Object>();
-
-		map.put("userEmail", userEmail);
-		map.put("sessionId", sessionId);
-		map.put("next", next);
-
-		session.update(namespace + ".keepLogin", map);
-
-	}
-
-	@Override
-	public UserVO checkUserWithSessionKey(String value) throws Exception {
-		return session.selectOne(namespace + ".checkUserWithSessionKey", value);
-	}
-
-	@Override
-	public void createAuthKey(String userEmail, String authKey) throws Exception { // 인증키
-																					// DB에
-																					// 넣기
+	public void createAuthKey(String userEmail, String authKey) throws Exception { // 회원가입시 인증키 추가
 		Map<String, Object> map = new HashMap<String, Object>();
 
 		map.put("userEmail", userEmail);
@@ -98,56 +35,108 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public void userAuth(String userEmail) throws Exception { // 인증키 일치시
-																// DB칼럼(인증여부)
-																// false->true 로
-																// 변경
+	public UserVO login(LoginDTO dto) throws Exception { // 로그인
+		return session.selectOne(namespace + ".login", dto);
+	}
+
+	@Override
+	public void keepLogin(String userEmail, String sessionId, Date next) throws Exception { // 자동로그인
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		map.put("userEmail", userEmail);
+		map.put("sessionId", sessionId);
+		map.put("next", next);
+
+		session.update(namespace + ".keepLogin", map);
+	}
+
+	@Override
+	public UserVO checkUserWithSessionKey(String value) throws Exception { // 자동 로그인
+		return session.selectOne(namespace + ".checkUserWithSessionKey", value);
+	}
+
+	@Override
+	public String getPwd(LoginDTO dto) throws Exception { // 비밀번호 가져오기
+		return session.selectOne(namespace + ".getPwd", dto);
+	}
+
+	@Override
+	public String getPwd(UserVO vo) throws Exception { // 비밀번호 가져오기
+		return session.selectOne(namespace + ".getPwd", vo);
+	}
+
+	@Override
+	public String findId(UserVO vo) throws Exception { // 아이디 찾기
+		return session.selectOne(namespace + ".findId", vo);
+	}
+
+	@Override
+	public int findIdCheck(UserVO vo) throws Exception { // 아이디찾기 정보확인
+		return session.selectOne(namespace + ".findIdCheck", vo);
+	}
+
+	@Override
+	public void findPwd(UserVO vo, String tempPwd) throws Exception { // 비밀번호 찾기
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		map.put("UserVO", vo);
+		map.put("tempPwd", tempPwd);
+
+		session.update(namespace + ".findPwd", map);
+	}
+
+	@Override
+	public int findPwdCheck(UserVO vo) throws Exception { // 비밀번호찾기 정보확인
+		return session.selectOne(namespace + ".findPwdCheck", vo);
+	}
+
+	@Override
+	public UserVO read(String userEmail) throws Exception { // 마이페이지 유저정보 가져오기
+		return session.selectOne(namespace + ".read", userEmail);
+	}
+
+	@Override
+	public void changePwd(UserVO vo) throws Exception { // 비밀번호 변경
+		session.selectOne(namespace + ".changePwd", vo);
+	}
+
+	@Override
+	public void modify(UserVO vo) throws Exception { // 프로필 정보 수정
+		session.update(namespace + ".modify", vo);
+	}
+
+	@Override
+	public void delete(String userEmail) throws Exception { // 회원 탈퇴
+		session.delete(namespace + ".delete", userEmail);
+	}
+
+	@Override
+	public void deleteAuth(String userEmail) throws Exception { // 회원탈퇴시 인증정보 삭제
+		session.delete(namespace + ".deleteAuth", userEmail);
+	}
+
+	@Override
+	public void userAuth(String userEmail) throws Exception { // 이메일인증 후 인증상태 변경
 		session.update(namespace + ".userAuth", userEmail);
 	}
 
 	@Override
-	public void deleteAuth(String userEmail) throws Exception {
-		session.delete(namespace + ".deleteAuth", userEmail);
-
-	}
-
-	@Override
-	public String findId(String userBirth, String userName) throws Exception {
-		Map<String, Object> map = new HashMap<String, Object>();
-
-		map.put("userBirth", userBirth);
-		map.put("userName", userName);
-		return session.selectOne(namespace + ".findId", map);
-
-	}
-
-	@Override
-	public void createPwd(String userEmail, String key) throws Exception {
-		Map<String, Object> map = new HashMap<String, Object>();
-
-		map.put("userEmail", userEmail);
-		map.put("key", key);
-		session.update(namespace + ".createPwd", map);
-
-	}
-
-	@Override
-	public void insertNaver(UserVO vo) throws Exception {
+	public void insertNaver(UserVO vo) throws Exception { // 네이버 로그인 정보 추가
 		session.update(namespace + ".insertNaver", vo);
 	}
 
 	@Override
-	public int selectNaver(UserVO vo) throws Exception {
+	public int selectNaver(UserVO vo) throws Exception { // 네이버 로그인 정보 확인
 		return session.selectOne(namespace + ".selectNaver", vo);
 	}
 
 	@Override
-	public void insertKakao(UserVO vo) throws Exception {
+	public void insertKakao(UserVO vo) throws Exception { // 카카오 로그인 정보 추가
 		session.update(namespace + ".insertKakao", vo);
 	}
 
 	@Override
-	public int selectKakao(UserVO vo) throws Exception {
+	public int selectKakao(UserVO vo) throws Exception { // 카카오 로그인 정보 확인
 		return session.selectOne(namespace + ".selectKakao", vo);
 	}
 }

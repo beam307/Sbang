@@ -52,6 +52,17 @@ public class NaverLoginBO {
 		return null;
 	}
 
+	/* Access Token을 이용하여 네이버 사용자 프로필 API를 호출 */
+	public String getUserProfile(OAuth2AccessToken oauthToken) throws IOException {
+
+		OAuth20Service oauthService = new ServiceBuilder().apiKey(CLIENT_ID).apiSecret(CLIENT_SECRET).callback(REDIRECT_URI).build(NaverLoginApi.instance());
+
+		OAuthRequest request = new OAuthRequest(Verb.GET, PROFILE_API_URL, oauthService);
+		oauthService.signRequest(oauthToken, request);
+		Response response = request.send();
+		return response.getBody();
+	}
+
 	/* 세션 유효성 검증을 위한 난수 생성기 */
 	private String generateRandomString() {
 		return UUID.randomUUID().toString();
@@ -65,16 +76,5 @@ public class NaverLoginBO {
 	/* http session에서 데이터 가져오기 */
 	private String getSession(HttpSession session) {
 		return (String) session.getAttribute(SESSION_STATE);
-	}
-
-	/* Access Token을 이용하여 네이버 사용자 프로필 API를 호출 */
-	public String getUserProfile(OAuth2AccessToken oauthToken) throws IOException {
-
-		OAuth20Service oauthService = new ServiceBuilder().apiKey(CLIENT_ID).apiSecret(CLIENT_SECRET).callback(REDIRECT_URI).build(NaverLoginApi.instance());
-
-		OAuthRequest request = new OAuthRequest(Verb.GET, PROFILE_API_URL, oauthService);
-		oauthService.signRequest(oauthToken, request);
-		Response response = request.send();
-		return response.getBody();
 	}
 }

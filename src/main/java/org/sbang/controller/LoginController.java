@@ -31,13 +31,11 @@ import com.github.scribejava.core.model.OAuth2AccessToken;
 @RequestMapping("/login")
 public class LoginController {
 
-	/* NaverLoginBO */
 	private NaverLoginBO naverLoginBO;
 
 	@Inject
 	private BCryptPasswordEncoder pwdEncoder;
 
-	/* NaverLoginBO */
 	@Inject
 	private void setNaverLoginBO(NaverLoginBO naverLoginBO) {
 		this.naverLoginBO = naverLoginBO;
@@ -47,36 +45,34 @@ public class LoginController {
 	private UserService service;
 
 	@RequestMapping(value = "/loginGet", method = RequestMethod.GET)
-	public String loginGet() throws Exception {
+	public String loginGet() throws Exception { // 로그인창
 
 		return "/user/login";
 	}
 
 	@RequestMapping(value = "/loginPost", method = RequestMethod.POST)
-	public void loginPost(LoginDTO dto, Model model, HttpSession session, RedirectAttributes rttr, UserVO vo) throws Exception {
-		
-		if (pwdEncoder.matches(dto.getUserPwd(), service.getPwd(dto))){ 
+	public void loginPost(LoginDTO dto, Model model, HttpSession session, RedirectAttributes rttr) throws Exception { // 로그인
+		UserVO vo = null;
+
+		if (pwdEncoder.matches(dto.getUserPwd(), service.getPwd(dto))) // DB 비밀번호와 로그인 비밀번호 비교
 			vo = service.login(dto); // vo에 userEmail만 저장
-		}
-		
-		if (vo == null){
+
+		if (vo == null)
 			return;
-		}
+
 		model.addAttribute("userVO", vo); // model에 {userVO : vo} 저장
 		if (dto.isUseCookie()) {
 			int amount = 60 * 60 * 24 * 7;
 
 			Date sessionLimit = new Date(System.currentTimeMillis() + (1000 * amount));
 
-			service.keepLogin(vo.getUserEmail(), session.getId(), sessionLimit); // 세션ID,
-																					// 세션시간
-																					// 저장
+			service.keepLogin(vo.getUserEmail(), session.getId(), sessionLimit); // 세션ID,세션시간,저장
 		}
 
 	}
 
-	@RequestMapping(value = "/logout", method = RequestMethod.GET) // 로그아웃
-	public String logout(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception {
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String logout(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception { // 로그아웃
 		Object obj = session.getAttribute("login");
 
 		if (obj != null) {
@@ -86,7 +82,7 @@ public class LoginController {
 
 			Cookie loginCookie = WebUtils.getCookie(request, "loginCookie");
 
-			if (loginCookie != null) {
+			if (loginCookie != null) { // 쿠키 제거
 				loginCookie.setPath("/");
 				loginCookie.setMaxAge(0);
 				response.addCookie(loginCookie);
@@ -97,7 +93,7 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/naverLogin", method = RequestMethod.GET)
-	public ModelAndView naverLogin(HttpSession session) {
+	public ModelAndView naverLogin(HttpSession session) { // 네이버 로그인
 		/* 네아로 인증 URL을 생성하기 위하여 getAuthorizationUrl을 호출 */
 		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
 
@@ -105,14 +101,14 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/callback", method = RequestMethod.GET)
-	public String callback(@RequestParam String code, @RequestParam String state, HttpSession session, Model model, UserVO vo) throws Exception {
+	public String callback(@RequestParam String code, @RequestParam String state, HttpSession session, Model model, UserVO vo) throws Exception { // 네이버 로그인 콜백
 		/* 네아로 인증이 성공적으로 완료되면 code 파라미터가 전달되며 이를 통해 access token을 발급 */
 		JsonParser json = new JsonParser();
 
 		OAuth2AccessToken oauthToken = naverLoginBO.getAccessToken(session, code, state);
 		String apiResult = naverLoginBO.getUserProfile(oauthToken);
 		vo = json.changeJson(apiResult); // vo에 userEmail, userGender, userNaver 저장
-
+		
 		if (service.selectNaver(vo) > 0) {
 			session.setAttribute("login", vo);
 		} else {
@@ -124,11 +120,10 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/kakaoLogin", method = { RequestMethod.GET, RequestMethod.POST })
-	public String kakaoLogin(@RequestParam("code") String code, UserVO vo, HttpSession session) throws Exception {
+	public String kakaoLogin(@RequestParam("code") String code, UserVO vo, HttpSession session) throws Exception { // 카카오 로그인
 		JsonNode jsonToken = KakaoLogin.getAccessToken(code);
 		JsonNode userInfo = KakaoLogin.getKakaoUserInfo(jsonToken.get("access_token").toString());
 		vo = KakaoLogin.changeData(userInfo); // vo userEmail, userName, userKakao 저장
-
 		if (service.selectKakao(vo) > 0) {
 			session.setAttribute("login", vo);
 		} else {

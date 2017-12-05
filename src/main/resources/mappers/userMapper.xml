@@ -5,90 +5,94 @@
 
 <mapper namespace="org.sbang.mapper.UserMapper">
 
-	<insert id="create">
+	<insert id="create"> <!-- 회원가입 -->
 		insert into user(userName, userEmail, userPwd, userBirth, userGender,
-		userPhoneNumber)values(#{userName}, #{userEmail}, #{userPwd}, #{userBirth}, #{userGender}, #{userPhoneNumber})
+		userPhoneNumber)values(#{userName}, #{userEmail},
+		#{userPwd}, #{userBirth}, #{userGender}, #{userPhoneNumber})
 	</insert>
 
-	<update id="createPwd">
-		update user set userPwd = #{key} whereuserEmail = #{userEmail}
-	</update>
-
-	<insert id="createAuthKey">
+	<insert id="createAuthKey"> <!-- 회원가입시 인증키 추가 -->
 		insert into userAuth(userEmail, userKey) values(#{userEmail}, #{authKey})
 	</insert>
 
-	<select id="login" resultType="UserVO">
-		<![CDATA[select userEmail from user where userEmail = #{userEmail} and userPwd = #{userPwd} and userCertification > 0]]>
+	<select id="login" resultType="UserVO"> <!-- 로그인 -->
+		<![CDATA[select userEmail from user where userEmail = #{userEmail} and userCertification > 0]]>
+	</select>
+	
+	<update id="keepLogin">	<!-- 자동로그인 -->
+		update user set sessionKey = #{sessionId}, sessionLimit = #{next} where userEmail = #{userEmail}
+	</update>
+
+	<select id="checkUserWithSessionKey" resultType="UserVO">	<!-- 자동로그인 -->
+		<![CDATA[select * from user where sessionKey = #{value} and sessionLimit > now()]]>
 	</select>
 
-	<select id="getPwd" resultType="String">
+	<select id="getPwd" resultType="String"> <!-- 비밀번호 가져오기 -->
 		select userPwd from user where userEmail = #{userEmail}
 	</select>
 
-	<select id="findId" resultType="String">
+	<select id="findId" resultType="String"> <!-- 아이디 찾기 -->
 		select userEmail from user where userName = #{userName} and userBirth =
 		#{userBirth}
 	</select>
 
-	<update id="findPwd">
-		update user set userPwd = #{userNewPwd} where userEmail = #{userEmail} and userName = #{userName} and
-		userBirth = #{userBirth}
+	<select id="findIdCheck" resultType="int"> <!-- 아이디 찾기(일치하는 정보확인) -->
+		select count(*) from user where userName = #{userName} and userBirth =
+		#{userBirth}
+	</select>
+
+	<update id="findPwd"> <!-- 비밀번호찾기 (임시비밀번호으로 변경) -->
+		update user set userPwd = #{tempPwd} where userEmail = #{UserVO.userEmail} and userName = #{UserVO.userName} and
+		userBirth = #{UserVO.userBirth}
 	</update>
 
-	<select id="read" resultType="UserVO">
+	<select id="findPwdCheck" resultType="int"> <!-- 비밀번호 찾기(일치하는 정보확인) -->
+		select count(*) from user where userName = #{userName} and userEmail = #{userEmail} and userBirth = #{userBirth}
+	</select>
+
+	<select id="read" resultType="UserVO"> <!-- 마이페이지 유저정보 가져오기 -->
 		select userEmail, userName, userBirth, userPhoneNumber from user where
 		userEmail=#{userEmail}
 	</select>
 
-	<update id="updatePwd">
-		update user set userPwd = #{userNewPwd} where userEmail = #{userEmail} and userPwd = #{userPwd}
+	<update id="changePwd"> <!-- 비밀번호 변경 -->
+		update user set userPwd = #{userNewPwd} where userEmail = #{userEmail}
 	</update>
 
-	<select id="checkPwd" resultType="int">
-		select count(*) from user where userEmail = #{userEmail} and userPwd =
-		#{userPwd}
-	</select>
-
-	<update id="modify">
+	<update id="modify"> <!-- 프로필 정보 수정 -->
 		update user set userPhoneNumber = #{userPhoneNumber} , userName = #{userName} , userBirth =
-		#{userBirth} where userEmail = #{userEmail}
+		#{userBirth} where
+		userEmail = #{userEmail}
 	</update>
 
-	<delete id="delete">
+	<delete id="delete"> <!-- 회원 탈퇴 -->
 		delete from user where userEmail=#{userEmail}
 	</delete>
 
-	<delete id="deleteAuth">
+	<delete id="deleteAuth"> <!-- 회원 탈퇴시 인증정보삭제 -->
 		delete from userAuth where userEmail=#{userEmail}
 	</delete>
 
-	<update id="keepLogin">
-		update user set sessionKey = #{sessionId}, sessionLimit = #{next} where userEmail = #{userEmail}
-	</update>
-
-	<select id="checkUserWithSessionKey" resultType="UserVO">
-		<![CDATA[select * from user where sessionKey = #{value} and sessionLimit > now()]]>
-	</select>
-
-	<update id="userAuth">
+	<update id="userAuth"> <!-- 이메일인증 후 인증상태 변경 -->
 		<![CDATA[update user set userCertification = 1 where (select count(*) from userAuth where userEmail = #{userEmail}) > 0]]>
 	</update>
 
-	<insert id="insertNaver">
+	<insert id="insertNaver"> <!-- 네이버 로그인 정보추가 -->
 		insert into user(userEmail, userGender, userNaver, userName, userCertification) values(#{userEmail},
-		#{userGender}, #{userNaver}, #{userName}, 1)
+		#{userGender},
+		#{userNaver}, #{userName}, 1)
 	</insert>
 
-	<select id="selectNaver" resultType="int"> select count(*) from user where userNaver = #{userNaver}
+	<select id="selectNaver" resultType="int"> <!-- 네이버 로그인 정보 확인 -->
+		select count(*) from user where userNaver = #{userNaver}
 	</select>
 
-	<insert id="insertKakao">
+	<insert id="insertKakao"> <!-- 카카오 로그인 정보 추가 -->
 		insert into user(userEmail, userName, userKakao, userCertification) values(#{userEmail}, #{userName},
 		#{userKakao}, 1)
 	</insert>
 
-	<select id="selectKakao" resultType="int">
+	<select id="selectKakao" resultType="int"> <!-- 카카오 로그인 정보 확인 -->
 		select count(*) from user where userKakao = #{userKakao}
 	</select>
 </mapper>

@@ -14,6 +14,11 @@
 		<div class="form-group">
 			<label for="InputPassword">비밀번호</label> <input name="userPwd" type="password" class="form-control" id="InputPassword"
 				placeholder="비밀번호를 입력하세요">
+			<p>영문, 숫자만 포함된 8~18자리를 입력해주세요</p>
+		</div>
+		<div class="form-group">
+			<label for="InputPassword">비밀번호확인</label> <input name="userPwdCheck" type="password" class="form-control" id="InputPasswordChk"
+				placeholder="비밀번호를 확인합니다.">
 		</div>
 		<div class="form-group">
 			<label for="InputBirthday">생년월일</label> <input name="userBirth" type="text" class="form-control" id="InputBirthday" placeholder="ex.990101">
@@ -59,7 +64,7 @@
 		var chkPhone1 = /^[0-9]{2,3}$/; // 전화번호 앞 검사식
 		var chkPhone2 = /^[0-9]{3,4}$/; // 중간자리 검사식
 		var chkPhone3 = /^[0-9]{4}$/; // 마지막자리 검사식
-		
+
 		var form = $('#joinForm');
 		var userEmail = $('#InputEmail');
 		var userName = $('#InputName');
