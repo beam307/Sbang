@@ -7,8 +7,16 @@
 	</configSuffixes>
 	<enableImports><![CDATA[true]]></enableImports>
 	<configs>
+<<<<<<< HEAD
 	</configs>
 	<autoconfigs>
+=======
+		<config>src/main/webapp/WEB-INF/spring/spring-security.xml</config>
+	</configs>
+	<autoconfigs>
+		<config>src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml</config>
+		<config>src/main/webapp/WEB-INF/spring/root-context.xml</config>
+>>>>>>> branch 'firstStep' of https://github.com/beam307/Sbang
 	</autoconfigs>
 	<configSets>
 	</configSets>

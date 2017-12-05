@@ -5,170 +5,94 @@
 
 <mapper namespace="org.sbang.mapper.UserMapper">
 
-<insert id = "create">
-insert into user(userName, userEmail, userPwd, userBirth, userGender, userPhoneNumber)
-values (#{userName},#{userEmail},#{userPwd},#{userBirth},#{userGender},#{userPhoneNumber})
-</insert>
-
-<select id="login" resultType="UserVO">
-	select userEmail, userPwd, userName from user where userEmail = #{userEmail} and userPwd = #{userPwd}
-</select>
-
-<!-- <insert id = "create_image">
-insert into image(image_imagePath,image_id) values(#{image_imagePath},LAST_INSERT_id())
-</insert> -->
-
-
-<!-- 	<insert id="create">
-		insert into tbl_board(title,content,writer) values
-		(#{title},#{content},#{writer})
+	<insert id="create"> <!-- 회원가입 -->
+		insert into user(userName, userEmail, userPwd, userBirth, userGender,
+		userPhoneNumber)values(#{userName}, #{userEmail},
+		#{userPwd}, #{userBirth}, #{userGender}, #{userPhoneNumber})
 	</insert>
 
-	<select id="read" resultType="BoardVO">
-		select
-		*
-		from
-		tbl_board
-		where
-		bno=#{bno}
-	</select>
+	<insert id="createAuthKey"> <!-- 회원가입시 인증키 추가 -->
+		insert into userAuth(userEmail, userKey) values(#{userEmail}, #{authKey})
+	</insert>
 
-	<update id="update">
-		update tbl_board set
-		title=#{title},content=#{content}
-		where bno=#{bno}
+	<select id="login" resultType="UserVO"> <!-- 로그인 -->
+		<![CDATA[select userEmail from user where userEmail = #{userEmail} and userCertification > 0]]>
+	</select>
+	
+	<update id="keepLogin">	<!-- 자동로그인 -->
+		update user set sessionKey = #{sessionId}, sessionLimit = #{next} where userEmail = #{userEmail}
 	</update>
 
-	<delete id="delete">
-		delete from tbl_board where bno=#{bno}
+	<select id="checkUserWithSessionKey" resultType="UserVO">	<!-- 자동로그인 -->
+		<![CDATA[select * from user where sessionKey = #{value} and sessionLimit > now()]]>
+	</select>
+
+	<select id="getPwd" resultType="String"> <!-- 비밀번호 가져오기 -->
+		select userPwd from user where userEmail = #{userEmail}
+	</select>
+
+	<select id="findId" resultType="String"> <!-- 아이디 찾기 -->
+		select userEmail from user where userName = #{userName} and userBirth =
+		#{userBirth}
+	</select>
+
+	<select id="findIdCheck" resultType="int"> <!-- 아이디 찾기(일치하는 정보확인) -->
+		select count(*) from user where userName = #{userName} and userBirth =
+		#{userBirth}
+	</select>
+
+	<update id="findPwd"> <!-- 비밀번호찾기 (임시비밀번호으로 변경) -->
+		update user set userPwd = #{tempPwd} where userEmail = #{UserVO.userEmail} and userName = #{UserVO.userName} and
+		userBirth = #{UserVO.userBirth}
+	</update>
+
+	<select id="findPwdCheck" resultType="int"> <!-- 비밀번호 찾기(일치하는 정보확인) -->
+		select count(*) from user where userName = #{userName} and userEmail = #{userEmail} and userBirth = #{userBirth}
+	</select>
+
+	<select id="read" resultType="UserVO"> <!-- 마이페이지 유저정보 가져오기 -->
+		select userEmail, userName, userBirth, userPhoneNumber from user where
+		userEmail=#{userEmail}
+	</select>
+
+	<update id="changePwd"> <!-- 비밀번호 변경 -->
+		update user set userPwd = #{userNewPwd} where userEmail = #{userEmail}
+	</update>
+
+	<update id="modify"> <!-- 프로필 정보 수정 -->
+		update user set userPhoneNumber = #{userPhoneNumber} , userName = #{userName} , userBirth =
+		#{userBirth} where
+		userEmail = #{userEmail}
+	</update>
+
+	<delete id="delete"> <!-- 회원 탈퇴 -->
+		delete from user where userEmail=#{userEmail}
 	</delete>
 
-	<select id="listAll" resultType="org.sbang.domain.BoardVO">
-  		<![CDATA[
-  		select
-  		*
-  		from
-  		tbl_board
-  		where bno>0
-  		order by bno desc,regdate desc
-  		]]>
-	</select>
-
-	<select id="listPage" resultType="BoardVO">
-  	<![CDATA[
-  		select
-  		*
-  		from
-  		tbl_board
-  		where bno>0
-  		order by bno desc, regdate desc
-  		limit #{page},10
-  	]]>
-	</select>
-
-	<select id="listCriteria" resultType="BoardVO">
-  	<![CDATA[
-  	select
-  	*
-  	from
-  	tbl_board
-  	where bno>0
-  	order by bno desc, regdate desc
-  	limit #{pageStart},#{perPageNum}
-  	]]>
-	</select>
-
-	<select id="countPaging" resultType="int">
-  	<![CDATA[
-  	select
-  	count(bno)
-  	from
-  	tbl_board
-  	where
-  	bno>0
-  	]]>
-	</select>
-
-	<select id="listSearch" resultType="BoardVO">
-  	<![CDATA[
-  	select *
-  	from tbl_board
-  	where bno>0
-  	]]>
-		<include refid="search"></include>
-  	<![CDATA[
-  	order by bno desc
-  	limit #{pageStart},#{perPageNum}
-  	]]>
-	</select>
-	
-	<select id="listSearchCount" resultType="int">
-  	<![CDATA[
-  	select count(bno)
-  	from tbl_board
-  	where bno>0
-  	]]>
-  	<include refid="search"></include>
- 
-	</select>
-	
-	<update id="updateReplyCnt">
-		update tbl_board set replycnt=replycnt+#{amount} where bno=#{bno}
-	</update>
-	
-	<update id="updateViewCnt">
-		update tbl_board set viewcnt=viewcnt+1 where bno=#{bno}
-	</update>
-	
-	<insert id="addAttach">
-	insert into tbl_attach(fullName,bno) values(#{fullName},LAST_INSERT_id())
-	</insert>
-	
-	<select id="getAttach" resultType="string">
-		select fullName from tbl_attach where bno=#{bno} order by regdate
-	</select>
-	
-	<delete id="deleteAttach">
-		delete from tbl_attach where bno=#{bno}
+	<delete id="deleteAuth"> <!-- 회원 탈퇴시 인증정보삭제 -->
+		delete from userAuth where userEmail=#{userEmail}
 	</delete>
-	
-	<insert id="replaceAttach">
-		insert into tbl_attach(fullName,bno) values (#{fullName},#{bno})
+
+	<update id="userAuth"> <!-- 이메일인증 후 인증상태 변경 -->
+		<![CDATA[update user set userCertification = 1 where (select count(*) from userAuth where userEmail = #{userEmail}) > 0]]>
+	</update>
+
+	<insert id="insertNaver"> <!-- 네이버 로그인 정보추가 -->
+		insert into user(userEmail, userGender, userNaver, userName, userCertification) values(#{userEmail},
+		#{userGender},
+		#{userNaver}, #{userName}, 1)
 	</insert>
 
-	<sql id="search">
-		<if test="searchType != null">
-			<if test="searchType == 't'.toString()">
-				and title like CONCAT('%', #{keyword}, '%')
-			</if>
-			<if test="searchType == 'c'.toString()">
-				and content like CONCAT('%', #{keyword}, '%')
-			</if>
-			<if test="searchType == 'w'.toString()">
-				and writer like CONCAT('%', #{keyword}, '%')
-			</if>
-			<if test="searchType == 'tc'.toString()">
-				and ( title like CONCAT('%', #{keyword}, '%') OR content
-				like
-				CONCAT('%', #{keyword}, '%'))
-			</if>
-			<if test="searchType == 'cw'.toString()">
-				and ( content like CONCAT('%', #{keyword}, '%') OR writer
-				like
-				CONCAT('%', #{keyword}, '%'))
-			</if>
-			<if test="searchType == 'tcw'.toString()">
-				and ( title like CONCAT('%', #{keyword}, '%')
-				OR
-				content
-				like CONCAT('%', #{keyword}, '%')
-				OR
-				writer like CONCAT('%',
-				#{keyword}, '%'))
-			</if>
-		</if>
-	</sql>
+	<select id="selectNaver" resultType="int"> <!-- 네이버 로그인 정보 확인 -->
+		select count(*) from user where userNaver = #{userNaver}
+	</select>
 
- -->
+	<insert id="insertKakao"> <!-- 카카오 로그인 정보 추가 -->
+		insert into user(userEmail, userName, userKakao, userCertification) values(#{userEmail}, #{userName},
+		#{userKakao}, 1)
+	</insert>
 
+	<select id="selectKakao" resultType="int"> <!-- 카카오 로그인 정보 확인 -->
+		select count(*) from user where userKakao = #{userKakao}
+	</select>
 </mapper>
