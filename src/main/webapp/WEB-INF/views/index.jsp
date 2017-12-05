@@ -15,7 +15,7 @@
 		</div>
 
 		<div class="form-group">
-
+		
 			<input type="hidden" name="searchType" value="t" /> <input type="text" class="form-control" placeholder="검색어입력하는곳" name="keyword"
 				id="searchBox">
 		</div>
