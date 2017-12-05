@@ -71,8 +71,7 @@
 		<input type="hidden" name='studyNo' value="${studyVO.studyNo }"> <input type="hidden" name='page' value="${cri.page }"> <input
 			type="hidden" name='perPageNum' value="${cri.perPageNum }"> <input type="hidden" name='searchType' value="${cri.searchType }">
 		<input type="hidden" name='keyword' value="${cri.keyword }"> <input type="hidden" name='lineUp' value="${cri.lineUp}" /> <input
-			type="hidden" name='keyword' value="${cri.region }"> <input type="hidden" name='region' value="${cri.region}" /> <input
-			type="hidden" name='upCategory' value="${cri.upCategory }">
+			type="hidden" name='region' value="${cri.region }"> <input type="hidden" name='upCategory' value="${cri.upCategory }">
 	</form>
 
 	<div class="row">

@@ -30,12 +30,12 @@ public class StudyController {
 	@Inject
 	private StudyService service;
 
-	@RequestMapping(value = "/studyReg", method = RequestMethod.GET)
+	@RequestMapping(value = "/studyReg", method = RequestMethod.GET) //스터디 등록 페이지
 	public void registGET(StudyVO study, Model model) throws Exception {
 		logger.info("register get...");
 	}
 
-	@RequestMapping(value = "/studyReg", method = RequestMethod.POST)
+	@RequestMapping(value = "/studyReg", method = RequestMethod.POST) // 스터디 등록
 	public String registPOST(StudyVO study,RedirectAttributes rttr) throws Exception {
 		logger.info("regist post........");
 		logger.info(study.toString());
@@ -49,7 +49,7 @@ public class StudyController {
 		return "redirect:/study/studyList";
 	}
 
-	@RequestMapping(value = "/studyList", method = RequestMethod.GET)
+	@RequestMapping(value = "/studyList", method = RequestMethod.GET) // 스터디 리스트 출력
 	public void listAll(@ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
 		logger.info("show all list.........");
 		logger.info(cri.toString());
@@ -61,7 +61,7 @@ public class StudyController {
 		model.addAttribute("pageMaker", pageMaker);
 	}
 
-	@RequestMapping(value = "/studyView", method = RequestMethod.GET)
+	@RequestMapping(value = "/studyView", method = RequestMethod.GET) // 스터디 상세페이지 출력
 	public void read(@RequestParam("studyNo") int studyNo, @ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
 		System.out.println(cri.toString());
 		
@@ -69,7 +69,7 @@ public class StudyController {
 		model.addAttribute("weekList",service.getWeek(studyNo));
 	}
 
-	@RequestMapping(value = "/studyRemove", method = RequestMethod.POST)
+	@RequestMapping(value = "/studyRemove", method = RequestMethod.POST) //스터디 삭제
 	public String remove(@RequestParam("studyNo") int studyNo, SearchCriteria cri, RedirectAttributes rttr) throws Exception {
 		service.remove(studyNo);
 
@@ -85,17 +85,17 @@ public class StudyController {
 
 	@RequestMapping("/getImg/{studyNo}")
 	@ResponseBody
-	public List<String> getImg(@PathVariable("studyNo") Integer studyNo) throws Exception {
+	public List<String> getImg(@PathVariable("studyNo") Integer studyNo) throws Exception {//json으로 스터디 이미지  출력
 		return service.getImg(studyNo);
 	}
 
-	@RequestMapping(value = "/studyModify", method = RequestMethod.GET)
+	@RequestMapping(value = "/studyModify", method = RequestMethod.GET) // 스터디 수정페이지 출력
 	public void modifyGET(@RequestParam("studyNo") int studyNo, @ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
 		model.addAttribute(service.read(studyNo));
 		model.addAttribute("weekList",service.getWeek(studyNo));
 	}
 
-	@RequestMapping(value = "/studyModify", method = RequestMethod.POST)
+	@RequestMapping(value = "/studyModify", method = RequestMethod.POST) // 스터디 수정
 	public String modifyPOST(StudyVO study, SearchCriteria cri, RedirectAttributes rttr) throws Exception {
 		logger.info("mod post........");
 		rttr.addAttribute("page", cri.getPage());

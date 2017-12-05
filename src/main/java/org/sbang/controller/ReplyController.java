@@ -25,7 +25,7 @@ public class ReplyController {
 	@Inject
 	private ReplyService replyService;
 	
-	@RequestMapping(value = "", method = RequestMethod.POST)
+	@RequestMapping(value = "", method = RequestMethod.POST) //댓글 등록
 	public ResponseEntity<String> register(@RequestBody ReplyVO vo) {
 		ResponseEntity<String> entity = null;
 		try {
@@ -40,7 +40,7 @@ public class ReplyController {
 		return entity;
 	}
 
-	@RequestMapping(value = "/all/{studyNo}", method = RequestMethod.GET)
+	@RequestMapping(value = "/all/{studyNo}", method = RequestMethod.GET) // 게시물 댓글 리스트 출력
 	public ResponseEntity<List<ReplyVO>> list(@PathVariable("studyNo") Integer studyNo) {
 		ResponseEntity<List<ReplyVO>> entity = null;
 
@@ -53,7 +53,7 @@ public class ReplyController {
 		return entity;
 	}
 
-	@RequestMapping(value = "/{replyNo}", method = { RequestMethod.PUT, RequestMethod.PATCH })
+	@RequestMapping(value = "/{replyNo}", method = { RequestMethod.PUT, RequestMethod.PATCH })// 댓글 수정
 	public ResponseEntity<String> update(@PathVariable("replyNo") Integer replyNo, @RequestBody ReplyVO vo) {
 		ResponseEntity<String> entity = null;
 		try {
@@ -68,7 +68,7 @@ public class ReplyController {
 		return entity;
 	}
 
-	@RequestMapping(value = "/{replyNo}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/{replyNo}", method = RequestMethod.DELETE) // 댓글 삭제
 	public ResponseEntity<String> remove(@PathVariable("replyNo") Integer replyNo,@RequestBody ReplyVO vo) {
 		System.out.println("controller: delete");
 		ResponseEntity<String> entity = null;
@@ -82,7 +82,7 @@ public class ReplyController {
 		return entity;
 	}
 
-	@RequestMapping(value = "/{studyNo}/{page}", method = RequestMethod.GET)
+	@RequestMapping(value = "/{studyNo}/{page}", method = RequestMethod.GET) // 게시물 댓글 페이지 포함 리스트 출력
 	public ResponseEntity<Map<String, Object>> listPage(@PathVariable("studyNo") Integer studyNo, @PathVariable("page") Integer page) {
 		ResponseEntity<Map<String, Object>> entity = null;
 

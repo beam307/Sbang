@@ -27,12 +27,6 @@
 	<delete id="delete">
 		delete from study where studyNo=#{studyNo}
 	</delete>
-
-	<select id="listAll" resultType="StudyVO">
-  		<![CDATA[
-  		select * from study where studyNo>0 order by studyNo desc,studyRegDate desc LIMIT 9
-  		]]>
-	</select>
 	
 	<!-- 이미지검색 CRUD -->
 	<insert id="addImg">
@@ -51,14 +45,9 @@
 		insert into image(imagePath,studyNo) values (#{imagePath},#{studyNo})
 	</insert>
 
-	<select id="countPaging" resultType="int">
-  	<![CDATA[
-	  	select count(studyNo) from study where studyNo>0
-  	]]>
-	</select>
 
 	<!-- 서치 -->
-	<select id="listSearch" resultType="StudyVO">
+	<select id="listSearch" resultType="StudyVO"><!--게시글 리스트 전체 출력(카테고리,지역,검색, 정렬:line)  -->
   	<![CDATA[
 	  	select s.studyNo, s.studyName, s.studyRegDate, s.studyViewCnt, s.studyReplyCnt, i.imagePath 
 	  	from study s left outer join (select imagePath, studyNo from image group by studyNo) i 
@@ -136,7 +125,7 @@
 	<!--지역 검색 sql 모듈 -->
 	<sql id="region">
 		<if test="region != null">
-			and s.studyRegion like CONCAT('%', #{region}, '%')
+			and s.studyRegion like CONCAT('%', #{region}, '%') 
 		</if>
 	</sql>
 

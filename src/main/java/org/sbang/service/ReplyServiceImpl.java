@@ -22,25 +22,25 @@ public class ReplyServiceImpl implements ReplyService {
 
 	@Transactional
 	@Override
-	public void addReply(ReplyVO vo) throws Exception {
+	public void addReply(ReplyVO vo) throws Exception {//´ñ±Ûµî·Ï
 		replyDAO.create(vo);
 		studyDAO.updateReplyCnt(vo.getStudyNo(), 1);
 		
 	}
 
 	@Override
-	public List<ReplyVO> listReply(Integer studyNo) throws Exception {
+	public List<ReplyVO> listReply(Integer studyNo) throws Exception {//´ñ±Û Ãâ·Â
 		return replyDAO.list(studyNo);
 	}
 
 	@Override
-	public void modifyReply(ReplyVO vo) throws Exception {
+	public void modifyReply(ReplyVO vo) throws Exception {//´ñ±Û ¼öÁ¤
 		replyDAO.update(vo);
 	}
 
 	@Transactional
 	@Override
-	public void removeReply(Integer replyNo,Integer studyNo) throws Exception {
+	public void removeReply(Integer replyNo,Integer studyNo) throws Exception {//´ñ±Û »èÁ¦
 		replyDAO.delete(replyNo);
 		studyDAO.updateReplyCnt(studyNo, -1);
 	}

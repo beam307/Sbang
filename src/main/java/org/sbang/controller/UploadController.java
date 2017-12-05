@@ -33,7 +33,7 @@ public class UploadController {
 	private String uploadPath;
 
 	@RequestMapping(value = "/uploadForm", method = RequestMethod.POST)
-	public String uploadForm(MultipartFile file, Model model) throws Exception {
+	public String uploadForm(MultipartFile file, Model model) throws Exception { //view에 업로드 시킨 이미지들 데이터베이스에  저장
 		logger.info("originalName: " + file.getOriginalFilename());
 		logger.info("size: " + file.getSize());
 		logger.info("contentType: " + file.getContentType());
@@ -44,12 +44,7 @@ public class UploadController {
 		return "uploadResult";
 	}
 
-	@RequestMapping(value = "/uploadAjax", method = RequestMethod.GET)
-	public void uploadAjax() {
-
-	}
-
-	private String uploadFile(String originalName, byte[] fileData) throws Exception {
+	private String uploadFile(String originalName, byte[] fileData) throws Exception {//파일 이름 랜덤생성
 		UUID uid = UUID.randomUUID();
 		String savedName = uid.toString() + "_" + originalName;
 
@@ -60,7 +55,7 @@ public class UploadController {
 
 	@ResponseBody
 	@RequestMapping(value = "/uploadAjax", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
-	public ResponseEntity<String> uploadAjax(MultipartFile file) throws Exception {
+	public ResponseEntity<String> uploadAjax(MultipartFile file) throws Exception { //view단에 업로드
 		logger.info("orginalName: " + file.getOriginalFilename());
 		logger.info("size: " + file.getSize());
 		logger.info("contentType: " + file.getContentType());
@@ -69,7 +64,7 @@ public class UploadController {
 
 	@ResponseBody
 	@RequestMapping("/displayFile")
-	public ResponseEntity<byte[]> displayFile(String fileName) throws Exception {
+	public ResponseEntity<byte[]> displayFile(String fileName) throws Exception { // view단에 업로드상태 출력
 		InputStream in = null;
 		ResponseEntity<byte[]> entity = null;
 		logger.info("FILE NAME: " + fileName);
@@ -100,7 +95,7 @@ public class UploadController {
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/deleteFile", method = RequestMethod.POST)
+	@RequestMapping(value = "/deleteFile", method = RequestMethod.POST) // 업로드상태 제거
 	public ResponseEntity<String> deleteFile(String fileName) {
 		logger.info("delete file: " + fileName);
 		String formatName = fileName.substring(fileName.lastIndexOf(".") + 1);
@@ -116,7 +111,7 @@ public class UploadController {
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/deleteAllFiles", method = RequestMethod.POST)
+	@RequestMapping(value = "/deleteAllFiles", method = RequestMethod.POST) // 게시물 삭제시 업로드데이터 삭제
 	public ResponseEntity<String> deleteFile(@RequestParam("files[]") String[] files) {
 		logger.info("delete all files: " + files);
 

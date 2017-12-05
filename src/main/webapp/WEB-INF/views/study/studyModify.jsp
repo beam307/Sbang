@@ -358,33 +358,10 @@
 				<div class="form-group">
 					<label class="col-sm-2 control-label">지역</label>
 					<div class="col-sm-10">
-						<div class="col-sm-6 step1-select1">
-							<select class="form-control" name="studyRegion">
-								<option>대분류</option>
-								<option value="1">1</option>
-								<option value="2">2</option>
-								<option value="3">3</option>
-								<option value="4">4</option>
-								<option value="5">5</option>
-							</select>
-						</div>
-						<div class="col-sm-6 step1-select2">
-							<select class="form-control" name="studyRegion">
-								<option>소분류</option>
-								<option value="1">1</option>
-								<option value="2">2</option>
-								<option value="3">3</option>
-								<option value="4">4</option>
-								<option value="5">5</option>
-							</select>
-						</div>
-						
-						<div class="col-sm-10">
-							<input type="text" id="sample4_postcode" placeholder="우편번호"> <input type="button" onclick="sample4_execDaumPostcode()"
-								value="우편번호 찾기"><br> <input type="text" name="studyRegion" id="sample4_roadAddress" placeholder="도로명주소" value="${studyVO.studyRegion }"> <input
-								type="text" id="sample4_jibunAddress" placeholder="지번주소"> <span id="guide" style="color: #999"></span>
-						</div>
-						
+						<input type="text" class="form-control" id="sample4_postcode" placeholder="우편번호"> 
+						<input type="button" class="form-control" onclick="sample4_execDaumPostcode()"value="우편번호 찾기"> 
+						<input type="text" class="form-control" name="studyRegion" id="sample4_roadAddress" placeholder="도로명주소" value="${studyVO.studyRegion }"> 
+						<input type="text" class="form-control" id="sample4_jibunAddress" placeholder="지번주소"> <span id="guide" style="color: #999"></span>
 					</div>
 				</div>
 				<div class="col-sm-12">
@@ -439,12 +416,12 @@
 							<fmt:formatDate value="${studyVO.studyStartDate}" pattern="MM/dd/yyyy" var="date" />
 							<input type="text" id="testDatepicker" class="form-control" name="studyStartDate" value="${date }">
 							<script>
-                        $(function() {
-                           $("#testDatepicker").datepicker({
+								$(function() {
+									$("#testDatepicker").datepicker({
 
-                           });
-                        });
-                     </script>
+									});
+								});
+							</script>
 						</div>
 					</div>
 				</div>
@@ -576,203 +553,218 @@
 </script>
 <script type="text/javascript" src="/resources/dist/js/upload.js"></script>
 <script>
-   $(document)
-         .ready(
-               function() {
-                  /* 핸들바 탬플릿 컴파일 */
-                  var template = Handlebars
-                        .compile($("#template").html());
+	$(document)
+			.ready(
+					function() {
+						/* 핸들바 탬플릿 컴파일 */
+						var template = Handlebars.compile($("#template").html());
 
-                  var formObj = $("form[role='form']");
+						var formObj = $("form[role='form']");
 
-                  console.log(formObj);
+						console.log(formObj);
 
-                  /* 취소버튼 클릭시  */
-                  $("#cancelBtn").on("click", function() {
-                	 self.location = "/study/studyList?page=${cri.page}&perPageNum=${cri.perPageNum}&searchType=${cri.searchType}&keyword=${cri.keyword}&lineUp=${cri.lineUp}";
-                  });
+						/* 취소버튼 클릭시  */
+						$("#cancelBtn")
+								.on(
+										"click",
+										function() {
+											self.location = "/study/studyList?page=${cri.page}&perPageNum=${cri.perPageNum}&searchType=${cri.searchType}&keyword=${cri.keyword}&lineUp=${cri.lineUp}";
+										});
 
-                  /* 완료버튼 클릭시  */
-                  $("#confirmBtn").on("click", function() {
-                     formObj.submit();
-                  });
-                  /*업로드된 이미지 출력  */
-                  var studyNo = ${studyVO.studyNo};
-                  $.getJSON("/study/getImg/" + studyNo, function(list) {
-                     $(list).each(function() {
-                        var fileInfo = getFileInfo(this);
-                        var html = template(fileInfo);
-                        $(".uploadedList").append(html);
-                     });
-                  });
-                  
-                  /*input:file로 파일 업로드하기  */
-              	$("#exampleInputFile").on("change", function(event) {
-              		event.preventDefault();
-
-              		/* var files = event.originalEvent.dataTransfer.files;
-
-              		var file = files[0];
-              		 */
-              		//console.log(file);
-              		var formData = new FormData();
-              		formData.append("file", $("input[id=exampleInputFile]")[0].files[0]);
-
-              		/*컴트롤러로 파일명을 보낸후 콜백으로 만들어진 이미지파일명을 받은후 템플릿에 출력시킨다.  */
-              		$.ajax({
-              			url : '/uploadAjax',
-              			data : formData,
-              			dataType : 'text',
-              			processData : false,
-              			contentType : false,
-              			type : 'POST',
-              			success : function(data) {
-
-              				var fileInfo = getFileInfo(data);
-
-              				var html = template(fileInfo);
-
-              				$(".uploadedList").append(html);
-              			}
-              		});
-              	});
-                  
-                  /*파일 드랍시 업로드(ajax)  */
-                  $(".fileDrop").on("dragenter dragover",
-                        function(event) {
-                           event.preventDefault();
-                        });
-
-                  $(".fileDrop").on("drop", function(event) {
-                     event.preventDefault();
-
-                     var files = event.originalEvent.dataTransfer.files;
-
-                     var file = files[0];
-
-                     //console.log(file);
-
-                     var formData = new FormData();
-                     formData.append("file", file);
-
-                     $.ajax({
-                        url : '/uploadAjax',
-                        data : formData,
-                        dataType : 'text',
-                        processData : false,
-                        contentType : false,
-                        type : 'POST',
-                        success : function(data) {
-
-                           var fileInfo = getFileInfo(data);
-
-                           var html = template(fileInfo);
-
-                           $(".uploadedList").append(html);
-                        }
-                     });
-                  });
-                  
-                  /*x버튼 클릭시 로컬에서 파일제거  */
-                  $(".uploadedList").on(
-                        "click",
-                        "a",
-                        function(event) {
-                           var that = $(this);
-
-                           $.ajax({
-                              url : "/deleteFile",
-                              type : "post",
-                              data : {
-                                 fileName : $(this).attr("data-src")
-                              },
-                              dataType : "text",
-                              success : function(result) {
-                                 if (result == 'deleted') {
-                                    alert("deleted");
-                                    that.parent("div").parent("li")
-                                          .remove();
-                                 }
-                              }
-                           });
-                        });
-                  
-                  /* 완료 버튼 클릭시 소스 보냄  */
-                  $("#registerForm").submit(function(event) {
-					event.preventDefault();
-
-					var that = $(this);
-
-					var str = "";
-
-					$(".uploadedList .delbtn").each(function(index) {
-						str += "<input type='hidden' name='files[" + index + "]' value='" + $(this).attr("data-src") + "'>";
-					});
-					$("#Datepicker .day").each(function(index) {
-						str += "<input type='hidden' name='weekVO[" + index + "].weekDay' value='" + $(this).attr("data-src") + "'>";
-					});
-					$("#Datepicker .start").each(function(index) {
-						str += "<input type='hidden' name='weekVO[" + index + "].weekStartDate' value='" + $(this).attr("data-src") + "'>";
-					});
-					$("#Datepicker .end").each(function(index) {
-						str += "<input type='hidden' name='weekVO[" + index + "].weekEndDate' value='" + $(this).attr("data-src") + "'>";
-					});
-					that.append(str);
-					that.get(0).submit();
-				});
-                  function displayVals() {
-  					for (var i = 1; i < 25; i++) {
-  						$("#startTime").append("<option value='" +
-                  i +
-                  "시'> " + i + "시" + " </option> ");
-
-  						$("#endTime").append("<option value='" +
-                  i +
-                  "시'> " + i + "시" + " </option> ");
-  					}
-  					for (var i = 1; i < 61; i++) {
-  						$("#startMinute").append("<option value='" +
-                  i +
-                  "분'> " + i + "분" + " </option> ");
-
-  						$("#endMinute").append("<option value='" +
-                  i +
-                  "분'> " + i + "분" + " </option> ");
-  					}
-  				}
-  				displayVals();
-  				
-  				$("#copyBtn").click(
-						function() {
-							$("select").change(displayVals);
-							var singleValues = $("#single").val();
-							var startTime = $("#startTime").val();
-							var endTime = $("#endTime").val();
-							var startMinute = $("#startMinute").val();
-							var endMinute = $("#endMinute").val();
-							var weekStartDate = startTime + startMinute;
-							var weekEndDate = endTime + endMinute;
-							var Datepicker = document.getElementById('Datepicker');
-							$("#Datepicker").append(
-									"<li><p class='day' data-src='"+singleValues+"'><b>요일:</b>" + singleValues + "</p>"
-											+ "<p class='start' data-src='"+weekStartDate+"'><b>시작시간:</b>" + weekStartDate + "</p>" + "<p class='end' data-src='"+weekEndDate+"'><b>끝나는시간:</b> "
-											+ weekEndDate + "</p>"
-											+ "<a class='btn btn-default btn-xs pull-right delbtn'><i class='fa fa-fw fa-remove'></i></a></li>");
+						/* 완료버튼 클릭시  */
+						$("#confirmBtn").on("click", function() {
+							formObj.submit();
 						});
-  				$("#Datepicker").on("click", "a", function(event) {
-  					var that = $(this);
-  					that.parent("li").remove();
-  				});
- 
-                // 등록된 주단위 일정 출력
-                <c:forEach items="${weekList}" varStatus="listIdx" var="weekVO">
-  				$("#Datepicker").append(
-						"<li><p class='day' data-src='${weekVO.weekDay}'><b>요일:</b>${weekVO.weekDay}</p>"
-						+ "<p class='start' data-src='${weekVO.weekStartDate}'><b>시작시간:</b>${weekVO.weekStartDate}</p>" + "<p class='end' data-src='${weekVO.weekEndDate}'><b>끝나는시간:</b> "
-						+"${weekVO.weekEndDate} </p>"
-						+ "<a class='btn btn-default btn-xs pull-right delbtn'><i class='fa fa-fw fa-remove'></i></a></li>");
-  				</c:forEach>
-  			});
+						/*업로드된 이미지 출력  */
+						var studyNo = ${studyVO.studyNo};
+						$.getJSON("/study/getImg/" + studyNo, function(list) {
+							$(list).each(function() {
+								var fileInfo = getFileInfo(this);
+								var html = template(fileInfo);
+								$(".uploadedList").append(html);
+							});
+						});
+
+						/*input:file로 파일 업로드하기  */
+						$("#exampleInputFile").on("change", function(event) {
+							event.preventDefault();
+
+							/* var files = event.originalEvent.dataTransfer.files;
+
+							var file = files[0];
+							 */
+							//console.log(file);
+							var formData = new FormData();
+							formData.append("file", $("input[id=exampleInputFile]")[0].files[0]);
+
+							/*컴트롤러로 파일명을 보낸후 콜백으로 만들어진 이미지파일명을 받은후 템플릿에 출력시킨다.  */
+							$.ajax({
+								url : '/uploadAjax',
+								data : formData,
+								dataType : 'text',
+								processData : false,
+								contentType : false,
+								type : 'POST',
+								success : function(data) {
+
+									var fileInfo = getFileInfo(data);
+
+									var html = template(fileInfo);
+
+									$(".uploadedList").append(html);
+								}
+							});
+						});
+
+						/*파일 드랍시 업로드(ajax)  */
+						$(".fileDrop").on("dragenter dragover", function(event) {
+							event.preventDefault();
+						});
+
+						$(".fileDrop").on("drop", function(event) {
+							event.preventDefault();
+
+							var files = event.originalEvent.dataTransfer.files;
+
+							var file = files[0];
+
+							//console.log(file);
+
+							var formData = new FormData();
+							formData.append("file", file);
+
+							$.ajax({
+								url : '/uploadAjax',
+								data : formData,
+								dataType : 'text',
+								processData : false,
+								contentType : false,
+								type : 'POST',
+								success : function(data) {
+
+									var fileInfo = getFileInfo(data);
+
+									var html = template(fileInfo);
+
+									$(".uploadedList").append(html);
+								}
+							});
+						});
+
+						/*x버튼 클릭시 로컬에서 파일제거  */
+						$(".uploadedList").on("click", "a", function(event) {
+							var that = $(this);
+
+							$.ajax({
+								url : "/deleteFile",
+								type : "post",
+								data : {
+									fileName : $(this).attr("data-src")
+								},
+								dataType : "text",
+								success : function(result) {
+									if (result == 'deleted') {
+										alert("deleted");
+										that.parent("div").parent("li").remove();
+									}
+								}
+							});
+						});
+
+						/* 완료 버튼 클릭시 소스 보냄  */
+						$("#registerForm").submit(function(event) {
+							event.preventDefault();
+
+							var that = $(this);
+
+							var str = "";
+
+							$(".uploadedList .delbtn").each(function(index) {
+								str += "<input type='hidden' name='files[" + index + "]' value='" + $(this).attr("data-src") + "'>";
+							});
+							$("#Datepicker .day").each(function(index) {
+								str += "<input type='hidden' name='weekVO[" + index + "].weekDay' value='" + $(this).attr("data-src") + "'>";
+							});
+							$("#Datepicker .start").each(function(index) {
+								str += "<input type='hidden' name='weekVO[" + index + "].weekStartDate' value='" + $(this).attr("data-src") + "'>";
+							});
+							$("#Datepicker .end").each(function(index) {
+								str += "<input type='hidden' name='weekVO[" + index + "].weekEndDate' value='" + $(this).attr("data-src") + "'>";
+							});
+							that.append(str);
+							that.get(0).submit();
+						});
+						function displayVals() {
+							for (var i = 1; i < 25; i++) {
+								$("#startTime").append("<option value='" +
+                  i +
+                  "시'> " + i + "시" + " </option> ");
+
+								$("#endTime").append("<option value='" +
+                  i +
+                  "시'> " + i + "시" + " </option> ");
+							}
+							for (var i = 1; i < 61; i++) {
+								$("#startMinute").append("<option value='" +
+                  i +
+                  "분'> " + i + "분" + " </option> ");
+
+								$("#endMinute").append("<option value='" +
+                  i +
+                  "분'> " + i + "분" + " </option> ");
+							}
+						}
+						displayVals();
+
+						$("#copyBtn").click(
+								function() {
+									$("select").change(displayVals);
+									var singleValues = $("#single").val();
+									var startTime = $("#startTime").val();
+									var endTime = $("#endTime").val();
+									var startMinute = $("#startMinute").val();
+									var endMinute = $("#endMinute").val();
+									var weekStartDate = startTime + startMinute;
+									var weekEndDate = endTime + endMinute;
+									var Datepicker = document.getElementById('Datepicker');
+									$("#Datepicker").append(
+											"<li><p class='day' data-src='"+singleValues+"'><b>요일:</b>" + singleValues + "</p>"
+													+ "<p class='start' data-src='"+weekStartDate+"'><b>시작시간:</b>" + weekStartDate + "</p>"
+													+ "<p class='end' data-src='"+weekEndDate+"'><b>끝나는시간:</b> " + weekEndDate + "</p>"
+													+ "<a class='btn btn-default btn-xs pull-right delbtn'><i class='fa fa-fw fa-remove'></i></a></li>");
+								});
+						$("#Datepicker").on("click", "a", function(event) {
+							var that = $(this);
+							that.parent("li").remove();
+						});
+
+						// 등록된 주단위 일정 출력
+						<c:forEach items="${weekList}" varStatus="listIdx" var="weekVO">
+						$("#Datepicker").append(
+								"<li><p class='day' data-src='${weekVO.weekDay}'><b>요일:</b>${weekVO.weekDay}</p>"
+										+ "<p class='start' data-src='${weekVO.weekStartDate}'><b>시작시간:</b>${weekVO.weekStartDate}</p>"
+										+ "<p class='end' data-src='${weekVO.weekEndDate}'><b>끝나는시간:</b> " + "${weekVO.weekEndDate} </p>"
+										+ "<a class='btn btn-default btn-xs pull-right delbtn'><i class='fa fa-fw fa-remove'></i></a></li>");
+						</c:forEach>
+
+						var names = document.getElementsByName('studyCategory');
+						console.log(names);
+						console.log('${studyVO.studyCategory }');
+
+						var tmp = '${studyVO.studyCategory }';
+						var cat_values = tmp.split(',');
+						console.log(cat_values);
+
+						for (let i = 0; i < names.length; i++) {
+							for (let j = 0; j < cat_values.length; j++) {
+								if (names[i].value == cat_values[j]) {
+									console.log(names[i]);
+									names[i].setAttribute('checked', 'checked');
+								}
+							}
+						}
+
+					});
 </script>
 
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
@@ -826,6 +818,7 @@
 				}
 			}
 		}).open();
+
 	}
 </script>
 

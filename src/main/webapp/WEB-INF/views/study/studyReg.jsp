@@ -271,7 +271,7 @@
 
 											</div>
 										</div>
- 
+
 										<div class="box header CA09">
 											<div class="content collapsed" data-toggle="collapse" href="#CA09">라이프스타일</div>
 										</div>
@@ -342,35 +342,14 @@
 				</div>
 				<div class="form-group">
 					<label class="col-sm-2 control-label">지역</label>
+
 					<div class="col-sm-10">
-						<div class="col-sm-6 step1-select1">
-							<select class="form-control" name="studyRegion">
-								<option>대분류</option>
-								<option value="1">1</option>
-								<option value="2">2</option>
-								<option value="3">3</option>
-								<option value="4">4</option>
-								<option value="5">5</option>
-							</select>
-						</div>
-						<div class="col-sm-6 step1-select2">
-							<select class="form-control" name="studyRegion">
-								<option>소분류</option>
-								<option value="1">1</option>
-								<option value="2">2</option>
-								<option value="3">3</option>
-								<option value="4">4</option>
-								<option value="5">5</option>
-							</select>
-						</div>
-
-						<div class="col-sm-10">
-							<input type="text" id="sample4_postcode" placeholder="우편번호"> <input type="button" onclick="sample4_execDaumPostcode()"
-								value="우편번호 찾기"><br> <input type="text" name="studyRegion" id="sample4_roadAddress" placeholder="도로명주소"> <input
-								type="text" id="sample4_jibunAddress" placeholder="지번주소"> <span id="guide" style="color: #999"></span>
-						</div>
-
+						<input type="text" class="form-control" id="sample4_postcode" placeholder="우편번호"> 
+						<input type="button" class="form-control" onclick="sample4_execDaumPostcode()"value="우편번호 찾기"> 
+						<input type="text" class="form-control" name="studyRegion" id="sample4_roadAddress" placeholder="도로명주소"> 
+						<input type="text" class="form-control" id="sample4_jibunAddress" placeholder="지번주소"> <span id="guide" style="color: #999"></span>
 					</div>
+
 				</div>
 				<div class="col-sm-12">
 					<button type="button" class="btn btn-default">Next</button>
@@ -568,7 +547,7 @@
 		var studyImage = $('#exampleInputFile');
 
 		form.submit(function() {
-			/* if (studyName.val() == "") { // 스터디명 NULL 유효성 검사
+			if (studyName.val() == "") { // 스터디명 NULL 유효성 검사
 				alert("스터디명을 입력하십시오.");
 				studyName.focus();
 				return false;
@@ -582,12 +561,12 @@
 				alert("시작날짜를 입력하십시오.")
 				studyStartDate.focus();
 				return false;
-			}   else if (chkstudyStartDate.test(studyStartDate.val()) != true) { // 비용 유효성 검사
-					alert("시작날짜에 날짜만 입력하세요.");
-					studyStartDate.focus();
-					return false;
+			} else if (chkstudyStartDate.test(studyStartDate.val()) != true) { // 비용 유효성 검사
+				alert("시작날짜에 날짜만 입력하세요.");
+				studyStartDate.focus();
+				return false;
 
-				} else if (studyMemFee.val() == "") { // 비용 NULL 유효성 검사
+			} else if (studyMemFee.val() == "") { // 비용 NULL 유효성 검사
 				alert("비용을 입력하십시오.")
 				studyMemFee.focus();
 				return false;
@@ -614,8 +593,8 @@
 				alert("사진을 입력하십시오.")
 				studyImage.focus();
 				return false;
-			} 
-			 /* input:hidden 으로 현재 업로드된 파일들의 목록을 저장한다. */
+			}
+			/* input:hidden 으로 현재 업로드된 파일들의 목록을 저장한다. */
 
 			event.preventDefault();
 
@@ -636,9 +615,9 @@
 			$("#Datepicker .end").each(function(index) {
 				str += "<input type='hidden' name='weekVO[" + index + "].weekEndDate' value='" + $(this).attr("data-src") + "'>";
 			});
-			var flag=false;
-			 $(".content0 input[type=checkbox]:checked").each(function(items) {
-					str += "<input type='hidden' name='studyUpCategory' value='영어'>";
+			var flag = false;
+			$(".content0 input[type=checkbox]:checked").each(function(items) {
+				str += "<input type='hidden' name='studyUpCategory' value='영어'>";
 			})
 			$(".content1 input[type=checkbox]:checked").each(function(items) {
 				str += "<input type='hidden' name='studyUpCategory' value='외국어'>";
@@ -670,7 +649,7 @@
 			$(".content10 input[type=checkbox]:checked").each(function(items) {
 				str += "<input type='hidden' name='studyUpCategory' value='게임'>";
 			})
-			
+
 			that.append(str);
 			that.get(0).submit();
 

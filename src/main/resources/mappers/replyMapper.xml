@@ -20,7 +20,7 @@
 		delete from reply where replyNo = #{replyNo}
 	</delete>
 
-	<select id="listPage" resultType="ReplyVO">
+	<select id="listPage" resultType="ReplyVO"> <!--댓글리스트페이지와 같이 출력  -->
 		select * from reply where studyNo = #{studyNo} order by replyNo desc limit
 		#{cri.pageStart}, #{cri.perPageNum}
 	</select>
@@ -29,7 +29,7 @@
 		select count(studyNo) from reply where studyNo = #{studyNo}
 	</select>
 
-	<delete id="deleteWithStudyNo">
+	<delete id="deleteWithStudyNo"> <!--스터디 제거시 댓글도 같이 제거  -->
 		delete from reply where studyNo=#{studyNo}
 	</delete>
 

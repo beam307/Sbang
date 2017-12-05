@@ -58,7 +58,7 @@ public class StudyServiceImpl implements StudyService {
 	}
 
 	@Override
-	public List<WeekVO> getWeek(Integer studyNo) throws Exception {
+	public List<WeekVO> getWeek(Integer studyNo) throws Exception { //주단위 시간표 얻어오기
 		return weekDAO.list(studyNo);
 	}
 
@@ -80,7 +80,7 @@ public class StudyServiceImpl implements StudyService {
 		 * if (files == null) { return; }
 		 */
 		for (String fileName : files) {
-			studyDAO.replaceImg(fileName, studyNo);
+			studyDAO.replaceImg(fileName, studyNo); // 업로드 파일 삭제후 다시 인설트
 		}
 		weekDAO.delete(studyNo);
 		WeekVO[] weekArr = study.getWeekVO();
@@ -104,16 +104,6 @@ public class StudyServiceImpl implements StudyService {
 	@Override
 	public List<StudyVO> listAll() throws Exception {
 		return studyDAO.listAll();
-	}
-
-	@Override
-	public List<StudyVO> listCriteria(Criteria cri) throws Exception {
-		return studyDAO.listCriteria(cri);
-	}
-
-	@Override
-	public int listCountCriteria(Criteria cri) throws Exception {
-		return studyDAO.countPaging(cri);
 	}
 
 	@Override
