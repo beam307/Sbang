@@ -64,7 +64,7 @@
 										<div class="box header CA00">
 											<div class="content collapsed" data-toggle="collapse" href="#CA00">영어</div>
 										</div>
-										<div class="box list collapse" id="CA00">
+										<div class="box list collapse" id="CA00" name="studyUpCategory" value="영어">
 											<div class="content">
 
 
@@ -84,7 +84,7 @@
 										<div class="box header CA01">
 											<div class="content collapsed" data-toggle="collapse" href="#CA01">외국어</div>
 										</div>
-										<div class="box list collapse" id="CA01">
+										<div class="box list collapse" id="CA01" name="studyUpCategory" value="외국어">
 											<div class="content">
 
 
@@ -106,7 +106,7 @@
 										<div class="box header CA02">
 											<div class="content collapsed" data-toggle="collapse" href="#CA02">컴퓨터</div>
 										</div>
-										<div class="box list collapse" id="CA02">
+										<div class="box list collapse" id="CA02" name="studyUpCategory" value="컴퓨터">
 											<div class="content">
 
 
@@ -129,7 +129,7 @@
 										<div class="box header CA03">
 											<div class="content collapsed" data-toggle="collapse" href="#CA03">디자인/미술</div>
 										</div>
-										<div class="box list collapse" id="CA03">
+										<div class="box list collapse" id="CA03" name="studyUpCategory" value="디자인/미술">
 											<div class="content">
 
 
@@ -153,7 +153,7 @@
 										<div class="box header CA04">
 											<div class="content collapsed" data-toggle="collapse" href="#CA04">국가고시/공무원</div>
 										</div>
-										<div class="box list collapse" id="CA04">
+										<div class="box list collapse" id="CA04" name="studyUpCategory" value="국가고시/공무원">
 											<div class="content">
 
 
@@ -175,7 +175,7 @@
 										<div class="box header CA05">
 											<div class="content collapsed" data-toggle="collapse" href="#CA05">취업</div>
 										</div>
-										<div class="box list collapse" id="CA05">
+										<div class="box list collapse" id="CA05" name="studyUpCategory" value="취업">
 											<div class="content">
 
 
@@ -196,7 +196,7 @@
 										<div class="box header CA06">
 											<div class="content collapsed" data-toggle="collapse" href="#CA06">음악/공연</div>
 										</div>
-										<div class="box list collapse" id="CA06">
+										<div class="box list collapse" id="CA06" name="studyUpCategory" value="음악/공연">
 											<div class="content">
 
 
@@ -223,7 +223,7 @@
 										<div class="box header CA07">
 											<div class="content collapsed" data-toggle="collapse" href="#CA07">스포츠</div>
 										</div>
-										<div class="box list collapse" id="CA07">
+										<div class="box list collapse" id="CA07" name="studyUpCategory" value="스포츠">
 											<div class="content">
 
 
@@ -254,7 +254,7 @@
 										<div class="box header CA08">
 											<div class="content collapsed" data-toggle="collapse" href="#CA08">뷰티/미용</div>
 										</div>
-										<div class="box list collapse" id="CA08">
+										<div class="box list collapse" id="CA08" name="studyUpCategory" value="뷰티/미용">
 											<div class="content">
 
 
@@ -275,7 +275,7 @@
 										<div class="box header CA09">
 											<div class="content collapsed" data-toggle="collapse" href="#CA09">라이프스타일</div>
 										</div>
-										<div class="box list collapse" id="CA09">
+										<div class="box list collapse" id="CA09" name="studyUpCategory" value="라이프스타일">
 											<div class="content">
 
 
@@ -284,14 +284,14 @@
 													id="CA09_06" type="checkbox" name="studyCategory" value="독서/글쓰기" /> <label class="midCategoryBox" for="CA09_06"># 독서/글쓰기</label> <input
 													id="CA09_11" type="checkbox" name="studyCategory" value="인테리어" /> <label class="midCategoryBox" for="CA09_11"># 인테리어</label> <input
 													id="CA09_12" type="checkbox" name="studyCategory" value="바리스타/바텐더" /> <label class="midCategoryBox" for="CA09_12">#
-													바리스타/바텐더</label> <input id="CA09_01" type="checkbox" name="studyCategory" value="CA09_01" /> <label class="midCategoryBox" for="CA09_01">#
-													반려동물</label> <input id="CA09_04" type="checkbox" name="studyCategory" value="CA09_04" /> <label class="midCategoryBox" for="CA09_04">#
-													건강/웰빙</label> <input id="CA09_07" type="checkbox" name="studyCategory" value="CA09_07" /> <label class="midCategoryBox" for="CA09_07">#
-													사진/영상</label> <input id="CA09_10" type="checkbox" name="studyCategory" value="CA09_10" /> <label class="midCategoryBox" for="CA09_10">#
-													요리/베이킹</label> <input id="CA09_13" type="checkbox" name="studyCategory" value="CA09_13" /> <label class="midCategoryBox" for="CA09_13">#
-													봉사활동</label> <input id="CA09_02" type="checkbox" name="studyCategory" value="CA09_02" /> <label class="midCategoryBox" for="CA09_02">#
-													금융/재테크</label> <input id="CA09_03" type="checkbox" name="studyCategory" value="CA09_03" /> <label class="midCategoryBox" for="CA09_03">#
-													상담/컨설팅</label> <input id="CA09_08" type="checkbox" name="studyCategory" value="CA09_08" /> <label class="midCategoryBox" for="CA09_08">#
+													바리스타/바텐더</label> <input id="CA09_01" type="checkbox" name="studyCategory" value="반려동물" /> <label class="midCategoryBox" for="CA09_01">#
+													반려동물</label> <input id="CA09_04" type="checkbox" name="studyCategory" value="건강/웰빙" /> <label class="midCategoryBox" for="CA09_04">#
+													건강/웰빙</label> <input id="CA09_07" type="checkbox" name="studyCategory" value="사진/영상" /> <label class="midCategoryBox" for="CA09_07">#
+													사진/영상</label> <input id="CA09_10" type="checkbox" name="studyCategory" value="요리/베이킹" /> <label class="midCategoryBox" for="CA09_10">#
+													요리/베이킹</label> <input id="CA09_13" type="checkbox" name="studyCategory" value="봉사활동" /> <label class="midCategoryBox" for="CA09_13">#
+													봉사활동</label> <input id="CA09_02" type="checkbox" name="studyCategory" value="금융/재테크" /> <label class="midCategoryBox" for="CA09_02">#
+													금융/재테크</label> <input id="CA09_03" type="checkbox" name="studyCategory" value="상담/컨설팅" /> <label class="midCategoryBox" for="CA09_03">#
+													상담/컨설팅</label> <input id="CA09_08" type="checkbox" name="studyCategory" value="키덜트" /> <label class="midCategoryBox" for="CA09_08">#
 													키덜트</label> <input id="CA09_09" type="checkbox" name="studyCategory" value="생활공예" /> <label class="midCategoryBox" for="CA09_09">#
 													생활공예</label> <input id="CA09_14" type="checkbox" name="studyCategory" value="웨딩" /> <label class="midCategoryBox" for="CA09_14">#
 													웨딩</label> <input id="CA09_15" type="checkbox" name="studyCategory" value="라이프스타일기타" /> <label class="midCategoryBox" for="CA09_15">#
@@ -304,7 +304,7 @@
 										<div class="box header CA10">
 											<div class="content collapsed" data-toggle="collapse" href="#CA10">게임</div>
 										</div>
-										<div class="box list collapse" id="CA10">
+										<div class="box list collapse" id="CA10" name="studyUpCategory" value="게임">
 											<div class="content">
 
 
@@ -336,13 +336,14 @@
 					<label class="col-sm-2 control-label">스터디명</label>
 					<div class="col-sm-10">
 						<div class="col-sm-12">
-							<input type="text" class="form-control" name="studyName" placeholder="스터디이름을 넣어주세요" />
+							<input type="text" class="form-control" name="studyName" id="studyName" placeholder="스터디이름을 넣어주세요" />
 						</div>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-2 control-label">지역</label>
 					<div class="col-sm-10">
+<!-- 					
 						<div class="col-sm-6 step1-select1">
 							<select class="form-control" name="studyRegion">
 								<option>대분류</option>
@@ -363,11 +364,12 @@
 								<option value="5">5</option>
 							</select>
 						</div>
-
+ -->
 						<div class="col-sm-10">
-							<input type="text" id="sample4_postcode" placeholder="우편번호"> <input type="button" onclick="sample4_execDaumPostcode()"
-								value="우편번호 찾기"><br> <input type="text" name="studyRegion" id="sample4_roadAddress" placeholder="도로명주소"> <input
-								type="text" id="sample4_jibunAddress" placeholder="지번주소"> <span id="guide" style="color: #999"></span>
+							<input type="text" class="form-control" id="sample4_postcode" placeholder="우편번호"> <input type="button" class="form-control"
+								onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br> <input type="text" class="form-control" name="studyRegion"
+								id="sample4_roadAddress" placeholder="도로명주소"> <input type="text" class="form-control" id="sample4_jibunAddress"
+								placeholder="지번주소"> <span id="guide" style="color: #999"></span>
 						</div>
 
 					</div>
@@ -553,7 +555,7 @@
 <script>
 	jQuery(function($) {
 		var chkstudyName
-/* 		var chkstudyStartDate = /^(1[0-2]|0[1-9])-(30|31|1[0-9]|2[0-9])-([0-9]{4})$/; */
+		/* 		var chkstudyStartDate = /^(1[0-2]|0[1-9])-(30|31|1[0-9]|2[0-9])-([0-9]{4})$/; */
 		var chkstudyMemFee = /^[0-9]+$/;
 		var chkstudyMaxMemCnt = /^[0-9]+$/;
 		var chkstudyIntroduce
@@ -568,7 +570,7 @@
 		var studyImage = $('#exampleInputFile');
 
 		form.submit(function() {
-			if (studyName.val() == "") { // 스터디명 NULL 유효성 검사
+/* 			if (studyName.val() == "") { // 스터디명 NULL 유효성 검사
 				alert("스터디명을 입력하십시오.");
 				studyName.focus();
 				return false;
@@ -582,12 +584,12 @@
 				alert("시작날짜를 입력하십시오.")
 				studyStartDate.focus();
 				return false;
-			} /*  else if (chkstudyStartDate.test(studyStartDate.val()) != true) { // 비용 유효성 검사
-				alert("시작날짜에 날짜만 입력하세요.");
-				studyStartDate.focus();
-				return false;
+			}  else if (chkstudyStartDate.test(studyStartDate.val()) != true) { // 비용 유효성 검사
+						alert("시작날짜에 날짜만 입력하세요.");
+						studyStartDate.focus();
+						return false;
 
-			}  */ else if (studyMemFee.val() == "") { // 비용 NULL 유효성 검사
+			}  else if (studyMemFee.val() == "") { // 비용 NULL 유효성 검사
 				alert("비용을 입력하십시오.")
 				studyMemFee.focus();
 				return false;
@@ -615,36 +617,42 @@
 				studyImage.focus();
 				return false;
 			}
+ */
 			/* input:hidden 으로 현재 업로드된 파일들의 목록을 저장한다. */
-				$("#registerForm").submit(function(event) {
-					event.preventDefault();
+			event.preventDefault();
 
-					var that = $(this);
+			var that = $(this);
 
-					var str = "";
+			var str = "";
 
-					$(".uploadedList .delbtn").each(function(index) {
-						str += "<input type='hidden' name='files[" + index + "]' value='" + $(this).attr("data-src") + "'>";
-					});
+			$(".uploadedList .delbtn").each(function(index) {
+				str += "<input type='hidden' name='files[" + index + "]' value='" + $(this).attr("data-src") + "'>";
+			});
 
-					$("#Datepicker .day").each(function(index) {
-						str += "<input type='hidden' name='weekVO[" + index + "].weekDay' value='" + $(this).attr("data-src") + "'>";
-					});
-					$("#Datepicker .start").each(function(index) {
-						str += "<input type='hidden' name='weekVO[" + index + "].weekStartDate' value='" + $(this).attr("data-src") + "'>";
-					});
-					$("#Datepicker .end").each(function(index) {
-						str += "<input type='hidden' name='weekVO[" + index + "].weekEndDate' value='" + $(this).attr("data-src") + "'>";
-					});
-					that.append(str);
-					that.get(0).submit();
-				});
+			$("#Datepicker .day").each(function(index) {
+				str += "<input type='hidden' name='weekVO[" + index + "].weekDay' value='" + $(this).attr("data-src") + "'>";
+			});
+			$("#Datepicker .start").each(function(index) {
+				str += "<input type='hidden' name='weekVO[" + index + "].weekStartDate' value='" + $(this).attr("data-src") + "'>";
+			});
+			$("#Datepicker .end").each(function(index) {
+				str += "<input type='hidden' name='weekVO[" + index + "].weekEndDate' value='" + $(this).attr("data-src") + "'>";
+			});
+
+			/* 카테고리 대분류 가져오기 */
+			$(".content input[type=checkbox]:checked").find(function(item){
+				console.log(item);
+			});
+			
+			return;
+			that.append(str);
+			that.get(0).submit();
 		});
 	});
 
 	$(document).ready(
 			function() {
-				/*화면에 업로드된 리스트출력  */
+				/* 화면에 업로드된 리스트출력  */
 				var template = Handlebars.compile($("#template").html());
 
 				$(".fileDrop").on("dragenter dragover", function(event) {
@@ -663,7 +671,7 @@
 					var formData = new FormData();
 					formData.append("file", file);
 
-					/*컴트롤러로 파일명을 보낸후 콜백으로 만들어진 이미지파일명을 받은후 템플릿에 출력시킨다.  */
+					/* 컴트롤러로 파일명을 보낸후 콜백으로 만들어진 이미지파일명을 받은후 템플릿에 출력시킨다.  */
 					$.ajax({
 						url : '/uploadAjax',
 						data : formData,
@@ -681,7 +689,8 @@
 						}
 					});
 				});
-				/*input:file로 파일 업로드하기  */
+
+				/* input:file로 파일 업로드하기  */
 				$("#exampleInputFile").on("change", function(event) {
 					event.preventDefault();
 
@@ -693,7 +702,7 @@
 					var formData = new FormData();
 					formData.append("file", $("input[id=exampleInputFile]")[0].files[0]);
 
-					/*컴트롤러로 파일명을 보낸후 콜백으로 만들어진 이미지파일명을 받은후 템플릿에 출력시킨다.  */
+					/* 컴트롤러로 파일명을 보낸후 콜백으로 만들어진 이미지파일명을 받은후 템플릿에 출력시킨다.  */
 					$.ajax({
 						url : '/uploadAjax',
 						data : formData,
@@ -712,7 +721,6 @@
 					});
 				});
 
-				
 				/* 업로드 된 파일들중 x버튼을 누르면 업로드된 파일들이 삭제되도록한다.  */
 				$(".uploadedList").on("click", "a", function(event) {
 					var that = $(this);
@@ -732,27 +740,30 @@
 					});
 				});
 
+				/* 주단위 시간 설정  */
 				function displayVals() {
 					for (var i = 1; i < 25; i++) {
 						$("#startTime").append("<option value='" +
-                i +
-                "시'> " + i + "시" + " </option> ");
+               i +
+               "시'> " + i + "시" + " </option> ");
 
 						$("#endTime").append("<option value='" +
-                i +
-                "시'> " + i + "시" + " </option> ");
+               i +
+               "시'> " + i + "시" + " </option> ");
 					}
 					for (var i = 1; i < 61; i++) {
 						$("#startMinute").append("<option value='" +
-                i +
-                "분'> " + i + "분" + " </option> ");
+               i +
+               "분'> " + i + "분" + " </option> ");
 
 						$("#endMinute").append("<option value='" +
-                i +
-                "분'> " + i + "분" + " </option> ");
+               i +
+               "분'> " + i + "분" + " </option> ");
 					}
 				}
 				displayVals();
+
+				/* 버튼클릭시 일정추가  */
 				$("#copyBtn").click(
 						function() {
 							$("select").change(displayVals);
@@ -766,10 +777,12 @@
 							var Datepicker = document.getElementById('Datepicker');
 							$("#Datepicker").append(
 									"<li><p class='day' data-src='"+singleValues+"'><b>요일:</b>" + singleValues + "</p>"
-											+ "<p class='start' data-src='"+weekStartDate+"'><b>시작시간:</b>" + weekStartDate + "</p>" + "<p class='end' data-src='"+weekEndDate+"'><b>끝나는시간:</b> "
-											+ weekEndDate + "</p>"
+											+ "<p class='start' data-src='"+weekStartDate+"'><b>시작시간:</b>" + weekStartDate + "</p>"
+											+ "<p class='end' data-src='"+weekEndDate+"'><b>끝나는시간:</b> " + weekEndDate + "</p>"
 											+ "<a class='btn btn-default btn-xs pull-right delbtn'><i class='fa fa-fw fa-remove'></i></a></li>");
 						});
+
+				/* 일정제거  */
 				$("#Datepicker").on("click", "a", function(event) {
 					var that = $(this);
 					that.parent("li").remove();
@@ -777,6 +790,7 @@
 			});
 </script>
 
+<!-- 지역등록api -->
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>
 	//본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
