@@ -29,12 +29,6 @@ import org.springframework.web.multipart.MultipartFile;
 public class UploadController {
 	private static final Logger logger = LoggerFactory.getLogger(UploadController.class);
 
-	/*
-	 * @RequestMapping(value="/uploadForm",method=RequestMethod.GET) public void
-	 * uploadForm() {
-	 * 
-	 * }
-	 */
 	@Resource(name = "uploadPath")
 	private String uploadPath;
 

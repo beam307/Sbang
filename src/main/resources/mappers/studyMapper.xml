@@ -57,11 +57,16 @@
 
 	<select id="listSearch" resultType="StudyVO">
   	<![CDATA[
-	  	select s.studyNo, s.studyName, s.studyRegDate, s.studyViewCnt, i.imagePath from study s left outer join (select  imagePath, studyNo from image group by studyNo) i on i.studyNo =s.studyNo where s.studyNo>0
+	  	select s.studyNo, s.studyName, s.studyRegDate, s.studyViewCnt, s.studyReplyCnt, i.imagePath 
+	  	from study s left outer join (select  imagePath, studyNo from image group by studyNo) i 
+	  	on i.studyNo =s.studyNo where s.studyNo>0
   	]]>
 		<include refid="search"></include>
   	<![CDATA[
 	  	order by 
+	  	]]>
+		<include refid="line"></include>
+	  <![CDATA[	
 	  	s.studyNo desc, s.studyRegDate limit #{pageStart},#{perPageNum}
   	]]>
 	</select>
@@ -74,7 +79,10 @@
 
 	</select>
 
-	<!-- <update id="updateReplyCnt"> update tbl_board set replycnt=replycnt+#{amount} where bno=#{bno} </update> -->
+	<update id="updateReplyCnt">
+		update study set studyReplyCnt=studyReplyCnt+#{amount} where studyNo=#{studyNo}
+	</update>
+	
 	<update id="updateViewCnt">
 		update study set studyViewCnt=studyViewCnt+1 where studyNo=#{studyNo}
 	</update>
@@ -86,6 +94,9 @@
 			</if>
 			<if test="lineUp == 'p'.toString()">
 				s.studyMemFee desc,
+			</if>
+			<if test="lineUp == 'r'.toString()">
+				s.studyReplyCnt desc,
 			</if>
 		</if>
 	</sql>

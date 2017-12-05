@@ -1,7 +1,5 @@
 package org.sbang.domain;
 
-import java.util.Date;
-
 import lombok.Data;
 
 @Data
@@ -12,7 +10,7 @@ public class WeekVO {
 
 	private String weekDay;
 
-	private Date weekStartDate;
-	private Date weekEndDate;
+	private String weekStartDate;
+	private String weekEndDate;
 
-}
+} 

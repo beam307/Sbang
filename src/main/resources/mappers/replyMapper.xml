@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.sbang.mapper.ReplyMapper">
+	<select id="list" resultType="ReplyVO">
+		select * from reply where studyNo = #{studyNo} order by replyNo desc
+	</select>
+
+	<insert id="create">
+		insert into reply (studyNo, replyText, userEmail) values (#{studyNo}, #{replyText}, #{userEmail})
+	</insert>
+
+	<update id="update">
+		update reply set replyText = #{replyText}, replyUpdateDate = now() where replyNo = #{replyNo}
+	</update>
+
+	<delete id="delete">
+		delete from reply where replyNo = #{replyNo}
+	</delete>
+
+	<select id="listPage" resultType="ReplyVO">
+		select * from reply where studyNo = #{studyNo} order by replyNo desc limit
+		#{cri.pageStart}, #{cri.perPageNum}
+	</select>
+
+	<select id="count" resultType="int">
+		select count(studyNo) from reply where studyNo = #{studyNo}
+	</select>
+
+	<delete id="deleteWithStudyNo">
+		delete from reply where studyNo=#{studyNo}
+	</delete>
+
+	<!-- <select id="getBno" resultType="int"> select bno from tbl_reply where rno=#{rno} </select> -->
+</mapper>

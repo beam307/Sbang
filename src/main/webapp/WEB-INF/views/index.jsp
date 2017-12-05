@@ -4,7 +4,7 @@
 <%@include file="include/header.jsp"%>
 <!-- 밑에는 메인검색부분이야 -->
 <div class="main-search">
-	<form class="form-inline">
+	<form class="form-inline" action="/study/studyList">
 		<div class="radio">
 			<label> <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>스터디검색
 			</label>
@@ -13,10 +13,16 @@
 			<label> <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"> 룸검색
 			</label>
 		</div>
+
 		<div class="form-group">
+<<<<<<< HEAD
+			<input type="hidden" name="searchType" value="t" /> <input type="text" class="form-control" placeholder="검색어입력하는곳" name="keyword"
+				id="searchBox">
+=======
 			<input type="text" class="form-control" placeholder="검색어입력하는곳" id="searchBox">
+>>>>>>> branch 'younghoon' of https://github.com/beam307/Sbang
 		</div>
-		<button type="submit" class="btn btn-default">검색</button>
+		<button type="submit" class="btn btn-default" 　id="main-search">검색</button>
 	</form>
 </div>
 <!-- 밑에는 썸네일부분이야 -->

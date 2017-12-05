@@ -336,7 +336,7 @@
 					<label class="col-sm-2 control-label">스터디명</label>
 					<div class="col-sm-10">
 						<div class="col-sm-12">
-							<input type="text" class="form-control" name="studyName" id="studyName" studyNameplaceholder="스터디이름을 넣어주세요">
+							<input type="text" class="form-control" name="studyName" placeholder="스터디이름을 넣어주세요" />
 						</div>
 					</div>
 				</div>
@@ -344,7 +344,7 @@
 					<label class="col-sm-2 control-label">지역</label>
 					<div class="col-sm-10">
 						<div class="col-sm-6 step1-select1">
-							<select class="form-control">
+							<select class="form-control" name="studyRegion">
 								<option>대분류</option>
 								<option value="1">1</option>
 								<option value="2">2</option>
@@ -354,7 +354,7 @@
 							</select>
 						</div>
 						<div class="col-sm-6 step1-select2">
-							<select class="form-control">
+							<select class="form-control" name="studyRegion">
 								<option>소분류</option>
 								<option value="1">1</option>
 								<option value="2">2</option>
@@ -420,7 +420,7 @@
 					<label class="col-sm-2 control-label">시작날짜</label>
 					<div class="col-sm-10">
 						<div class="col-sm-12">
-							<input type="text" id="testDatepicker" class="form-control" name="studyStartDate" id="studyStartDate" readonly="readonly">
+							<input type="text" id="testDatepicker" class="form-control" name="studyStartDate" id="studyStartDate" readonly>
 							<script>
 								$(function() {
 									$("#testDatepicker").datepicker({
@@ -435,36 +435,59 @@
 					<label class="col-sm-2 control-label">요일</label>
 					<div class="col-sm-10">
 						<div class="col-sm-12">
-							<label class="checkbox-inline"> <input type="checkbox" id="inlineCheckbox1" value="월"> 월
-							</label> <label class="checkbox-inline"> <input type="checkbox" id="inlineCheckbox2" value="화"> 화
-							</label> <label class="checkbox-inline"> <input type="checkbox" id="inlineCheckbox3" value="수"> 수
-							</label> <label class="checkbox-inline"> <input type="checkbox" id="inlineCheckbox4" value="목"> 목
-							</label> <label class="checkbox-inline"> <input type="checkbox" id="inlineCheckbox5" value="금"> 금
-							</label> <label class="checkbox-inline"> <input type="checkbox" id="inlineCheckbox6" value="토"> 토
-							</label> <label class="checkbox-inline"> <input type="checkbox" id="inlineCheckbox7" value="일"> 일
-							</label>
+							<select id="single" class="form-control">
+								<option>월요일</option>
+								<option>화요일</option>
+								<option>수요일</option>
+								<option>목요일</option>
+								<option>금요일</option>
+								<option>토요일</option>
+								<option>일요일</option>
+							</select>
 						</div>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-2 control-label">시간</label>
-					<div class="col-sm-10 time_box">
-						<input id="timepicker1" type="text" class="form-control" name="timepicker1" />
-						<script>
-							$('#timepicker1').timepicki();
-						</script>
-						<div class="hyphen">~</div>
-						<input id="timepicker2" type="text" class="form-control" name="timepicker1" />
-						<script>
-							$('#timepicker2').timepicki();
-						</script>
+					<label class="col-sm-2 control-label">시작시간</label>
+					<div class="col-sm-10">
+						<div class="col-sm-12">
+							<select id="startTime" class="form-control">
+							</select> <select id="startMinute" class="form-control m_t_10">
+							</select>
+						</div>
 					</div>
 				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">완료시간</label>
+					<div class="col-sm-10">
+						<div class="col-sm-12">
+							<select id="endTime" class="form-control">
+							</select> <select id="endMinute" class="form-control m_t_10">
+							</select>
+						</div>
+					</div>
+				</div>
+				<label class="col-sm-2 control-label"></label>
+				<div class="col-sm-10">
+					<div class="col-sm-12">
+						<ul id="Datepicker">
+						</ul>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-12">
+						<div class="col-sm-12">
+							<button id="copyBtn" class="btn btn-default" type="button">추가</button>
+						</div>
+					</div>
+				</div>
+
+				<!--비용  -->
 				<div class="form-group">
 					<label class="col-sm-2 control-label">비용</label>
 					<div class="col-sm-10">
 						<div class="col-sm-12">
-							<input type="text" class="form-control" name="studyMemFee" id="studyMemFee" placeholder="ex.10000원">
+							<input type="text" class="form-control" name="studyMemFee" id="studyMemFee" placeholder="ex.10000명명">
 						</div>
 					</div>
 				</div>
@@ -593,106 +616,165 @@
 				return false;
 			}
 			/* input:hidden 으로 현재 업로드된 파일들의 목록을 저장한다. */
-				event.preventDefault();
-				console.log("아무거나");
-				var that = $(this);
+				$("#registerForm").submit(function(event) {
+					event.preventDefault();
 
-				var str = "";
+					var that = $(this);
 
-				$(".uploadedList .delbtn").each(function(index) {
-					str += "<input type='hidden' name='files[" + index + "]' value='" + $(this).attr("data-src") + "'>";
+					var str = "";
+
+					$(".uploadedList .delbtn").each(function(index) {
+						str += "<input type='hidden' name='files[" + index + "]' value='" + $(this).attr("data-src") + "'>";
+					});
+
+					$("#Datepicker .day").each(function(index) {
+						str += "<input type='hidden' name='weekVO[" + index + "].weekDay' value='" + $(this).attr("data-src") + "'>";
+					});
+					$("#Datepicker .start").each(function(index) {
+						str += "<input type='hidden' name='weekVO[" + index + "].weekStartDate' value='" + $(this).attr("data-src") + "'>";
+					});
+					$("#Datepicker .end").each(function(index) {
+						str += "<input type='hidden' name='weekVO[" + index + "].weekEndDate' value='" + $(this).attr("data-src") + "'>";
+					});
+					that.append(str);
+					that.get(0).submit();
 				});
-				that.append(str);
-				that.get(0).submit();
 		});
 	});
 
-	/*화면에 업로드된 리스트출력  */
-	var template = Handlebars.compile($("#template").html());
+	$(document).ready(
+			function() {
+				/*화면에 업로드된 리스트출력  */
+				var template = Handlebars.compile($("#template").html());
 
-	$(".fileDrop").on("dragenter dragover", function(event) {
-		event.preventDefault();
-	});
+				$(".fileDrop").on("dragenter dragover", function(event) {
+					event.preventDefault();
+				});
 
-	$(".fileDrop").on("drop", function(event) {
-		event.preventDefault();
+				$(".fileDrop").on("drop", function(event) {
+					event.preventDefault();
 
-		var files = event.originalEvent.dataTransfer.files;
+					var files = event.originalEvent.dataTransfer.files;
 
-		var file = files[0];
+					var file = files[0];
 
-		//console.log(file);
+					//console.log(file);
 
-		var formData = new FormData();
-		formData.append("file", file);
+					var formData = new FormData();
+					formData.append("file", file);
 
-		/*컴트롤러로 파일명을 보낸후 콜백으로 만들어진 이미지파일명을 받은후 템플릿에 출력시킨다.  */
-		$.ajax({
-			url : '/uploadAjax',
-			data : formData,
-			dataType : 'text',
-			processData : false,
-			contentType : false,
-			type : 'POST',
-			success : function(data) {
+					/*컴트롤러로 파일명을 보낸후 콜백으로 만들어진 이미지파일명을 받은후 템플릿에 출력시킨다.  */
+					$.ajax({
+						url : '/uploadAjax',
+						data : formData,
+						dataType : 'text',
+						processData : false,
+						contentType : false,
+						type : 'POST',
+						success : function(data) {
 
-				var fileInfo = getFileInfo(data);
+							var fileInfo = getFileInfo(data);
 
-				var html = template(fileInfo);
+							var html = template(fileInfo);
 
-				$(".uploadedList").append(html);
-			}
-		});
-	});
-	/*input:file로 파일 업로드하기  */
-	$("#exampleInputFile").on("change", function(event) {
-		event.preventDefault();
+							$(".uploadedList").append(html);
+						}
+					});
+				});
+				/*input:file로 파일 업로드하기  */
+				$("#exampleInputFile").on("change", function(event) {
+					event.preventDefault();
 
-		/* var files = event.originalEvent.dataTransfer.files;
+					/* var files = event.originalEvent.dataTransfer.files;
 
-		var file = files[0];
-		 */
-		//console.log(file);
-		var formData = new FormData();
-		formData.append("file", $("input[id=exampleInputFile]")[0].files[0]);
+					var file = files[0];
+					 */
+					//console.log(file);
+					var formData = new FormData();
+					formData.append("file", $("input[id=exampleInputFile]")[0].files[0]);
 
-		/*컴트롤러로 파일명을 보낸후 콜백으로 만들어진 이미지파일명을 받은후 템플릿에 출력시킨다.  */
-		$.ajax({
-			url : '/uploadAjax',
-			data : formData,
-			dataType : 'text',
-			processData : false,
-			contentType : false,
-			type : 'POST',
-			success : function(data) {
+					/*컴트롤러로 파일명을 보낸후 콜백으로 만들어진 이미지파일명을 받은후 템플릿에 출력시킨다.  */
+					$.ajax({
+						url : '/uploadAjax',
+						data : formData,
+						dataType : 'text',
+						processData : false,
+						contentType : false,
+						type : 'POST',
+						success : function(data) {
 
-				var fileInfo = getFileInfo(data);
+							var fileInfo = getFileInfo(data);
 
-				var html = template(fileInfo);
+							var html = template(fileInfo);
 
-				$(".uploadedList").append(html);
-			}
-		});
-	});
+							$(".uploadedList").append(html);
+						}
+					});
+				});
 
-	/* 업로드 된 파일들중 x버튼을 누르면 업로드된 파일들이 삭제되도록한다.  */
-	$(".uploadedList").on("click", "a", function(event) {
-		var that = $(this);
+				
+				/* 업로드 된 파일들중 x버튼을 누르면 업로드된 파일들이 삭제되도록한다.  */
+				$(".uploadedList").on("click", "a", function(event) {
+					var that = $(this);
 
-		$.ajax({
-			url : "/deleteFile",
-			type : "post",
-			data : {
-				fileName : $(this).attr("data-src")
-			},
-			dataType : "text",
-			success : function(result) {
-				if (result == 'deleted') {
-					that.parent("div").parent("li").remove();
+					$.ajax({
+						url : "/deleteFile",
+						type : "post",
+						data : {
+							fileName : $(this).attr("data-src")
+						},
+						dataType : "text",
+						success : function(result) {
+							if (result == 'deleted') {
+								that.parent("div").parent("li").remove();
+							}
+						}
+					});
+				});
+
+				function displayVals() {
+					for (var i = 1; i < 25; i++) {
+						$("#startTime").append("<option value='" +
+                i +
+                "시'> " + i + "시" + " </option> ");
+
+						$("#endTime").append("<option value='" +
+                i +
+                "시'> " + i + "시" + " </option> ");
+					}
+					for (var i = 1; i < 61; i++) {
+						$("#startMinute").append("<option value='" +
+                i +
+                "분'> " + i + "분" + " </option> ");
+
+						$("#endMinute").append("<option value='" +
+                i +
+                "분'> " + i + "분" + " </option> ");
+					}
 				}
-			}
-		});
-	});
+				displayVals();
+				$("#copyBtn").click(
+						function() {
+							$("select").change(displayVals);
+							var singleValues = $("#single").val();
+							var startTime = $("#startTime").val();
+							var endTime = $("#endTime").val();
+							var startMinute = $("#startMinute").val();
+							var endMinute = $("#endMinute").val();
+							var weekStartDate = startTime + startMinute;
+							var weekEndDate = endTime + endMinute;
+							var Datepicker = document.getElementById('Datepicker');
+							$("#Datepicker").append(
+									"<li><p class='day' data-src='"+singleValues+"'><b>요일:</b>" + singleValues + "</p>"
+											+ "<p class='start' data-src='"+weekStartDate+"'><b>시작시간:</b>" + weekStartDate + "</p>" + "<p class='end' data-src='"+weekEndDate+"'><b>끝나는시간:</b> "
+											+ weekEndDate + "</p>"
+											+ "<a class='btn btn-default btn-xs pull-right delbtn'><i class='fa fa-fw fa-remove'></i></a></li>");
+						});
+				$("#Datepicker").on("click", "a", function(event) {
+					var that = $(this);
+					that.parent("li").remove();
+				});
+			});
 </script>
 
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
@@ -747,10 +829,6 @@
 			}
 		}).open();
 	}
-</script>
-
-<script>
-	
 </script>
 
 <%@include file="../include/footer.jsp"%>

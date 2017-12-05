@@ -7,7 +7,10 @@ import javax.inject.Inject;
 import org.sbang.domain.Criteria;
 import org.sbang.domain.SearchCriteria;
 import org.sbang.domain.StudyVO;
+import org.sbang.domain.WeekVO;
+import org.sbang.persistence.ReplyDAO;
 import org.sbang.persistence.StudyDAO;
+import org.sbang.persistence.WeekDAO;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,25 +21,45 @@ public class StudyServiceImpl implements StudyService {
 	@Inject
 	private StudyDAO studyDAO;
 
+	@Inject
+	private ReplyDAO replyDAO;
+
+	@Inject
+	private WeekDAO weekDAO;
+
 	@Transactional
 	@Override
 	public void regist(StudyVO study) throws Exception {
 		studyDAO.create(study);
 		String[] files = study.getFiles();
-		System.out.println("어떻게 나올가나???file:" + files.toString());
-		if (files == null) {
-			return;
-		}
+		WeekVO[] weekArr = study.getWeekVO();
+		/*
+		 * if (files == null) { return; }
+		 */
 		for (String imagePath : files) {
 			studyDAO.addImg(imagePath);
 		}
+
+		/*
+		 * if (weekArr == null) { return; }
+		 */
+		for (WeekVO weekVO : weekArr) {
+			weekDAO.create(weekVO);
+		}
+
 	}
 
 	@Transactional(isolation = Isolation.READ_COMMITTED)
 	@Override
 	public StudyVO read(Integer studyNo) throws Exception {
-		// studyDAO.updateViewCnt(studyId);
-		return studyDAO.read(studyNo);
+		StudyVO studyVO = studyDAO.read(studyNo);
+		studyDAO.updateViewCnt(studyNo);
+		return studyVO;
+	}
+
+	@Override
+	public List<WeekVO> getWeek(Integer studyNo) throws Exception {
+		return weekDAO.list(studyNo);
 	}
 
 	@Override
@@ -53,19 +76,27 @@ public class StudyServiceImpl implements StudyService {
 		studyDAO.deleteImg(studyNo);
 
 		String[] files = study.getFiles();
-		if (files == null) {
-			return;
-		}
+		/*
+		 * if (files == null) { return; }
+		 */
 		for (String fileName : files) {
 			studyDAO.replaceImg(fileName, studyNo);
 		}
-
+		weekDAO.delete(studyNo);
+		WeekVO[] weekArr = study.getWeekVO();
+		/*
+		 * if (weekArr == null) { return; }
+		 */
+		for (WeekVO weekVO : weekArr) {
+			weekDAO.replace(weekVO,studyNo);
+		}
 	}
 
 	@Transactional
 	@Override
 	public void remove(Integer studyNo) throws Exception {
-		// replyDAO.deleteWithBno(bno);
+		weekDAO.delete(studyNo);
+		replyDAO.deleteWithStudyNo(studyNo);
 		studyDAO.deleteImg(studyNo);
 		studyDAO.delete(studyNo);
 	}

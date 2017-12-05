@@ -7,6 +7,7 @@ import org.sbang.domain.SearchCriteria;
 import org.sbang.domain.StudyVO;
 
 public interface StudyDAO {
+
 	public void create(StudyVO vo) throws Exception;
 
 	public StudyVO read(Integer studyNo) throws Exception;
@@ -34,16 +35,9 @@ public interface StudyDAO {
 	public List<StudyVO> listSearch(SearchCriteria cri) throws Exception;
 
 	public int listSearchCount(SearchCriteria cri) throws Exception;
-	//
-	// public void updateReplyCnt(Integer bno, int amount) throws Exception;
-	//
-	// public void updateViewCnt(Integer bno) throws Exception;
-	//
 
-	//
-	//
-	//
+	public void updateViewCnt(Integer studyNo) throws Exception;
 
-	//
+	public void updateReplyCnt(Integer studyNo, int amount) throws Exception;
 
 }

@@ -98,26 +98,18 @@ public class StudyDAOImpl implements StudyDAO {
 	public int listSearchCount(SearchCriteria cri) throws Exception {
 		return session.selectOne(namespace + ".listSearchCount", cri);
 	}
-	//
-	// @Override
-	// public void updateReplyCnt(Integer bno,int amount) throws Exception{
-	// Map<String,Object> paramMap=new HashMap<String,Object>();
-	//
-	// paramMap.put("bno", bno);
-	// paramMap.put("amount", amount);
-	// session.update(namespace+".updateReplyCnt",paramMap);
-	// }
-	//
-	// @Override
-	// public void updateViewCnt(Integer bno) throws Exception{
-	// session.update(namespace+".updateViewCnt",bno);
-	// }
-	//
 
-	//
-	//
-	//
+	@Override
+	public void updateViewCnt(Integer studyNo) throws Exception {
+		session.update(namespace + ".updateViewCnt", studyNo);
+	}
 
-	//
+	@Override
+	public void updateReplyCnt(Integer studyNo, int amount) throws Exception {
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("studyNo", studyNo);
+		paramMap.put("amount", amount);
+		session.update(namespace + ".updateReplyCnt", paramMap);
+	}
 
 }

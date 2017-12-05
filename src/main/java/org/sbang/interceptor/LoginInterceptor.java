@@ -35,7 +35,6 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 			logger.info("clear login data before");
 			session.removeAttribute(LOGIN);
 		}
-
 		return true;
 	}
 
