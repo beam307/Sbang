@@ -27,8 +27,11 @@ public class StudyVO {
 	private int studyCurMemCnt;
 	private int studyMemFee;
 	private int studyWorkPerMonth;
+<<<<<<< HEAD
 	private int studyViewCnt;
 	private int studyReplyCnt;
+=======
+>>>>>>> branch 'younghoon' of https://github.com/beam307/Sbang
 
 	private String imagePath;
 

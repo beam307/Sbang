@@ -21,21 +21,31 @@ public class StudyServiceImpl implements StudyService {
 	@Inject
 	private StudyDAO studyDAO;
 
+<<<<<<< HEAD
 	@Inject
 	private ReplyDAO replyDAO;
 
 	@Inject
 	private WeekDAO weekDAO;
 
+=======
+>>>>>>> branch 'younghoon' of https://github.com/beam307/Sbang
 	@Transactional
 	@Override
 	public void regist(StudyVO study) throws Exception {
 		studyDAO.create(study);
 		String[] files = study.getFiles();
+<<<<<<< HEAD
 		WeekVO[] weekArr = study.getWeekVO();
 		/*
 		 * if (files == null) { return; }
 		 */
+=======
+		System.out.println("어떻게 나올가나???file:" + files.toString());
+		if (files == null) {
+			return;
+		}
+>>>>>>> branch 'younghoon' of https://github.com/beam307/Sbang
 		for (String imagePath : files) {
 			studyDAO.addImg(imagePath);
 		}
@@ -52,17 +62,25 @@ public class StudyServiceImpl implements StudyService {
 	@Transactional(isolation = Isolation.READ_COMMITTED)
 	@Override
 	public StudyVO read(Integer studyNo) throws Exception {
+<<<<<<< HEAD
 		StudyVO studyVO = studyDAO.read(studyNo);
 		studyDAO.updateViewCnt(studyNo);
 		return studyVO;
+=======
+		// studyDAO.updateViewCnt(studyId);
+		return studyDAO.read(studyNo);
+>>>>>>> branch 'younghoon' of https://github.com/beam307/Sbang
 	}
 
 	@Override
+<<<<<<< HEAD
 	public List<WeekVO> getWeek(Integer studyNo) throws Exception {
 		return weekDAO.list(studyNo);
 	}
 
 	@Override
+=======
+>>>>>>> branch 'younghoon' of https://github.com/beam307/Sbang
 	public List<String> getImg(Integer studyNo) throws Exception {
 		return studyDAO.getImg(studyNo);
 	}
@@ -72,16 +90,27 @@ public class StudyServiceImpl implements StudyService {
 	public void modify(StudyVO study) throws Exception {
 		studyDAO.update(study);
 		Integer studyNo = study.getStudyNo();
+<<<<<<< HEAD
+=======
+		System.out.println(studyNo);
+>>>>>>> branch 'younghoon' of https://github.com/beam307/Sbang
 		studyDAO.deleteImg(studyNo);
 
 		String[] files = study.getFiles();
+<<<<<<< HEAD
 		/*
 		 * if (files == null) { return; }
 		 */
+=======
+		if (files == null) {
+			return;
+		}
+>>>>>>> branch 'younghoon' of https://github.com/beam307/Sbang
 		for (String fileName : files) {
 			studyDAO.replaceImg(fileName, studyNo);
 		}
 
+<<<<<<< HEAD
 		weekDAO.delete(studyNo);
 		
 		WeekVO[] weekArr = study.getWeekVO();
@@ -93,13 +122,19 @@ public class StudyServiceImpl implements StudyService {
 			weekDAO.replace(weekVO,studyNo);
 		}
 
+=======
+>>>>>>> branch 'younghoon' of https://github.com/beam307/Sbang
 	}
 
 	@Transactional
 	@Override
 	public void remove(Integer studyNo) throws Exception {
+<<<<<<< HEAD
 		weekDAO.delete(studyNo);
 		replyDAO.deleteWithStudyNo(studyNo);
+=======
+		// replyDAO.deleteWithBno(bno);
+>>>>>>> branch 'younghoon' of https://github.com/beam307/Sbang
 		studyDAO.deleteImg(studyNo);
 		studyDAO.delete(studyNo);
 	}

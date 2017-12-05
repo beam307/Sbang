@@ -20,8 +20,11 @@ public interface StudyService {
 	public List<StudyVO> listAll() throws Exception;
 
 	public List<String> getImg(Integer studyNo) throws Exception;
+<<<<<<< HEAD
 	
 	public List<WeekVO> getWeek(Integer studyNo) throws Exception;
+=======
+>>>>>>> branch 'younghoon' of https://github.com/beam307/Sbang
 
 	public List<StudyVO> listCriteria(Criteria cri) throws Exception;
 
@@ -30,5 +33,10 @@ public interface StudyService {
 	public List<StudyVO> listSearchCriteria(SearchCriteria cri) throws Exception;
 
 	public int listSearchCount(SearchCriteria cri) throws Exception;
+<<<<<<< HEAD
 	
+=======
+	//
+	//
+>>>>>>> branch 'younghoon' of https://github.com/beam307/Sbang
 }

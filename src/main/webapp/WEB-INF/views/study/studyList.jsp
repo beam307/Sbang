@@ -14,6 +14,7 @@
 				<label class="col-sm-2 control-label">검색</label>
 				<div class="col-sm-10">
 					<select name="searchType">
+<<<<<<< HEAD
 						<option value="n" <c:out value="${cri.searchType == null?'selected':''}"/>>
 							---</option>
 						<option value="t" <c:out value="${cri.searchType eq 't'?'selected':''}"/>>
@@ -28,6 +29,15 @@
 							Content OR Writer</option>
 						<option value="tcw" <c:out value="${cri.searchType eq 'tcw'?'selected':''}"/>>
 							Title OR Content OR Writer</option>
+=======
+						<option value="n" <c:out value="${cri.searchType == null?'selected':''}"/>>---</option>
+						<option value="t" <c:out value="${cri.searchType eq 't'?'selected':''}"/>>Title</option>
+						<option value="c" <c:out value="${cri.searchType eq 'c'?'selected':''}"/>>Content</option>
+						<option value="w" <c:out value="${cri.searchType eq 'w'?'selected':''}"/>>Writer</option>
+						<option value="tc" <c:out value="${cri.searchType eq 'tc'?'selected':''}"/>>Title OR Content</option>
+						<option value="cw" <c:out value="${cri.searchType eq 'cw'?'selected':''}"/>>Content OR Writer</option>
+						<option value="tcw" <c:out value="${cri.searchType eq 'tcw'?'selected':''}"/>>Title OR Content OR Writer</option>
+>>>>>>> branch 'younghoon' of https://github.com/beam307/Sbang
 					</select> <input type="text" name='keyword' id="keywordInput" value='${cri.keyword}'>
 					<button id='searchBtn'>검색</button>
 				</div>
@@ -67,6 +77,7 @@
 	</div>
 	<!-- 정렬 -->
 	<div class="btn-group">
+<<<<<<< HEAD
 		<select class="form-control" id="line-up">
 			<option value="studyList${pageMaker.makeLineUp('n') }" <c:out value="${cri.lineUp == null?'selected':''}"/>>
 							최신순</option>
@@ -79,6 +90,15 @@
 			<option>또뭐가있을까??</option>
 			
 		</select>
+=======
+		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+			정렬 <span class="caret"></span>
+		</button>
+		<ul class="dropdown-menu" role="menu">
+			<li><a href="#">인원순</a></li>
+			<li><a href="#">최신순</a></li>
+		</ul>
+>>>>>>> branch 'younghoon' of https://github.com/beam307/Sbang
 	</div>
 	<div class="list-thumbnail">
 		<div class="row" id="studyList-thumbnail"></div>
@@ -129,8 +149,13 @@
 						<fmt:formatDate value="${studyVO.studyRegDate}"
 					pattern="yyyy-MM-dd" var="date" />
 						var studyInfo = "NO: ${studyVO.studyNo}</br>"
+<<<<<<< HEAD
 								+ "스터디명: <a href='/study/studyView${pageMaker.makeSearch(pageMaker.cri.page)}&studyNo=${studyVO.studyNo}'>${studyVO.studyName}</a></br>"
 								+ "등록날짜: ${date}</br>" + "조회수: ${studyVO.studyViewCnt}</br>" + "댓글수:${studyVO.studyReplyCnt}";
+=======
+								+ "Name: <a href='/study/studyView${pageMaker.makeSearch(pageMaker.cri.page)}&studyNo=${studyVO.studyNo}'>${studyVO.studyName}</a></br>"
+								+ "RegDate: ${date}";
+>>>>>>> branch 'younghoon' of https://github.com/beam307/Sbang
 						$("#studyList-thumbnail").append(html + studyInfo + "</div>");
 						</c:forEach>
 

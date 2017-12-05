@@ -13,9 +13,7 @@
 	</insert>
 
 	<select id="read" resultType="StudyVO">
-		select * 
-		from study 
-	  	where studyNo=#{studyNo}
+		select * from study where studyNo=#{studyNo}
 	</select>
 
 	<update id="update">

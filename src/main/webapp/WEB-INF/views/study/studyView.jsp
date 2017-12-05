@@ -108,7 +108,6 @@
 				<input type="text" name="studyStartDate" value="${date }" readonly="readonly">
 			</div>
 
-			
 
 			<div class="col-md-1">지역</div>
 			<div class="col-md-11">

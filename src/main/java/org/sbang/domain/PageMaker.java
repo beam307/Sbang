@@ -54,16 +54,23 @@ public class PageMaker {
 	// page와 perPageNum와 searchType과 keyword를 포함하는 url 생성
 	public String makeSearch(int page) {
 		UriComponents uriComponents = UriComponentsBuilder.newInstance().queryParam("page", page).queryParam("perPageNum", cri.getPerPageNum()).queryParam("searchType", ((SearchCriteria) cri).getSearchType())
+<<<<<<< HEAD
 				.queryParam("keyword", encoding(((SearchCriteria) cri).getKeyword())).queryParam("lineUp", ((SearchCriteria) cri).getLineUp()).build();
+=======
+				.queryParam("keyword", encoding(((SearchCriteria) cri).getKeyword())).build();
+>>>>>>> branch 'younghoon' of https://github.com/beam307/Sbang
 		return uriComponents.toString();
 	}
 
+<<<<<<< HEAD
 	public String makeLineUp(String lineUp) {
 		UriComponents uriComponents = UriComponentsBuilder.newInstance().queryParam("page", cri.getPage()).queryParam("perPageNum", cri.getPerPageNum()).queryParam("searchType", ((SearchCriteria) cri).getSearchType())
 				.queryParam("keyword", encoding(((SearchCriteria) cri).getKeyword())).queryParam("lineUp", lineUp).build();
 		return uriComponents.toString();
 	}
 
+=======
+>>>>>>> branch 'younghoon' of https://github.com/beam307/Sbang
 	private String encoding(String keyword) {
 		if (keyword == null || keyword.trim().length() == 0) {
 			return "";

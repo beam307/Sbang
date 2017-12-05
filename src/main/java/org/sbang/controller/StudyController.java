@@ -38,7 +38,6 @@ public class StudyController {
 	@RequestMapping(value = "/studyReg", method = RequestMethod.POST)
 	public String registPOST(StudyVO study,RedirectAttributes rttr) throws Exception {
 		logger.info("regist post........");
-		
 		logger.info(study.toString());
 		
 		if (study.getStudyName() != "") {

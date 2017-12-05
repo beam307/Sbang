@@ -15,8 +15,12 @@
 		</div>
 
 		<div class="form-group">
+<<<<<<< HEAD
 			<input type="hidden" name="searchType" value="t" /> <input type="text" class="form-control" placeholder="검색어입력하는곳" name="keyword"
 				id="searchBox">
+=======
+			<input type="text" class="form-control" placeholder="검색어입력하는곳" id="searchBox">
+>>>>>>> branch 'younghoon' of https://github.com/beam307/Sbang
 		</div>
 		<button type="submit" class="btn btn-default" 　id="main-search">검색</button>
 	</form>
