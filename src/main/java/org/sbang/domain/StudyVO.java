@@ -12,6 +12,7 @@ public class StudyVO {
 	private int studyNo;
 
 	private String studyName;
+	private String studyUpCategory;
 	private String studyCategory;
 	private String studyRegion;
 	private String studyIntroduce;

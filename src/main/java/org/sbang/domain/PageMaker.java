@@ -54,13 +54,22 @@ public class PageMaker {
 	// page와 perPageNum와 searchType과 keyword를 포함하는 url 생성
 	public String makeSearch(int page) {
 		UriComponents uriComponents = UriComponentsBuilder.newInstance().queryParam("page", page).queryParam("perPageNum", cri.getPerPageNum()).queryParam("searchType", ((SearchCriteria) cri).getSearchType())
-				.queryParam("keyword", encoding(((SearchCriteria) cri).getKeyword())).queryParam("lineUp", ((SearchCriteria) cri).getLineUp()).build();
+				.queryParam("keyword", encoding(((SearchCriteria) cri).getKeyword())).queryParam("lineUp", ((SearchCriteria) cri).getLineUp()).queryParam("region", encoding(((SearchCriteria) cri).getRegion()))
+				.queryParam("upCategory", ((SearchCriteria) cri).getUpCategory()).build();
 		return uriComponents.toString();
 	}
 
 	public String makeLineUp(String lineUp) {
 		UriComponents uriComponents = UriComponentsBuilder.newInstance().queryParam("page", cri.getPage()).queryParam("perPageNum", cri.getPerPageNum()).queryParam("searchType", ((SearchCriteria) cri).getSearchType())
-				.queryParam("keyword", encoding(((SearchCriteria) cri).getKeyword())).queryParam("lineUp", lineUp).build();
+				.queryParam("keyword", encoding(((SearchCriteria) cri).getKeyword())).queryParam("lineUp", lineUp).queryParam("region", encoding(((SearchCriteria) cri).getRegion()))
+				.queryParam("upCategory", ((SearchCriteria) cri).getUpCategory()).build();
+		return uriComponents.toString();
+	}
+
+	public String makeUpCategory(String upCategory) {
+		UriComponents uriComponents = UriComponentsBuilder.newInstance().queryParam("page", cri.getPage()).queryParam("perPageNum", cri.getPerPageNum()).queryParam("searchType", ((SearchCriteria) cri).getSearchType())
+				.queryParam("keyword", encoding(((SearchCriteria) cri).getKeyword())).queryParam("lineUp", ((SearchCriteria) cri).getLineUp()).queryParam("region", encoding(((SearchCriteria) cri).getRegion()))
+				.queryParam("upCategory", upCategory).build();
 		return uriComponents.toString();
 	}
 

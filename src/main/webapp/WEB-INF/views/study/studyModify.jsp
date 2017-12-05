@@ -20,7 +20,7 @@
 		<!-- 쿼리스트링 값 받아오기 -->
 		<input type="hidden" name='page' value="${cri.page }"> <input type="hidden" name='perPageNum' value="${cri.perPageNum }"> <input
 			type="hidden" name='searchType' value="${cri.searchType }"> <input type="hidden" name='keyword' value="${cri.keyword }"> <input
-			type="hidden" name='lineUp' value="${cri.lineUp }" />
+			type="hidden" name='lineUp' value="${cri.lineUp }" /><input type="hidden" name='upCategory' value="${cri.upCategory }">
 		<div class="step1">
 			<h2>1단계</h2>
 			<div class="row">

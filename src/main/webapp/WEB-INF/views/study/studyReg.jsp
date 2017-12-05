@@ -65,7 +65,7 @@
 											<div class="content collapsed" data-toggle="collapse" href="#CA00">영어</div>
 										</div>
 										<div class="box list collapse" id="CA00">
-											<div class="content">
+											<div class="content0" value="영어">
 
 
 												<input id="CA00_00" type="checkbox" name="studyCategory" value="토익" /> <label class="midCategoryBox" for="CA00_00"># 토익</label> <input
@@ -85,7 +85,7 @@
 											<div class="content collapsed" data-toggle="collapse" href="#CA01">외국어</div>
 										</div>
 										<div class="box list collapse" id="CA01">
-											<div class="content">
+											<div class="content1" value="외국어">
 
 
 												<input id="CA01_00" type="checkbox" name="studyCategory" value="중국어" /> <label class="midCategoryBox" for="CA01_00"># 중국어</label> <input
@@ -107,7 +107,7 @@
 											<div class="content collapsed" data-toggle="collapse" href="#CA02">컴퓨터</div>
 										</div>
 										<div class="box list collapse" id="CA02">
-											<div class="content">
+											<div class="content2" value="컴퓨터">
 
 
 												<input id="CA02_00" type="checkbox" name="studyCategory" value="응용프로그래밍" /> <label class="midCategoryBox" for="CA02_00">#
@@ -130,7 +130,7 @@
 											<div class="content collapsed" data-toggle="collapse" href="#CA03">디자인/미술</div>
 										</div>
 										<div class="box list collapse" id="CA03">
-											<div class="content">
+											<div class="content3" value="디자인/미술">
 
 
 												<input id="CA03_00" type="checkbox" name="studyCategory" value="웹/모바일디자인" /> <label class="midCategoryBox" for="CA03_00">#
@@ -154,7 +154,7 @@
 											<div class="content collapsed" data-toggle="collapse" href="#CA04">국가고시/공무원</div>
 										</div>
 										<div class="box list collapse" id="CA04">
-											<div class="content">
+											<div class="content4" value="국가고시/공무원">
 
 
 												<input id="CA04_00" type="checkbox" name="studyCategory" value="행정" /> <label class="midCategoryBox" for="CA04_00"># 행정</label> <input
@@ -176,7 +176,7 @@
 											<div class="content collapsed" data-toggle="collapse" href="#CA05">취업</div>
 										</div>
 										<div class="box list collapse" id="CA05">
-											<div class="content">
+											<div class="content5" value="취업">
 
 
 												<input id="CA05_00" type="checkbox" name="studyCategory" value="자소서/면접" /> <label class="midCategoryBox" for="CA05_00">#
@@ -197,7 +197,7 @@
 											<div class="content collapsed" data-toggle="collapse" href="#CA06">음악/공연</div>
 										</div>
 										<div class="box list collapse" id="CA06">
-											<div class="content">
+											<div class="content6" value="음악/공연">
 
 
 												<input id="CA06_00" type="checkbox" name="studyCategory" value="기타/우쿠렐라" /> <label class="midCategoryBox" for="CA06_00">#
@@ -224,7 +224,7 @@
 											<div class="content collapsed" data-toggle="collapse" href="#CA07">스포츠</div>
 										</div>
 										<div class="box list collapse" id="CA07">
-											<div class="content">
+											<div class="content7" value="스포츠">
 
 
 												<input id="CA07_00" type="checkbox" name="studyCategory" value="축구" /> <label class="midCategoryBox" for="CA07_00"># 축구</label> <input
@@ -255,7 +255,7 @@
 											<div class="content collapsed" data-toggle="collapse" href="#CA08">뷰티/미용</div>
 										</div>
 										<div class="box list collapse" id="CA08">
-											<div class="content">
+											<div class="content8" value="뷰티/미용">
 
 
 												<input id="CA08_00" type="checkbox" name="studyCategory" value="헤어" /> <label class="midCategoryBox" for="CA08_00"># 헤어</label> <input
@@ -271,12 +271,12 @@
 
 											</div>
 										</div>
-
+ 
 										<div class="box header CA09">
 											<div class="content collapsed" data-toggle="collapse" href="#CA09">라이프스타일</div>
 										</div>
 										<div class="box list collapse" id="CA09">
-											<div class="content">
+											<div class="content9" value="라이프스타일">
 
 
 												<input id="CA09_00" type="checkbox" name="studyCategory" value="육아" /> <label class="midCategoryBox" for="CA09_00"># 육아</label> <input
@@ -305,7 +305,7 @@
 											<div class="content collapsed" data-toggle="collapse" href="#CA10">게임</div>
 										</div>
 										<div class="box list collapse" id="CA10">
-											<div class="content">
+											<div class="content10" value="게임">
 
 
 												<input id="CA10_00" type="checkbox" name="studyCategory" value="리그오브레전드" /> <label class="midCategoryBox" for="CA10_00">#
@@ -336,7 +336,7 @@
 					<label class="col-sm-2 control-label">스터디명</label>
 					<div class="col-sm-10">
 						<div class="col-sm-12">
-							<input type="text" class="form-control" name="studyName" placeholder="스터디이름을 넣어주세요" />
+							<input type="text" id="studyName" class="form-control" name="studyName" placeholder="스터디이름을 넣어주세요" />
 						</div>
 					</div>
 				</div>
@@ -553,7 +553,7 @@
 <script>
 	jQuery(function($) {
 		var chkstudyName
-/* 		var chkstudyStartDate = /^(1[0-2]|0[1-9])-(30|31|1[0-9]|2[0-9])-([0-9]{4})$/; */
+		/* 		var chkstudyStartDate = /^(1[0-2]|0[1-9])-(30|31|1[0-9]|2[0-9])-([0-9]{4})$/; */
 		var chkstudyMemFee = /^[0-9]+$/;
 		var chkstudyMaxMemCnt = /^[0-9]+$/;
 		var chkstudyIntroduce
@@ -568,7 +568,7 @@
 		var studyImage = $('#exampleInputFile');
 
 		form.submit(function() {
-			if (studyName.val() == "") { // 스터디명 NULL 유효성 검사
+			/* if (studyName.val() == "") { // 스터디명 NULL 유효성 검사
 				alert("스터디명을 입력하십시오.");
 				studyName.focus();
 				return false;
@@ -582,12 +582,12 @@
 				alert("시작날짜를 입력하십시오.")
 				studyStartDate.focus();
 				return false;
-			} /*  else if (chkstudyStartDate.test(studyStartDate.val()) != true) { // 비용 유효성 검사
-				alert("시작날짜에 날짜만 입력하세요.");
-				studyStartDate.focus();
-				return false;
+			}   else if (chkstudyStartDate.test(studyStartDate.val()) != true) { // 비용 유효성 검사
+					alert("시작날짜에 날짜만 입력하세요.");
+					studyStartDate.focus();
+					return false;
 
-			}  */ else if (studyMemFee.val() == "") { // 비용 NULL 유효성 검사
+				} else if (studyMemFee.val() == "") { // 비용 NULL 유효성 검사
 				alert("비용을 입력하십시오.")
 				studyMemFee.focus();
 				return false;
@@ -614,31 +614,66 @@
 				alert("사진을 입력하십시오.")
 				studyImage.focus();
 				return false;
-			}
-			/* input:hidden 으로 현재 업로드된 파일들의 목록을 저장한다. */
-				$("#registerForm").submit(function(event) {
-					event.preventDefault();
+			} 
+			 /* input:hidden 으로 현재 업로드된 파일들의 목록을 저장한다. */
 
-					var that = $(this);
+			event.preventDefault();
 
-					var str = "";
+			var that = $(this);
 
-					$(".uploadedList .delbtn").each(function(index) {
-						str += "<input type='hidden' name='files[" + index + "]' value='" + $(this).attr("data-src") + "'>";
-					});
+			var str = "";
 
-					$("#Datepicker .day").each(function(index) {
-						str += "<input type='hidden' name='weekVO[" + index + "].weekDay' value='" + $(this).attr("data-src") + "'>";
-					});
-					$("#Datepicker .start").each(function(index) {
-						str += "<input type='hidden' name='weekVO[" + index + "].weekStartDate' value='" + $(this).attr("data-src") + "'>";
-					});
-					$("#Datepicker .end").each(function(index) {
-						str += "<input type='hidden' name='weekVO[" + index + "].weekEndDate' value='" + $(this).attr("data-src") + "'>";
-					});
-					that.append(str);
-					that.get(0).submit();
-				});
+			$(".uploadedList .delbtn").each(function(index) {
+				str += "<input type='hidden' name='files[" + index + "]' value='" + $(this).attr("data-src") + "'>";
+			});
+
+			$("#Datepicker .day").each(function(index) {
+				str += "<input type='hidden' name='weekVO[" + index + "].weekDay' value='" + $(this).attr("data-src") + "'>";
+			});
+			$("#Datepicker .start").each(function(index) {
+				str += "<input type='hidden' name='weekVO[" + index + "].weekStartDate' value='" + $(this).attr("data-src") + "'>";
+			});
+			$("#Datepicker .end").each(function(index) {
+				str += "<input type='hidden' name='weekVO[" + index + "].weekEndDate' value='" + $(this).attr("data-src") + "'>";
+			});
+			var flag=false;
+			 $(".content0 input[type=checkbox]:checked").each(function(items) {
+					str += "<input type='hidden' name='studyUpCategory' value='영어'>";
+			})
+			$(".content1 input[type=checkbox]:checked").each(function(items) {
+				str += "<input type='hidden' name='studyUpCategory' value='외국어'>";
+			})
+			$(".content2 input[type=checkbox]:checked").each(function(items) {
+				str += "<input type='hidden' name='studyUpCategory' value='컴퓨터'>";
+			})
+			$(".content3 input[type=checkbox]:checked").each(function(items) {
+				str += "<input type='hidden' name='studyUpCategory' value='디자인/미술'>";
+			})
+			$(".content4 input[type=checkbox]:checked").each(function(items) {
+				str += "<input type='hidden' name='studyUpCategory' value='국가고시/공무원'>";
+			})
+			$(".content5 input[type=checkbox]:checked").each(function(items) {
+				str += "<input type='hidden' name='studyUpCategory' value='취업'>";
+			})
+			$(".content6 input[type=checkbox]:checked").each(function(items) {
+				str += "<input type='hidden' name='studyUpCategory' value='음악/공연'>";
+			})
+			$(".content7 input[type=checkbox]:checked").each(function(items) {
+				str += "<input type='hidden' name='studyUpCategory' value='스포츠'>";
+			})
+			$(".content8 input[type=checkbox]:checked").each(function(items) {
+				str += "<input type='hidden' name='studyUpCategory' value='뷰티/미용'>";
+			})
+			$(".content9 input[type=checkbox]:checked").each(function(items) {
+				str += "<input type='hidden' name='studyUpCategory' value='라이프스타일'>";
+			})
+			$(".content10 input[type=checkbox]:checked").each(function(items) {
+				str += "<input type='hidden' name='studyUpCategory' value='게임'>";
+			})
+			
+			that.append(str);
+			that.get(0).submit();
+
 		});
 	});
 
@@ -712,7 +747,6 @@
 					});
 				});
 
-				
 				/* 업로드 된 파일들중 x버튼을 누르면 업로드된 파일들이 삭제되도록한다.  */
 				$(".uploadedList").on("click", "a", function(event) {
 					var that = $(this);
@@ -732,6 +766,7 @@
 					});
 				});
 
+				/*주단위 시간 설정  */
 				function displayVals() {
 					for (var i = 1; i < 25; i++) {
 						$("#startTime").append("<option value='" +
@@ -753,6 +788,8 @@
 					}
 				}
 				displayVals();
+
+				/*버튼클릭시 일정추가  */
 				$("#copyBtn").click(
 						function() {
 							$("select").change(displayVals);
@@ -766,10 +803,12 @@
 							var Datepicker = document.getElementById('Datepicker');
 							$("#Datepicker").append(
 									"<li><p class='day' data-src='"+singleValues+"'><b>요일:</b>" + singleValues + "</p>"
-											+ "<p class='start' data-src='"+weekStartDate+"'><b>시작시간:</b>" + weekStartDate + "</p>" + "<p class='end' data-src='"+weekEndDate+"'><b>끝나는시간:</b> "
-											+ weekEndDate + "</p>"
+											+ "<p class='start' data-src='"+weekStartDate+"'><b>시작시간:</b>" + weekStartDate + "</p>"
+											+ "<p class='end' data-src='"+weekEndDate+"'><b>끝나는시간:</b> " + weekEndDate + "</p>"
 											+ "<a class='btn btn-default btn-xs pull-right delbtn'><i class='fa fa-fw fa-remove'></i></a></li>");
 						});
+
+				/* 일정제거  */
 				$("#Datepicker").on("click", "a", function(event) {
 					var that = $(this);
 					that.parent("li").remove();

@@ -70,7 +70,9 @@
 	<form role="form" action="studyModify" method="post">
 		<input type="hidden" name='studyNo' value="${studyVO.studyNo }"> <input type="hidden" name='page' value="${cri.page }"> <input
 			type="hidden" name='perPageNum' value="${cri.perPageNum }"> <input type="hidden" name='searchType' value="${cri.searchType }">
-		<input type="hidden" name='keyword' value="${cri.keyword }"> <input type="hidden" name='lineUp' value="${cri.lineUp}" />
+		<input type="hidden" name='keyword' value="${cri.keyword }"> <input type="hidden" name='lineUp' value="${cri.lineUp}" /> <input
+			type="hidden" name='keyword' value="${cri.region }"> <input type="hidden" name='region' value="${cri.region}" /> <input
+			type="hidden" name='upCategory' value="${cri.upCategory }">
 	</form>
 
 	<div class="row">
@@ -118,12 +120,12 @@
 			<div class="col-md-11">
 				<input type="text" name="studyMemFee" value="${studyVO.studyMemFee }" readonly="readonly">
 			</div>
-			
+
 			<div class="col-md-1">일정</div>
 			<div class="col-md-11">
 				<c:forEach var="weekVO" items="${weekList}">
-				<div>요일: ${weekVO.weekDay}, 시작시간: ${weekVO.weekStartDate}, 끝나는시간:${weekVO.weekEndDate} </div>
-				</c:forEach> 
+					<div>요일: ${weekVO.weekDay}, 시작시간: ${weekVO.weekStartDate}, 끝나는시간:${weekVO.weekEndDate}</div>
+				</c:forEach>
 			</div>
 			<div class="col-md-1">대상</div>
 			<div class="col-md-11">
@@ -134,7 +136,6 @@
 			<div class="col-md-11">
 				<input type="text" name="studyIntroduce" value="${studyVO.studyIntroduce }" readonly="readonly">
 			</div>
-
 
 			<ul class="mailbox-attachments clearfix uploadedList">
 			</ul>
@@ -151,7 +152,7 @@
 	<%-- <c:if test="${not empty login }"> --%>
 	<div class="box-body">
 		<label for="exampleInputEmail1">Writer</label> <input class="form-control" placeholder="USER ID" type="text" value="${login.uid }"
-			 id="newReplyWriter"> <label for="exampleInputEmail1">Reply Text</label> <input class="form-control" type="text"
+			id="newReplyWriter"> <label for="exampleInputEmail1">Reply Text</label> <input class="form-control" type="text"
 			placeholder="REPLY TEXT" id="newReplyText">
 	</div>
 	<!-- /.box-body -->
