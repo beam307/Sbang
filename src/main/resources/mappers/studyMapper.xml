@@ -64,6 +64,8 @@
 	  	from study s left outer join (select imagePath, studyNo from image group by studyNo) i 
 	  	on i.studyNo =s.studyNo where s.studyNo>0
   	]]>
+		<include refid="upCategory"></include>
+		<include refid="region"></include>
 		<include refid="search"></include>
   	<![CDATA[
 	  	order by 
@@ -78,6 +80,8 @@
   	<![CDATA[
 	  	select count(s.studyNo) from study s where s.studyNo>0 
   	]]>
+		<include refid="upCategory"></include>
+		<include refid="region"></include>
 		<include refid="search"></include>
 
 	</select>
@@ -85,11 +89,57 @@
 	<update id="updateReplyCnt">
 		update study set studyReplyCnt=studyReplyCnt+#{amount} where studyNo=#{studyNo}
 	</update>
-	
+
 	<update id="updateViewCnt">
 		update study set studyViewCnt=studyViewCnt+1 where studyNo=#{studyNo}
 	</update>
 	
+	<!--카테고리 sql 모듈 -->
+	<sql id="upCategory">
+		<if test="upCategory !=null">
+			<if test="upCategory == '0'.toString()">
+				and s.studyUpCategory like CONCAT('%','영어', '%')
+			</if>
+			<if test="upCategory == '1'.toString()">
+				and s.studyUpCategory like CONCAT('%','외국어', '%')
+			</if>
+			<if test="upCategory == '2'.toString()">
+				and s.studyUpCategory like CONCAT('%','컴퓨터', '%')
+			</if>
+			<if test="upCategory == '3'.toString()">
+				and s.studyUpCategory like CONCAT('%','디자인/미술', '%')
+			</if>
+			<if test="upCategory == '4'.toString()">
+				and s.studyUpCategory like CONCAT('%','국가고시/공무원', '%')
+			</if>
+			<if test="upCategory == '5'.toString()">
+				and s.studyUpCategory like CONCAT('%','취업', '%')
+			</if>
+			<if test="upCategory == '6'.toString()">
+				and s.studyUpCategory like CONCAT('%','음악/공연', '%')
+			</if>
+			<if test="upCategory == '7'.toString()">
+				and s.studyUpCategory like CONCAT('%','스포츠', '%')
+			</if>
+			<if test="upCategory == '8'.toString()">
+				and s.studyUpCategory like CONCAT('%','뷰티/미용', '%')
+			</if>
+			<if test="upCategory == '9'.toString()">
+				and s.studyUpCategory like CONCAT('%','라이프스타일', '%')
+			</if>
+			<if test="upCategory == '10'.toString()">
+				and s.studyUpCategory like CONCAT('%','게임', '%')
+			</if>
+		</if>
+	</sql>
+
+	<!--지역 검색 sql 모듈 -->
+	<sql id="region">
+		<if test="region != null">
+			and s.studyRegion like CONCAT('%', #{region}, '%')
+		</if>
+	</sql>
+
 	<!--정렬 sql 모듈 -->
 	<sql id="line">
 		<if test="lineUp !=null">
@@ -129,11 +179,6 @@
 				OR writer like CONCAT('%', #{keyword}, '%'))
 			</if>
 		</if>
-	</sql>
-	
-	<!--카테고리 sql 모듈 -->
-	<sql id="category">
-		
 	</sql>
 </mapper>
  

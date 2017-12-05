@@ -13,7 +13,7 @@
 			<div class="form-group">
 				<label class="col-sm-2 control-label">검색</label>
 				<div class="col-sm-10">
-					<select name="searchType">
+					<select class="form-control" name="searchType">
 						<option value="n" <c:out value="${cri.searchType == null?'selected':''}"/>>
 							---</option>
 						<option value="t" <c:out value="${cri.searchType eq 't'?'selected':''}"/>>
@@ -28,28 +28,45 @@
 							Content OR Writer</option>
 						<option value="tcw" <c:out value="${cri.searchType eq 'tcw'?'selected':''}"/>>
 							Title OR Content OR Writer</option>
-					</select> 
-					<input type="text" name='keyword' id="keywordInput" value='${cri.keyword}'>
+					</select> <input type="text" class="form-control" name='keyword' id="keywordInput" value='${cri.keyword}'>
 					<button id='searchBtn'>검색</button>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-sm-2 control-label">지역</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" placeholder="지역을 입력해주세요">
+					<input type="text" class="form-control" name="region" placeholder="지역을 입력해주세요" value="${cri.region}">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-sm-2 control-label">카테고리</label>
 				<div class="col-sm-10">
 					<div class="col-sm-6 search-sub-select1">
-						<select class="form-control">
-							<option>대분류</option>
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5">5</option>
+						<select class="form-control" id="upCategory">
+							<option value="studyList${pageMaker.makeUpCategory('n') }" <c:out value="${cri.upCategory eq 'n'?'selected':''}"/>>
+							---</option>
+							<option value="studyList${pageMaker.makeUpCategory('0') }" <c:out value="${cri.upCategory eq '0'?'selected':''}"/>>
+							영어</option>
+							<option value="studyList${pageMaker.makeUpCategory('1') }" <c:out value="${cri.upCategory eq '1'?'selected':''}"/>>
+							외국어</option>
+							<option value="studyList${pageMaker.makeUpCategory('2') }" <c:out value="${cri.upCategory eq '2'?'selected':''}"/>>
+							컴퓨터</option>
+							<option value="studyList${pageMaker.makeUpCategory('3') }" <c:out value="${cri.upCategory eq '3'?'selected':''}"/>>
+							디자인/미술</option>
+							<option value="studyList${pageMaker.makeUpCategory('4') }" <c:out value="${cri.upCategory eq '4'?'selected':''}"/>>
+							국가고시/공무원</option>
+							<option value="studyList${pageMaker.makeUpCategory('5') }" <c:out value="${cri.upCategory eq '5'?'selected':''}"/>>
+							취업</option>
+							<option value="studyList${pageMaker.makeUpCategory('6') }" <c:out value="${cri.upCategory eq '6'?'selected':''}"/>>
+							음악/공연</option>
+							<option value="studyList${pageMaker.makeUpCategory('7') }" <c:out value="${cri.upCategory eq '7'?'selected':''}"/>>
+							스포츠</option>
+							<option value="studyList${pageMaker.makeUpCategory('8') }" <c:out value="${cri.upCategory eq '8'?'selected':''}"/>>
+							뷰티/미용</option>
+							<option value="studyList${pageMaker.makeUpCategory('9') }" <c:out value="${cri.upCategory eq '9'?'selected':''}"/>>
+							라이프스타일</option>
+							<option value="studyList${pageMaker.makeUpCategory('10') }" <c:out value="${cri.upCategory eq '10'?'selected':''}"/>>
+							게임</option>
 						</select>
 					</div>
 					<div class="col-sm-6 search-sub-select2">
@@ -78,7 +95,7 @@
 			<option value="studyList${pageMaker.makeLineUp('r') }" <c:out value="${cri.lineUp eq 'r'?'selected':''}"/>>
 							댓글순</option>
 			<option>또뭐가있을까??</option>
-			
+
 		</select>
 	</div>
 	<div class="list-thumbnail">
@@ -142,6 +159,13 @@
 							},'text');
 						}) */
 						$("#line-up").click(function() {
+							var open = $(this).data("isopen");
+							if (open) {
+								window.location.href = $(this).val()
+							}
+							$(this).data("isopen", !open);
+						});
+						$("#upCategory").click(function() {
 							var open = $(this).data("isopen");
 							if (open) {
 								window.location.href = $(this).val()
