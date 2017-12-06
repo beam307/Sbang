@@ -344,12 +344,12 @@
 		};
 
 		/* jsp에 댓글 출력  */
-		$("#repliesDiv").on("click", function() {
+		
 			if ($(".timeline li").size() > 1) {
 				return;
 			}
 			getPage("/replies/" + studyNo + "/1");
-		});
+		
 
 		/* 댓글  페이징출력*/
 		$(".pagination").on("click", "li a", function(event) {

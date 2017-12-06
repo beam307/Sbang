@@ -61,9 +61,9 @@
 									<div class="flex-container">
 
 										<div class="box header CA00">
-											<div class="content collapsed" data-toggle="collapse">영어</div>
+											<div class="content collapsed" data-toggle="collapse" href="#CA00">영어</div>
 										</div>
-										<div class="box list collapse" id="CA00">
+										<div class="box list collapse" id="CA00" >
 											<div class="content0">
 
 
@@ -81,7 +81,7 @@
 										</div>
 
 										<div class="box header CA01">
-											<div class="content collapsed" data-toggle="collapse">외국어</div>
+											<div class="content collapsed" data-toggle="collapse" href="#CA01">외국어</div>
 										</div>
 										<div class="box list collapse" id="CA01">
 											<div class="content1">
@@ -103,7 +103,7 @@
 										</div>
 
 										<div class="box header CA02">
-											<div class="content collapsed" data-toggle="collapse">컴퓨터</div>
+											<div class="content collapsed" data-toggle="collapse" href="#CA02">컴퓨터</div>
 										</div>
 										<div class="box list collapse" id="CA02">
 											<div class="content2">
@@ -126,7 +126,7 @@
 										</div>
 
 										<div class="box header CA03">
-											<div class="content collapsed" data-toggle="collapse">디자인/미술</div>
+											<div class="content collapsed" data-toggle="collapse" href="#CA03">디자인/미술</div>
 										</div>
 										<div class="box list collapse" id="CA03">
 											<div class="content3">
@@ -150,7 +150,7 @@
 										</div>
 
 										<div class="box header CA04">
-											<div class="content collapsed" data-toggle="collapse">국가고시/공무원</div>
+											<div class="content collapsed" data-toggle="collapse" href="#CA04">국가고시/공무원</div>
 										</div>
 										<div class="box list collapse" id="CA04">
 											<div class="content4">
@@ -172,7 +172,7 @@
 										</div>
 
 										<div class="box header CA05">
-											<div class="content collapsed" data-toggle="collapse">취업</div>
+											<div class="content collapsed" data-toggle="collapse" href="#CA05">취업</div>
 										</div>
 										<div class="box list collapse" id="CA05">
 											<div class="content5">
@@ -193,7 +193,7 @@
 										</div>
 
 										<div class="box header CA06">
-											<div class="content collapsed" data-toggle="collapse">음악/공연</div>
+											<div class="content collapsed" data-toggle="collapse" href="#CA06">음악/공연</div>
 										</div>
 										<div class="box list collapse" id="CA06">
 											<div class="content6">
@@ -220,7 +220,7 @@
 										</div>
 
 										<div class="box header CA07">
-											<div class="content collapsed" data-toggle="collapse">스포츠</div>
+											<div class="content collapsed" data-toggle="collapse" href="#CA07">스포츠</div>
 										</div>
 										<div class="box list collapse" id="CA07">
 											<div class="content7">
@@ -251,7 +251,7 @@
 										</div>
 
 										<div class="box header CA08">
-											<div class="content collapsed" data-toggle="collapse">뷰티/미용</div>
+											<div class="content collapsed" data-toggle="collapse" href="#CA08">뷰티/미용</div>
 										</div>
 										<div class="box list collapse" id="CA08">
 											<div class="content8">
@@ -272,7 +272,7 @@
 										</div>
 
 										<div class="box header CA09">
-											<div class="content collapsed" data-toggle="collapse">라이프스타일</div>
+											<div class="content collapsed" data-toggle="collapse" href="#CA09">라이프스타일</div>
 										</div>
 										<div class="box list collapse" id="CA09">
 											<div class="content9">
@@ -301,7 +301,7 @@
 										</div>
 
 										<div class="box header CA10">
-											<div class="content collapsed" data-toggle="collapse">게임</div>
+											<div class="content collapsed" data-toggle="collapse" href="#CA10">게임</div>
 										</div>
 										<div class="box list collapse" id="CA10">
 											<div class="content10">
@@ -531,7 +531,6 @@
 <script>
 	jQuery(function($) {
 		var chkstudyName
-		/* 		var chkstudyStartDate = /^(1[0-2]|0[1-9])-(30|31|1[0-9]|2[0-9])-([0-9]{4})$/; */
 		var chkstudyMemFee = /^[0-9]+$/;
 		var chkstudyMaxMemCnt = /^[0-9]+$/;
 		var chkstudyIntroduce
@@ -556,16 +555,7 @@
 				studyRegion.focus();
 				return false;
 
-			} else if (studyStartDate.val() == "") { // 시작날짜 NULL 유효성 검사
-				alert("시작날짜를 입력하십시오.")
-				studyStartDate.focus();
-				return false;
-			} else if (chkstudyStartDate.test(studyStartDate.val()) != true) { // 비용 유효성 검사
-				alert("시작날짜에 날짜만 입력하세요.");
-				studyStartDate.focus();
-				return false;
-
-			} else if (studyMemFee.val() == "") { // 비용 NULL 유효성 검사
+			}  else if (studyMemFee.val() == "") { // 비용 NULL 유효성 검사
 				alert("비용을 입력하십시오.")
 				studyMemFee.focus();
 				return false;
