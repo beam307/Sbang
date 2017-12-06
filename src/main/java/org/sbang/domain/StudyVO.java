@@ -14,7 +14,9 @@ public class StudyVO {
 	private String studyName;
 	private String studyUpCategory;
 	private String studyCategory;
-	private String studyRegion;
+	private String studyPostCode;
+	private String studyRoadADR;
+	private String studyJibunADR;
 	private String studyIntroduce;
 
 	private Date studyRegDate;

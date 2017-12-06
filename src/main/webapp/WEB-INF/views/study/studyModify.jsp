@@ -350,17 +350,17 @@
 					<label class="col-sm-2 control-label">스터디명</label>
 					<div class="col-sm-10">
 						<div class="col-sm-12">
-							<input type="text" class="form-control" name="studyName" value="${studyVO.studyName }">
+							<input type="text" class="form-control" id="studyName" name="studyName" value="${studyVO.studyName }">
 						</div>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-2 control-label">지역</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" id="sample4_postcode" placeholder="우편번호"> 
-						<input type="button" class="form-control" onclick="sample4_execDaumPostcode()"value="우편번호 찾기"> 
-						<input type="text" class="form-control" name="studyRegion" id="sample4_roadAddress" placeholder="도로명주소" value="${studyVO.studyRegion }"> 
-						<input type="text" class="form-control" id="sample4_jibunAddress" placeholder="지번주소"> <span id="guide" style="color: #999"></span>
+						<input type="text" class="form-control" name="studyPostCode" id="sample4_postcode" placeholder="우편번호" value="${studyVO.studyPostCode}"> <input type="button" class="form-control"
+							onclick="sample4_execDaumPostcode()" value="우편번호 찾기"> <input type="text" class="form-control" name="studyRoadADR"
+							id="sample4_roadAddress" placeholder="도로명주소" value="${studyVO.studyRoadADR}"> <input type="text" class="form-control"
+							name="studyJibunADR" id="sample4_jibunAddress" value="${studyVO.studyJibunADR}" placeholder="지번주소"> <span id="guide" style="color: #999"></span>
 					</div>
 				</div>
 				<div class="col-sm-12">
@@ -478,7 +478,7 @@
 					<label class="col-sm-2 control-label">비용</label>
 					<div class="col-sm-10">
 						<div class="col-sm-12">
-							<input type="text" class="form-control" name="studyMemFee" value="${studyVO.studyMemFee }">
+							<input type="text" id="studyMemFee" class="form-control" name="studyMemFee" value="${studyVO.studyMemFee }">
 						</div>
 					</div>
 				</div>
@@ -486,7 +486,7 @@
 					<label class="col-sm-2 control-label">인원수</label>
 					<div class="col-sm-10">
 						<div class="col-sm-12">
-							<input type="text" class="form-control" name="studyMaxMemCnt" value="${studyVO.studyMaxMemCnt }">
+							<input type="text" id="studyMaxMemCnt" class="form-control" name="studyMaxMemCnt" value="${studyVO.studyMaxMemCnt }">
 						</div>
 					</div>
 				</div>
@@ -502,7 +502,7 @@
 					<label class="col-sm-2 control-label">자기소개</label>
 					<div class="col-sm-10">
 						<div class="col-sm-12">
-							<textarea class="form-control" rows="10" name="studyIntroduce">${studyVO.studyIntroduce }</textarea>
+							<textarea class="form-control" id="studyIntroduce" rows="10" name="studyIntroduce">${studyVO.studyIntroduce }</textarea>
 						</div>
 					</div>
 				</div>
@@ -552,121 +552,117 @@
 </script>
 <script type="text/javascript" src="/resources/dist/js/upload.js"></script>
 <script>
-jQuery(function($) {
-	var chkstudyName
-	var chkstudyMemFee = /^[0-9]+$/;
-	var chkstudyMaxMemCnt = /^[0-9]+$/;
-	var chkstudyIntroduce
+	jQuery(function($) {
+		var chkstudyName
+		var chkstudyMemFee = /^[0-9]+$/;
+		var chkstudyMaxMemCnt = /^[0-9]+$/;
+		var chkstudyIntroduce
 
-	var form = $('#registerForm');
-	var studyName = $('#studyName');
-	var studyRegion = $('#sample4_postcode');
-	var studyStartDate = $('#testDatepicker');
-	var studyMemFee = $('#studyMemFee');
-	var studyMaxMemCnt = $('#studyMaxMemCnt');
-	var studyIntroduce = $('#studyIntroduce');
-	var studyImage = $('#exampleInputFile');
+		var form = $('#registerForm');
+		var studyName = $('#studyName');
+		var studyRegion = $('#sample4_roadAddress');
+		var studyStartDate = $('#testDatepicker');
+		var studyMemFee = $('#studyMemFee');
+		var studyMaxMemCnt = $('#studyMaxMemCnt');
+		var studyIntroduce = $('#studyIntroduce');
 
-	form.submit(function() {
-		if (studyName.val() == "") { // 스터디명 NULL 유효성 검사
-			alert("스터디명을 입력하십시오.");
-			studyName.focus();
-			return false;
+		form.submit(function() {
+			if (studyName.val() == "") { // 스터디명 NULL 유효성 검사
+				alert("스터디명을 입력하십시오.");
+				studyName.focus();
+				return false;
 
-		} else if (studyRegion.val() == "") { // 지역 NULL 유효성 검사
-			alert("지역을 입력하십시오.")
-			studyRegion.focus();
-			return false;
+			} else if (studyRegion.val() == "") { // 지역 NULL 유효성 검사
+				alert("지역을 입력하십시오.")
+				studyRegion.focus();
+				return false;
 
-		}  else if (studyMemFee.val() == "") { // 비용 NULL 유효성 검사
-			alert("비용을 입력하십시오.")
-			studyMemFee.focus();
-			return false;
-		} else if (chkstudyMemFee.test(studyMemFee.val()) != true) { // 비용 유효성 검사
-			alert("비용에 숫자만 입력하세요.");
-			studyMemFee.focus();
-			return false;
+			}  else if (studyMemFee.val() == "") { // 비용 NULL 유효성 검사
+				alert("비용을 입력하십시오.")
+				studyMemFee.focus();
+				return false;
+			} else if (chkstudyMemFee.test(studyMemFee.val()) != true) { // 비용 유효성 검사
+				alert("비용에 숫자만 입력하세요.");
+				studyMemFee.focus();
+				return false;
 
-		} else if (studyMaxMemCnt.val() == "") { // 인원수 NULL 유효성 검사
-			alert("인원수를 입력하십시오.")
-			studyMaxMemCnt.focus();
-			return false;
-		} else if (chkstudyMaxMemCnt.test(studyMaxMemCnt.val()) != true) { // 인원수 유효성 검사
-			alert("인원수에 숫자만 입력하세요.");
-			studyMaxMemCnt.focus();
-			return false;
+			}  else if (studyMaxMemCnt.val() == "") { // 인원수 NULL 유효성 검사
+				alert("인원수를 입력하십시오.")
+				studyMaxMemCnt.focus();
+				return false;
+			} else if (chkstudyMaxMemCnt.test(studyMaxMemCnt.val()) != true) { // 인원수 유효성 검사
+				alert("인원수에 숫자만 입력하세요.");
+				studyMaxMemCnt.focus();
+				return false;
 
-		} else if (studyIntroduce.val() == "") { // 스터디소개 NULL 유효성 검사
-			alert("스터디소개를 입력하십시오.")
-			studyIntroduce.focus();
-			return false;
+			} else if (studyIntroduce.val() == "") { // 스터디소개 NULL 유효성 검사
+				alert("스터디소개를 입력하십시오.")
+				studyIntroduce.focus();
+				return false;
 
-		} else if (studyImage.val() == "") { // 사진 NULL 유효성 검사
-			alert("사진을 입력하십시오.")
-			studyImage.focus();
-			return false;
-		}
-		/* input:hidden 으로 현재 업로드된 파일들의 목록을 저장한다. */
+			} 
+			/* input:hidden 으로 현재 업로드된 파일들의 목록을 저장한다. */
 
-		event.preventDefault();
+			event.preventDefault();
 
-		var that = $(this);
+			var that = $(this);
 
-		var str = "";
+			var str = "";
 
-		$(".uploadedList .delbtn").each(function(index) {
-			str += "<input type='hidden' name='files[" + index + "]' value='" + $(this).attr("data-src") + "'>";
+			$(".uploadedList .delbtn").each(function(index) {
+				str += "<input type='hidden' name='files[" + index + "]' value='" + $(this).attr("data-src") + "'>";
+			});
+
+			$("#Datepicker .day").each(function(index) {
+				str += "<input type='hidden' name='weekVO[" + index + "].weekDay' value='" + $(this).attr("data-src") + "'>";
+			});
+			$("#Datepicker .start").each(function(index) {
+				str += "<input type='hidden' name='weekVO[" + index + "].weekStartDate' value='" + $(this).attr("data-src") + "'>";
+			});
+			$("#Datepicker .end").each(function(index) {
+				str += "<input type='hidden' name='weekVO[" + index + "].weekEndDate' value='" + $(this).attr("data-src") + "'>";
+			});
+			
+			$(".content0 input[type=checkbox]:checked").each(function(items) {
+				str += "<input type='hidden' name='studyUpCategory' value='영어'>";
+			})
+			$(".content1 input[type=checkbox]:checked").each(function(items) {
+				str += "<input type='hidden' name='studyUpCategory' value='외국어'>";
+			})
+			$(".content2 input[type=checkbox]:checked").each(function(items) {
+				str += "<input type='hidden' name='studyUpCategory' value='컴퓨터'>";
+			})
+			$(".content3 input[type=checkbox]:checked").each(function(items) {
+				str += "<input type='hidden' name='studyUpCategory' value='디자인/미술'>";
+			})
+			$(".content4 input[type=checkbox]:checked").each(function(items) {
+				str += "<input type='hidden' name='studyUpCategory' value='국가고시/공무원'>";
+			})
+			$(".content5 input[type=checkbox]:checked").each(function(items) {
+				str += "<input type='hidden' name='studyUpCategory' value='취업'>";
+			})
+			$(".content6 input[type=checkbox]:checked").each(function(items) {
+				str += "<input type='hidden' name='studyUpCategory' value='음악/공연'>";
+			})
+			$(".content7 input[type=checkbox]:checked").each(function(items) {
+				str += "<input type='hidden' name='studyUpCategory' value='스포츠'>";
+			})
+			$(".content8 input[type=checkbox]:checked").each(function(items) {
+				str += "<input type='hidden' name='studyUpCategory' value='뷰티/미용'>";
+			})
+			$(".content9 input[type=checkbox]:checked").each(function(items) {
+				str += "<input type='hidden' name='studyUpCategory' value='라이프스타일'>";
+			})
+			$(".content10 input[type=checkbox]:checked").each(function(items) {
+				str += "<input type='hidden' name='studyUpCategory' value='게임'>";
+			})
+
+			that.append(str);
+			that.get(0).submit();
+
 		});
-
-		$("#Datepicker .day").each(function(index) {
-			str += "<input type='hidden' name='weekVO[" + index + "].weekDay' value='" + $(this).attr("data-src") + "'>";
-		});
-		$("#Datepicker .start").each(function(index) {
-			str += "<input type='hidden' name='weekVO[" + index + "].weekStartDate' value='" + $(this).attr("data-src") + "'>";
-		});
-		$("#Datepicker .end").each(function(index) {
-			str += "<input type='hidden' name='weekVO[" + index + "].weekEndDate' value='" + $(this).attr("data-src") + "'>";
-		});
-		var flag = false;
-		$(".content0 input[type=checkbox]:checked").each(function(items) {
-			str += "<input type='hidden' name='studyUpCategory' value='영어'>";
-		})
-		$(".content1 input[type=checkbox]:checked").each(function(items) {
-			str += "<input type='hidden' name='studyUpCategory' value='외국어'>";
-		})
-		$(".content2 input[type=checkbox]:checked").each(function(items) {
-			str += "<input type='hidden' name='studyUpCategory' value='컴퓨터'>";
-		})
-		$(".content3 input[type=checkbox]:checked").each(function(items) {
-			str += "<input type='hidden' name='studyUpCategory' value='디자인/미술'>";
-		})
-		$(".content4 input[type=checkbox]:checked").each(function(items) {
-			str += "<input type='hidden' name='studyUpCategory' value='국가고시/공무원'>";
-		})
-		$(".content5 input[type=checkbox]:checked").each(function(items) {
-			str += "<input type='hidden' name='studyUpCategory' value='취업'>";
-		})
-		$(".content6 input[type=checkbox]:checked").each(function(items) {
-			str += "<input type='hidden' name='studyUpCategory' value='음악/공연'>";
-		})
-		$(".content7 input[type=checkbox]:checked").each(function(items) {
-			str += "<input type='hidden' name='studyUpCategory' value='스포츠'>";
-		})
-		$(".content8 input[type=checkbox]:checked").each(function(items) {
-			str += "<input type='hidden' name='studyUpCategory' value='뷰티/미용'>";
-		})
-		$(".content9 input[type=checkbox]:checked").each(function(items) {
-			str += "<input type='hidden' name='studyUpCategory' value='라이프스타일'>";
-		})
-		$(".content10 input[type=checkbox]:checked").each(function(items) {
-			str += "<input type='hidden' name='studyUpCategory' value='게임'>";
-		})
-
-		that.append(str);
-		that.get(0).submit();
-
 	});
-});
+
 	$(document)
 			.ready(
 					function() {
@@ -703,11 +699,6 @@ jQuery(function($) {
 						$("#exampleInputFile").on("change", function(event) {
 							event.preventDefault();
 
-							/* var files = event.originalEvent.dataTransfer.files;
-
-							var file = files[0];
-							 */
-							//console.log(file);
 							var formData = new FormData();
 							formData.append("file", $("input[id=exampleInputFile]")[0].files[0]);
 
@@ -788,21 +779,21 @@ jQuery(function($) {
 						function displayVals() {
 							for (var i = 1; i < 25; i++) {
 								$("#startTime").append("<option value='" +
-                  i +
-                  "시'> " + i + "시" + " </option> ");
+                 i +
+                 "시'> " + i + "시" + " </option> ");
 
 								$("#endTime").append("<option value='" +
-                  i +
-                  "시'> " + i + "시" + " </option> ");
+                 i +
+                 "시'> " + i + "시" + " </option> ");
 							}
 							for (var i = 1; i < 61; i++) {
 								$("#startMinute").append("<option value='" +
-                  i +
-                  "분'> " + i + "분" + " </option> ");
+                 i +
+                 "분'> " + i + "분" + " </option> ");
 
 								$("#endMinute").append("<option value='" +
-                  i +
-                  "분'> " + i + "분" + " </option> ");
+                 i +
+                 "분'> " + i + "분" + " </option> ");
 							}
 						}
 						displayVals();

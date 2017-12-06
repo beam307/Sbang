@@ -8,9 +8,9 @@
 	<!-- 스터디방 CRUD -->
 	<insert id="create">
 		insert into
-		study(studyName,studyUpCategory,studyCategory,studyRegion,studyTargetAge,studyMaxMemCnt,studyCurMemCnt,studyMemFee,studyWorkPerMonth,studyIntroduce,studyStartDate,studyEndDate)
+		study(studyName,studyUpCategory,studyCategory,studyPostCode,studyRoadADR,studyJibunADR,studyTargetAge,studyMaxMemCnt,studyCurMemCnt,studyMemFee,studyWorkPerMonth,studyIntroduce,studyStartDate,studyEndDate)
 		values
-		(#{studyName},#{studyUpCategory},#{studyCategory},#{studyRegion},#{studyTargetAge},#{studyMaxMemCnt},#{studyCurMemCnt},#{studyMemFee},#{studyWorkPerMonth},#{studyIntroduce},#{studyStartDate},#{studyEndDate})
+		(#{studyName},#{studyUpCategory},#{studyCategory},#{studyPostCode},#{studyRoadADR},#{studyJibunADR},#{studyTargetAge},#{studyMaxMemCnt},#{studyCurMemCnt},#{studyMemFee},#{studyWorkPerMonth},#{studyIntroduce},#{studyStartDate},#{studyEndDate})
 	</insert>
 
 	<select id="read" resultType="StudyVO">
@@ -19,7 +19,7 @@
 
 	<update id="update">
 		update study set
-		studyName=#{studyName},studyCategory=#{studyCategory},studyRegion=#{studyRegion},studyTargetAge=#{studyTargetAge},studyMaxMemCnt=#{studyMaxMemCnt},
+		studyName=#{studyName},studyCategory=#{studyCategory},studyPostCode=#{studyPostCode},studyRoadADR=#{studyRoadADR},studyJibunADR=#{studyJibunADR},studyTargetAge=#{studyTargetAge},studyMaxMemCnt=#{studyMaxMemCnt},
 		studyCurMemCnt=#{studyCurMemCnt},studyMemFee=#{studyMemFee},studyWorkPerMonth=#{studyWorkPerMonth},studyIntroduce=#{studyIntroduce},studyStartDate=#{studyStartDate},studyEndDate=#{studyEndDate},studyUpdateDate=now()
 		where studyNo=#{studyNo}
 	</update>

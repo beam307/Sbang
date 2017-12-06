@@ -111,7 +111,7 @@
 
 			<div class="col-md-1">지역</div>
 			<div class="col-md-11">
-				<input type="text" name="studyRegion" value="${studyVO.studyRegion }" readonly="readonly">
+				<input type="text" name="studyRoadADR" value="${studyVO.studyRoadADR }" readonly="readonly">
 			</div>
 
 			<div class="col-md-1">비용</div>
