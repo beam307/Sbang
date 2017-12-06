@@ -19,7 +19,7 @@
 		<!-- 쿼리스트링 값 받아오기 -->
 		<input type="hidden" name='page' value="${cri.page }"> <input type="hidden" name='perPageNum' value="${cri.perPageNum }"> <input
 			type="hidden" name='searchType' value="${cri.searchType }"> <input type="hidden" name='keyword' value="${cri.keyword }"> <input
-			type="hidden" name='lineUp' value="${cri.lineUp }" /><input type="hidden" name='upCategory' value="${cri.upCategory }">
+			type="hidden" name='lineUp' value="${cri.lineUp }" /><input type="hidden" name='upCategory' value="${cri.upCategory }"><input type="hidden" name='upCategory' value="${cri.roadADR}">
 		<div class="step1">
 			<h2>1단계</h2>
 			<div class="row">
@@ -554,7 +554,7 @@
 <script>
 	jQuery(function($) {
 		var chkstudyName
-		var chkstudyMemFee = /^[0-9]+$/;
+		//var chkstudyMemFee = /^[0-9]+$/;
 		var chkstudyMaxMemCnt = /^[0-9]+$/;
 		var chkstudyIntroduce
 
@@ -581,11 +581,11 @@
 				alert("비용을 입력하십시오.")
 				studyMemFee.focus();
 				return false;
-			} else if (chkstudyMemFee.test(studyMemFee.val()) != true) { // 비용 유효성 검사
+			} /* else if (chkstudyMemFee.test(studyMemFee.val()) != true) { // 비용 유효성 검사
 				alert("비용에 숫자만 입력하세요.");
 				studyMemFee.focus();
 				return false;
-
+ */
 			}  else if (studyMaxMemCnt.val() == "") { // 인원수 NULL 유효성 검사
 				alert("인원수를 입력하십시오.")
 				studyMaxMemCnt.focus();

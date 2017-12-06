@@ -465,7 +465,7 @@
 					<label class="col-sm-2 control-label">비용</label>
 					<div class="col-sm-10">
 						<div class="col-sm-12">
-							<input type="text" class="form-control" name="studyMemFee" id="studyMemFee" placeholder="ex.10000명명">
+							<input type="text" class="form-control" name="studyMemFee" id="studyMemFee" value="추후협의">
 						</div>
 					</div>
 				</div>
@@ -497,9 +497,6 @@
 					<label class="col-sm-2 control-label">사진</label>
 					<div class="col-sm-10">
 						<input type="file" id="exampleInputFile">
-						<div class="col-sm-12">
-							<div class="fileDrop"></div>
-						</div>
 					</div>
 				</div>
 				<div class="col-sm-12">
@@ -531,7 +528,6 @@
 <script>
 	jQuery(function($) {
 		var chkstudyName
-		var chkstudyMemFee = /^[0-9]+$/;
 		var chkstudyMaxMemCnt = /^[0-9]+$/;
 		var chkstudyIntroduce
 
@@ -539,7 +535,7 @@
 		var studyName = $('#studyName');
 		var studyRegion = $('#sample4_postcode');
 		var studyStartDate = $('#testDatepicker');
-		var studyMemFee = $('#studyMemFee');
+		//var studyMemFee = $('#studyMemFee');
 		var studyMaxMemCnt = $('#studyMaxMemCnt');
 		var studyIntroduce = $('#studyIntroduce');
 		var studyImage = $('#exampleInputFile');
@@ -559,11 +555,11 @@
 				alert("비용을 입력하십시오.")
 				studyMemFee.focus();
 				return false;
-			} else if (chkstudyMemFee.test(studyMemFee.val()) != true) { // 비용 유효성 검사
+			} /* else if (chkstudyMemFee.test(studyMemFee.val()) != true) { // 비용 유효성 검사
 				alert("비용에 숫자만 입력하세요.");
 				studyMemFee.focus();
 				return false;
-
+ */
 			} else if (studyMaxMemCnt.val() == "") { // 인원수 NULL 유효성 검사
 				alert("인원수를 입력하십시오.")
 				studyMaxMemCnt.focus();
@@ -583,7 +579,7 @@
 				studyImage.focus();
 				return false;
 			}
-			/* input:hidden 으로 현재 업로드된 파일들의 목록을 저장한다. */
+			/* input:hidden 으로 현재 업로드된 파일들과 주단위 시간, 카테고리 대분류 목록을 저장한다. */
 
 			event.preventDefault();
 
@@ -650,7 +646,7 @@
 				/*화면에 업로드된 리스트출력  */
 				var template = Handlebars.compile($("#template").html());
 
-				$(".fileDrop").on("dragenter dragover", function(event) {
+				/* $(".fileDrop").on("dragenter dragover", function(event) {
 					event.preventDefault();
 				});
 
@@ -660,8 +656,6 @@
 					var files = event.originalEvent.dataTransfer.files;
 
 					var file = files[0];
-
-					//console.log(file);
 
 					var formData = new FormData();
 					formData.append("file", file);
@@ -683,16 +677,11 @@
 							$(".uploadedList").append(html);
 						}
 					});
-				});
+				}); */
 				/*input:file로 파일 업로드하기  */
 				$("#exampleInputFile").on("change", function(event) {
 					event.preventDefault();
 
-					/* var files = event.originalEvent.dataTransfer.files;
-
-					var file = files[0];
-					 */
-					//console.log(file);
 					var formData = new FormData();
 					formData.append("file", $("input[id=exampleInputFile]")[0].files[0]);
 

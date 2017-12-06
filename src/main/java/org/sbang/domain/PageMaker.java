@@ -52,21 +52,21 @@ public class PageMaker {
 
 	public String makeSearch(int page) {
 		UriComponents uriComponents = UriComponentsBuilder.newInstance().queryParam("page", page).queryParam("perPageNum", cri.getPerPageNum()).queryParam("searchType", ((SearchCriteria) cri).getSearchType())
-				.queryParam("keyword", encoding(((SearchCriteria) cri).getKeyword())).queryParam("lineUp", ((SearchCriteria) cri).getLineUp()).queryParam("region", encoding(((SearchCriteria) cri).getRegion()))
+				.queryParam("keyword", encoding(((SearchCriteria) cri).getKeyword())).queryParam("lineUp", ((SearchCriteria) cri).getLineUp()).queryParam("roadADR", encoding(((SearchCriteria) cri).getRoadADR()))
 				.queryParam("upCategory", ((SearchCriteria) cri).getUpCategory()).build();
 		return uriComponents.toString();
 	}
 
 	public String makeLineUp(String lineUp) {
 		UriComponents uriComponents = UriComponentsBuilder.newInstance().queryParam("page", cri.getPage()).queryParam("perPageNum", cri.getPerPageNum()).queryParam("searchType", ((SearchCriteria) cri).getSearchType())
-				.queryParam("keyword", encoding(((SearchCriteria) cri).getKeyword())).queryParam("lineUp", lineUp).queryParam("region", encoding(((SearchCriteria) cri).getRegion()))
+				.queryParam("keyword", encoding(((SearchCriteria) cri).getKeyword())).queryParam("lineUp", lineUp).queryParam("roadADR", encoding(((SearchCriteria) cri).getRoadADR()))
 				.queryParam("upCategory", ((SearchCriteria) cri).getUpCategory()).build();
 		return uriComponents.toString();
 	}
 
 	public String makeUpCategory(String upCategory) {
 		UriComponents uriComponents = UriComponentsBuilder.newInstance().queryParam("page", cri.getPage()).queryParam("perPageNum", cri.getPerPageNum()).queryParam("searchType", ((SearchCriteria) cri).getSearchType())
-				.queryParam("keyword", encoding(((SearchCriteria) cri).getKeyword())).queryParam("lineUp", ((SearchCriteria) cri).getLineUp()).queryParam("region", encoding(((SearchCriteria) cri).getRegion()))
+				.queryParam("keyword", encoding(((SearchCriteria) cri).getKeyword())).queryParam("lineUp", ((SearchCriteria) cri).getLineUp()).queryParam("roadADR", encoding(((SearchCriteria) cri).getRoadADR()))
 				.queryParam("upCategory", upCategory).build();
 		return uriComponents.toString();
 	}

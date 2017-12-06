@@ -124,8 +124,8 @@
 
 	<!--지역 검색 sql 모듈 -->
 	<sql id="region">
-		<if test="region != null">
-			and s.studyRegion like CONCAT('%', #{region}, '%') 
+		<if test="roadADR != null">
+			and s.studyRoadADR like CONCAT('%', #{roadADR}, '%') 
 		</if>
 	</sql>
 

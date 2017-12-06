@@ -8,7 +8,7 @@ public class SearchCriteria extends Criteria {
 	private String searchType;
 	private String keyword;
 	private String lineUp;
-	private String region;
+	private String roadADR;
 	private String upCategory;
 
 }

@@ -49,14 +49,13 @@
 		<!-- Wrapper for slides -->
 		<div class="carousel-inner" role="listbox">
 			<div class="item active">
-				<img src="/resources/images/view_sample.jpg" alt="">
 			</div>
-			<div class="item">
+			 <div class="item">
 				<img src="/resources/images/view_sample1.jpg" alt="">
 			</div>
 			<div class="item">
 				<img src="/resources/images/view_sample2.jpg" alt="">
-			</div>
+			</div> 
 		</div>
 
 		<!-- Controls -->
@@ -70,7 +69,7 @@
 		<input type="hidden" name='studyNo' value="${studyVO.studyNo }"> <input type="hidden" name='page' value="${cri.page }"> <input
 			type="hidden" name='perPageNum' value="${cri.perPageNum }"> <input type="hidden" name='searchType' value="${cri.searchType }">
 		<input type="hidden" name='keyword' value="${cri.keyword }"> <input type="hidden" name='lineUp' value="${cri.lineUp}" /> <input
-			type="hidden" name='region' value="${cri.region }"> <input type="hidden" name='upCategory' value="${cri.upCategory }">
+			type="hidden" name='region' value="${cri.roadADR }"> <input type="hidden" name='upCategory' value="${cri.upCategory }">
 	</form>
 
 	<div class="row">
@@ -216,12 +215,7 @@
 </script>
 
 <script id="templateAttach" type="text/x-handlebars-template">
-	<li data-src='{{fullName}}'>
-		<span class="mailbox-attachment-icon has-img"><img src="{{imgsrc}}" alt="Attachment"></span>
-		<div class="mailbox-attachment-info">
-		<a href="{{getLink}}" class="mailbox-attachment-name">{{fileName}}</a>
-		</div>
-	</li>
+<img src="{{imgsrc}}" alt="Attachment">
 </script>
 <script>
 	$(document).ready(function() {
@@ -270,7 +264,7 @@
 				console.log(list);
 				var fileInfo = getFileInfo(this);
 				var html = template(fileInfo);
-				$(".uploadedList").append(html);
+				$(".item").append(html);
 			});
 		});
 
