@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import org.sbang.domain.Criteria;
 import org.sbang.domain.SearchCriteria;
 import org.sbang.domain.StudyVO;
 import org.sbang.domain.WeekVO;
@@ -58,7 +57,7 @@ public class StudyServiceImpl implements StudyService {
 	}
 
 	@Override
-	public List<WeekVO> getWeek(Integer studyNo) throws Exception { //주단위 시간표 얻어오기
+	public List<WeekVO> getWeek(Integer studyNo) throws Exception { 
 		return weekDAO.list(studyNo);
 	}
 
@@ -80,7 +79,7 @@ public class StudyServiceImpl implements StudyService {
 		 * if (files == null) { return; }
 		 */
 		for (String fileName : files) {
-			studyDAO.replaceImg(fileName, studyNo); // 업로드 파일 삭제후 다시 인설트
+			studyDAO.replaceImg(fileName, studyNo); 
 		}
 		weekDAO.delete(studyNo);
 		WeekVO[] weekArr = study.getWeekVO();

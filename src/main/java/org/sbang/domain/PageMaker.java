@@ -44,14 +44,12 @@ public class PageMaker {
 		next = endPage * cri.getPerPageNum() >= totalCount ? false : true;
 	}
 
-	// page와 perPageNum을 포함하는 url 생성
 	public String makeQuery(int page) {
 		UriComponents uriComponents = UriComponentsBuilder.newInstance().queryParam("page", page).queryParam("perPageNum", cri.getPerPageNum()).build();
 
 		return uriComponents.toString();
 	}
 
-	// page와 perPageNum와 searchType과 keyword를 포함하는 url 생성
 	public String makeSearch(int page) {
 		UriComponents uriComponents = UriComponentsBuilder.newInstance().queryParam("page", page).queryParam("perPageNum", cri.getPerPageNum()).queryParam("searchType", ((SearchCriteria) cri).getSearchType())
 				.queryParam("keyword", encoding(((SearchCriteria) cri).getKeyword())).queryParam("lineUp", ((SearchCriteria) cri).getLineUp()).queryParam("region", encoding(((SearchCriteria) cri).getRegion()))

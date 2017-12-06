@@ -18,7 +18,7 @@
 			<input type="hidden" name="searchType" value="t" /> <input type="text" class="form-control" placeholder="검색어입력하는곳" name="keyword"
 				id="searchBox">
 		</div>
-		<button type="submit" class="btn btn-default" 　id="main-search">검색</button>
+		<button type="submit" class="btn btn-default" id="main-search">검색</button>
 	</form>
 </div>
 <!-- 밑에는 썸네일부분이야 -->

@@ -33,5 +33,4 @@
 		delete from reply where studyNo=#{studyNo}
 	</delete>
 
-	<!-- <select id="getBno" resultType="int"> select bno from tbl_reply where rno=#{rno} </select> -->
 </mapper>
