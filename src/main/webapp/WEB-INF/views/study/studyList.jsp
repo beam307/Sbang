@@ -1,6 +1,4 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<<<<<<< HEAD
-
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@include file="../include/headerSub.jsp"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -15,20 +13,13 @@
 				<label class="col-sm-2 control-label">검색</label>
 				<div class="col-sm-10">
 					<select class="form-control" name="searchType">
-						<option value="n" <c:out value="${cri.searchType == null?'selected':''}"/>>
-							---</option>
-						<option value="t" <c:out value="${cri.searchType eq 't'?'selected':''}"/>>
-							Title</option>
-						<option value="c" <c:out value="${cri.searchType eq 'c'?'selected':''}"/>>
-							Content</option>
-						<option value="w" <c:out value="${cri.searchType eq 'w'?'selected':''}"/>>
-							Writer</option>
-						<option value="tc" <c:out value="${cri.searchType eq 'tc'?'selected':''}"/>>
-							Title OR Content</option>
-						<option value="cw" <c:out value="${cri.searchType eq 'cw'?'selected':''}"/>>
-							Content OR Writer</option>
-						<option value="tcw" <c:out value="${cri.searchType eq 'tcw'?'selected':''}"/>>
-							Title OR Content OR Writer</option>
+						<option value="n" <c:out value="${cri.searchType == null?'selected':''}"/>>---</option>
+						<option value="t" <c:out value="${cri.searchType eq 't'?'selected':''}"/>>Title</option>
+						<option value="c" <c:out value="${cri.searchType eq 'c'?'selected':''}"/>>Content</option>
+						<option value="w" <c:out value="${cri.searchType eq 'w'?'selected':''}"/>>Writer</option>
+						<option value="tc" <c:out value="${cri.searchType eq 'tc'?'selected':''}"/>>Title OR Content</option>
+						<option value="cw" <c:out value="${cri.searchType eq 'cw'?'selected':''}"/>>Content OR Writer</option>
+						<option value="tcw" <c:out value="${cri.searchType eq 'tcw'?'selected':''}"/>>Title OR Content OR Writer</option>
 					</select> <input type="text" class="form-control" name='keyword' id="keywordInput" value='${cri.keyword}'>
 					<button id='searchBtn'>검색</button>
 				</div>
@@ -44,30 +35,18 @@
 				<div class="col-sm-10">
 					<div class="col-sm-6 search-sub-select1">
 						<select class="form-control" id="upCategory">
-							<option value="studyList${pageMaker.makeUpCategory('n') }" <c:out value="${cri.upCategory eq 'n'?'selected':''}"/>>
-							---</option>
-							<option value="studyList${pageMaker.makeUpCategory('0') }" <c:out value="${cri.upCategory eq '0'?'selected':''}"/>>
-							영어</option>
-							<option value="studyList${pageMaker.makeUpCategory('1') }" <c:out value="${cri.upCategory eq '1'?'selected':''}"/>>
-							외국어</option>
-							<option value="studyList${pageMaker.makeUpCategory('2') }" <c:out value="${cri.upCategory eq '2'?'selected':''}"/>>
-							컴퓨터</option>
-							<option value="studyList${pageMaker.makeUpCategory('3') }" <c:out value="${cri.upCategory eq '3'?'selected':''}"/>>
-							디자인/미술</option>
-							<option value="studyList${pageMaker.makeUpCategory('4') }" <c:out value="${cri.upCategory eq '4'?'selected':''}"/>>
-							국가고시/공무원</option>
-							<option value="studyList${pageMaker.makeUpCategory('5') }" <c:out value="${cri.upCategory eq '5'?'selected':''}"/>>
-							취업</option>
-							<option value="studyList${pageMaker.makeUpCategory('6') }" <c:out value="${cri.upCategory eq '6'?'selected':''}"/>>
-							음악/공연</option>
-							<option value="studyList${pageMaker.makeUpCategory('7') }" <c:out value="${cri.upCategory eq '7'?'selected':''}"/>>
-							스포츠</option>
-							<option value="studyList${pageMaker.makeUpCategory('8') }" <c:out value="${cri.upCategory eq '8'?'selected':''}"/>>
-							뷰티/미용</option>
-							<option value="studyList${pageMaker.makeUpCategory('9') }" <c:out value="${cri.upCategory eq '9'?'selected':''}"/>>
-							라이프스타일</option>
-							<option value="studyList${pageMaker.makeUpCategory('10') }" <c:out value="${cri.upCategory eq '10'?'selected':''}"/>>
-							게임</option>
+							<option value="studyList${pageMaker.makeUpCategory('n') }" <c:out value="${cri.upCategory eq 'n'?'selected':''}"/>>---</option>
+							<option value="studyList${pageMaker.makeUpCategory('0') }" <c:out value="${cri.upCategory eq '0'?'selected':''}"/>>영어</option>
+							<option value="studyList${pageMaker.makeUpCategory('1') }" <c:out value="${cri.upCategory eq '1'?'selected':''}"/>>외국어</option>
+							<option value="studyList${pageMaker.makeUpCategory('2') }" <c:out value="${cri.upCategory eq '2'?'selected':''}"/>>컴퓨터</option>
+							<option value="studyList${pageMaker.makeUpCategory('3') }" <c:out value="${cri.upCategory eq '3'?'selected':''}"/>>디자인/미술</option>
+							<option value="studyList${pageMaker.makeUpCategory('4') }" <c:out value="${cri.upCategory eq '4'?'selected':''}"/>>국가고시/공무원</option>
+							<option value="studyList${pageMaker.makeUpCategory('5') }" <c:out value="${cri.upCategory eq '5'?'selected':''}"/>>취업</option>
+							<option value="studyList${pageMaker.makeUpCategory('6') }" <c:out value="${cri.upCategory eq '6'?'selected':''}"/>>음악/공연</option>
+							<option value="studyList${pageMaker.makeUpCategory('7') }" <c:out value="${cri.upCategory eq '7'?'selected':''}"/>>스포츠</option>
+							<option value="studyList${pageMaker.makeUpCategory('8') }" <c:out value="${cri.upCategory eq '8'?'selected':''}"/>>뷰티/미용</option>
+							<option value="studyList${pageMaker.makeUpCategory('9') }" <c:out value="${cri.upCategory eq '9'?'selected':''}"/>>라이프스타일</option>
+							<option value="studyList${pageMaker.makeUpCategory('10') }" <c:out value="${cri.upCategory eq '10'?'selected':''}"/>>게임</option>
 						</select>
 					</div>
 					<div class="col-sm-6 search-sub-select2">
@@ -87,14 +66,10 @@
 	<!-- 정렬 -->
 	<div class="btn-group">
 		<select class="form-control" id="line-up">
-			<option value="studyList${pageMaker.makeLineUp('n') }" <c:out value="${cri.lineUp == null?'selected':''}"/>>
-							최신순</option>
-			<option value="studyList${pageMaker.makeLineUp('v') }" <c:out value="${cri.lineUp eq 'v'?'selected':''}"/>>
-							조회순</option>
-			<option value="studyList${pageMaker.makeLineUp('p') }" <c:out value="${cri.lineUp eq 'p'?'selected':''}"/>>
-							가격순</option>
-			<option value="studyList${pageMaker.makeLineUp('r') }" <c:out value="${cri.lineUp eq 'r'?'selected':''}"/>>
-							댓글순</option>
+			<option value="studyList${pageMaker.makeLineUp('n') }" <c:out value="${cri.lineUp == null?'selected':''}"/>>최신순</option>
+			<option value="studyList${pageMaker.makeLineUp('v') }" <c:out value="${cri.lineUp eq 'v'?'selected':''}"/>>조회순</option>
+			<option value="studyList${pageMaker.makeLineUp('p') }" <c:out value="${cri.lineUp eq 'p'?'selected':''}"/>>가격순</option>
+			<option value="studyList${pageMaker.makeLineUp('r') }" <c:out value="${cri.lineUp eq 'r'?'selected':''}"/>>댓글순</option>
 			<option>또뭐가있을까??</option>
 
 		</select>
@@ -177,93 +152,3 @@
 					})
 </script>
 <%@include file="../include/footer.jsp"%>
-=======
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@include file="../include/headerSub.jsp"%>
-<div class="container list inner">
-	<div class="col-md-12 search-sub">
-		<div class="search-typebtn">
-			<button type="button" class="btn btn-default">스터디</button>
-			<button type="button" class="btn btn-default">방</button>
-		</div>
-		<form class="form-horizontal">
-			<div class="form-group">
-				<label class="col-sm-2 control-label">지역</label>
-				<div class="col-sm-10">
-					<input type="text" class="form-control" placeholder="지역을 입력해주세요">
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-2 control-label">카테고리</label>
-				<div class="col-sm-10">
-					<div class="col-sm-6 search-sub-select1">
-						<select class="form-control">
-							<option>대분류</option>
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5">5</option>
-						</select>
-					</div>
-					<div class="col-sm-6 search-sub-select2">
-						<select class="form-control">
-							<option>소분류</option>
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5">5</option>
-						</select>
-					</div>
-				</div>
-			</div>
-		</form>
-	</div>
-	<!-- Single button -->
-	<div class="btn-group">
-		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-			정렬 <span class="caret"></span>
-		</button>
-		<ul class="dropdown-menu" role="menu">
-			<li><a href="#">인원순</a></li>
-			<li><a href="#">최신순</a></li>
-		</ul>
-	</div>
-	<div class="list-thumbnail">
-		<div class="row">
-			<div class="col-md-4">
-				<div class="thumbnail">
-					<a href="/study/studyView">스터디썸네일</a>
-				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="thumbnail">
-					<a href="/study/studyView">스터디썸네일</a>
-				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="thumbnail">
-					<a href="/study/studyView">스터디썸네일</a>
-				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="thumbnail">
-					<a href="/study/studyView">스터디썸네일</a>
-				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="thumbnail">
-					<a href="/study/studyView">스터디썸네일</a>
-				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="thumbnail">
-					<a href="/study/studyView">스터디썸네일</a>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-<%@include file="../include/footer.jsp"%>
->>>>>>> branch 'firstStep' of https://github.com/beam307/Sbang

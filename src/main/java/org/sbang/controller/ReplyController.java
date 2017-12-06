@@ -10,7 +10,6 @@ import org.sbang.domain.Criteria;
 import org.sbang.domain.PageMaker;
 import org.sbang.domain.ReplyVO;
 import org.sbang.service.ReplyService;
-import org.sbang.service.StudyService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,7 +24,7 @@ public class ReplyController {
 	@Inject
 	private ReplyService replyService;
 	
-	@RequestMapping(value = "", method = RequestMethod.POST) //댓글 등록
+	@RequestMapping(value = "", method = RequestMethod.POST) 
 	public ResponseEntity<String> register(@RequestBody ReplyVO vo) {
 		ResponseEntity<String> entity = null;
 		try {
@@ -40,7 +39,7 @@ public class ReplyController {
 		return entity;
 	}
 
-	@RequestMapping(value = "/all/{studyNo}", method = RequestMethod.GET) // 게시물 댓글 리스트 출력
+	@RequestMapping(value = "/all/{studyNo}", method = RequestMethod.GET)
 	public ResponseEntity<List<ReplyVO>> list(@PathVariable("studyNo") Integer studyNo) {
 		ResponseEntity<List<ReplyVO>> entity = null;
 
@@ -53,7 +52,7 @@ public class ReplyController {
 		return entity;
 	}
 
-	@RequestMapping(value = "/{replyNo}", method = { RequestMethod.PUT, RequestMethod.PATCH })// 댓글 수정
+	@RequestMapping(value = "/{replyNo}", method = { RequestMethod.PUT, RequestMethod.PATCH })
 	public ResponseEntity<String> update(@PathVariable("replyNo") Integer replyNo, @RequestBody ReplyVO vo) {
 		ResponseEntity<String> entity = null;
 		try {
@@ -68,7 +67,7 @@ public class ReplyController {
 		return entity;
 	}
 
-	@RequestMapping(value = "/{replyNo}", method = RequestMethod.DELETE) // 댓글 삭제
+	@RequestMapping(value = "/{replyNo}", method = RequestMethod.DELETE)
 	public ResponseEntity<String> remove(@PathVariable("replyNo") Integer replyNo,@RequestBody ReplyVO vo) {
 		System.out.println("controller: delete");
 		ResponseEntity<String> entity = null;
@@ -82,7 +81,7 @@ public class ReplyController {
 		return entity;
 	}
 
-	@RequestMapping(value = "/{studyNo}/{page}", method = RequestMethod.GET) // 게시물 댓글 페이지 포함 리스트 출력
+	@RequestMapping(value = "/{studyNo}/{page}", method = RequestMethod.GET)
 	public ResponseEntity<Map<String, Object>> listPage(@PathVariable("studyNo") Integer studyNo, @PathVariable("page") Integer page) {
 		ResponseEntity<Map<String, Object>> entity = null;
 
