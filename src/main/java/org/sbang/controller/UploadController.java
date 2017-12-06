@@ -67,7 +67,7 @@ public class UploadController {
 			try {
 				in = new FileInputStream(uploadPath + fileName);
 			} catch (Exception e) {
-				in = new FileInputStream("C:\\Users\\Hoon\\git\\Sbang\\src\\main\\webapp\\resources\\images\\s_user.jpg");
+				in = new FileInputStream("C:\\workspace2\\Sbang\\src\\main\\webapp\\resources\\images\\s_user.jpg");
 			}
 			if (mType != null) {
 				headers.setContentType(mType);

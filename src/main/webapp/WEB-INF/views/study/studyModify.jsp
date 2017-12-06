@@ -66,7 +66,7 @@
 										<div class="flex-container">
 
 											<div class="box header CA00">
-												<div class="content collapsed" data-toggle="collapse">영어</div>
+												<div class="content collapsed" data-toggle="collapse" href="#CA00">영어</div>
 											</div>
 											<div class="box list collapse" id="CA00">
 												<div class="content0">
@@ -86,7 +86,7 @@
 											</div>
 
 											<div class="box header CA01">
-												<div class="content collapsed" data-toggle="collapse">외국어</div>
+												<div class="content collapsed" data-toggle="collapse" href="#CA01">외국어</div>
 											</div>
 											<div class="box list collapse" id="CA01">
 												<div class="content1">
@@ -121,7 +121,7 @@
 											</div>
 
 											<div class="box header CA02">
-												<div class="content collapsed" data-toggle="collapse">컴퓨터</div>
+												<div class="content collapsed" data-toggle="collapse" href="#CA02">컴퓨터</div>
 											</div>
 											<div class="box list collapse" id="CA02">
 												<div class="content2">
@@ -144,7 +144,7 @@
 											</div>
 
 											<div class="box header CA03">
-												<div class="content collapsed" data-toggle="collapse">디자인/미술</div>
+												<div class="content collapsed" data-toggle="collapse" href="#CA03">디자인/미술</div>
 											</div>
 											<div class="box list collapse" id="CA03">
 												<div class="content3">
@@ -168,7 +168,7 @@
 											</div>
 
 											<div class="box header CA04">
-												<div class="content collapsed" data-toggle="collapse">국가고시/공무원</div>
+												<div class="content collapsed" data-toggle="collapse" href="#CA04">국가고시/공무원</div>
 											</div>
 											<div class="box list collapse" id="CA04">
 												<div class="content4">
@@ -190,7 +190,7 @@
 											</div>
 
 											<div class="box header CA05">
-												<div class="content collapsed" data-toggle="collapse">취업</div>
+												<div class="content collapsed" data-toggle="collapse" href="#CA05">취업</div>
 											</div>
 											<div class="box list collapse" id="CA05">
 												<div class="content5">
@@ -211,7 +211,7 @@
 											</div>
 
 											<div class="box header CA06">
-												<div class="content collapsed" data-toggle="collapse">음악/공연</div>
+												<div class="content collapsed" data-toggle="collapse" href="#CA06">음악/공연</div>
 											</div>
 											<div class="box list collapse" id="CA06">
 												<div class="content6">
@@ -235,7 +235,7 @@
 											</div>
 
 											<div class="box header CA07">
-												<div class="content collapsed" data-toggle="collapse">스포츠</div>
+												<div class="content collapsed" data-toggle="collapse" href="#CA07">스포츠</div>
 											</div>
 											<div class="box list collapse" id="CA07">
 												<div class="content7">
@@ -263,7 +263,7 @@
 											</div>
 
 											<div class="box header CA08">
-												<div class="content collapsed" data-toggle="collapse">뷰티/미용</div>
+												<div class="content collapsed" data-toggle="collapse" href="#CA08">뷰티/미용</div>
 											</div>
 											<div class="box list collapse" id="CA08">
 												<div class="content8">
@@ -284,7 +284,7 @@
 											</div>
 
 											<div class="box header CA09">
-												<div class="content collapsed" data-toggle="collapse">라이프스타일</div>
+												<div class="content collapsed" data-toggle="collapse" href="#CA09">라이프스타일</div>
 											</div>
 											<div class="box list collapse" id="CA09">
 												<div class="content9">
@@ -316,7 +316,7 @@
 											</div>
 
 											<div class="box header CA10">
-												<div class="content collapsed" data-toggle="collapse">게임</div>
+												<div class="content collapsed" data-toggle="collapse" href="#CA10">게임</div>
 											</div>
 											<div class="box list collapse" id="CA10">
 												<div class="content10">

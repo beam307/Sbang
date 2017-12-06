@@ -3,6 +3,7 @@ package org.sbang.controller;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.sbang.domain.PageMaker;
 import org.sbang.domain.SearchCriteria;
@@ -30,7 +31,7 @@ public class StudyController {
 	}
 
 	@RequestMapping(value = "/studyReg", method = RequestMethod.POST)
-	public String registPOST(StudyVO study,RedirectAttributes rttr) throws Exception {
+	public String registPOST(StudyVO study, RedirectAttributes rttr) throws Exception {
 		if (study.getStudyName() != "") {
 			service.regist(study);
 		} else {
@@ -50,10 +51,10 @@ public class StudyController {
 	}
 
 	@RequestMapping(value = "/studyView", method = RequestMethod.GET)
-	public void read(@RequestParam("studyNo") int studyNo, @ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
-		
+	public void read(@RequestParam("studyNo") int studyNo, @ModelAttribute("cri") SearchCriteria cri, Model model, HttpSession session) throws Exception {
+		model.addAttribute("login", session.getAttribute("login"));
 		model.addAttribute(service.read(studyNo));
-		model.addAttribute("weekList",service.getWeek(studyNo));
+		model.addAttribute("weekList", service.getWeek(studyNo));
 	}
 
 	@RequestMapping(value = "/studyRemove", method = RequestMethod.POST)
@@ -79,7 +80,7 @@ public class StudyController {
 	@RequestMapping(value = "/studyModify", method = RequestMethod.GET)
 	public void modifyGET(@RequestParam("studyNo") int studyNo, @ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
 		model.addAttribute(service.read(studyNo));
-		model.addAttribute("weekList",service.getWeek(studyNo));
+		model.addAttribute("weekList", service.getWeek(studyNo));
 	}
 
 	@RequestMapping(value = "/studyModify", method = RequestMethod.POST)
@@ -94,5 +95,5 @@ public class StudyController {
 
 		return "redirect:/study/studyList";
 	}
-	
+
 }
