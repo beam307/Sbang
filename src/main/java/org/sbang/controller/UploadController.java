@@ -50,6 +50,7 @@ public class UploadController {
 	@ResponseBody
 	@RequestMapping(value = "/uploadAjax", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
 	public ResponseEntity<String> uploadAjax(MultipartFile file) throws Exception {
+	
 		return new ResponseEntity<>(UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(), file.getBytes()), HttpStatus.CREATED);
 	}
 
@@ -58,6 +59,7 @@ public class UploadController {
 	public ResponseEntity<byte[]> displayFile(String fileName) throws Exception {
 		InputStream in = null;
 		ResponseEntity<byte[]> entity = null;
+		
 		try {
 			String formatName = fileName.substring(fileName.lastIndexOf(".") + 1);
 			MediaType mType = MediaUtils.getMediaType(formatName);
@@ -87,6 +89,7 @@ public class UploadController {
 	@ResponseBody
 	@RequestMapping(value = "/deleteFile", method = RequestMethod.POST)
 	public ResponseEntity<String> deleteFile(String fileName) {
+	
 		String formatName = fileName.substring(fileName.lastIndexOf(".") + 1);
 		MediaType mType = MediaUtils.getMediaType(formatName);
 		if (mType != null) {

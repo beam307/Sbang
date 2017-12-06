@@ -357,10 +357,10 @@
 				<div class="form-group">
 					<label class="col-sm-2 control-label">지역</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" id="sample4_postcode" placeholder="우편번호"> <input type="button" class="form-control"
-							onclick="sample4_execDaumPostcode()" value="우편번호 찾기"> <input type="text" class="form-control" name="studyRegion"
-							id="sample4_roadAddress" placeholder="도로명주소" value="${studyVO.studyRegion }"> <input type="text" class="form-control"
-							id="sample4_jibunAddress" placeholder="지번주소"> <span id="guide" style="color: #999"></span>
+						<input type="text" class="form-control" id="sample4_postcode" placeholder="우편번호"> 
+						<input type="button" class="form-control" onclick="sample4_execDaumPostcode()"value="우편번호 찾기"> 
+						<input type="text" class="form-control" name="studyRegion" id="sample4_roadAddress" placeholder="도로명주소" value="${studyVO.studyRegion }"> 
+						<input type="text" class="form-control" id="sample4_jibunAddress" placeholder="지번주소"> <span id="guide" style="color: #999"></span>
 					</div>
 				</div>
 				<div class="col-sm-12">
@@ -575,11 +575,7 @@
 							formObj.submit();
 						});
 						/*업로드된 이미지 출력  */
-						var studyNo = $
-						{
-							studyVO.studyNo
-						}
-						;
+						var studyNo = ${studyVO.studyNo};
 						$.getJSON("/study/getImg/" + studyNo, function(list) {
 							$(list).each(function() {
 								var fileInfo = getFileInfo(this);
@@ -824,5 +820,4 @@
 
 	}
 </script>
-
 <%@include file="../include/footer.jsp"%>
