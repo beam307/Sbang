@@ -25,25 +25,12 @@ public class StudyController {
 	@Inject
 	private StudyService service;
 
-<<<<<<< HEAD
 	@RequestMapping(value = "/studyReg", method = RequestMethod.GET)
-=======
-	@RequestMapping(value = "/studyReg", method = RequestMethod.GET) 
->>>>>>> branch 'firstStep' of https://github.com/beam307/Sbang.git
 	public void registGET(StudyVO study, Model model) throws Exception {
 	}
 
-<<<<<<< HEAD
 	@RequestMapping(value = "/studyReg", method = RequestMethod.POST)
-=======
-	@RequestMapping(value = "/studyReg", method = RequestMethod.POST) 
->>>>>>> branch 'firstStep' of https://github.com/beam307/Sbang.git
 	public String registPOST(StudyVO study,RedirectAttributes rttr) throws Exception {
-<<<<<<< HEAD
-		
-=======
-
->>>>>>> branch 'firstStep' of https://github.com/beam307/Sbang.git
 		if (study.getStudyName() != "") {
 			service.regist(study);
 		} else {
@@ -53,16 +40,8 @@ public class StudyController {
 		return "redirect:/study/studyList";
 	}
 
-<<<<<<< HEAD
 	@RequestMapping(value = "/studyList", method = RequestMethod.GET)
-=======
-	@RequestMapping(value = "/studyList", method = RequestMethod.GET) 
->>>>>>> branch 'firstStep' of https://github.com/beam307/Sbang.git
 	public void listAll(@ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
-<<<<<<< HEAD
-=======
-
->>>>>>> branch 'firstStep' of https://github.com/beam307/Sbang.git
 		model.addAttribute("list", service.listSearchCriteria(cri));
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
@@ -70,22 +49,14 @@ public class StudyController {
 		model.addAttribute("pageMaker", pageMaker);
 	}
 
-<<<<<<< HEAD
 	@RequestMapping(value = "/studyView", method = RequestMethod.GET)
-=======
-	@RequestMapping(value = "/studyView", method = RequestMethod.GET) 
->>>>>>> branch 'firstStep' of https://github.com/beam307/Sbang.git
 	public void read(@RequestParam("studyNo") int studyNo, @ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
 		
 		model.addAttribute(service.read(studyNo));
 		model.addAttribute("weekList",service.getWeek(studyNo));
 	}
 
-<<<<<<< HEAD
 	@RequestMapping(value = "/studyRemove", method = RequestMethod.POST)
-=======
-	@RequestMapping(value = "/studyRemove", method = RequestMethod.POST) 
->>>>>>> branch 'firstStep' of https://github.com/beam307/Sbang.git
 	public String remove(@RequestParam("studyNo") int studyNo, SearchCriteria cri, RedirectAttributes rttr) throws Exception {
 		service.remove(studyNo);
 
@@ -105,11 +76,7 @@ public class StudyController {
 		return service.getImg(studyNo);
 	}
 
-<<<<<<< HEAD
 	@RequestMapping(value = "/studyModify", method = RequestMethod.GET)
-=======
-	@RequestMapping(value = "/studyModify", method = RequestMethod.GET) 
->>>>>>> branch 'firstStep' of https://github.com/beam307/Sbang.git
 	public void modifyGET(@RequestParam("studyNo") int studyNo, @ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
 		model.addAttribute(service.read(studyNo));
 		model.addAttribute("weekList",service.getWeek(studyNo));

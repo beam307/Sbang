@@ -57,11 +57,7 @@ public class StudyServiceImpl implements StudyService {
 	}
 
 	@Override
-<<<<<<< HEAD
 	public List<WeekVO> getWeek(Integer studyNo) throws Exception {
-=======
-	public List<WeekVO> getWeek(Integer studyNo) throws Exception { 
->>>>>>> branch 'firstStep' of https://github.com/beam307/Sbang.git
 		return weekDAO.list(studyNo);
 	}
 
@@ -83,11 +79,7 @@ public class StudyServiceImpl implements StudyService {
 		 * if (files == null) { return; }
 		 */
 		for (String fileName : files) {
-<<<<<<< HEAD
 			studyDAO.replaceImg(fileName, studyNo);
-=======
-			studyDAO.replaceImg(fileName, studyNo); 
->>>>>>> branch 'firstStep' of https://github.com/beam307/Sbang.git
 		}
 		weekDAO.delete(studyNo);
 		WeekVO[] weekArr = study.getWeekVO();
