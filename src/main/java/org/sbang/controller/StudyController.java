@@ -3,6 +3,7 @@ package org.sbang.controller;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.sbang.domain.PageMaker;
 import org.sbang.domain.SearchCriteria;
@@ -50,8 +51,8 @@ public class StudyController {
 	}
 
 	@RequestMapping(value = "/studyView", method = RequestMethod.GET)
-	public void read(@RequestParam("studyNo") int studyNo, @ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
-		
+	public void read(@RequestParam("studyNo") int studyNo, @ModelAttribute("cri") SearchCriteria cri, Model model, HttpSession session) throws Exception {
+		model.addAttribute("login",session.getAttribute("login"));
 		model.addAttribute(service.read(studyNo));
 		model.addAttribute("weekList",service.getWeek(studyNo));
 	}

@@ -16,7 +16,7 @@
 	</insert>
 
 	<select id="login" resultType="UserVO"> <!-- 로그인 -->
-		<![CDATA[select userEmail from user where userEmail = #{userEmail} and userCertification > 0]]>
+		<![CDATA[select userEmail, userName from user where userEmail = #{userEmail} and userCertification > 0]]>
 	</select>
 	
 	<update id="keepLogin">	<!-- 자동로그인 -->

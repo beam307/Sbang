@@ -149,8 +149,8 @@
 	<!--댓글 추가  -->
 	<%-- <c:if test="${not empty login }"> --%>
 	<div class="box-body">
-		<label for="exampleInputEmail1">Writer</label> <input class="form-control" placeholder="USER ID" type="text" value="${login.uid }"
-			id="newReplyWriter"> <label for="exampleInputEmail1">Reply Text</label> <input class="form-control" type="text"
+		<label for="exampleInputEmail1">Writer</label> <input class="form-control" placeholder="USER ID" type="text" value="${login.userName }"
+			id="newReplyWriter" readonly> <label for="exampleInputEmail1">Reply Text</label> <input class="form-control" type="text"
 			placeholder="REPLY TEXT" id="newReplyText">
 	</div>
 	<!-- /.box-body -->
