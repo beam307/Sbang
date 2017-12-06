@@ -63,7 +63,7 @@
 										<div class="box header CA00">
 											<div class="content collapsed" data-toggle="collapse" href="#CA00">영어</div>
 										</div>
-										<div class="box list collapse" id="CA00">
+										<div class="box list collapse" id="CA00" >
 											<div class="content0">
 
 
@@ -531,7 +531,6 @@
 <script>
 	jQuery(function($) {
 		var chkstudyName
-		/* 		var chkstudyStartDate = /^(1[0-2]|0[1-9])-(30|31|1[0-9]|2[0-9])-([0-9]{4})$/; */
 		var chkstudyMemFee = /^[0-9]+$/;
 		var chkstudyMaxMemCnt = /^[0-9]+$/;
 		var chkstudyIntroduce
@@ -556,16 +555,7 @@
 				studyRegion.focus();
 				return false;
 
-			} else if (studyStartDate.val() == "") { // 시작날짜 NULL 유효성 검사
-				alert("시작날짜를 입력하십시오.")
-				studyStartDate.focus();
-				return false;
-			} else if (chkstudyStartDate.test(studyStartDate.val()) != true) { // 비용 유효성 검사
-				alert("시작날짜에 날짜만 입력하세요.");
-				studyStartDate.focus();
-				return false;
-
-			} else if (studyMemFee.val() == "") { // 비용 NULL 유효성 검사
+			}  else if (studyMemFee.val() == "") { // 비용 NULL 유효성 검사
 				alert("비용을 입력하십시오.")
 				studyMemFee.focus();
 				return false;

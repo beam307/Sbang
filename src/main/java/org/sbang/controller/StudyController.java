@@ -52,7 +52,11 @@ public class StudyController {
 
 	@RequestMapping(value = "/studyView", method = RequestMethod.GET)
 	public void read(@RequestParam("studyNo") int studyNo, @ModelAttribute("cri") SearchCriteria cri, Model model, HttpSession session) throws Exception {
+<<<<<<< HEAD
 		model.addAttribute("login", session.getAttribute("login"));
+=======
+		model.addAttribute("login",session.getAttribute("login"));
+>>>>>>> branch 'firstStep' of https://github.com/beam307/Sbang.git
 		model.addAttribute(service.read(studyNo));
 		model.addAttribute("weekList", service.getWeek(studyNo));
 	}

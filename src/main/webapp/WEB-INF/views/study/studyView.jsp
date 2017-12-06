@@ -150,7 +150,7 @@
 	<%-- <c:if test="${not empty login }"> --%>
 	<div class="box-body">
 		<label for="exampleInputEmail1">Writer</label> <input class="form-control" placeholder="USER ID" type="text" value="${login.userName }"
-			id="newReplyWriter"> <label for="exampleInputEmail1">Reply Text</label> <input class="form-control" type="text"
+			id="newReplyWriter" readonly> <label for="exampleInputEmail1">Reply Text</label> <input class="form-control" type="text"
 			placeholder="REPLY TEXT" id="newReplyText">
 	</div>
 	<!-- /.box-body -->
@@ -344,12 +344,12 @@
 		};
 
 		/* jsp에 댓글 출력  */
-		$("#repliesDiv").on("click", function() {
+		
 			if ($(".timeline li").size() > 1) {
 				return;
 			}
 			getPage("/replies/" + studyNo + "/1");
-		});
+		
 
 		/* 댓글  페이징출력*/
 		$(".pagination").on("click", "li a", function(event) {

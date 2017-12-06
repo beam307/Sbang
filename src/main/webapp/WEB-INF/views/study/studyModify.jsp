@@ -552,6 +552,121 @@
 </script>
 <script type="text/javascript" src="/resources/dist/js/upload.js"></script>
 <script>
+jQuery(function($) {
+	var chkstudyName
+	var chkstudyMemFee = /^[0-9]+$/;
+	var chkstudyMaxMemCnt = /^[0-9]+$/;
+	var chkstudyIntroduce
+
+	var form = $('#registerForm');
+	var studyName = $('#studyName');
+	var studyRegion = $('#sample4_postcode');
+	var studyStartDate = $('#testDatepicker');
+	var studyMemFee = $('#studyMemFee');
+	var studyMaxMemCnt = $('#studyMaxMemCnt');
+	var studyIntroduce = $('#studyIntroduce');
+	var studyImage = $('#exampleInputFile');
+
+	form.submit(function() {
+		if (studyName.val() == "") { // 스터디명 NULL 유효성 검사
+			alert("스터디명을 입력하십시오.");
+			studyName.focus();
+			return false;
+
+		} else if (studyRegion.val() == "") { // 지역 NULL 유효성 검사
+			alert("지역을 입력하십시오.")
+			studyRegion.focus();
+			return false;
+
+		}  else if (studyMemFee.val() == "") { // 비용 NULL 유효성 검사
+			alert("비용을 입력하십시오.")
+			studyMemFee.focus();
+			return false;
+		} else if (chkstudyMemFee.test(studyMemFee.val()) != true) { // 비용 유효성 검사
+			alert("비용에 숫자만 입력하세요.");
+			studyMemFee.focus();
+			return false;
+
+		} else if (studyMaxMemCnt.val() == "") { // 인원수 NULL 유효성 검사
+			alert("인원수를 입력하십시오.")
+			studyMaxMemCnt.focus();
+			return false;
+		} else if (chkstudyMaxMemCnt.test(studyMaxMemCnt.val()) != true) { // 인원수 유효성 검사
+			alert("인원수에 숫자만 입력하세요.");
+			studyMaxMemCnt.focus();
+			return false;
+
+		} else if (studyIntroduce.val() == "") { // 스터디소개 NULL 유효성 검사
+			alert("스터디소개를 입력하십시오.")
+			studyIntroduce.focus();
+			return false;
+
+		} else if (studyImage.val() == "") { // 사진 NULL 유효성 검사
+			alert("사진을 입력하십시오.")
+			studyImage.focus();
+			return false;
+		}
+		/* input:hidden 으로 현재 업로드된 파일들의 목록을 저장한다. */
+
+		event.preventDefault();
+
+		var that = $(this);
+
+		var str = "";
+
+		$(".uploadedList .delbtn").each(function(index) {
+			str += "<input type='hidden' name='files[" + index + "]' value='" + $(this).attr("data-src") + "'>";
+		});
+
+		$("#Datepicker .day").each(function(index) {
+			str += "<input type='hidden' name='weekVO[" + index + "].weekDay' value='" + $(this).attr("data-src") + "'>";
+		});
+		$("#Datepicker .start").each(function(index) {
+			str += "<input type='hidden' name='weekVO[" + index + "].weekStartDate' value='" + $(this).attr("data-src") + "'>";
+		});
+		$("#Datepicker .end").each(function(index) {
+			str += "<input type='hidden' name='weekVO[" + index + "].weekEndDate' value='" + $(this).attr("data-src") + "'>";
+		});
+		var flag = false;
+		$(".content0 input[type=checkbox]:checked").each(function(items) {
+			str += "<input type='hidden' name='studyUpCategory' value='영어'>";
+		})
+		$(".content1 input[type=checkbox]:checked").each(function(items) {
+			str += "<input type='hidden' name='studyUpCategory' value='외국어'>";
+		})
+		$(".content2 input[type=checkbox]:checked").each(function(items) {
+			str += "<input type='hidden' name='studyUpCategory' value='컴퓨터'>";
+		})
+		$(".content3 input[type=checkbox]:checked").each(function(items) {
+			str += "<input type='hidden' name='studyUpCategory' value='디자인/미술'>";
+		})
+		$(".content4 input[type=checkbox]:checked").each(function(items) {
+			str += "<input type='hidden' name='studyUpCategory' value='국가고시/공무원'>";
+		})
+		$(".content5 input[type=checkbox]:checked").each(function(items) {
+			str += "<input type='hidden' name='studyUpCategory' value='취업'>";
+		})
+		$(".content6 input[type=checkbox]:checked").each(function(items) {
+			str += "<input type='hidden' name='studyUpCategory' value='음악/공연'>";
+		})
+		$(".content7 input[type=checkbox]:checked").each(function(items) {
+			str += "<input type='hidden' name='studyUpCategory' value='스포츠'>";
+		})
+		$(".content8 input[type=checkbox]:checked").each(function(items) {
+			str += "<input type='hidden' name='studyUpCategory' value='뷰티/미용'>";
+		})
+		$(".content9 input[type=checkbox]:checked").each(function(items) {
+			str += "<input type='hidden' name='studyUpCategory' value='라이프스타일'>";
+		})
+		$(".content10 input[type=checkbox]:checked").each(function(items) {
+			str += "<input type='hidden' name='studyUpCategory' value='게임'>";
+		})
+
+		that.append(str);
+		that.get(0).submit();
+
+	});
+});
 	$(document)
 			.ready(
 					function() {
@@ -670,29 +785,6 @@
 							});
 						});
 
-						/* 완료 버튼 클릭시 소스 보냄  */
-						$("#registerForm").submit(function(event) {
-							event.preventDefault();
-
-							var that = $(this);
-
-							var str = "";
-
-							$(".uploadedList .delbtn").each(function(index) {
-								str += "<input type='hidden' name='files[" + index + "]' value='" + $(this).attr("data-src") + "'>";
-							});
-							$("#Datepicker .day").each(function(index) {
-								str += "<input type='hidden' name='weekVO[" + index + "].weekDay' value='" + $(this).attr("data-src") + "'>";
-							});
-							$("#Datepicker .start").each(function(index) {
-								str += "<input type='hidden' name='weekVO[" + index + "].weekStartDate' value='" + $(this).attr("data-src") + "'>";
-							});
-							$("#Datepicker .end").each(function(index) {
-								str += "<input type='hidden' name='weekVO[" + index + "].weekEndDate' value='" + $(this).attr("data-src") + "'>";
-							});
-							that.append(str);
-							that.get(0).submit();
-						});
 						function displayVals() {
 							for (var i = 1; i < 25; i++) {
 								$("#startTime").append("<option value='" +
