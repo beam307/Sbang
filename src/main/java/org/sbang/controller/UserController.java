@@ -61,8 +61,8 @@ public class UserController {
 	@RequestMapping(value = "/sendSMS", method = RequestMethod.POST)
 	public String sendSMS(String userPhoneNumber) throws Exception { // 휴대폰 문자보내기
 
-		String api_key = "NCSQBDPMUOMDA9HP"; // api 키
-		String api_secret = "1NKOJINSQP8QZPAOPIF6MLYZHEWRCGGO"; // secret 키
+		String api_key = ""; // api 키
+		String api_secret = ""; // secret 키
 		Coolsms coolsms = new Coolsms(api_key, api_secret);
 		String key = new TempKey().getNumKey(6); // 인증키 생성
 		userService.insertAuthCode(userPhoneNumber, key); // 테이블에 폰번호와 인증키넣기
