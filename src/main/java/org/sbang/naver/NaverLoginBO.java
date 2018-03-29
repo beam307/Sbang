@@ -13,8 +13,8 @@ import com.github.scribejava.core.model.Verb;
 import com.github.scribejava.core.oauth.OAuth20Service;
 
 public class NaverLoginBO {
-	private final static String CLIENT_ID = "iEDnkpK9LMe7W47i05vo";
-	private final static String CLIENT_SECRET = "uOwrjwWSaw";
+	private final static String CLIENT_ID = "";
+	private final static String CLIENT_SECRET = "";
 	private final static String REDIRECT_URI = "http://www.open-study.xyz/login/callback";
 	private final static String SESSION_STATE = "oauth_state";
 	/* 프로필 조회 API URL */
