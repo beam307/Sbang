@@ -29,7 +29,7 @@ public class KakaoLogin {
 
 		final List<NameValuePair> postParams = new ArrayList<NameValuePair>();
 		postParams.add(new BasicNameValuePair("grant_type", "authorization_code"));
-		postParams.add(new BasicNameValuePair("client_id", "d991eb98e657f8e773b66345be470653")); // REST API KEY
+		postParams.add(new BasicNameValuePair("client_id", "")); // REST API KEY
 		postParams.add(new BasicNameValuePair("redirect_uri", "http://www.open-study.xyz/login/kakaoLogin")); // 리다이렉트 URI
 		postParams.add(new BasicNameValuePair("code", autorize_code)); // 로그인 과정중 얻은 code 값
 
