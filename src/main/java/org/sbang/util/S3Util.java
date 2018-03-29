@@ -20,8 +20,8 @@ import com.amazonaws.services.s3.model.ObjectMetadata;
 @Component
 public class S3Util {
 
-   private String accessKey = "AKIAIAZ2FRY5DSYYP2RQ"; //s3엑세스키
-   private String secretKey = "o0EwOivQmEyAuQ+yZ6YYT8LGttFA9M1dykcIm0c/";//s3시크릿키
+   private String accessKey = ""; //s3엑세스키
+   private String secretKey = "";//s3시크릿키
    
    private AmazonS3 conn;
 
