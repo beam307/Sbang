@@ -5,9 +5,8 @@ import lombok.Data;
 @Data
 public class ImageVO {
 
-	private int imageId;
-	private int studyId;
-	
-	private String imageImagePath;
+	private int studyNo;
+
+	private String imagePath;
 
 }

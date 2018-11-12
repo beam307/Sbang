@@ -1,10 +1,400 @@
-.mypage .col-md-12 {
-    border: 1px solid #000;
-    padding: 50px;
+.form-horizontal {
+    clear: both;
+}
+
+
+/*마이페이지*/
+
+.mypage {
+    padding: 30px;
+}
+
+.mypage .tabpanel > .nav-tabs {
+    margin-bottom: 30px;
+}
+
+.mypage .tabpanel .nav-tabs {
+    border: 0px;
+}
+
+.mypage .tabpanel .nav-tabs>li>a {
+    border-radius: 0px;
+    text-align: center;
+}
+
+.mypage .tabpanel .nav-tabs>li {
+    width: 33.3%;
+}
+
+.mypage .tabpanel .nav-tabs>li.active>a,
+.mypage .tabpanel .nav-tabs>li>a:hover,
+.mypage .tabpanel .nav-tabs>li>a:focus {
+    border-bottom: 0px;
+    border: 1px solid #eee;
+}
+
+.mypage .tabpanel-in {
+    margin-top: 30px;
+}
+
+.mypage .tabpanel-in h4 {
+    margin-bottom: 20px;
+}
+
+.mypage .tabpanel-in .nav-tabs>li {
+    width: 25%;
+}
+
+.mypage .tabpanel-in .tab-content .tab-content-in {
+    border: 1px solid #eee;
+    padding: 20px;
+    margin-top: 30px;
+}
+
+.mypage .tabpanel-in .tab-content:after {
+    clear: both;
+    display: block;
+    content: "";
+    zoom: 1;
+}
+
+.mypage .tabpanel-in .tab-content .user-img {
+    height: auto;
+    overflow: hidden;
+    border-radius: 200px;
+    border: 1px solid #eee;
+}
+
+.mypage .tabpanel-in .tab-content .user-img img {
+    width: 125%;
+    height: auto;
+    margin-left: -15px;
+}
+
+.mypage .tabpanel-in .tab-content .user-img-text {
+    margin-top: 30px;
+    padding-left: 40px;
+}
+
+.mypage .tabpanel-in .tab-content .user-img-upload {
+    margin-top: 20px;
+}
+
+.mypage .tabpanel-in .tab-content p {
+    margin: 0;
+}
+
+.mypage .tabpanel-in .tab-content .thumbnail {
+    margin-top: 20px;
+    padding: 20px;
+    text-align: center;
+}
+
+
+/*상세검색페이지*/
+
+.search-sub {
+    border: 1px solid #aaa;
+    padding: 30px 20px;
+    margin: 30px 0;
+}
+
+.search-sub .search-typebtn {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.search-sub .search-typebtn > button {
+    width: 15%;
+}
+
+.search-sub .search-sub-select1 {
+    padding-left: 0;
+}
+
+.search-sub .search-sub-select2 {
+    padding-right: 0;
+}
+
+
+/*리스트페이지*/
+
+.list .list-thumbnail {
+    margin: 40px 0;
+}
+
+
+/*등록페이지*/
+
+.write {
+    padding: 40px 0;
+}
+
+.step1,
+.step2,
+.step3 {
+    padding: 20px;
+    border: 1px solid #aaa;
+    width: 50%;
+    margin: 0 auto;
+    margin-bottom: 40px;
+}
+
+.write .write-category {
+    border: 1px solid #aaa;
+    padding: 30px 20px;
+    margin: 0 0 20px 0;
+    text-align: center;
+}
+
+.write .btn-default {
+    float: right;
+    width: 15%;
+}
+
+.write .step2 .time_box {
+    padding-left: 30px;
+}
+
+.write .step2 .time .form-control {
+    padding: 0px;
+}
+
+.write .step2 .hyphen {
+    display: inline-block;
+    position: relative;
+    bottom: 10px;
+}
+
+.write .step3 textarea {
+    resize: none;
+}
+
+.write #timepicker1,
+#timepicker2 {
+    width: 100%;
+    float: left;
+}
+
+.write .ti_tx,
+.write .mi_tx,
+.write .mer_tx {
+    width: 100%;
     text-align: center;
     margin: 10px 0;
 }
 
-.mypage{
+.write .time,
+.write .mins,
+.write .meridian {
+    width: 44px;
+    float: left;
+    font-size: 15px;
+    color: #2d2e2e;
+    font-family: arial;
+    font-weight: 700;
+}
+
+.write .prev,
+.write .next {
+    cursor: pointer;
+    padding: 18px;
+    width: 28%;
+    border: 1px solid #ccc;
+    margin: auto;
+    background: url(/resources/images/arrow.png) no-repeat;
+    border-radius: 5px;
+}
+
+.write .prev:hover,
+.write .next:hover {
+    background-color: #ccc;
+}
+
+.write .next {
+    background-position: 50% 150%;
+}
+
+.write .prev {
+    background-position: 50% -50%;
+}
+
+.write .time_pick {
+    position: relative;
+}
+
+.write .timepicker_wrap {
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 998;
+    display: none;
+    box-shadow: 2px 2px 5px 0 rgba(50, 50, 50, 0.35);
+    background: #f6f6f6;
+    border: 1px solid #ccc;
+    float: left;
+    position: absolute;
+    top: 27px;
+    left: 0;
+}
+
+.write .arrow_top {
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    background: url(/resources/images/top_arr.png) no-repeat;
+    width: 18px;
+    height: 10px;
+    z-index: 999;
+}
+
+.write input.timepicki-input {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #CCCCCC;
+    border-radius: 5px 5px 5px 5px;
+    float: none;
+    margin: 0;
+    text-align: center;
+    width: 70%;
+}
+
+.write a.reset_time {
+    float: left;
+    margin-top: 5px;
+    color: #000;
+}
+
+.write .dl-horizontal {
+    text-align: left;
+}
+
+.write .height500 {
+    height: 500px;
+    margin: 85px 0;
+    overflow: auto;
+}
+
+.write input[type='text'] {
+    color: #333333;
+}
+
+.write .myclass input[type='text'] {
+    color: #5CB85C
+}
+
+.write .time_pick {
+    width: 46%;
+    display: inline-block;
+}
+
+.indexpicker .time_pick > input {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+
+/*view*/
+
+.view .carousel-inner {
+    height: 400px;
+}
+
+.view .carousel-inner .item {
+    height: 100%;
+}
+
+.view .carousel-inner .item img {
+    height: 100%;
+    margin: 0 auto;
+}
+
+.view .carousel .carousel-control i {
+    padding: 240px 0;
+}
+
+.view .carousel-control.right {
+    background-image: linear-gradient(to right, rgba(0, 0, 0, .0001) 0, rgba(0, 0, 0, .1) 100%);
+}
+
+.view .carousel-control.left {
+    background-image: linear-gradient(to right, rgba(0, 0, 0, .1) 0, rgba(0, 0, 0, .0001) 100%);
+}
+
+.view .user-img {
+    height: auto;
+    overflow: hidden;
+    border-radius: 200px;
+    border: 1px solid #eee;
+}
+
+.view .user-img img {
+    width: 150%;
+    height: auto;
+    margin-left: -15px;
+}
+
+.view .user-img-text {
+    margin-top: 15px;
+    padding-left: 20px;
+}
+
+.view .user-img-upload {
+    margin-top: 20px;
+}
+
+.view h1 {
+    font-weight: 600;
+}
+
+.view h1 span {
+    font-weight: 300;
+}
+
+.view h1 .view-category {
+    float: right;
+    font-size: 14px;
+    border: 1px solid #000;
+    padding: 8px;
+    width: 70px;
+    text-align: center;
+    margin-left: 5px;
+}
+
+.view-user {
+    margin: 30px 0;
+}
+
+.view-content {
+    margin-top: 40px;
+    clear: both;
+}
+
+.view-info:after {
+    clear: both;
+    display: block;
+    content: "";
+    zoom: 1;
+}
+
+.view-info {
+    margin-bottom: 40px;
+}
+
+.view-info > div {
+    padding: 10px 0;
+}
+
+.view-info > .col-md-1 {
+    font-weight: bold;
+    text-align: right;
+    padding-right: 30px;
+}
+
+.view-info > .col-md-12 {
     padding: 30px;
+}
+
+.view-btn {
+    padding:10px;
+    border: 1px solid #000;
+    margin-right: 5px;
 }

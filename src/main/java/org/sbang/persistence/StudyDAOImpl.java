@@ -1,10 +1,14 @@
 package org.sbang.persistence;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
+import org.sbang.domain.Criteria;
+import org.sbang.domain.SearchCriteria;
 import org.sbang.domain.StudyVO;
 import org.springframework.stereotype.Repository;
 
@@ -21,8 +25,8 @@ public class StudyDAOImpl implements StudyDAO {
 	}
 
 	@Override
-	public StudyVO read(Integer studyId) throws Exception {
-		return session.selectOne(namespace + ".read", studyId);
+	public StudyVO read(Integer studyNo) throws Exception {
+		return session.selectOne(namespace + ".read", studyNo);
 	}
 
 	@Override
@@ -31,81 +35,81 @@ public class StudyDAOImpl implements StudyDAO {
 	}
 
 	@Override
-	public void delete(Integer studyId) throws Exception {
-		session.delete(namespace + ".delete", studyId);
+	public void delete(Integer studyNo) throws Exception {
+		session.delete(namespace + ".delete", studyNo);
 	}
 
 	@Override
 	public List<StudyVO> listAll() throws Exception {
 		return session.selectList(namespace + ".listAll");
 	}
-//
-//	@Override
-//	public List<BoardVO> listPage(int page) throws Exception {
-//		if (page <= 0) {
-//			page = 1;
-//		}
-//		page = (page - 1) * 10;
-//
-//		return session.selectList(namespace + ".listPage", page);
-//	}
-//
-//	@Override
-//	public List<BoardVO> listCriteria(Criteria cri) throws Exception {
-//		return session.selectList(namespace + ".listCriteria", cri);
-//	}
-//
-//	@Override
-//	public int countPaging(Criteria cri) throws Exception {
-//		return session.selectOne(namespace + ".countPaging", cri);
-//	}
-//
-//	@Override
-//	public List<BoardVO> listSearch(SearchCriteria cri) throws Exception {
-//		return session.selectList(namespace+".listSearch",cri);
-//	}
-//	
-//	@Override
-//	public int listSearchCount(SearchCriteria cri) throws Exception{
-//		return session.selectOne(namespace+".listSearchCount",cri);
-//	}
-//	
-//	@Override
-//	public void updateReplyCnt(Integer bno,int amount) throws Exception{
-//		Map<String,Object> paramMap=new HashMap<String,Object>();
-//		
-//		paramMap.put("bno", bno);
-//		paramMap.put("amount", amount);
-//		session.update(namespace+".updateReplyCnt",paramMap);
-//	}
-//	
-//	@Override
-//	public void updateViewCnt(Integer bno) throws Exception{
-//		session.update(namespace+".updateViewCnt",bno);
-//	}
-//	
-//	@Override
-//	public void addAttach(String fullName) throws Exception{
-//		session.insert(namespace+".addAttach",fullName);
-//	}
-//	
-//	@Override
-//	public List<String> getAttach(Integer bno) throws Exception{
-//		return session.selectList(namespace+".getAttach",bno);
-//	}
-//	
-//	@Override
-//	public void deleteAttach(Integer bno) throws Exception{
-//		session.delete(namespace+".deleteAttach",bno);
-//	}
-//	
-//	@Override
-//	public void replaceAttach(String fullName,Integer bno) throws Exception{
-//		Map<String,Object> paramMap=new HashMap<String,Object>();
-//		
-//		paramMap.put("bno", bno);
-//		paramMap.put("fullName", fullName);
-//		
-//		session.insert(namespace+".replaceAttach",paramMap);
-//	}
+
+	@Override
+	public void addImg(String imagePath) throws Exception {
+		session.insert(namespace + ".addImg", imagePath);
+	}
+
+	@Override
+	public void deleteImg(Integer studyNo) throws Exception {
+		session.delete(namespace + ".deleteImg", studyNo);
+	}
+
+	@Override
+	public List<String> getImg(Integer studyNo) throws Exception {
+		return session.selectList(namespace + ".getImg", studyNo);
+	}
+
+	@Override
+	public List<StudyVO> listPage(int page) throws Exception {
+		if (page <= 0) {
+			page = 1;
+		}
+		page = (page - 1) * 10;
+
+		return session.selectList(namespace + ".listPage", page);
+	}
+
+	@Override
+	public List<StudyVO> listCriteria(Criteria cri) throws Exception {
+		return session.selectList(namespace + ".listCriteria", cri);
+	}
+
+	@Override
+	public int countPaging(Criteria cri) throws Exception {
+		return session.selectOne(namespace + ".countPaging", cri);
+	}
+
+	@Override
+	public void replaceImg(String imagePath, Integer studyNo) throws Exception {
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+
+		paramMap.put("studyNo", studyNo);
+		paramMap.put("imagePath", imagePath);
+
+		session.insert(namespace + ".replaceImg", paramMap);
+	}
+
+	@Override
+	public List<StudyVO> listSearch(SearchCriteria cri) throws Exception {
+		return session.selectList(namespace + ".listSearch", cri);
+	}
+
+	@Override
+	public int listSearchCount(SearchCriteria cri) throws Exception {
+		return session.selectOne(namespace + ".listSearchCount", cri);
+	}
+
+	@Override
+	public void updateViewCnt(Integer studyNo) throws Exception {
+		session.update(namespace + ".updateViewCnt", studyNo);
+	}
+
+	@Override
+	public void updateReplyCnt(Integer studyNo, int amount) throws Exception {
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("studyNo", studyNo);
+		paramMap.put("amount", amount);
+		session.update(namespace + ".updateReplyCnt", paramMap);
+	}
+
 }

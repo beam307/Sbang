@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.sbang.domain.SearchCriteria;
 import org.sbang.domain.StudyVO;
 import org.sbang.persistence.StudyDAO;
 import org.slf4j.Logger;
@@ -22,15 +23,15 @@ public class BoardDAOTest {
 	
 	private static Logger logger=LoggerFactory.getLogger(BoardDAOTest.class);
 	
-	@Test
+	/*@Test
 	public void testCreate()throws Exception{
 		StudyVO study=new StudyVO();
 		study.setStudyName("새로운 글을!!` 넣습니다");
 		study.setStudyCategory("#새로운 글을 넣습니다.");
 		study.setStudyRegion("서울시 강서구");
-		study.setStudyMaxMemberCount(5);
+		study.setStudyMaxMemCnt(5);
 		dao.create(study);
-	}
+	}*/
 	
 	/*@Test
 	public void testRead() throws Exception{
@@ -53,10 +54,10 @@ public class BoardDAOTest {
 	/*@Test
 	public void testListPage() throws Exception{
 		int page=3;
-		List<BoardVO> list=dao.listPage(page);
+		List<StudyVO> list=dao.listPage(page);
 		
-		for(BoardVO boardVO:list) {
-			logger.info(boardVO.getBno()+":"+boardVO.getTitle());
+		for(StudyVO studyVO:list) {
+			logger.info(studyVO.getStudyNo()+":"+studyVO.getStudyName());
 		}
 	}*/
 	
@@ -66,10 +67,10 @@ public class BoardDAOTest {
 		cri.setPage(2);
 		cri.setPerPageNum(20);
 		
-		List<BoardVO> list=dao.listCriteria(cri);
+		List<StudyVO> list=dao.listCriteria(cri);
 		
-		for(BoardVO boardVO:list) {
-			logger.info(boardVO.getBno()+":"+boardVO.getTitle());
+		for(StudyVO studyVO:list) {
+			logger.info(studyVO.getStudyNo()+":"+studyVO.getStudyName());
 		}
 	}*/
 	/*@Test
@@ -95,7 +96,7 @@ public class BoardDAOTest {
 		logger.info(uriComponents.toString());
 	}*/
 	
-	/*@Test
+	@Test
 	public void testDynamic1() throws Exception{
 		SearchCriteria cri=new SearchCriteria();
 		cri.setPage(1);
@@ -104,12 +105,12 @@ public class BoardDAOTest {
 		
 		logger.info("========================");
 		
-		List<BoardVO> list=dao.listSearch(cri);
+		List<StudyVO> list=dao.listSearch(cri);
 		
-		for(BoardVO boardVO :list) {
-			logger.info(boardVO.getBno()+": "+boardVO.getTitle());
+		for(StudyVO studyVO :list) {
+			logger.info(studyVO.getStudyNo()+": "+studyVO.getStudyName());
 		}
 		logger.info("==========================");
 		logger.info("COUNT: "+dao.listSearchCount(cri));
-	}*/
+	}
 }
